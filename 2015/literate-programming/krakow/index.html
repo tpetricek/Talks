@@ -1,0 +1,613 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Literate programming with F#</title>
+    <meta name="description" content="In this presentation, we look at the F# tools for literate 
+programming, including the F# Formatting library (which parses literate F# and
+Markdown), ProjectScaffold (a template for projects that lets you write literate
+documentation) and FsReveal (a tool for creating presentation using F#). You'll
+learn useful things about documenting your (not just F#) code and about writing
+understandable code and data analyses.">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">namespace FsReveal</div>
+<div class="tip" id="fs2">module SmartArt<br /><br />from FsReveal</div>
+<div class="tip" id="fs3">namespace System</div>
+<div class="tip" id="fs4">namespace System.Drawing</div>
+<div class="tip" id="fs5">val mks : Graphics<br /><br />Full name: Sample.Diagrams.mks</div>
+<div class="tip" id="fs6">union case Graphics.Split: SplitKind * Size list option * Graphics list -&gt; Graphics</div>
+<div class="tip" id="fs7">union case SplitKind.Vertical: SplitKind</div>
+<div class="tip" id="fs8">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs9">union case Graphics.Align: TextAlignment * Graphics -&gt; Graphics</div>
+<div class="tip" id="fs10">union case TextAlignment.BottomMiddle: TextAlignment</div>
+<div class="tip" id="fs11">val tx : s:Text -&gt; Graphics<br /><br />Full name: FsReveal.SmartArt.tx</div>
+<div class="tip" id="fs12">union case TextAlignment.TopMiddle: TextAlignment</div>
+<div class="tip" id="fs13">val diag : Tree<br /><br />Full name: Sample.Diagrams.diag</div>
+<div class="tip" id="fs14">val color : ht:string -&gt; Color<br /><br />Full name: FsReveal.SmartArt.color</div>
+<div class="tip" id="fs15">type Color =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;member A : byte<br />&#160;&#160;&#160;&#160;member B : byte<br />&#160;&#160;&#160;&#160;member Equals : obj:obj -&gt; bool<br />&#160;&#160;&#160;&#160;member G : byte<br />&#160;&#160;&#160;&#160;member GetBrightness : unit -&gt; float32<br />&#160;&#160;&#160;&#160;member GetHashCode : unit -&gt; int<br />&#160;&#160;&#160;&#160;member GetHue : unit -&gt; float32<br />&#160;&#160;&#160;&#160;member GetSaturation : unit -&gt; float32<br />&#160;&#160;&#160;&#160;member IsEmpty : bool<br />&#160;&#160;&#160;&#160;member IsKnownColor : bool<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.Drawing.Color</div>
+<div class="tip" id="fs16">property Color.White: Color</div>
+<div class="tip" id="fs17">val nd : Graphics * Color * Color -&gt; Tree<br /><br />Full name: FsReveal.SmartArt.nd</div>
+<div class="tip" id="fs18">val d1 : SizedGraphics<br /><br />Full name: Sample.Diagrams.d1</div>
+<div class="tip" id="fs19">val WithSize : w:int * h:int * g:Graphics -&gt; SizedGraphics<br /><br />Full name: FsReveal.SmartArt.WithSize</div>
+<div class="tip" id="fs20">val Draw : diag:Tree -&gt; Graphics<br /><br />Full name: FsReveal.SmartArt.Draw</div>
+<div class="tip" id="fs21">module String<br /><br />from Microsoft.FSharp.Core</div>
+<div class="tip" id="fs22">val concat : sep:string -&gt; strings:seq&lt;string&gt; -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.String.concat</div>
+<div class="tip" id="fs23">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
+<div class="tip" id="fs24">namespace FSharp</div>
+<div class="tip" id="fs25">namespace FSharp.Charting</div>
+<div class="tip" id="fs26">namespace FSharp.Data</div>
+<div class="tip" id="fs27">val wb : WorldBankData.ServiceTypes.WorldBankDataService<br /><br />Full name: Sample.wb</div>
+<div class="tip" id="fs28">type WorldBankData =<br />&#160;&#160;static member GetDataContext : unit -&gt; WorldBankDataService<br />&#160;&#160;nested type ServiceTypes<br /><br />Full name: FSharp.Data.WorldBankData<br /><em><br /><br />&lt;summary&gt;Typed representation of WorldBank data. See http://www.worldbank.org for terms and conditions.&lt;/summary&gt;</em></div>
+<div class="tip" id="fs29">WorldBankData.GetDataContext() : WorldBankData.ServiceTypes.WorldBankDataService</div>
+<div class="tip" id="fs30">val cz : WorldBankData.ServiceTypes.Indicators<br /><br />Full name: Sample.cz</div>
+<div class="tip" id="fs31">property WorldBankData.ServiceTypes.WorldBankDataService.Countries: WorldBankData.ServiceTypes.Countries</div>
+<div class="tip" id="fs32">val po : WorldBankData.ServiceTypes.Indicators<br /><br />Full name: Sample.po</div>
+<div class="tip" id="fs33">property WorldBankData.ServiceTypes.Countries.Poland: WorldBankData.ServiceTypes.Country<br /><em><br /><br />The data for country &#39;Poland&#39;</em></div>
+<div class="tip" id="fs34">property WorldBankData.ServiceTypes.Country.Indicators: WorldBankData.ServiceTypes.Indicators<br /><em><br /><br />&lt;summary&gt;The indicators for the country&lt;/summary&gt;</em></div>
+<div class="tip" id="fs35">val eu : WorldBankData.ServiceTypes.Indicators<br /><br />Full name: Sample.eu</div>
+<div class="tip" id="fs36">Multiple items<br />module Chart<br /><br />from FsReveal.SmartArt<br /><br />--------------------<br />type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member BoxPlotFromData : data:seq&lt;#key * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart (requires &#39;a2 :&gt; value)<br />&#160;&#160;static member BoxPlotFromStatistics : data:seq&lt;#key * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#key * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
+<div class="tip" id="fs37">static member Chart.Line : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Line : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs38">property Color.HotPink: Color</div>
+<div class="tip" id="fs39">property Color.CornflowerBlue: Color</div>
+<div class="tip" id="fs40">static member Chart.Combine : charts:seq&lt;ChartTypes.GenericChart&gt; -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs41">val MakeBox : backColor:string * content:Text -&gt; Graphics<br /><br />Full name: Sample.D2.MakeBox</div>
+<div class="tip" id="fs42">val backColor : string</div>
+<div class="tip" id="fs43">val content : Text</div>
+<div class="tip" id="fs44">Multiple items<br />union case Graphics.Fill: Fill * Graphics -&gt; Graphics<br /><br />--------------------<br />type Fill = | Color of Color<br /><br />Full name: FsReveal.SmartArt.Fill</div>
+<div class="tip" id="fs45">val HtmlColor : c:string -&gt; Fill<br /><br />Full name: FsReveal.SmartArt.HtmlColor</div>
+<div class="tip" id="fs46">union case Graphics.RoundedRectangle: Size * Size -&gt; Graphics</div>
+<div class="tip" id="fs47">type Graphics =<br />&#160;&#160;inherit MarshalByRefObject<br />&#160;&#160;member AddMetafileComment : data:byte[] -&gt; unit<br />&#160;&#160;member BeginContainer : unit -&gt; GraphicsContainer + 2 overloads<br />&#160;&#160;member Clear : color:Color -&gt; unit<br />&#160;&#160;member Clip : Region with get, set<br />&#160;&#160;member ClipBounds : RectangleF<br />&#160;&#160;member CompositingMode : CompositingMode with get, set<br />&#160;&#160;member CompositingQuality : CompositingQuality with get, set<br />&#160;&#160;member CopyFromScreen : upperLeftSource:Point * upperLeftDestination:Point * blockRegionSize:Size -&gt; unit + 3 overloads<br />&#160;&#160;member Dispose : unit -&gt; unit<br />&#160;&#160;member DpiX : float32<br />&#160;&#160;...<br />&#160;&#160;nested type DrawImageAbort<br />&#160;&#160;nested type EnumerateMetafileProc<br /><br />Full name: System.Drawing.Graphics</div>
+<div class="tip" id="fs48">union case Graphics.Text: Text -&gt; Graphics</div>
+<div class="tip" id="fs49">union case Graphics.Combine: Graphics list -&gt; Graphics</div>
+<div class="tip" id="fs50">val WithMargin : t:Size * r:Size * b:Size * l:Size -&gt; c:Graphics -&gt; Graphics<br /><br />Full name: FsReveal.SmartArt.WithMargin</div>
+<div class="tip" id="fs51">val svg : Graphics<br /><br />Full name: Sample.D2.svg</div>
+<div class="tip" id="fs52">union case SplitKind.Horizontal: SplitKind</div>
+<div class="tip" id="fs53">val d2 : SizedGraphics<br /><br />Full name: Sample.D2.d2</div>
+<div class="tip" id="fs54">union case TextAlignment.Center: TextAlignment</div>
+<div class="tip" id="fs55">val MakeBox : backColor:string * content:Text -&gt; Graphics<br /><br />Full name: Sample.MakeBox</div>
+<div class="tip" id="fs56">Multiple items<br />union case Graphics.Text: Text -&gt; Graphics<br /><br />--------------------<br />namespace System.Drawing.Text<br /><br />--------------------<br />type Text = string<br /><br />Full name: FsReveal.SmartArt.Text</div>
+<div class="tip" id="fs57">val svg : Graphics<br /><br />Full name: Sample.svg</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<section >
+
+<h2>Literate programming with F#</h2>
+
+<br /><br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br /><br />
+
+<p><strong>Tomas Petricek</strong>, F# Works<br />
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> 
+| <a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> 
+| <a href="http://fsharpworks.com"><a href="http://fsharpworks.com">http://fsharpworks.com</a></a></p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>What is literate programming?</h2>
+
+<br /><br /><br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+
+</section>
+
+<section >
+
+<h2>What is literate programming?</h2>
+
+<div class="fragment">
+<br />
+
+<table class="pre"><tr><td><pre lang="csharp"><span class="k">public</span> <span class="k">class</span> Person {
+  <span class="c">/// &lt;summary&gt;</span>
+  <span class="c">/// Gets or sets the name of the person</span>
+  <span class="c">/// &lt;/summary&gt;</span>
+  <span class="k">public</span> <span class="k">string</span> Name { get; set; }
+
+  <span class="c">/// &lt;summary&gt;</span>
+  <span class="c">/// Gets or sets the age of the person</span>
+  <span class="c">/// &lt;/summary&gt;</span>
+  <span class="k">public</span> <span class="k">string</span> Age { get; set; }
+}
+</pre></td></tr></table>
+
+<br />
+
+<p>This is <em>not</em> literate programming!</p>
+
+</div>
+
+</section>
+
+<section >
+
+<h2>What is literate programming?</h2>
+
+<br />
+
+<p><img src="images/knuth.jpg" alt="Donald Knuth" /></p>
+
+<p>Professor Donald Knuth is not happy :-(</p>
+
+</section>
+
+<section >
+
+<img src="images/book.jpg" style="width:400px" />
+
+</section>
+
+<section >
+
+<h2>What is literate programming?</h2>
+
+<br />
+
+<blockquote>
+  <p>Let us change our traditional attitude to the construction of programs: Instead 
+of imagining that our main task is to instruct a <strong>computer</strong> what to do, let us 
+concentrate rather on explaining to <strong>human beings</strong> what we want a computer to do.</p>
+</blockquote>
+
+</section>
+
+<section >
+
+<h2>The <code>WEB</code> system</h2>
+
+<blockquote>
+  <p><code>WEB</code> is a combination of two other languages</p>
+
+<ol>
+<li>a document formatting language and</li>
+<li>a programming language.</li>
+</ol>
+
+  <p>I chose the name <code>WEB</code> partly because it was one of the few three-letter 
+words of English that hadn’t already been applied to computers.</p>
+</blockquote>
+
+</section>
+
+<section >
+
+<h2>The <code>WEB</code> system</h2>
+
+<table class="pre"><tr><td><pre lang="text">@* Printing primes: An example of \WEB. 
+\[The program text below specifies the ``expanded meaning&#39;&#39;;
+notice that it involves the top-level descriptions of three 
+other sections. When those top-level descriptions are replaced 
+by their expanded meanings, a syntactically correct \PASCAL\ 
+program will be obtained.\] 
+
+@&lt;Program to print...@&gt;= 
+  program print_primes(output); 
+  const @!m=1000; 
+  @&lt;Other constants of the program@&gt;@; 
+  var @&lt;Variables of the program@&gt;@; 
+  begin @&lt;Print the first |m| prime numbers@&gt;; 
+  end.
+</pre></td></tr></table>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Literate programming with F#</h2>
+
+<br /><br /><br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+
+</section>
+
+<section >
+
+<h2>Literate programming with F#</h2>
+
+<br /><br />
+
+<svg id="root" height="400" width="800"><rect width="240.00000000000003" height="160" x="13.333333333333334" y="120" rx="10" ry="10" fill="rgb(31,91,86)" fill-opacity="1" /><text y="200" x="133.33333333333334" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">F# + Markdown</text><text y="200" dy="1em" x="133.33333333333334" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">Source</text><rect width="240.00000000000003" height="64" x="280" y="48" rx="10" ry="10" fill="rgb(50,94,107)" fill-opacity="1" /><text y="80" dy="0.30em" x="400" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">F# Code</text><rect width="240.00000000000003" height="72" x="546.66666666666674" y="4" rx="10" ry="10" fill="rgb(67,126,142)" fill-opacity="1" /><text y="40" dy="0.30em" x="666.66666666666674" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">F# Interactive</text><rect width="240.00000000000003" height="72" x="546.66666666666674" y="84" rx="10" ry="10" fill="rgb(67,126,142)" fill-opacity="1" /><text y="120" dy="0.30em" x="666.66666666666674" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">F# Project</text><rect width="240.00000000000003" height="96" x="280" y="232" rx="10" ry="10" fill="rgb(49,104,63)" fill-opacity="1" /><text y="280" dy="0.30em" x="400" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">Markdown</text><rect width="240.00000000000003" height="72" x="546.66666666666674" y="164" rx="10" ry="10" fill="rgb(67,142,73)" fill-opacity="1" /><text y="200" dy="0.30em" x="666.66666666666674" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">FsReveal</text><rect width="240.00000000000003" height="72" x="546.66666666666674" y="244" rx="10" ry="10" fill="rgb(67,142,73)" fill-opacity="1" /><text y="280" dy="0.30em" x="666.66666666666674" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">PDF Reports</text><rect width="240.00000000000003" height="72" x="546.66666666666674" y="324" rx="10" ry="10" fill="rgb(67,142,73)" fill-opacity="1" /><text y="360" dy="0.30em" x="666.66666666666674" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">Documentation</text></svg>
+
+</section>
+
+<section >
+
+<h2>Literate slides with FsReveal</h2>
+
+<br />
+
+<p>No F# demo is complete without the <code>|&gt;</code> operator...</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+[ <span class="s">&quot;Hello&quot;</span>; <span class="s">&quot; &quot;</span>; <span class="s">&quot;Krakow&quot;</span>; <span class="s">&quot;!&quot;</span> ]
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 57)" onmouseover="showTip(event, 'fs21', 57)" class="t">String</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 58)" onmouseover="showTip(event, 'fs22', 58)" class="f">concat</span> <span class="s">&quot;&quot;</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs23', 59)" onmouseover="showTip(event, 'fs23', 59)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span>
+</pre>
+</td>
+</tr>
+</table>
+
+<br />
+
+<p>FsReveal embeds the output automatically:</p>
+
+<table class="pre"><tr><td><pre><code>Hello Krakow!</code></pre></td></tr></table>
+
+</section>
+
+<section >
+
+<h2>Literate slides with FsReveal</h2>
+
+<br />
+
+<p>Get School Enrollment data from WorldBank</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 66)" onmouseover="showTip(event, 'fs27', 66)" class="i">wb</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs28', 67)" onmouseover="showTip(event, 'fs28', 67)" class="t">WorldBankData</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 68)" onmouseover="showTip(event, 'fs29', 68)" class="f">GetDataContext</span>()
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs30', 69)" onmouseover="showTip(event, 'fs30', 69)" class="i">cz</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 70)" onmouseover="showTip(event, 'fs27', 70)" class="i">wb</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs31', 71)" onmouseover="showTip(event, 'fs31', 71)" class="i">Countries</span><span class="o">.</span><span class="i">``Czech Republic``</span><span class="o">.</span><span class="i">Indicators</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 72)" onmouseover="showTip(event, 'fs32', 72)" class="i">po</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 73)" onmouseover="showTip(event, 'fs27', 73)" class="i">wb</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs31', 74)" onmouseover="showTip(event, 'fs31', 74)" class="i">Countries</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs33', 75)" onmouseover="showTip(event, 'fs33', 75)" class="i">Poland</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs34', 76)" onmouseover="showTip(event, 'fs34', 76)" class="i">Indicators</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 77)" onmouseover="showTip(event, 'fs35', 77)" class="i">eu</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 78)" onmouseover="showTip(event, 'fs27', 78)" class="i">wb</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs31', 79)" onmouseover="showTip(event, 'fs31', 79)" class="i">Countries</span><span class="o">.</span><span class="i">``European Union``</span><span class="o">.</span><span class="i">Indicators</span>
+</pre>
+</td>
+</tr>
+</table>
+
+<p>Compare Czech Republic and EU stats</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+[ <span onmouseout="hideTip(event, 'fs36', 80)" onmouseover="showTip(event, 'fs36', 80)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 81)" onmouseover="showTip(event, 'fs37', 81)" class="f">Line</span>
+    ( <span onmouseout="hideTip(event, 'fs30', 82)" onmouseover="showTip(event, 'fs30', 82)" class="i">cz</span><span class="o">.</span><span class="i">``School enrollment, tertiary (% gross)``</span>, 
+      <span onmouseout="hideTip(event, 'fs15', 83)" onmouseover="showTip(event, 'fs15', 83)" class="i">Color</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs15', 84)" onmouseover="showTip(event, 'fs15', 84)" class="t">Color</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 85)" onmouseover="showTip(event, 'fs38', 85)" class="i">HotPink</span>)
+  <span onmouseout="hideTip(event, 'fs36', 86)" onmouseover="showTip(event, 'fs36', 86)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 87)" onmouseover="showTip(event, 'fs37', 87)" class="f">Line</span>
+    ( <span onmouseout="hideTip(event, 'fs32', 88)" onmouseover="showTip(event, 'fs32', 88)" class="i">po</span><span class="o">.</span><span class="i">``School enrollment, tertiary (% gross)``</span>, 
+      <span onmouseout="hideTip(event, 'fs15', 89)" onmouseover="showTip(event, 'fs15', 89)" class="i">Color</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs15', 90)" onmouseover="showTip(event, 'fs15', 90)" class="t">Color</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 91)" onmouseover="showTip(event, 'fs16', 91)" class="i">White</span>)
+  <span onmouseout="hideTip(event, 'fs36', 92)" onmouseover="showTip(event, 'fs36', 92)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 93)" onmouseover="showTip(event, 'fs37', 93)" class="f">Line</span>
+    ( <span onmouseout="hideTip(event, 'fs35', 94)" onmouseover="showTip(event, 'fs35', 94)" class="i">eu</span><span class="o">.</span><span class="i">``School enrollment, tertiary (% gross)``</span>, 
+      <span onmouseout="hideTip(event, 'fs15', 95)" onmouseover="showTip(event, 'fs15', 95)" class="i">Color</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs15', 96)" onmouseover="showTip(event, 'fs15', 96)" class="t">Color</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs39', 97)" onmouseover="showTip(event, 'fs39', 97)" class="i">CornflowerBlue</span>) ]
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs36', 98)" onmouseover="showTip(event, 'fs36', 98)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs40', 99)" onmouseover="showTip(event, 'fs40', 99)" class="f">Combine</span>
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section >
+
+<h2>Literate slides with FsReveal</h2>
+
+<br />
+
+<p>FsReveal embeds the chart for us!</p>
+
+<p><img src="./images/chart7.png" alt="" /></p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Looking under the cover...</h2>
+
+<br /><br /><br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+
+</section>
+
+<section >
+
+<h2>Looking under the cover...</h2>
+
+<p>Enabled by the great F# community!</p>
+
+<br />
+<div class="fragment">
+
+<ul>
+<li><strong><a href="http://tpetricek.github.io/FSharp.Formatting/">F# Formatting</a></strong> to process F# scripts &amp; Markdown</li>
+<li><strong><a href="http://fsharp.github.io/FSharp.Compiler.Service/">F# Compiler Service</a></strong> for tool tips &amp; evaluation</li>
+<li><strong><a href="http://fsprojects.github.io/FsReveal/">FsReveal</a></strong> to generate reveal.js slides</li>
+<li><strong><a href="http://www.fslab.org">FsLab</a></strong> data-science libraries for charts</li>
+<li><strong><a href="http://fsprojects.github.io/FAKE">FAKE</a> &amp; <a href="http://suave.io/">Suave</a></strong> to put things together &amp; host</li>
+</ul>
+
+</div>
+
+</section>
+
+<section >
+
+<h2>Literate F#: Using F# Scripts</h2>
+
+<br />
+
+<p>Write an F# script with special comments</p>
+
+<br />
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">(** Use _Markdown_ in comments. *)</span>
+<span class="c">(*** define-output:hello ***)</span>
+<span onmouseout="hideTip(event, 'fs23', 100)" onmouseover="showTip(event, 'fs23', 100)" class="f">printfn</span> <span class="s">&quot;Hello world!&quot;</span>
+<span class="c">(** write code as usual... *)</span>
+<span class="c">(*** include-output:hello ***)</span>
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section >
+
+<h2>Literate F#: Markdown mode</h2>
+
+<br />
+
+<p>Write Markdown document with F# code snippets</p>
+
+<br />
+
+<table class="pre"><tr><td><pre lang="text">Write standard _Markdown_ document 
+
+    [lang=fsharp]
+    printfn &quot;Hello world!&quot;
+
+With embedded F# snippets
+</pre></td></tr></table>
+
+</section>
+
+<section >
+
+<h2>Literate F#: Diagrams</h2>
+
+<br />
+
+<p>We can embed results and even charts. How about...</p>
+
+<div class="fragment">
+
+<svg id="root" height="300" width="800"><rect width="246.66666666666669" height="280" x="10" y="10" rx="10" ry="10" fill="rgb(31,91,86)" fill-opacity="1" /><text y="150" dy="0.30em" x="133.33333333333334" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">Diagrams</text><rect width="246.66666666666669" height="280" x="276.66666666666669" y="10" rx="10" ry="10" fill="rgb(50,94,107)" fill-opacity="1" /><text y="150" dy="0.30em" x="400" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">..are..</text><rect width="246.66666666666669" height="280" x="543.33333333333337" y="10" rx="10" ry="10" fill="rgb(49,104,63)" fill-opacity="1" /><text y="150" dy="0.30em" x="666.66666666666674" text-anchor="middle" fill="rgb(255,255,255)" fill-opacity="1">boring :-(</text></svg>
+
+</div>
+
+</section>
+
+<section >
+
+<h2>Literate F#: Diagrams</h2>
+
+<p>Domain specific language for building diagrams!</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 127)" onmouseover="showTip(event, 'fs1', 127)" class="i">FsReveal</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 128)" onmouseover="showTip(event, 'fs2', 128)" class="i">SmartArt</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs55', 129)" onmouseover="showTip(event, 'fs55', 129)" class="f">MakeBox</span>(<span onmouseout="hideTip(event, 'fs42', 130)" onmouseover="showTip(event, 'fs42', 130)" class="i">backColor</span>, <span onmouseout="hideTip(event, 'fs43', 131)" onmouseover="showTip(event, 'fs43', 131)" class="i">content</span>) <span class="o">=</span>
+  [ <span onmouseout="hideTip(event, 'fs44', 132)" onmouseover="showTip(event, 'fs44', 132)" class="p">Fill</span>(<span onmouseout="hideTip(event, 'fs45', 133)" onmouseover="showTip(event, 'fs45', 133)" class="f">HtmlColor</span> <span onmouseout="hideTip(event, 'fs42', 134)" onmouseover="showTip(event, 'fs42', 134)" class="i">backColor</span>, <span onmouseout="hideTip(event, 'fs46', 135)" onmouseover="showTip(event, 'fs46', 135)" class="p">RoundedRectangle</span>(<span class="n">10G</span>, <span class="n">10G</span>)); 
+    <span onmouseout="hideTip(event, 'fs44', 136)" onmouseover="showTip(event, 'fs44', 136)" class="p">Fill</span>(<span onmouseout="hideTip(event, 'fs45', 137)" onmouseover="showTip(event, 'fs45', 137)" class="f">HtmlColor</span> <span class="s">&quot;#FFFFFF&quot;</span>, <span onmouseout="hideTip(event, 'fs56', 138)" onmouseover="showTip(event, 'fs56', 138)" class="p">Text</span> <span onmouseout="hideTip(event, 'fs43', 139)" onmouseover="showTip(event, 'fs43', 139)" class="i">content</span>)]
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs49', 140)" onmouseover="showTip(event, 'fs49', 140)" class="p">Combine</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs50', 141)" onmouseover="showTip(event, 'fs50', 141)" class="f">WithMargin</span> (<span class="n">10G</span>, <span class="n">10G</span>, <span class="n">10G</span>, <span class="n">10G</span>)
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs57', 142)" onmouseover="showTip(event, 'fs57', 142)" class="i">svg</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 143)" onmouseover="showTip(event, 'fs6', 143)" class="p">Split</span>(<span onmouseout="hideTip(event, 'fs52', 144)" onmouseover="showTip(event, 'fs52', 144)" class="p">Horizontal</span>, <span onmouseout="hideTip(event, 'fs8', 145)" onmouseover="showTip(event, 'fs8', 145)" class="p">None</span>, [
+    <span onmouseout="hideTip(event, 'fs55', 146)" onmouseover="showTip(event, 'fs55', 146)" class="f">MakeBox</span>(<span class="s">&quot;#1F5B56&quot;</span>, <span class="s">&quot;Diagrams&quot;</span>)
+    <span onmouseout="hideTip(event, 'fs55', 147)" onmouseover="showTip(event, 'fs55', 147)" class="f">MakeBox</span>(<span class="s">&quot;#325E6B&quot;</span>, <span class="s">&quot;..are..&quot;</span>)
+    <span onmouseout="hideTip(event, 'fs55', 148)" onmouseover="showTip(event, 'fs55', 148)" class="f">MakeBox</span>(<span class="s">&quot;#31683F&quot;</span>, <span class="s">&quot;fun!&quot;</span>)
+  ])
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Literate tools for F#</h2>
+
+<br /><br /><br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+
+</section>
+
+<section >
+
+<h2>FsLab Journal</h2>
+
+<a href="images/FsLab_Tutorial1.html" target="_blank">
+<img src="images/journal.png" style="border-style:none;width:450px" />
+</a>
+
+<p>Download the <a href="https://visualstudiogallery.msdn.microsoft.com/45373b36-2a4c-4b6a-b427-93c7a8effddb">FsLab Journal Template</a>!</p>
+
+</section>
+
+<section >
+
+<h2>ProjectScaffold docs</h2>
+
+<a href="http://fsharp.github.io/FSharp.Data/library/WorldBank.html" target="_blank">
+<img src="images/scaffold.png" style="border-style:none;width:550px" />
+</a>
+
+<p>See <a href="fsprojects.github.io/ProjectScaffold/">ProjectScaffold</a> on GitHub for more!</p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Conclusions</h2>
+
+<br /><br /><br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+
+</section>
+
+<section >
+
+<h3>Literate scripting</h3>
+
+<p>Journal or notebooks for data science<br />
+Walkthrough tutorials in documentation</p>
+
+<br />
+
+<h3>Literate software engineering</h3>
+
+<p>This is still an interesting problem!</p>
+
+<br /><br />
+
+<p><strong>Tomas Petricek</strong>, F# Works<br />
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> 
+| <a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> 
+| <a href="http://fsharpworks.com"><a href="http://fsharpworks.com">http://fsharpworks.com</a></a></p>
+
+<p>Thanks to Karlkim Suwanmongkol (<a href="https://twitter.com/kimsk">@kimsk</a>) for creating FsReveal!</p>
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            theme: 'Night', // available themes are in /css/theme
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                //{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                //{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                //{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+

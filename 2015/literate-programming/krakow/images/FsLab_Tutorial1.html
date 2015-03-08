@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- 
+      The FsLab Walkthrough (with R) parameters will be replaced with the 
+      document title extracted from the <h1> element or
+      file name, if there is no <h1> heading
+    -->
+    <title>FsLab Walkthrough (with R)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="styles/deedle.css" />
+    <script src="styles/tips.js" type="text/javascript"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fslab.org">fslab.org</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle">Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider">R Provider</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data/">F# Data</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Charting/">F# Charting</a></li>
+          <li><a href="http://numerics.mathdotnet.com/docs/">Math.NET</a></li>
+        </ul>
+        <h3 class="muted">FsLab Journal</h3>
+      </div>
+      <hr />
+      <div class="row" style="margin-top:30px">
+        <div class="span1"></div>
+        <div class="span10" id="main">
+          <h1>FsLab Walkthrough (with R)</h1>
+
+<p>This file is a sample experiment that demonstrates the capabilities of FsLab
+journal. FsLab experiments automatically includes a reference to the <a href="http://www.nuget.org/packages/FsLab">FsLab 
+NuGet package</a>, so you can use all the great data science F# packages.
+The template also contains a runner that formats your script files nicely using
+<a href="http://tpetricek.github.io/FSharp.Formatting/">F# Formatting</a> and generates nice HTML or LaTeX reports. To write your 
+experiments, you can include Markdown-formatted text in comments starting with 
+<code>**</code> such as this one. The report is generated and opened automatically when 
+you hit <strong>F5</strong>.</p>
+
+<p>When you generate a report, the code in all scripts in the solution is executed,
+the resulting charts and tables are embedded and everything is nicely formatted.
+The rest of this experiment shows the available libraries and how to format 
+your experiments.</p>
+
+<h2>FsLab libraries</h2>
+
+<p>The FsLab package automatically references the following F# libraries:</p>
+
+<ul>
+<li><a href="http://bluemountaincapital.github.io/Deedle/">Deedle</a> for working with data frames and data series</li>
+<li><a href="http://bluemountaincapital.github.io/FSharpRProvider/">F# R type provider</a> for interoperating with R</li>
+<li><a href="http://fsharp.github.io/FSharp.Charting/">F# Charting</a> for building interactive charts</li>
+<li><a href="http://fsharp.github.io/FSharp.Data/">F# Data</a> with data-access with F# type providers</li>
+<li><a href="http://numerics.mathdotnet.com/">Math.NET Numerics</a> for writing numerical calculations</li>
+</ul>
+
+<h2>Sample data access with F# Data</h2>
+
+<p>The following snippet builds a simple Deedle data frame using data obtained 
+from the WorldBank type provider from the F# Data library:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">Deedle</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Data</span>
+
+<span class="c">// Get countries in the Euro area</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">wb</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">WorldBankData</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">GetDataContext</span>()
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="i">countries</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="i">wb</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="i">Regions</span><span class="o">.</span><span class="i">``Euro area``</span>
+
+<span class="c">// Get a frame with debts as a percentage of GDP </span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="i">debts</span> <span class="o">=</span> 
+  [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs10', 11)" onmouseover="showTip(event, 'fs10', 11)" class="i">c</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">countries</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="i">Countries</span> <span class="k">-&gt;</span>
+      <span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 14)" onmouseover="showTip(event, 'fs12', 14)" class="i">debts</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="i">Indicators</span><span class="o">.</span><span class="i">``Central government debt, total (% of GDP)``</span>
+      <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="i">Name</span> <span class="o">=&gt;</span> <span onmouseout="hideTip(event, 'fs15', 19)" onmouseover="showTip(event, 'fs15', 19)" class="i">series</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="i">debts</span> ] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 21)" onmouseover="showTip(event, 'fs16', 21)" class="i">frame</span></pre>
+</td>
+</tr>
+</table>
+
+<p>The above snippet defines a <code>debt</code> value, which is a data frame with years as 
+the row index and country names as the column index. You can use the 
+<code>include-value</code> command to include a table summarizing the frame data:</p>
+
+<div class="deedleframe">
+
+
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><p>Austria</p></th>
+<th><p>Belgium</p></th>
+<th><p>Cyprus</p></th>
+<th><p> ... </p></th>
+<th><p>Portugal</p></th>
+<th><p>Slovak Republic</p></th>
+<th><p>Slovenia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>1994</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p> ... </p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="even">
+<td><p>1995</p></td>
+<td><p>61.31</p></td>
+<td><p>122.7</p></td>
+<td><p>N/A</p></td>
+<td><p> ... </p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>16.58</p></td>
+</tr>
+<tr class="odd">
+<td><p>1996</p></td>
+<td><p>61.81</p></td>
+<td><p>120.1</p></td>
+<td><p>N/A</p></td>
+<td><p> ... </p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>19.97</p></td>
+</tr>
+<tr class="even">
+<td><p>1997</p></td>
+<td><p>59.18</p></td>
+<td><p>117</p></td>
+<td><p>N/A</p></td>
+<td><p> ... </p></td>
+<td><p>62.07</p></td>
+<td><p>N/A</p></td>
+<td><p>20.58</p></td>
+</tr>
+<tr class="odd">
+<td><p>1998</p></td>
+<td><p>61.39</p></td>
+<td><p>112.8</p></td>
+<td><p>261.7</p></td>
+<td><p> ... </p></td>
+<td><p>60.53</p></td>
+<td><p>N/A</p></td>
+<td><p>21.12</p></td>
+</tr>
+<tr class="even">
+<td><p>1999</p></td>
+<td><p>63.96</p></td>
+<td><p>109.5</p></td>
+<td><p>155.8</p></td>
+<td><p> ... </p></td>
+<td><p>58.07</p></td>
+<td><p>N/A</p></td>
+<td><p>21.66</p></td>
+</tr>
+<tr class="odd">
+<td><p>2000</p></td>
+<td><p>64.13</p></td>
+<td><p>104.5</p></td>
+<td><p>156.3</p></td>
+<td><p> ... </p></td>
+<td><p>57.58</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="even">
+<td><p>2001</p></td>
+<td><p>64.22</p></td>
+<td><p>103.1</p></td>
+<td><p>160.9</p></td>
+<td><p> ... </p></td>
+<td><p>58.37</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="odd">
+<td><p> ... </p></td>
+<td><p> ... </p></td>
+<td><p> ... </p></td>
+<td><p> ... </p></td>
+<td><p> ... </p></td>
+<td><p> ... </p></td>
+<td><p> ... </p></td>
+<td><p> ... </p></td>
+</tr>
+<tr class="even">
+<td><p>2009</p></td>
+<td><p>68.99</p></td>
+<td><p>87</p></td>
+<td><p>97.57</p></td>
+<td><p> ... </p></td>
+<td><p>87.93</p></td>
+<td><p>37.64</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="odd">
+<td><p>2010</p></td>
+<td><p>72.17</p></td>
+<td><p>86.24</p></td>
+<td><p>102.4</p></td>
+<td><p> ... </p></td>
+<td><p>91.42</p></td>
+<td><p>45.55</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="even">
+<td><p>2011</p></td>
+<td><p>73.12</p></td>
+<td><p>88.57</p></td>
+<td><p>113.6</p></td>
+<td><p> ... </p></td>
+<td><p>90.16</p></td>
+<td><p>44.84</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="odd">
+<td><p>2012</p></td>
+<td><p>78.46</p></td>
+<td><p>89.44</p></td>
+<td><p>131</p></td>
+<td><p> ... </p></td>
+<td><p>122.8</p></td>
+<td><p>53.48</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+
+<p>As you can see, you can even include simple F# expressions in the command. By default,
+FsLab Journal uses the "G4" format string, but if you want to use other format string,
+you can specify it in the <code>Main.fs</code> file when calling <code>Journal.Process</code>. You can also 
+embed LaTeX in your reports and write
+(for more options <a href="http://tpetricek.github.io/FSharp.Formatting/sideextensions.html">see the documentation</a>):</p>
+
+<p><span class="math">\[R = \frac{\mathit{round}(100 \times \mathit{debt})}{100}\]</span></p>
+
+<h2>Sample data analysis with Deedle</h2>
+
+<p>You can also use <code>define-output</code> to give a name to a code block. When the code 
+block is an expression that returns a value, you can use <code>include-it</code> to 
+include the formatted result:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 22)" onmouseover="showTip(event, 'fs17', 22)" class="i">recent</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="i">debts</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 24)" onmouseover="showTip(event, 'fs18', 24)" class="i">Rows</span><span class="o">.</span>[<span class="n">2005</span> <span class="o">..</span>]
+
+<span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="i">recent</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs19', 26)" onmouseover="showTip(event, 'fs19', 26)" class="i">Stats</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs20', 27)" onmouseover="showTip(event, 'fs20', 27)" class="i">mean</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 28)" onmouseover="showTip(event, 'fs21', 28)" class="i">Series</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 29)" onmouseover="showTip(event, 'fs22', 29)" class="i">sort</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 30)" onmouseover="showTip(event, 'fs21', 30)" class="i">Series</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 31)" onmouseover="showTip(event, 'fs23', 31)" class="i">rev</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 32)" onmouseover="showTip(event, 'fs21', 32)" class="i">Series</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs24', 33)" onmouseover="showTip(event, 'fs24', 33)" class="i">take</span> <span class="n">4</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs25', 34)" onmouseover="showTip(event, 'fs25', 34)" class="i">round</span></pre>
+</td>
+</tr>
+</table>
+
+<div class="deedleseries">
+
+
+<table>
+<thead>
+<tr class="header">
+<th><p>Keys</p></th>
+<th><p>Cyprus</p></th>
+<th><p>Greece</p></th>
+<th><p>Malta</p></th>
+<th><p>Italy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Values</p></td>
+<td><p>130</p></td>
+<td><p>127</p></td>
+<td><p>119</p></td>
+<td><p>111</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+
+<p>Here, we calculate means of debts over years starting with 2005, take the 4
+countries with the greatest average debt and round the debts.</p>
+
+<h2>Calculating with Math.NET</h2>
+
+<p>If you want to implement a more complex calculation, you can turn Deedle frame
+or series to Math.NET matrix or vector, respectively, and use the linear algebra
+features of Math.NET. For example:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs26', 35)" onmouseover="showTip(event, 'fs26', 35)" class="i">MathNet</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 36)" onmouseover="showTip(event, 'fs27', 36)" class="i">Numerics</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 37)" onmouseover="showTip(event, 'fs28', 37)" class="i">LinearAlgebra</span>
+
+<span class="c">// Create matrix from debts &amp; vector from means</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs29', 38)" onmouseover="showTip(event, 'fs29', 38)" class="i">debtsMat</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 39)" onmouseover="showTip(event, 'fs9', 39)" class="i">debts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 40)" onmouseover="showTip(event, 'fs30', 40)" class="i">Frame</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs31', 41)" onmouseover="showTip(event, 'fs31', 41)" class="i">fillMissingWith</span> <span class="n">0.0</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 42)" onmouseover="showTip(event, 'fs30', 42)" class="i">Frame</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 43)" onmouseover="showTip(event, 'fs32', 43)" class="i">toMatrix</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 44)" onmouseover="showTip(event, 'fs33', 44)" class="i">avgVect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 45)" onmouseover="showTip(event, 'fs9', 45)" class="i">debts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs19', 46)" onmouseover="showTip(event, 'fs19', 46)" class="i">Stats</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs20', 47)" onmouseover="showTip(event, 'fs20', 47)" class="i">mean</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 48)" onmouseover="showTip(event, 'fs21', 48)" class="i">Series</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs34', 49)" onmouseover="showTip(event, 'fs34', 49)" class="i">toVector</span>
+
+<span class="c">// Multiply debts per year by means</span>
+<span onmouseout="hideTip(event, 'fs29', 50)" onmouseover="showTip(event, 'fs29', 50)" class="i">debtsMat</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="i">avgVect</span></pre>
+</td>
+</tr>
+</table>
+
+<span class="math">\[\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0\\ 
+61.31 &amp; 122.7 &amp; 0 &amp; 35.21 &amp; 55.24 &amp; 9.859 &amp; 75.39 &amp; \cdots &amp; 0 &amp; 16.58\\ 
+61.81 &amp; 120.1 &amp; 0 &amp; 37.08 &amp; 61.08 &amp; 8.861 &amp; 80.25 &amp; \cdots &amp; 0 &amp; 19.97\\ 
+59.18 &amp; 117 &amp; 0 &amp; 37.85 &amp; 60.58 &amp; 8.406 &amp; 77.66 &amp; \cdots &amp; 0 &amp; 20.58\\ 
+61.39 &amp; 112.8 &amp; 261.7 &amp; 38.84 &amp; 60.95 &amp; 4.132 &amp; 74.65 &amp; \cdots &amp; 0 &amp; 21.12\\ 
+63.96 &amp; 109.5 &amp; 155.8 &amp; 39.03 &amp; 55.84 &amp; 5.496 &amp; 64 &amp; \cdots &amp; 0 &amp; 21.66\\ 
+64.13 &amp; 104.5 &amp; 156.3 &amp; 38.28 &amp; 53.28 &amp; 4.295 &amp; 55.22 &amp; \cdots &amp; 0 &amp; 0\\ 
+64.22 &amp; 103.1 &amp; 160.9 &amp; 36.75 &amp; 48.98 &amp; 4.1 &amp; 49.29 &amp; \cdots &amp; 0 &amp; 0\\ 
+66.53 &amp; 99.62 &amp; 170.5 &amp; 37.96 &amp; 47.27 &amp; 4.828 &amp; 46.89 &amp; \cdots &amp; 0 &amp; 0\\ 
+65.4 &amp; 93.59 &amp; 179.1 &amp; 39.75 &amp; 42.58 &amp; 5.246 &amp; 48.17 &amp; \cdots &amp; 44.43 &amp; 0\\ 
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\ 
+68.99 &amp; 87 &amp; 97.57 &amp; 46.04 &amp; 45.56 &amp; 8.844 &amp; 41.24 &amp; \cdots &amp; 37.64 &amp; 0\\ 
+72.17 &amp; 86.24 &amp; 102.4 &amp; 53.74 &amp; 47.1 &amp; 8.902 &amp; 47 &amp; \cdots &amp; 45.55 &amp; 0\\ 
+73.12 &amp; 88.57 &amp; 113.6 &amp; 53.32 &amp; 54.59 &amp; 6.564 &amp; 45.96 &amp; \cdots &amp; 44.84 &amp; 0\\ 
+78.46 &amp; 89.44 &amp; 131 &amp; 55.18 &amp; 65.92 &amp; 10.36 &amp; 51 &amp; \cdots &amp; 53.48 &amp; 0
+\end{bmatrix}\]</span>
+
+<p>FsLab Journal also supports embedding of matrices and vectors. Here, you can see
+how the matrix with debts (filled with zeros for missing values) is formatted as a
+matrix. Then, the code shows how to use a simple matrix multiplication using 
+Math.NET.</p>
+
+<h2>Embedding sample F# Charting charts</h2>
+
+<p>The generated report chan also automatically embed charts created using the 
+F# Charting library. Here, we plot the debts of the 3 countries with the largest
+debt based on the previous table:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 52)" onmouseover="showTip(event, 'fs2', 52)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs35', 53)" onmouseover="showTip(event, 'fs35', 53)" class="i">Charting</span>
+
+<span class="c">// Combine three line charts and add a legend</span>
+<span onmouseout="hideTip(event, 'fs36', 54)" onmouseover="showTip(event, 'fs36', 54)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 55)" onmouseover="showTip(event, 'fs37', 55)" class="i">Combine</span>(
+  [ <span onmouseout="hideTip(event, 'fs36', 56)" onmouseover="showTip(event, 'fs36', 56)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 57)" onmouseover="showTip(event, 'fs38', 57)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs17', 58)" onmouseover="showTip(event, 'fs17', 58)" class="i">recent</span><span class="o">?</span><span class="i">Cyprus</span>, <span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Cyprus</span><span class="s">&quot;</span>)
+    <span onmouseout="hideTip(event, 'fs36', 59)" onmouseover="showTip(event, 'fs36', 59)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 60)" onmouseover="showTip(event, 'fs38', 60)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs17', 61)" onmouseover="showTip(event, 'fs17', 61)" class="i">recent</span><span class="o">?</span><span class="i">Malta</span>, <span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Malta</span><span class="s">&quot;</span>)
+    <span onmouseout="hideTip(event, 'fs36', 62)" onmouseover="showTip(event, 'fs36', 62)" class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs38', 63)" onmouseover="showTip(event, 'fs38', 63)" class="i">Line</span>(<span onmouseout="hideTip(event, 'fs17', 64)" onmouseover="showTip(event, 'fs17', 64)" class="i">recent</span><span class="o">?</span><span class="i">Greece</span>, <span class="i">Name</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Greece</span><span class="s">&quot;</span>) ])
+  <span class="o">.</span><span class="i">WithLegend</span>()</pre>
+</td>
+</tr>
+</table>
+
+<p><img src="./images/chart1.png" alt="" /></p>
+
+<h2>Interoperating with R</h2>
+
+<p>If you have R installed, you can use the <a href="http://bluemountaincapital.github.io/FSharpRProvider/">R type provider</a> in FsLab
+experiments. The FsLab runner captures drawing done on R graphical device 
+automatically and so you can also embed charts using the <code>include-output</code> command.</p>
+
+<p>The R type provider looks at packages available in your R installation and makes
+them available as namespaces under <code>RProvider</code>. The following example imports a 
+couple of packages and then draws a histogram from all debts in the entire data set:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs39', 65)" onmouseover="showTip(event, 'fs39', 65)" class="i">RProvider</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs39', 66)" onmouseover="showTip(event, 'fs39', 66)" class="i">RProvider</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs40', 67)" onmouseover="showTip(event, 'fs40', 67)" class="i">graphics</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs39', 68)" onmouseover="showTip(event, 'fs39', 68)" class="i">RProvider</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs41', 69)" onmouseover="showTip(event, 'fs41', 69)" class="i">stats</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs39', 70)" onmouseover="showTip(event, 'fs39', 70)" class="i">RProvider</span><span class="o">.</span><span class="i">``base``</span>
+
+<span onmouseout="hideTip(event, 'fs42', 71)" onmouseover="showTip(event, 'fs42', 71)" class="i">R</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs43', 72)" onmouseover="showTip(event, 'fs43', 72)" class="i">hist</span>(<span onmouseout="hideTip(event, 'fs9', 73)" onmouseover="showTip(event, 'fs9', 73)" class="i">debts</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs44', 74)" onmouseover="showTip(event, 'fs44', 74)" class="i">GetAllValues</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs45', 75)" onmouseover="showTip(event, 'fs45', 75)" class="i">float</span><span class="o">&gt;</span>())</pre>
+</td>
+</tr>
+</table>
+
+<p><img src="./images/chart2.png" alt="" /></p>
+
+<p>R can be useful for drawing charts, but also for accessing a wide range of statistical
+functions that are not available in other F# libraries. For example, we can calculate 
+correlation between the different countries based on debts. We do this only for recent
+years and we first drop columns that contain missing values:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs46', 76)" onmouseover="showTip(event, 'fs46', 76)" class="i">rdf</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs47', 77)" onmouseover="showTip(event, 'fs47', 77)" class="i">R</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs48', 78)" onmouseover="showTip(event, 'fs48', 78)" class="i">as_data_frame</span>(<span onmouseout="hideTip(event, 'fs49', 79)" onmouseover="showTip(event, 'fs49', 79)" class="i">R</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs50', 80)" onmouseover="showTip(event, 'fs50', 80)" class="i">cor</span>(<span onmouseout="hideTip(event, 'fs17', 81)" onmouseover="showTip(event, 'fs17', 81)" class="i">recent</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs51', 82)" onmouseover="showTip(event, 'fs51', 82)" class="i">DropSparseColumns</span>()))
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs52', 83)" onmouseover="showTip(event, 'fs52', 83)" class="i">cors</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs46', 84)" onmouseover="showTip(event, 'fs46', 84)" class="i">rdf</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs53', 85)" onmouseover="showTip(event, 'fs53', 85)" class="i">GetValue</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs30', 86)" onmouseover="showTip(event, 'fs30', 86)" class="i">Frame</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs54', 87)" onmouseover="showTip(event, 'fs54', 87)" class="i">string</span>, <span onmouseout="hideTip(event, 'fs54', 88)" onmouseover="showTip(event, 'fs54', 88)" class="i">string</span><span class="o">&gt;</span><span class="o">&gt;</span>()</pre>
+</td>
+</tr>
+</table>
+
+<p>The <code>cor</code> function returns a matrix and we first convert it (in R) to data frame using
+<code>as_data_frame</code>. Then we convert the R data frame into Deedle frame using the 
+<code>GetValue</code> function, which takes a type parameter specifying the required type on the
+F# side.</p>
+
+<p>Now, we can use <code>stack</code> function to get a frame containing row keys, column keys and 
+values. This gives us a list of pairs of countries and their correlation. We get only
+pairs where the first country is before the second (alphabetically) to remove self-correlations
+and dupliactes. Then we sort the countries and take the 5 most correlated:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span onmouseout="hideTip(event, 'fs52', 89)" onmouseover="showTip(event, 'fs52', 89)" class="i">cors</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 90)" onmouseover="showTip(event, 'fs30', 90)" class="i">Frame</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs55', 91)" onmouseover="showTip(event, 'fs55', 91)" class="i">stack</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 92)" onmouseover="showTip(event, 'fs30', 92)" class="i">Frame</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs56', 93)" onmouseover="showTip(event, 'fs56', 93)" class="i">filterRowValues</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs57', 94)" onmouseover="showTip(event, 'fs57', 94)" class="i">row</span> <span class="k">-&gt;</span> 
+    <span onmouseout="hideTip(event, 'fs57', 95)" onmouseover="showTip(event, 'fs57', 95)" class="i">row</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs58', 96)" onmouseover="showTip(event, 'fs58', 96)" class="i">GetAs</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs54', 97)" onmouseover="showTip(event, 'fs54', 97)" class="i">string</span><span class="o">&gt;</span>(<span class="s">&quot;</span><span class="s">Row</span><span class="s">&quot;</span>) <span class="o">&lt;</span> <span onmouseout="hideTip(event, 'fs57', 98)" onmouseover="showTip(event, 'fs57', 98)" class="i">row</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs58', 99)" onmouseover="showTip(event, 'fs58', 99)" class="i">GetAs</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs54', 100)" onmouseover="showTip(event, 'fs54', 100)" class="i">string</span><span class="o">&gt;</span>(<span class="s">&quot;</span><span class="s">Column</span><span class="s">&quot;</span>) )
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 101)" onmouseover="showTip(event, 'fs30', 101)" class="i">Frame</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs59', 102)" onmouseover="showTip(event, 'fs59', 102)" class="i">sortRowsBy</span> <span class="s">&quot;</span><span class="s">Value</span><span class="s">&quot;</span> (<span class="o">(*)</span> <span class="o">-</span><span class="n">1.0</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 103)" onmouseover="showTip(event, 'fs30', 103)" class="i">Frame</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs60', 104)" onmouseover="showTip(event, 'fs60', 104)" class="i">take</span> <span class="n">5</span></pre>
+</td>
+</tr>
+</table>
+
+<div class="deedleframe">
+
+
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><p>Row</p></th>
+<th><p>Column</p></th>
+<th><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>121</p></td>
+<td><p>France</p></td>
+<td><p>Ireland</p></td>
+<td><p>0.9909</p></td>
+</tr>
+<tr class="even">
+<td><p>116</p></td>
+<td><p>France</p></td>
+<td><p>Spain</p></td>
+<td><p>0.9858</p></td>
+</tr>
+<tr class="odd">
+<td><p>7</p></td>
+<td><p>Austria</p></td>
+<td><p>France</p></td>
+<td><p>0.9852</p></td>
+</tr>
+<tr class="even">
+<td><p>4</p></td>
+<td><p>Austria</p></td>
+<td><p>Spain</p></td>
+<td><p>0.9788</p></td>
+</tr>
+<tr class="odd">
+<td><p>13</p></td>
+<td><p>Austria</p></td>
+<td><p>Netherlands</p></td>
+<td><p>0.9777</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+
+<h2>More about the FsLab journal runner</h2>
+
+<p>When you hit <strong>F5</strong> in Visual Studio, the FsLab runner automatically processes all 
+<code>*.fsx</code> and <code>*.md</code> files in the root directory of your project. The generated files 
+are placed in the <code>output</code> folder (together with all the styles and JavaScript files 
+that it requires). Then, the runner opens your default web browser with the generated
+file.</p>
+
+<p>If you have multiple files, the runner automatically generates index file with
+links to all your notebooks and opens this instead. You can also create your 
+own index file by adding a file named <code>Index.fsx</code> or <code>Index.md</code> (if you only 
+want to write Markdown text in your index).</p>
+
+<h3>Command line</h3>
+
+<p>The runner can be also invoked from command line - the template includes a simple
+<a href="http://fsharp.github.io/FAKE/">FAKE</a> build script that is copied to the root directory of your project
+(if you modify this, it will be overwritten). The build script supports the following
+commands:</p>
+
+<ul>
+<li><p><code>build html</code> Generate HTML output for all scripts 
+and store the results in <code>output</code> folder</p></li>
+<li><p><code>build latex</code> Generate LaTeX output for all scripts 
+and store the results in <code>output</code> folder</p></li>
+<li><p><code>build pdf</code> Generate LaTeX output as when using <code>build latex</code> and then run <code>pdflatex</code> 
+on the files (this only works when you have <code>pdflatex</code> accessible in <code>PATH</code></p></li>
+</ul>
+
+<div class="tip" id="fs1">namespace Deedle</div>
+<div class="tip" id="fs2">namespace FSharp</div>
+<div class="tip" id="fs3">namespace FSharp.Data</div>
+<div class="tip" id="fs4">val wb : WorldBankData.ServiceTypes.WorldBankDataService<br /><br />Full name: FsLab Tutorial1.wb</div>
+<div class="tip" id="fs5">type WorldBankData =<br />&#160;&#160;static member GetDataContext : unit -&gt; WorldBankDataService<br />&#160;&#160;nested type ServiceTypes<br /><br />Full name: FSharp.Data.WorldBankData<br /><em><br /><br />&lt;summary&gt;Typed representation of WorldBank data. See http://www.worldbank.org for terms and conditions.&lt;/summary&gt;</em></div>
+<div class="tip" id="fs6">WorldBankData.GetDataContext() : WorldBankData.ServiceTypes.WorldBankDataService</div>
+<div class="tip" id="fs7">val countries : WorldBankData.ServiceTypes.Region<br /><br />Full name: FsLab Tutorial1.countries</div>
+<div class="tip" id="fs8">property WorldBankData.ServiceTypes.WorldBankDataService.Regions: WorldBankData.ServiceTypes.Regions</div>
+<div class="tip" id="fs9">val debts : Frame&lt;int,string&gt;<br /><br />Full name: FsLab Tutorial1.debts</div>
+<div class="tip" id="fs10">val c : WorldBankData.ServiceTypes.Country</div>
+<div class="tip" id="fs11">property WorldBankData.ServiceTypes.Region.Countries: WorldBankData.ServiceTypes.Countries<br /><em><br /><br />&lt;summary&gt;The indicators for the region&lt;/summary&gt;</em></div>
+<div class="tip" id="fs12">val debts : Runtime.WorldBank.Indicator</div>
+<div class="tip" id="fs13">property WorldBankData.ServiceTypes.Country.Indicators: WorldBankData.ServiceTypes.Indicators<br /><em><br /><br />&lt;summary&gt;The indicators for the country&lt;/summary&gt;</em></div>
+<div class="tip" id="fs14">property Runtime.WorldBank.Country.Name: string</div>
+<div class="tip" id="fs15">val series : observations:seq&lt;&#39;a * &#39;b&gt; -&gt; Series&lt;&#39;a,&#39;b&gt; (requires equality)<br /><br />Full name: Deedle.FSharpSeriesExtensions.series</div>
+<div class="tip" id="fs16">val frame : columns:seq&lt;&#39;a * #ISeries&lt;&#39;c&gt;&gt; -&gt; Frame&lt;&#39;c,&#39;a&gt; (requires equality and equality)<br /><br />Full name: Deedle.FSharpFrameExtensions.frame</div>
+<div class="tip" id="fs17">val recent : Frame&lt;int,string&gt;<br /><br />Full name: FsLab Tutorial1.recent</div>
+<div class="tip" id="fs18">property Frame.Rows: RowSeries&lt;int,string&gt;</div>
+<div class="tip" id="fs19">type Stats =<br />&#160;&#160;static member count : frame:Frame&lt;&#39;R,&#39;C&gt; -&gt; Series&lt;&#39;C,int&gt; (requires equality and equality)<br />&#160;&#160;static member count : series:Series&lt;&#39;K,&#39;V&gt; -&gt; int (requires equality)<br />&#160;&#160;static member expandingCount : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;static member expandingKurt : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;static member expandingMax : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;static member expandingMean : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;static member expandingMin : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;static member expandingSkew : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;static member expandingStdDev : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;static member expandingSum : series:Series&lt;&#39;K,float&gt; -&gt; Series&lt;&#39;K,float&gt; (requires equality)<br />&#160;&#160;...<br /><br />Full name: Deedle.Stats</div>
+<div class="tip" id="fs20">static member Stats.mean : frame:Frame&lt;&#39;R,&#39;C&gt; -&gt; Series&lt;&#39;C,float&gt; (requires equality and equality)<br />static member Stats.mean : series:Series&lt;&#39;K,float&gt; -&gt; float (requires equality)</div>
+<div class="tip" id="fs21">Multiple items<br />module Series<br /><br />from Deedle<br /><br />--------------------<br />type Series =<br />&#160;&#160;static member ofNullables : values:seq&lt;Nullable&lt;&#39;a0&gt;&gt; -&gt; Series&lt;int,&#39;a0&gt; (requires default constructor and value type and &#39;a0 :&gt; ValueType)<br />&#160;&#160;static member ofObservations : observations:seq&lt;&#39;a0 * &#39;a1&gt; -&gt; Series&lt;&#39;a0,&#39;a1&gt; (requires equality)<br />&#160;&#160;static member ofOptionalObservations : observations:seq&lt;&#39;K * &#39;a1 option&gt; -&gt; Series&lt;&#39;K,&#39;a1&gt; (requires equality)<br />&#160;&#160;static member ofValues : values:seq&lt;&#39;a0&gt; -&gt; Series&lt;int,&#39;a0&gt;<br /><br />Full name: Deedle.FSharpSeriesExtensions.Series<br /><br />--------------------<br />type Series&lt;&#39;K,&#39;V (requires equality)&gt; =<br />&#160;&#160;interface IFsiFormattable<br />&#160;&#160;interface ISeries&lt;&#39;K&gt;<br />&#160;&#160;new : pairs:seq&lt;KeyValuePair&lt;&#39;K,&#39;V&gt;&gt; -&gt; Series&lt;&#39;K,&#39;V&gt;<br />&#160;&#160;new : keys:&#39;K [] * values:&#39;V [] -&gt; Series&lt;&#39;K,&#39;V&gt;<br />&#160;&#160;new : keys:seq&lt;&#39;K&gt; * values:seq&lt;&#39;V&gt; -&gt; Series&lt;&#39;K,&#39;V&gt;<br />&#160;&#160;new : index:IIndex&lt;&#39;K&gt; * vector:IVector&lt;&#39;V&gt; * vectorBuilder:IVectorBuilder * indexBuilder:IIndexBuilder -&gt; Series&lt;&#39;K,&#39;V&gt;<br />&#160;&#160;member After : lowerExclusive:&#39;K -&gt; Series&lt;&#39;K,&#39;V&gt;<br />&#160;&#160;member Aggregate : aggregation:Aggregation&lt;&#39;K&gt; * observationSelector:Func&lt;DataSegment&lt;Series&lt;&#39;K,&#39;V&gt;&gt;,KeyValuePair&lt;&#39;TNewKey,OptionalValue&lt;&#39;R&gt;&gt;&gt; -&gt; Series&lt;&#39;TNewKey,&#39;R&gt; (requires equality)<br />&#160;&#160;member Aggregate : aggregation:Aggregation&lt;&#39;K&gt; * keySelector:Func&lt;DataSegment&lt;Series&lt;&#39;K,&#39;V&gt;&gt;,&#39;TNewKey&gt; * valueSelector:Func&lt;DataSegment&lt;Series&lt;&#39;K,&#39;V&gt;&gt;,OptionalValue&lt;&#39;R&gt;&gt; -&gt; Series&lt;&#39;TNewKey,&#39;R&gt; (requires equality)<br />&#160;&#160;member AsyncMaterialize : unit -&gt; Async&lt;Series&lt;&#39;K,&#39;V&gt;&gt;<br />&#160;&#160;...<br /><br />Full name: Deedle.Series&lt;_,_&gt;<br /><br />--------------------<br />new : pairs:seq&lt;System.Collections.Generic.KeyValuePair&lt;&#39;K,&#39;V&gt;&gt; -&gt; Series&lt;&#39;K,&#39;V&gt;<br />new : keys:seq&lt;&#39;K&gt; * values:seq&lt;&#39;V&gt; -&gt; Series&lt;&#39;K,&#39;V&gt;<br />new : keys:&#39;K [] * values:&#39;V [] -&gt; Series&lt;&#39;K,&#39;V&gt;<br />new : index:Indices.IIndex&lt;&#39;K&gt; * vector:IVector&lt;&#39;V&gt; * vectorBuilder:Vectors.IVectorBuilder * indexBuilder:Indices.IIndexBuilder -&gt; Series&lt;&#39;K,&#39;V&gt;</div>
+<div class="tip" id="fs22">val sort : series:Series&lt;&#39;K,&#39;V&gt; -&gt; Series&lt;&#39;K,&#39;V&gt; (requires equality and comparison)<br /><br />Full name: Deedle.Series.sort</div>
+<div class="tip" id="fs23">val rev : series:Series&lt;&#39;K,&#39;T&gt; -&gt; Series&lt;&#39;K,&#39;T&gt; (requires equality)<br /><br />Full name: Deedle.Series.rev</div>
+<div class="tip" id="fs24">val take : count:int -&gt; series:Series&lt;&#39;K,&#39;T&gt; -&gt; Series&lt;&#39;K,&#39;T&gt; (requires equality)<br /><br />Full name: Deedle.Series.take</div>
+<div class="tip" id="fs25">val round : value:&#39;T -&gt; &#39;T (requires member Round)<br /><br />Full name: Microsoft.FSharp.Core.Operators.round</div>
+<div class="tip" id="fs26">namespace MathNet</div>
+<div class="tip" id="fs27">namespace MathNet.Numerics</div>
+<div class="tip" id="fs28">namespace MathNet.Numerics.LinearAlgebra</div>
+<div class="tip" id="fs29">val debtsMat : Matrix&lt;float&gt;<br /><br />Full name: FsLab Tutorial1.debtsMat</div>
+<div class="tip" id="fs30">Multiple items<br />module Frame<br /><br />from Deedle<br /><br />--------------------<br />type Frame =<br />&#160;&#160;static member CreateEmpty : unit -&gt; Frame&lt;&#39;R,&#39;C&gt; (requires equality and equality)<br />&#160;&#160;static member FromArray2D : array:&#39;T [,] -&gt; Frame&lt;int,int&gt;<br />&#160;&#160;static member FromColumns : cols:Series&lt;&#39;TColKey,Series&lt;&#39;TRowKey,&#39;V&gt;&gt; -&gt; Frame&lt;&#39;TRowKey,&#39;TColKey&gt; (requires equality and equality)<br />&#160;&#160;static member FromColumns : cols:Series&lt;&#39;TColKey,ObjectSeries&lt;&#39;TRowKey&gt;&gt; -&gt; Frame&lt;&#39;TRowKey,&#39;TColKey&gt; (requires equality and equality)<br />&#160;&#160;static member FromColumns : columns:seq&lt;KeyValuePair&lt;&#39;ColKey,ObjectSeries&lt;&#39;RowKey&gt;&gt;&gt; -&gt; Frame&lt;&#39;RowKey,&#39;ColKey&gt; (requires equality and equality)<br />&#160;&#160;static member FromColumns : columns:seq&lt;KeyValuePair&lt;&#39;ColKey,Series&lt;&#39;RowKey,&#39;V&gt;&gt;&gt; -&gt; Frame&lt;&#39;RowKey,&#39;ColKey&gt; (requires equality and equality)<br />&#160;&#160;static member FromColumns : cols:seq&lt;Series&lt;&#39;ColKey,&#39;V&gt;&gt; -&gt; Frame&lt;&#39;ColKey,int&gt; (requires equality)<br />&#160;&#160;static member FromRecords : values:seq&lt;&#39;T&gt; -&gt; Frame&lt;int,string&gt;<br />&#160;&#160;static member FromRecords : series:Series&lt;&#39;K,&#39;R&gt; -&gt; Frame&lt;&#39;K,string&gt; (requires equality)<br />&#160;&#160;static member FromRowKeys : keys:seq&lt;&#39;K&gt; -&gt; Frame&lt;&#39;K,string&gt; (requires equality)<br />&#160;&#160;...<br /><br />Full name: Deedle.Frame<br /><br />--------------------<br />type Frame&lt;&#39;TRowKey,&#39;TColumnKey (requires equality and equality)&gt; =<br />&#160;&#160;interface IDynamicMetaObjectProvider<br />&#160;&#160;interface INotifyCollectionChanged<br />&#160;&#160;interface IFsiFormattable<br />&#160;&#160;interface IFrame<br />&#160;&#160;new : names:seq&lt;&#39;TColumnKey&gt; * columns:seq&lt;ISeries&lt;&#39;TRowKey&gt;&gt; -&gt; Frame&lt;&#39;TRowKey,&#39;TColumnKey&gt;<br />&#160;&#160;new : rowIndex:IIndex&lt;&#39;TRowKey&gt; * columnIndex:IIndex&lt;&#39;TColumnKey&gt; * data:IVector&lt;IVector&gt; * indexBuilder:IIndexBuilder * vectorBuilder:IVectorBuilder -&gt; Frame&lt;&#39;TRowKey,&#39;TColumnKey&gt;<br />&#160;&#160;member AddColumn : column:&#39;TColumnKey * series:ISeries&lt;&#39;TRowKey&gt; -&gt; unit<br />&#160;&#160;member AddColumn : column:&#39;TColumnKey * series:seq&lt;&#39;V&gt; -&gt; unit<br />&#160;&#160;member AddColumn : column:&#39;TColumnKey * series:ISeries&lt;&#39;TRowKey&gt; * lookup:Lookup -&gt; unit<br />&#160;&#160;member AddColumn : column:&#39;TColumnKey * series:seq&lt;&#39;V&gt; * lookup:Lookup -&gt; unit<br />&#160;&#160;...<br /><br />Full name: Deedle.Frame&lt;_,_&gt;<br /><br />--------------------<br />new : names:seq&lt;&#39;TColumnKey&gt; * columns:seq&lt;ISeries&lt;&#39;TRowKey&gt;&gt; -&gt; Frame&lt;&#39;TRowKey,&#39;TColumnKey&gt;<br />new : rowIndex:Indices.IIndex&lt;&#39;TRowKey&gt; * columnIndex:Indices.IIndex&lt;&#39;TColumnKey&gt; * data:IVector&lt;IVector&gt; * indexBuilder:Indices.IIndexBuilder * vectorBuilder:Vectors.IVectorBuilder -&gt; Frame&lt;&#39;TRowKey,&#39;TColumnKey&gt;</div>
+<div class="tip" id="fs31">val fillMissingWith : value:&#39;T -&gt; frame:Frame&lt;&#39;R,&#39;C&gt; -&gt; Frame&lt;&#39;R,&#39;C&gt; (requires equality and equality)<br /><br />Full name: Deedle.Frame.fillMissingWith</div>
+<div class="tip" id="fs32">val toMatrix : frame:Frame&lt;&#39;a,&#39;b&gt; -&gt; Matrix&lt;float&gt; (requires equality and equality)<br /><br />Full name: Deedle.Frame.toMatrix</div>
+<div class="tip" id="fs33">val avgVect : Vector&lt;float&gt;<br /><br />Full name: FsLab Tutorial1.avgVect</div>
+<div class="tip" id="fs34">val toVector : series:Series&lt;&#39;a,&#39;b&gt; -&gt; Vector&lt;float&gt; (requires equality and member op_Explicit)<br /><br />Full name: Deedle.Series.toVector</div>
+<div class="tip" id="fs35">namespace FSharp.Charting</div>
+<div class="tip" id="fs36">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; GenericChart<br />&#160;&#160;static member BoxPlotFromData : data:seq&lt;#key * #seq&lt;&#39;a2&gt;&gt; * ?Name:string * ?Title:string * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart (requires &#39;a2 :&gt; value)<br />&#160;&#160;static member BoxPlotFromStatistics : data:seq&lt;#key * #value * #value * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?Percentile:int * ?ShowAverage:bool * ?ShowMedian:bool * ?ShowUnusualValues:bool * ?WhiskerPercentile:int -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : data:seq&lt;#key * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string * ?BubbleMaxSize:int * ?BubbleMinSize:int * ?BubbleScaleMax:float * ?BubbleScaleMin:float * ?UseSizeForLabel:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:Color * ?XTitle:string * ?YTitle:string -&gt; CandlestickChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Charting.Chart</div>
+<div class="tip" id="fs37">static member Chart.Combine : charts:seq&lt;ChartTypes.GenericChart&gt; -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs38">static member Chart.Line : data:Series&lt;&#39;K,#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:System.Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart (requires equality and &#39;K :&gt; key)<br />static member Chart.Line : data:seq&lt;#value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:System.Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart<br />static member Chart.Line : data:seq&lt;#key * #value&gt; * ?Name:string * ?Title:string * ?Labels:#seq&lt;string&gt; * ?Color:System.Drawing.Color * ?XTitle:string * ?YTitle:string -&gt; ChartTypes.GenericChart</div>
+<div class="tip" id="fs39">namespace RProvider</div>
+<div class="tip" id="fs40">namespace RProvider.graphics</div>
+<div class="tip" id="fs41">namespace RProvider.stats</div>
+<div class="tip" id="fs42">type R =<br />&#160;&#160;static member Axis : ?x: obj * ?at: obj * ?___: obj * ?side: obj * ?labels: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member abline : ?a: obj * ?b: obj * ?h: obj * ?v: obj * ?reg: obj * ?coef: obj * ?untf: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member arrows : ?x0: obj * ?y0: obj * ?x1: obj * ?y1: obj * ?length: obj * ?angle: obj * ?code: obj * ?col: obj * ?lty: obj * ?lwd: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member assocplot : ?x: obj * ?col: obj * ?space: obj * ?main: obj * ?xlab: obj * ?ylab: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member axTicks : ?side: obj * ?axp: obj * ?usr: obj * ?log: obj * ?nintLog: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member axis : ?side: obj * ?at: obj * ?labels: obj * ?tick: obj * ?line: obj * ?pos: obj * ?outer: obj * ?font: obj * ?lty: obj * ?lwd: obj * ?lwd_ticks: obj * ?col: obj * ?col_ticks: obj * ?hadj: obj * ?padj: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member axis_Date : ?side: obj * ?x: obj * ?at: obj * ?format: obj * ?labels: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member axis_POSIXct : ?side: obj * ?x: obj * ?at: obj * ?format: obj * ?labels: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member barplot : ?height: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member barplot_default : ?height: obj * ?width: obj * ?space: obj * ?names_arg: obj * ?legend_text: obj * ?beside: obj * ?horiz: obj * ?density: obj * ?angle: obj * ?col: obj * ?border: obj * ?main: obj * ?sub: obj * ?xlab: obj * ?ylab: obj * ?xlim: obj * ?ylim: obj * ?xpd: obj * ?log: obj * ?axes: obj * ?axisnames: obj * ?cex_axis: obj * ?cex_names: obj * ?inside: obj * ?plot: obj * ?axis_lty: obj * ?offset: obj * ?add: obj * ?args_legend: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;...<br /><br />Full name: RProvider.graphics.R<br /><em><br /><br />R functions for base graphics</em></div>
+<div class="tip" id="fs43">R.hist(paramsByName: System.Collections.Generic.IDictionary&lt;string,obj&gt;) : RDotNet.SymbolicExpression<br />R.hist(?x: obj, ?___: obj, ?paramArray: obj []) : RDotNet.SymbolicExpression<br /><em><br /><br />Histograms</em></div>
+<div class="tip" id="fs44">member Frame.GetAllValues : unit -&gt; seq&lt;&#39;R&gt;<br />member Frame.GetAllValues : strict:ConversionKind -&gt; seq&lt;&#39;R&gt;</div>
+<div class="tip" id="fs45">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs46">val rdf : RDotNet.SymbolicExpression<br /><br />Full name: FsLab Tutorial1.rdf</div>
+<div class="tip" id="fs47">type R =<br />&#160;&#160;static member ! : ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member != : ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member !_hexmode : ?a: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member !_octmode : ?a: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member $ : ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member $&lt;- : ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member $&lt;-_data_frame : ?x: obj * ?name: obj * ?value: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member $_DLLInfo : ?x: obj * ?name: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member $_data_frame : ?x: obj * ?name: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member $_package__version : ?x: obj * ?name: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;...<br /><br />Full name: RProvider.base.R<br /><em><br /><br />Base R functions</em></div>
+<div class="tip" id="fs48">Multiple items<br />R.as_data_frame(paramsByName: System.Collections.Generic.IDictionary&lt;string,obj&gt;) : RDotNet.SymbolicExpression<br />R.as_data_frame(?x: obj, ?row_names: obj, ?optional: obj, ?___: obj, ?paramArray: obj []) : RDotNet.SymbolicExpression<br /><em><br /><br />Coerce to a Data Frame</em><br /><br />--------------------<br />R.as_data_frame(paramsByName: System.Collections.Generic.IDictionary&lt;string,obj&gt;) : RDotNet.SymbolicExpression<br />R.as_data_frame(?x: obj, ?row_names: obj, ?optional: obj, ?___: obj, ?paramArray: obj []) : RDotNet.SymbolicExpression<br /><em><br /><br />Coerce to a Data Frame</em></div>
+<div class="tip" id="fs49">type R =<br />&#160;&#160;static member AIC : ?object: obj * ?___: obj * ?k: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member ARMAacf : ?ar: obj * ?ma: obj * ?lag_max: obj * ?pacf: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member ARMAtoMA : ?ar: obj * ?ma: obj * ?lag_max: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member BIC : ?object: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member Box_test : ?x: obj * ?lag: obj * ?type: obj * ?fitdf: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member C : ?object: obj * ?contr: obj * ?how_many: obj * ?___: obj * ?paramArray: obj [] -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member D : ?expr: obj * ?name: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member Gamma : ?link: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member HoltWinters : ?x: obj * ?alpha: obj * ?beta: obj * ?gamma: obj * ?seasonal: obj * ?start_periods: obj * ?l_start: obj * ?b_start: obj * ?s_start: obj * ?optim_start: obj * ?optim_control: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;static member IQR : ?x: obj * ?na_rm: obj * ?type: obj -&gt; SymbolicExpression + 1 overload<br />&#160;&#160;...<br /><br />Full name: RProvider.stats.R<br /><em><br /><br />R statistical functions</em></div>
+<div class="tip" id="fs50">R.cor(paramsByName: System.Collections.Generic.IDictionary&lt;string,obj&gt;) : RDotNet.SymbolicExpression<br />R.cor(?x: obj, ?y: obj, ?use: obj, ?method: obj) : RDotNet.SymbolicExpression<br /><em><br /><br />Correlation, Variance and Covariance (Matrices)</em></div>
+<div class="tip" id="fs51">static member FrameExtensions.DropSparseColumns : frame:Frame&lt;&#39;TRowKey,&#39;TColumnKey&gt; -&gt; Frame&lt;&#39;TRowKey,&#39;TColumnKey&gt; (requires equality and equality)</div>
+<div class="tip" id="fs52">val cors : Frame&lt;string,string&gt;<br /><br />Full name: FsLab Tutorial1.cors</div>
+<div class="tip" id="fs53">member RDotNet.SymbolicExpression.GetValue : unit -&gt; &#39;a</div>
+<div class="tip" id="fs54">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs55">val stack : frame:Frame&lt;&#39;R,&#39;C&gt; -&gt; Frame&lt;int,string&gt; (requires equality and equality)<br /><br />Full name: Deedle.Frame.stack</div>
+<div class="tip" id="fs56">val filterRowValues : f:(ObjectSeries&lt;&#39;C&gt; -&gt; bool) -&gt; frame:Frame&lt;&#39;R,&#39;C&gt; -&gt; Frame&lt;&#39;R,&#39;C&gt; (requires equality and equality)<br /><br />Full name: Deedle.Frame.filterRowValues</div>
+<div class="tip" id="fs57">val row : ObjectSeries&lt;string&gt;</div>
+<div class="tip" id="fs58">member ObjectSeries.GetAs : column:&#39;K -&gt; &#39;R<br />member ObjectSeries.GetAs : column:&#39;K * fallback:&#39;R -&gt; &#39;R</div>
+<div class="tip" id="fs59">val sortRowsBy : colKey:&#39;C -&gt; f:(&#39;T -&gt; &#39;V) -&gt; frame:Frame&lt;&#39;R,&#39;C&gt; -&gt; Frame&lt;&#39;R,&#39;C&gt; (requires equality and comparison and equality)<br /><br />Full name: Deedle.Frame.sortRowsBy</div>
+<div class="tip" id="fs60">val take : count:int -&gt; frame:Frame&lt;&#39;R,&#39;C&gt; -&gt; Frame&lt;&#39;R,&#39;C&gt; (requires equality and equality)<br /><br />Full name: Deedle.Frame.take</div>
+
+
+                    
+        </div>
+        <div class="span1"></div>
+      </div>
+      <hr style="margin-top:50px;"/>
+      <footer class="footer" style="text-align:center">
+        Brought to you by the <a href="http://fsharp.org/technical-groups/">F# Data Science working group</a> and <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a>.<br />
+        Submit <a href="https://github.com/tpetricek/FsLab">feedback on GitHub</a> and help us improve FsLab!
+      </footer>
+    </div>
+  </body>
+</html>
