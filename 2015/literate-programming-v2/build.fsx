@@ -7,6 +7,34 @@
 
 #load "fsreveal.fsx"
 
+// --------------------------------------------------------------------------------------
+// Custom FSI Evaluator fun
+// --------------------------------------------------------------------------------------
+
+open Fake
+open FSharp.Literate
+open FSharp.Markdown
+
+#load "FsiMock.fs"
+#load "packages/FsLab/FsLab.fsx"
+#load "Formatters.fs"
+let fsiEvaluator1 = FsiEvaluator() 
+let fsiEvaluator = FsLab.Formatters.wrapFsiEvaluator fsiEvaluator1 "." (System.IO.Path.Combine(__SOURCE_DIRECTORY__,"output")) "G4"
+
+let transformation (value:obj, typ:System.Type) : MarkdownParagraph list option =
+  let toHtml = typ.GetMethod("ToHtml") 
+  if toHtml <> null then
+    let html = toHtml.Invoke(value, [||]) :?> string
+    Some [ MarkdownParagraph.InlineBlock html ]
+  else None
+
+fsiEvaluator1.RegisterTransformation(transformation)
+fsiEvaluator1.EvaluationFailed.Add(fun e ->
+  traceImportant <| sprintf "Evaluation failed: %s" e.StdErr
+)
+
+// --------------------------------------------------------------------------------------
+
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
 let gitOwner = "myGitUser"
@@ -31,11 +59,11 @@ Target "Clean" (fun _ ->
     CleanDirs [outDir]
 )
 
-let fsiEvaluator = 
-    let evaluator = FSharp.Literate.FsiEvaluator()
-    evaluator.EvaluationFailed.Add(fun err -> 
-        traceImportant <| sprintf "Evaluating F# snippet failed:\n%s\nThe snippet evaluated:\n%s" err.StdErr err.Text )
-    evaluator 
+//let fsiEvaluator = 
+//    let evaluator = FSharp.Literate.FsiEvaluator()
+//    evaluator.EvaluationFailed.Add(fun err -> 
+//        traceImportant <| sprintf "Evaluating F# snippet failed:\n%s\nThe snippet evaluated:\n%s" err.StdErr err.Text )
+//    evaluator 
 
 let copyStylesheet() =
     try
