@@ -199,7 +199,7 @@ Chart.LineChart
      string y, 
        [ cz.``School enrollment, tertiary (% gross)``.[y] 
          eu.``School enrollment, tertiary (% gross)``.[y] ] ],
-  Labels = ["CZ"; "EU"; "UK"])
+  Labels = ["CZ"; "EU"])
 (**
 -------------------------------------------------------------------------------
 
