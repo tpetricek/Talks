@@ -67,7 +67,7 @@ Target "Clean" (fun _ ->
 
 let copyStylesheet() =
     try
-        CopyFile (outDir @@ "css\custom.css") (slidesDir @@ "custom.css")
+        CopyFile (outDir @@ "css" @@ "custom.css") (slidesDir @@ "custom.css")
     with
     | exn -> traceImportant <| sprintf "Could not copy stylesheet: %s" exn.Message
 

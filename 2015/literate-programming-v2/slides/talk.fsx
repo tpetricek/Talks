@@ -179,8 +179,9 @@ FsReveal embeds the output automatically:
 <br />
 *)
 (*** hide ***)
-#load @"..\packages\FsLab\FsLab.fsx"
-open FSharp.Charting
+#load "../FsiMock.fs"
+#load "../packages/FsLab/FsLab.fsx"
+open Foogle
 open System.Drawing
 open FSharp.Data
 (**
@@ -188,22 +189,17 @@ Get School Enrollment data from WorldBank
 *)
 let wb = WorldBankData.GetDataContext()
 let cz = wb.Countries.``Czech Republic``.Indicators
-let po = wb.Countries.Poland.Indicators
 let eu = wb.Countries.``European Union``.Indicators
 (**
 Compare Czech Republic and EU stats
 *)
 (*** define-output:chart ***)
-[ Chart.Line
-    ( cz.``School enrollment, tertiary (% gross)``, 
-      Color = Color.HotPink)
-  Chart.Line
-    ( po.``School enrollment, tertiary (% gross)``, 
-      Color = Color.White)
-  Chart.Line
-    ( eu.``School enrollment, tertiary (% gross)``, 
-      Color = Color.CornflowerBlue) ]
-|> Chart.Combine
+Chart.LineChart
+ ([ for y in 1971 .. 2012 ->
+     string y, 
+       [ cz.``School enrollment, tertiary (% gross)``.[y] 
+         eu.``School enrollment, tertiary (% gross)``.[y] ] ],
+  Labels = ["CZ"; "EU"; "UK"])
 (**
 -------------------------------------------------------------------------------
 
