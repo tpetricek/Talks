@@ -115,9 +115,20 @@ let startWebServer () =
         >>= Writers.setHeader "Expires" "0"
         >>= browseHome
     startWebServerAsync serverConfig app |> snd |> Async.Start
-    Process.Start "http://localhost:8083/index.html" |> ignore
+    Process.Start "http://localhost:8083/talk.html" |> ignore
 
 Target "GenerateSlides" (fun _ ->
+    // Overwrite things that need to be fixed...
+    (slidesDir @@ "../special/FsLab.fsx")
+    
+    |> CopyFile (slidesDir @@ "../packages/FsLab/FsLab.fsx")
+
+    (slidesDir @@ "template.html")
+    
+    |> CopyFile (slidesDir @@ "../packages/FsReveal/fsreveal/template.html")
+
+    
+
     !! (slidesDir @@ "*.md")
       ++ (slidesDir @@ "*.fsx")
     |> Seq.map fileInfo
