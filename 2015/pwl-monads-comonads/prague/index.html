@@ -1,0 +1,969 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>FsReveal</title>
+    <meta name="description" content="Introduction to FsReveal">
+    <meta name="author" content="Karlkim Suwanmongkol">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js","http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/images/xypic.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">type Maybe&lt;&#39;a&gt; =<br />&#160;&#160;| OK of &#39;a<br />&#160;&#160;| Fail<br /><br />Full name: index.Maybe&lt;_&gt;</div>
+<div class="tip" id="fs2">union case Maybe.OK: &#39;a -&gt; Maybe&lt;&#39;a&gt;</div>
+<div class="tip" id="fs3">union case Maybe.Fail: Maybe&lt;&#39;a&gt;</div>
+<div class="tip" id="fs4">Multiple items<br />val unit : v:&#39;a -&gt; Maybe&lt;&#39;a&gt;<br /><br />Full name: index.unit<br /><br />--------------------<br />type unit = Unit<br /><br />Full name: Microsoft.FSharp.Core.unit</div>
+<div class="tip" id="fs5">val v : &#39;a</div>
+<div class="tip" id="fs6">val bind : f:(&#39;a -&gt; Maybe&lt;&#39;b&gt;) -&gt; mv:Maybe&lt;&#39;a&gt; -&gt; Maybe&lt;&#39;b&gt;<br /><br />Full name: index.bind</div>
+<div class="tip" id="fs7">val f : (&#39;a -&gt; Maybe&lt;&#39;b&gt;)</div>
+<div class="tip" id="fs8">val mv : Maybe&lt;&#39;a&gt;</div>
+<div class="tip" id="fs9">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;a&gt; = &#39;a list<br /><br />Full name: index.List&lt;_&gt;</div>
+<div class="tip" id="fs10">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
+<div class="tip" id="fs11">Multiple items<br />val unit : v:&#39;a -&gt; &#39;a list<br /><br />Full name: index.unit<br /><br />--------------------<br />type unit = Unit<br /><br />Full name: Microsoft.FSharp.Core.unit</div>
+<div class="tip" id="fs12">val bind : f:(&#39;T -&gt; #seq&lt;&#39;b&gt;) -&gt; mv:List&lt;&#39;T&gt; -&gt; &#39;b list<br /><br />Full name: index.bind</div>
+<div class="tip" id="fs13">val f : (&#39;T -&gt; #seq&lt;&#39;b&gt;)</div>
+<div class="tip" id="fs14">val mv : List&lt;&#39;T&gt;</div>
+<div class="tip" id="fs15">val v : &#39;T</div>
+<div class="tip" id="fs16">val r : &#39;b</div>
+<div class="tip" id="fs17">type Prod&lt;&#39;a&gt; = Map&lt;string,string&gt; * &#39;a<br /><br />Full name: index.Prod&lt;_&gt;</div>
+<div class="tip" id="fs18">Multiple items<br />module Map<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type Map&lt;&#39;Key,&#39;Value (requires comparison)&gt; =<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IComparable<br />&#160;&#160;interface IEnumerable&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface ICollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface IDictionary&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member Add : key:&#39;Key * value:&#39;Value -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member ContainsKey : key:&#39;Key -&gt; bool<br />&#160;&#160;override Equals : obj -&gt; bool<br />&#160;&#160;member Remove : key:&#39;Key -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;...<br /><br />Full name: Microsoft.FSharp.Collections.Map&lt;_,_&gt;<br /><br />--------------------<br />new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;</div>
+<div class="tip" id="fs19">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs20">val counit : Map&lt;string,string&gt; * &#39;a -&gt; &#39;a<br /><br />Full name: index.counit</div>
+<div class="tip" id="fs21">val cv : Prod&lt;&#39;a&gt;</div>
+<div class="tip" id="fs22">val snd : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T2<br /><br />Full name: Microsoft.FSharp.Core.Operators.snd</div>
+<div class="tip" id="fs23">val cobind : f:(Prod&lt;&#39;a&gt; -&gt; &#39;b) -&gt; Map&lt;string,string&gt; * &#39;a -&gt; Prod&lt;&#39;b&gt;<br /><br />Full name: index.cobind</div>
+<div class="tip" id="fs24">val f : (Prod&lt;&#39;a&gt; -&gt; &#39;b)</div>
+<div class="tip" id="fs25">val res : &#39;b</div>
+<div class="tip" id="fs26">val fst : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T1<br /><br />Full name: Microsoft.FSharp.Core.Operators.fst</div>
+<div class="tip" id="fs27">type Hist&lt;&#39;a&gt; = &#39;a * &#39;a list<br /><br />Full name: index.Hist&lt;_&gt;</div>
+<div class="tip" id="fs28">val counit : &#39;a * &#39;a list -&gt; &#39;a<br /><br />Full name: index.counit</div>
+<div class="tip" id="fs29">val v : Hist&lt;&#39;a&gt;</div>
+<div class="tip" id="fs30">val cobind : f:(Hist&lt;&#39;a&gt; -&gt; &#39;b) -&gt; &#39;a * &#39;a list -&gt; Hist&lt;&#39;b&gt;<br /><br />Full name: index.cobind</div>
+<div class="tip" id="fs31">val f : (Hist&lt;&#39;a&gt; -&gt; &#39;b)</div>
+<div class="tip" id="fs32">val cv : Hist&lt;&#39;a&gt;</div>
+<div class="tip" id="fs33">val x : &#39;a</div>
+<div class="tip" id="fs34">val xs : &#39;a list</div>
+<div class="tip" id="fs35">val rs : &#39;b list</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<section >
+
+<h1>The origins of Monadic and <br/> Comonadic Computations</h1>
+
+<div style="margin:40px 0px 40px 0px">
+<a href="http://www.cs.cmu.edu/afs/cs/user/crary/www/819-f09/Moggi91.pdf">
+<img title="E. Moggi. Notions of computation and monads" src="images/monads.png" style="height:300px" />
+</a>
+&nbsp;&nbsp;
+<a href="http://www.ioc.ee/~tarmo/papers/cmcs08.pdf">
+<img title="T. Uustalu, V. Vene. Comonadic Notions of Computation" src="images/comonads.png" style="height:300px" />
+</a>
+</div>
+
+<p><strong>Tomas Petricek</strong>, University of Cambridge<br />
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>The deal with category theory</h2>
+
+<p>Just a collection of mathematical structures!</p>
+
+<ul>
+<li>Very general and very rich...</li>
+<li>But you don't always need category theory</li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<p><img src="images/meme.jpg" alt="I don't always use mathematics" /></p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Algebra and program design</h2>
+
+<p>A monoid <span class="math">\((S, \bullet, \epsilon)\)</span> is a set <span class="math">\(S\)</span> with an element <span class="math">\(\epsilon \in S\)</span><br />
+and an operation <span class="math">\(\bullet : S\times S \rightarrow S\)</span> satisfying:</p>
+
+<ul>
+<li><p><strong>Unit element</strong><br />
+<span class="math">\(\forall a \in S\)</span> it holds that <span class="math">\(a \bullet \epsilon = a = \epsilon \bullet a\)</span></p></li>
+<li><p><strong>Associativity</strong><br />
+<span class="math">\(\forall a, b, c \in S\)</span> it holds that <span class="math">\((a \bullet b) \bullet c = a \bullet (b \bullet c)\)</span></p></li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Monoids and programming</h2>
+
+<div class="fragment">
+
+<h3>Standard - well-known structures</h3>
+
+<ul>
+<li>Numbers (<span class="math">\(+\)</span> with zero, <span class="math">\(\ast\)</span> with one)</li>
+<li>Lists (concatenation, empty list)</li>
+</ul>
+
+</div><div class="fragment">
+
+<h3>Fancier - dictionaries with word counts</h3>
+
+<p><span class="math">\[\forall w . (d_1 \bullet d_2)[w] = d_1[w] + d_2[w] \\
+\forall w . \epsilon[w] = 0\]</span></p>
+
+</div>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Why are monoids useful?</h2>
+
+<p>You get useful properties for free!<br />
+Say you want to calculate:</p>
+
+<p><span class="math">\[r = a_1 \bullet \ldots \bullet a_n\]</span></p>
+
+<div class="fragment">
+
+<p>Monoids guarantee that <span class="math">\(r = r_1 + r_2\)</span> where</p>
+
+<p><span class="math">\[r_1 = \epsilon \bullet a_1 \bullet \ldots \bullet a_{n/2} \\
+r_2 = \epsilon \bullet a_{n/2+1} \bullet \ldots \bullet a_{n}\]</span></p>
+
+</div><div class="fragment">
+
+<p>We just invented word count with <strong>map-reduce</strong>!</p>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Semantics and category theory</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Monads, comonads and category theory</h2>
+
+<blockquote>
+  <p>This paper is about logics for reasoning about programs,
+in particular for proving equivalence of programs.</p>
+</blockquote>
+
+<p>This is not about programming, but about program semantics!</p>
+
+<ul>
+<li>What programs are equivalent?</li>
+<li>What does a program actually denote?</li>
+<li>Do some useful program properties hold?</li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Semantics of programming languages</h2>
+
+<h3>Operational semantics</h3>
+
+<p>Reduction relation: <span class="math">\(e_1 \rightarrow e_2\)</span></p>
+
+<h3>Denotational semantics</h3>
+
+<p>Interpretation of terms: <span class="math">\([\![ e ]\!] = \,?\)</span></p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Category = objects + arrows</h2>
+
+<p>A category <span class="math">\(C\)</span> consists of objects <span class="math">\(obj(C)\)</span> and arrows <span class="math">\(arr(C)\)</span> between objects, i.e.
+<span class="math">\(f : A \rightarrow B\)</span> where <span class="math">\(A, B \in obj(C)\)</span> with:</p>
+
+<ul>
+<li><p><strong>Arrow composition</strong><br />
+Given <span class="math">\(f : A \rightarrow B, g : B \rightarrow C\)</span>, there is <span class="math">\(f\circ g:A \rightarrow C\)</span>.</p></li>
+<li><p><strong>Associativity</strong><br />
+Given <span class="math">\(f, g, h\)</span>, it holds that <span class="math">\((f\circ g)\circ h = f\circ (g\circ h)\)</span></p></li>
+<li><p><strong>Identity arrow for all</strong> <span class="math">\(B\)</span><br />
+<span class="math">\(id_B : B \rightarrow B\)</span> such that <span class="math">\(id_B \circ f = f\)</span> and <span class="math">\(g \circ id_B = g\)</span></p></li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Interesting categories</h2>
+
+<h3>Standard mathematical structures</h3>
+
+<ul>
+<li>Sets or spaces with functions</li>
+<li>Numbers with arrows from smaller to larger</li>
+</ul>
+
+<h3>Categories in programming langauges</h3>
+
+<ul>
+<li>Types and functions between them</li>
+<li>Classes with inheritance arrows</li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Category of types and functions</h2>
+
+<p><span class="math">\[\begin{xy}
+\xymatrix{
+  \text{int}\times\text{int} \ar@/^/[r]^{~~~fst} \ar@/_/[r]_{~~~snd} &amp; \text{int} \ar[r]_{zero}  &amp; \text{bool}
+}
+\end{xy}\]</span></p>
+
+<h3>This is a valid category</h3>
+
+<ul>
+<li>Identity arrows: <span class="math">\(id_A = \lambda (x:A) \rightarrow A\)</span></li>
+<li><span class="math">\(\circ\)</span> is (associative) function composition</li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Functors between categories</h2>
+
+<p>Given categories <span class="math">\(C\)</span> and <span class="math">\(D\)</span> a functor <span class="math">\(F\)</span> from <span class="math">\(C\)</span> to <span class="math">\(D\)</span> associates:</p>
+
+<ul>
+<li>Objects <span class="math">\(A\in obj(C)\)</span> with <span class="math">\(F(A) \in obj(D)\)</span></li>
+<li>Arrows <span class="math">\(f:A \rightarrow B\)</span> with
+<span class="math">\(F(f) : F(A) \rightarrow F(B)\)</span></li>
+</ul>
+
+<p>(also must preserve identities and composition)</p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Functors between types</h2>
+
+<p>Turns category of types and functions into other types and functions between them</p>
+
+<p><span class="math">\[\begin{xy}
+\xymatrix{
+  \text{int}\times\text{int} \ar@/^/[r]^{~~~fst} \ar@/_/[r]_{~~~snd} \ar@{.&gt;}[d]_{list} &amp;
+    \text{int} \ar@{.&gt;}[d]_{list} \ar[r]_{zero}  &amp; \text{bool} \ar@{.&gt;}[d]_{list} \\
+  (\text{int}\times\text{int})~\text{list} \ar@/^/[r]^{~~~map~fst} \ar@/_/[r]_{~~~map~snd} &amp;
+    \text{int}~\text{list} \ar[r]_{map~zero} &amp; \text{bool}~\text{list}
+}
+\end{xy}\]</span></p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Category theory wrap-up</h2>
+
+<h3>Just a very general algebraic structure!</h3>
+
+<ul>
+<li>Objects with arrows between them</li>
+<li>Functors between categories</li>
+</ul>
+
+<h3>Why people like and use cateogry theory?</h3>
+
+<ul>
+<li>Lots of explored structures we can steal</li>
+<li>Close functional programming analogy</li>
+<li>...and it makes you sound smarter!</li>
+</ul>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Categorical approach to semantics</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Categorical approach to semantics</h2>
+
+<p>What is the meaning of <code>a + b</code>?</p>
+
+<p><span class="math">\[a:\text{int}, b:\text{int} \vdash a + b : \text{int}\]</span></p>
+
+<p>Arrow or <em>morphism</em> between two objects:</p>
+
+<p><span class="math">\[\text{int}\times\text{int} \rightarrow \text{int}\]</span></p>
+
+<p>Yes, you can read this as a function too...</p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Categorical approach to semantics</h2>
+
+<p>What is the meaning of <code>e</code>?</p>
+
+<p><span class="math">\[v_1:\tau_1, \ldots, v_n:\tau_n \vdash e : \tau\]</span></p>
+
+<p>Arrow or <em>morphism</em> between two objects:</p>
+
+<p><span class="math">\[\tau_1\times\ldots\times\tau_n \rightarrow \tau\]</span></p>
+
+<p>Maps product of inputs to the output</p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Simple categorical semantics</h2>
+
+<p>Variable access</p>
+
+<p><span class="math">\[[\![ v : \tau \vdash v : \tau  ]\!] = id_\tau\]</span></p>
+
+<div class="fragment">
+
+<p>Composition with let binding</p>
+
+<p><span class="math">\[[\![ v_0 : \tau_0 \vdash \text{let}~v_1=e_1~\text{in}~e_2 : \tau_2 ]\!] = \\
+  [\![ v_1 : \tau_1 \vdash e_2 : \tau_2 ]\!] \circ [\![ v_0 : \tau_0 \vdash e_1 : \tau_1 ]\!]\]</span></p>
+
+</div><div class="fragment">
+
+<p>(Slightly cheating here - no variable scoping!)</p>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Monads and comonads</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Monadic and comonadic semantics</h2>
+
+<p>Interpret expression as morphism with some more structure:</p>
+
+<p><span class="math">\[\definecolor{mc}{RGB}{0,32,172}
+\definecolor{cc}{RGB}{172,0,32}
+\definecolor{mcl}{RGB}{128,150,250}
+\definecolor{ccl}{RGB}{250,128,150}
+v_1:\tau_1, \ldots, v_n:\tau_n \vdash e : \tau\]</span></p>
+
+<p>Wrap output in monad <span class="math">\({\color{mc} M}\)</span> or input in comonad <span class="math">\({\color{cc} C}\)</span>:</p>
+
+<p><span class="math">\[\tau_1\times\ldots\times\tau_n \rightarrow {\color{mc} M}(\tau) \\
+{\color{cc} C}(\tau_1\times\ldots\times\tau_n) \rightarrow \tau\]</span></p>
+
+<div class="fragment">
+
+<p>(Tricky thing - the comonad is over the variable context!)</p>
+
+</div>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Monadic notions of computation</h2>
+
+<p>Given a category <span class="math">\(C\)</span>, a <em>monad</em> is a functor <span class="math">\({\color{mc} M} : C \rightarrow C\)</span><br />
+together with mappings (or <em>natural transformations</em>):</p>
+
+<ul>
+<li><p><span class="math">\(\eta_\tau : \tau \rightarrow {\color{mc} M}(\tau)\)</span></p></li>
+<li><p><span class="math">\((-)^*\)</span> which turns an arrow <span class="math">\(f : \tau_1 \rightarrow {\color{mc} M}(\tau_2)\)</span><br />
+into an arrow <span class="math">\(f^* :  {\color{mc} M}(\tau_1) \rightarrow {\color{mc} M}(\tau_2)\)</span></p></li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>What are monads good for?</h2>
+
+<blockquote>
+  <p>Given <span class="math">\(\tau_1\)</span> produce <span class="math">\(\tau_2\)</span> wrapped in some additional structure.</p>
+
+  <p><span class="math">\(\tau_1 \rightarrow {\color{mcl} M}(\tau_2)\)</span></p>
+</blockquote>
+
+<ul>
+<li>Can produce no results (failure, exception)</li>
+<li>Can produce multiple results (non-determinism)</li>
+<li>Can produce results &amp; something else (logging)</li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>The maybe monad</h2>
+
+<p>Models partial computations: <span class="math">\({\color{mc} M}~\alpha = \alpha + \{\bot\}\)</span></p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// A value &#39;a or a value representing failure</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="t">Maybe</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span> <span class="o">=</span> | <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="p">OK</span> <span class="k">of</span> <span class="o">&#39;</span><span class="i">a</span> | <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="p">Fail</span>
+
+<span class="c">// Creates a successful computation</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="f">unit</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">v</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 6)" onmouseover="showTip(event, 'fs2', 6)" class="p">OK</span>(<span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="i">v</span>)
+<span class="c">// Propagates failure through a computation</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="f">bind</span> <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="f">f</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">mv</span> <span class="o">=</span> <span class="k">match</span> <span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="i">mv</span> <span class="k">with</span>
+    | <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="p">OK</span>(<span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="i">v</span>) <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="f">f</span>(<span onmouseout="hideTip(event, 'fs5', 15)" onmouseover="showTip(event, 'fs5', 15)" class="i">v</span>)
+    | <span onmouseout="hideTip(event, 'fs3', 16)" onmouseover="showTip(event, 'fs3', 16)" class="p">Fail</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="p">Fail</span>
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>The list monad</h2>
+
+<p>Models non-deterministic computation: <span class="math">\({\color{mc} M}~\alpha = \mathcal{P}(\alpha)\)</span></p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// Using standard functional list..</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs9', 18)" onmouseover="showTip(event, 'fs9', 18)" class="t">List</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&#39;</span><span class="i">a</span> <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="t">list</span>
+
+<span class="c">// Creates result with just one value</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="f">unit</span> <span onmouseout="hideTip(event, 'fs5', 21)" onmouseover="showTip(event, 'fs5', 21)" class="i">v</span> <span class="o">=</span> [<span onmouseout="hideTip(event, 'fs5', 22)" onmouseover="showTip(event, 'fs5', 22)" class="i">v</span>]
+<span class="c">// Collects results for all possible inputs</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="f">bind</span> <span onmouseout="hideTip(event, 'fs13', 24)" onmouseover="showTip(event, 'fs13', 24)" class="f">f</span> (<span onmouseout="hideTip(event, 'fs14', 25)" onmouseover="showTip(event, 'fs14', 25)" class="i">mv</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs9', 26)" onmouseover="showTip(event, 'fs9', 26)" class="t">List</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">T</span><span class="o">&gt;</span>)  <span class="o">=</span>
+  [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs15', 27)" onmouseover="showTip(event, 'fs15', 27)" class="i">v</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs14', 28)" onmouseover="showTip(event, 'fs14', 28)" class="i">mv</span> <span class="k">do</span>
+      <span class="k">for</span> <span onmouseout="hideTip(event, 'fs16', 29)" onmouseover="showTip(event, 'fs16', 29)" class="i">r</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs13', 30)" onmouseover="showTip(event, 'fs13', 30)" class="f">f</span>(<span onmouseout="hideTip(event, 'fs15', 31)" onmouseover="showTip(event, 'fs15', 31)" class="i">v</span>) <span class="k">do</span> <span class="k">yield</span> <span onmouseout="hideTip(event, 'fs16', 32)" onmouseover="showTip(event, 'fs16', 32)" class="i">r</span> ]
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Monadic categorical semantics</h2>
+
+<p>Uses monad operations to get: <span class="math">\(\tau_1 \times \ldots \times \tau_n \rightarrow {\color{mc} M}(\tau)\)</span></p>
+
+<div class="fragment">
+<br />
+
+<p>Variable access uses <code>unit</code>:</p>
+
+<p><span class="math">\[[\![ v : \tau \vdash v : \tau  ]\!] = \eta_\tau\]</span></p>
+
+</div>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Monadic categorical semantics</h2>
+
+<p>Composition uses <code>bind</code> written as <span class="math">\((-)^*\)</span>:</p>
+
+<p><span class="math">\[[\![ v_0 : \tau_0 \vdash \text{let}~v_1=e_1~\text{in}~e_2 : \tau_2 ]\!] = \\
+  [\![ v_1 : \tau_1 \vdash e_2 : \tau_2 ]\!]^* \circ [\![ v_0 : \tau_0 \vdash e_1 : \tau_1 ]\!]\]</span></p>
+
+<p>How does this work?</p>
+
+<p><span class="math">\[[\![ v_0 : \tau_0 \vdash e_1 : \tau_1 ]\!] : \tau_0 \rightarrow {\color{mc} M}(\tau_1) \\
+[\![ v_1 : \tau_1 \vdash e_2 : \tau_2 ]\!] : \tau_1 \rightarrow {\color{mc} M}(\tau_2) \\
+[\![ v_1 : \tau_1 \vdash e_2 : \tau_2 ]\!]^* : {\color{mc} M}(\tau_1) \rightarrow {\color{mc} M}(\tau_2)\]</span></p>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Monadic notions of computation</h2>
+
+<p>Given a category <span class="math">\(C\)</span>, a <em>comonad</em> is a functor <span class="math">\({\color{cc} C} : C \rightarrow C\)</span><br />
+together with mappings (or <em>natural transformations</em>):</p>
+
+<ul>
+<li><p><span class="math">\(\mu_\tau : {\color{cc} C}(\tau) \rightarrow \tau\)</span></p></li>
+<li><p><span class="math">\((-)^*\)</span> which turns an arrow <span class="math">\(f : {\color{cc} C}(\tau_1) \rightarrow \tau_2\)</span><br />
+into an arrow <span class="math">\(f^* : {\color{cc} C}(\tau_1) \rightarrow {\color{cc} M}(\tau_2)\)</span></p></li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Comonadic categorical semantics</h2>
+
+<p>Uses comonad operations to get: <span class="math">\({\color{cc} C}(\tau_1 \times \ldots \times \tau_n) \rightarrow \tau\)</span></p>
+
+<div class="fragment">
+
+<p>Variable access uses <code>counit</code> written as <span class="math">\(\mu_\tau\)</span>:</p>
+
+<p><span class="math">\[[\![ v : \tau \vdash v : \tau  ]\!] = \mu_\tau\]</span></p>
+
+</div><div class="fragment">
+
+<p>Composition uses <code>cobind</code> written as <span class="math">\((-)^*\)</span>:</p>
+
+<p><span class="math">\[[\![ v_0 : \tau_0 \vdash \text{let}~v_1=e_1~\text{in}~e_2 : \tau_2 ]\!] = \\
+  [\![ v_1 : \tau_1 \vdash e_2 : \tau_2 ]\!]^* \circ [\![ v_0 : \tau_0 \vdash e_1 : \tau_1 ]\!]\]</span></p>
+
+</div>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>What are comonads good for?</h2>
+
+<blockquote>
+  <p>Given <span class="math">\(\tau_1\)</span> with some additional structure produce <span class="math">\(\tau_2\)</span>.</p>
+
+  <p><span class="math">\({\color{ccl} C}(\tau_1) \rightarrow \tau_2\)</span></p>
+</blockquote>
+
+<ul>
+<li>Can take additional values (resources, parameters)</li>
+<li>Can take multiple inputs (historical values)</li>
+<li>Can take structured inputs (say, 2D grid)</li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>The product comonad</h2>
+
+<p>Models additional parameters: <span class="math">\({\color{cc} C}~\alpha = \phi \times \alpha\)</span></p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// Pair value with e.g. a &quot;hidden dictionary&quot;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs17', 33)" onmouseover="showTip(event, 'fs17', 33)" class="t">Prod</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 34)" onmouseover="showTip(event, 'fs18', 34)" class="t">Map</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs19', 35)" onmouseover="showTip(event, 'fs19', 35)" class="t">string</span>, <span onmouseout="hideTip(event, 'fs19', 36)" onmouseover="showTip(event, 'fs19', 36)" class="t">string</span><span class="o">&gt;</span> <span class="o">*</span> <span class="o">&#39;</span><span class="i">a</span>
+
+<span class="c">// Access the value and ignore the dictionary</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 37)" onmouseover="showTip(event, 'fs20', 37)" class="f">counit</span> (<span onmouseout="hideTip(event, 'fs21', 38)" onmouseover="showTip(event, 'fs21', 38)" class="i">cv</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs17', 39)" onmouseover="showTip(event, 'fs17', 39)" class="t">Prod</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span>) <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 40)" onmouseover="showTip(event, 'fs22', 40)" class="f">snd</span> <span onmouseout="hideTip(event, 'fs21', 41)" onmouseover="showTip(event, 'fs21', 41)" class="i">cv</span>
+<span class="c">// Propagate the hidden dictionary without changing it</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 42)" onmouseover="showTip(event, 'fs23', 42)" class="f">cobind</span> <span onmouseout="hideTip(event, 'fs24', 43)" onmouseover="showTip(event, 'fs24', 43)" class="f">f</span> (<span onmouseout="hideTip(event, 'fs21', 44)" onmouseover="showTip(event, 'fs21', 44)" class="i">cv</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs17', 45)" onmouseover="showTip(event, 'fs17', 45)" class="t">Prod</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span>) <span class="o">:</span> <span onmouseout="hideTip(event, 'fs17', 46)" onmouseover="showTip(event, 'fs17', 46)" class="t">Prod</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">b</span><span class="o">&gt;</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 47)" onmouseover="showTip(event, 'fs25', 47)" class="i">res</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs24', 48)" onmouseover="showTip(event, 'fs24', 48)" class="f">f</span> <span onmouseout="hideTip(event, 'fs21', 49)" onmouseover="showTip(event, 'fs21', 49)" class="i">cv</span>
+  (<span onmouseout="hideTip(event, 'fs26', 50)" onmouseover="showTip(event, 'fs26', 50)" class="f">fst</span> <span onmouseout="hideTip(event, 'fs21', 51)" onmouseover="showTip(event, 'fs21', 51)" class="i">cv</span>, <span onmouseout="hideTip(event, 'fs25', 52)" onmouseover="showTip(event, 'fs25', 52)" class="i">res</span>)
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>The list comonad</h2>
+
+<p>Keeps a current value with a list of past values</p>
+
+<p>Compute: <span class="math">\(f(x) = x + \text{prev}(x)\)</span></p>
+
+<table class="grid">
+<tr><td class="cur">1.0</td><td>1.6</td><td>1.8</td><td>...</td></tr>
+</table>
+
+<p><span class="math">\(f : {\color{cm} C}(\text{int}) \rightarrow \text{int}\)</span></p>
+
+<table class="grid">
+<tr><td class="cur">1.3</td></tr>
+</table>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>The list comonad</h2>
+
+<p>Keeps a current value with a list of past values</p>
+
+<p>Compute: <span class="math">\(f(x) = x + \text{prev}(x)\)</span></p>
+
+<table class="grid">
+<tr><td class="cur">1.0</td><td>1.6</td><td>1.8</td><td>...</td></tr>
+</table>
+
+<p><span class="math">\(f* : {\color{cm} C}(\text{int}) \rightarrow {\color{cm} C}(\text{int})\)</span></p>
+
+<table class="grid">
+<tr><td class="cur">1.3</td><td>1.7</td><td>...</td><td>...</td></tr>
+</table>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>The list comonad</h2>
+
+<p>Value with zero or more past values: <span class="math">\({\color{cc} C}~\alpha = \alpha \times (\text{List}~\alpha)\)</span></p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// Current value with list of historical</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs27', 53)" onmouseover="showTip(event, 'fs27', 53)" class="t">Hist</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&#39;</span><span class="i">a</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs10', 54)" onmouseover="showTip(event, 'fs10', 54)" class="t">list</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span>
+
+<span class="c">// Access the current value</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 55)" onmouseover="showTip(event, 'fs28', 55)" class="f">counit</span> (<span onmouseout="hideTip(event, 'fs29', 56)" onmouseover="showTip(event, 'fs29', 56)" class="i">v</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs27', 57)" onmouseover="showTip(event, 'fs27', 57)" class="t">Hist</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span>) <span class="o">=</span> <span onmouseout="hideTip(event, 'fs26', 58)" onmouseover="showTip(event, 'fs26', 58)" class="f">fst</span> <span onmouseout="hideTip(event, 'fs29', 59)" onmouseover="showTip(event, 'fs29', 59)" class="i">v</span>
+<span class="c">// Apply on current &amp; previous elements (recursively)</span>
+<span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs30', 60)" onmouseover="showTip(event, 'fs30', 60)" class="f">cobind</span> <span onmouseout="hideTip(event, 'fs31', 61)" onmouseover="showTip(event, 'fs31', 61)" class="f">f</span> (<span onmouseout="hideTip(event, 'fs32', 62)" onmouseover="showTip(event, 'fs32', 62)" class="i">cv</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs27', 63)" onmouseover="showTip(event, 'fs27', 63)" class="t">Hist</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span>) <span class="o">:</span> <span onmouseout="hideTip(event, 'fs27', 64)" onmouseover="showTip(event, 'fs27', 64)" class="t">Hist</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">b</span><span class="o">&gt;</span> <span class="o">=</span>
+  (<span onmouseout="hideTip(event, 'fs31', 65)" onmouseover="showTip(event, 'fs31', 65)" class="f">f</span> <span onmouseout="hideTip(event, 'fs32', 66)" onmouseover="showTip(event, 'fs32', 66)" class="i">cv</span>), ( <span class="k">match</span> <span onmouseout="hideTip(event, 'fs22', 67)" onmouseover="showTip(event, 'fs22', 67)" class="f">snd</span> <span onmouseout="hideTip(event, 'fs32', 68)" onmouseover="showTip(event, 'fs32', 68)" class="i">cv</span> <span class="k">with</span>
+            | <span onmouseout="hideTip(event, 'fs33', 69)" onmouseover="showTip(event, 'fs33', 69)" class="i">x</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs34', 70)" onmouseover="showTip(event, 'fs34', 70)" class="i">xs</span> <span class="k">-&gt;</span> <span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 71)" onmouseover="showTip(event, 'fs16', 71)" class="i">r</span>,<span onmouseout="hideTip(event, 'fs35', 72)" onmouseover="showTip(event, 'fs35', 72)" class="i">rs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs30', 73)" onmouseover="showTip(event, 'fs30', 73)" class="f">cobind</span> <span onmouseout="hideTip(event, 'fs31', 74)" onmouseover="showTip(event, 'fs31', 74)" class="f">f</span> (<span onmouseout="hideTip(event, 'fs33', 75)" onmouseover="showTip(event, 'fs33', 75)" class="i">x</span>, <span onmouseout="hideTip(event, 'fs34', 76)" onmouseover="showTip(event, 'fs34', 76)" class="i">xs</span>) <span class="k">in</span> <span onmouseout="hideTip(event, 'fs16', 77)" onmouseover="showTip(event, 'fs16', 77)" class="i">r</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs35', 78)" onmouseover="showTip(event, 'fs35', 78)" class="i">rs</span>
+            | [] <span class="k">-&gt;</span> [] )
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Grid computations with comonads</h2>
+
+<p>Average value and its neighbours</p>
+
+<table>
+<tr><td>
+
+<table class="grid">
+<tr><td>0.0</td><td class="nb">1.0</td><td>1.0</td></tr>
+<tr><td class="nb">0.0</td><td class="cur">2.0</td><td class="nb">2.0</td></tr>
+<tr><td>2.0</td><td class="nb">3.0</td><td>4.0</td></tr>
+</table>
+
+</td><td style="padding-left:100px;vertical-align:middle;">
+
+<table class="grid">
+<tr><td class="cur">1.6</td></tr>
+</table>
+
+</td></tr></table>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Grid computations with comonads</h2>
+
+<p>Average value and its neighbours</p>
+
+<table>
+<tr><td>
+
+<table class="grid" id="grin">
+<tr><td>0.0</td><td>1.0</td><td>1.0</td></tr>
+<tr><td>0.0</td><td>2.0</td><td>2.0</td></tr>
+<tr><td>2.0</td><td>3.0</td><td>4.0</td></tr>
+</table>
+
+</td><td>
+
+<table class="grid" id="grout">
+<tr><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>?</td><td>?</td><td>?</td></tr>
+</table>
+
+</td></tr></table>
+
+<script>
+function reset(el)
+{
+  var gr = document.getElementById(el);
+  var rows = gr.getElementsByTagName("tr");
+  for(var i=0; i<3; i++)
+  {
+    var row = rows[i].getElementsByTagName("td");
+    for(var j=0; j<3; j++) row[j].className = "";
+  }
+}
+function highlight(el,x,y,cls)
+{
+  if (x<0 || x>2 || y<0 || y>2) return;
+  var gr = document.getElementById(el);
+  var rows = gr.getElementsByTagName("tr");
+  rows[x].getElementsByTagName("td")[y].className=cls;
+}
+function get(el,x,y)
+{
+  if (x<0 || x>2 || y<0 || y>2) return null;
+  var gr = document.getElementById(el);
+  var rows = gr.getElementsByTagName("tr");
+  return 1.0 * rows[x].getElementsByTagName("td")[y].innerText;
+}
+function set(el,x,y,v)
+{
+  if (x<0 || x>2 || y<0 || y>2) return null;
+  var gr = document.getElementById(el);
+  var rows = gr.getElementsByTagName("tr");
+  rows[x].getElementsByTagName("td")[y].innerText = Math.round(v*10)/10;
+}
+function calculate(x,y)
+{
+  reset("grin");
+  reset("grout");
+  highlight("grout", x, y, "cur");
+  highlight("grin", x, y, "cur");
+  highlight("grin", x-1, y, "nb");
+  highlight("grin", x+1, y, "nb");
+  highlight("grin", x, y-1, "nb");
+  highlight("grin", x, y+1, "nb");
+  var sum = 0;
+  var count = 0;
+  for(var i=-1; i<=1; i++)
+  {
+    for(var j=-1; j<=1; j++)
+    {
+      if (i != 0 && j != 0) continue;
+      var v = get("grin", x+i, y+j);
+      if (v != null) { sum += v; count++; }
+    }
+  }
+  set("grout",x,y,sum/count);
+}
+function run(x,y)
+{
+  calculate(x,y);
+  x++;
+  if (x==3) { x = 0; y++; }
+  if (y<3) {
+    setTimeout(function () { run(x,y); }, 2000);
+  } else {
+    setTimeout(function () { reset("grin"); reset("grout"); }, 2000);
+  }
+}
+</script>
+
+<p><a href="#" onclick="run(0,0);return false;">Compute averages!</a></p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Summary</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Summary</h2>
+
+<h3>Monadic computations: <span class="math">\(~\tau_1 \rightarrow {\color{mc} M}(\tau_2)\)</span></h3>
+
+<ul>
+<li>Return value with some non-standard aspect</li>
+<li>No value (failure), more values (non-determinism), logging</li>
+</ul>
+
+<h3>Comonadic computations: <span class="math">\(~{\color{cc} C}(\tau_1) \rightarrow \tau_2\)</span></h3>
+
+<ul>
+<li>Take inputs with some non-standard aspect</li>
+<li>Hidden parameters, history, neighborhood</li>
+</ul>
+
+</section>
+
+<section author="Karlkim Suwanmongkol" description="Introduction to FsReveal" theme="white" title="FsReveal" transition="none">
+
+<h2>Summary</h2>
+
+<h3>Why is category theory useful?</h3>
+
+<ul>
+<li>Lots of structures we can steal</li>
+<li>Like programming, focuses on composition</li>
+<li>Not a sacred cow! Use it when it solves a problem!</li>
+</ul>
+
+<h3>Why nobody knows about comonads?</h3>
+
+<ul>
+<li>Monads were first and are more useful</li>
+<li>Creating <code>codo</code> notation is harder</li>
+</ul>
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
