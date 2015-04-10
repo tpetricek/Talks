@@ -1,6 +1,6 @@
-- title : FsReveal
-- description : Introduction to FsReveal
-- author : Karlkim Suwanmongkol
+- title : The Origins of Monadic and Comonadic Computations
+- description : The Origins of Monadic and Comonadic Computations
+- author : Tomas Petricek
 - theme : white
 - transition : none
 
