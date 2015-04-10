@@ -1,0 +1,32 @@
+.reveal blockquote {
+  text-align:left;
+  padding:20px;
+}
+.reveal blockquote li {
+  margin-left:30px;
+  margin-bottom:10px;
+}
+div.tip {
+  font:14pt 'Droid Sans', arial, sans-serif;
+}
+
+.reveal code {
+  font-family:'Droid Sans Mono',consolas,monospace;
+  border-style:none;
+  color:#FAB11D;
+  background:transparent;
+}
+.reveal table.pre, .reveal pre.fssnip, .reveal pre {
+  box-shadow:none;
+  font: 16pt 'Droid Sans Mono',consolas,monospace;
+}
+.reveal section img {
+  border:1px solid #d8d8d8;
+  border-collapse:separate;
+  border-radius:5px;
+}
+.reveal pre code {
+  box-shadow:none;
+  font: 20pt 'Droid Sans Mono',consolas,monospace;
+  background-color:#212d30;
+}
