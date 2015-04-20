@@ -1,0 +1,805 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The Big F# and Open-Source Love Story</title>
+    <meta name="description" content="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it.">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">type T =<br />&#160;&#160;{State: obj;<br />&#160;&#160;&#160;Child: obj;}<br /><br />Full name: index.T</div>
+<div class="tip" id="fs2">T.State: obj</div>
+<div class="tip" id="fs3">T.Child: obj</div>
+<div class="tip" id="fs4">type &#39;T option = Option&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.option&lt;_&gt;</div>
+<div class="tip" id="fs5">val location : unit -&gt; string<br /><br />Full name: index.location</div>
+<div class="tip" id="fs6">val start : t:T -&gt; T<br /><br />Full name: index.start</div>
+<div class="tip" id="fs7">val t : T</div>
+<div class="tip" id="fs8">val child : obj</div>
+<div class="tip" id="fs9">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs10">val send : msg:&#39;a -&gt; t:T -&gt; &#39;b<br /><br />Full name: index.send</div>
+<div class="tip" id="fs11">val msg : &#39;a</div>
+<div class="tip" id="fs12">module Option<br /><br />from Microsoft.FSharp.Core</div>
+<div class="tip" id="fs13">val iter : action:(&#39;T -&gt; unit) -&gt; option:&#39;T option -&gt; unit<br /><br />Full name: Microsoft.FSharp.Core.Option.iter</div>
+<div class="tip" id="fs14">val stdin&lt;&#39;T&gt; : System.IO.TextReader<br /><br />Full name: Microsoft.FSharp.Core.Operators.stdin</div>
+<div class="tip" id="fs15">val ignore : value:&#39;T -&gt; unit<br /><br />Full name: Microsoft.FSharp.Core.Operators.ignore</div>
+<div class="tip" id="fs16">val parse : path:string -&gt; text:string -&gt; cb:&#39;a -&gt; service:&#39;b -&gt; &#39;c<br /><br />Full name: index.parse</div>
+<div class="tip" id="fs17">val path : string</div>
+<div class="tip" id="fs18">val text : string</div>
+<div class="tip" id="fs19">val cb : &#39;a</div>
+<div class="tip" id="fs20">val service : &#39;b</div>
+<div class="tip" id="fs21">val str : string</div>
+<div class="tip" id="fs22">val ctor : obj<br /><br />Full name: index.ctor</div>
+<div class="tip" id="fs23">val meths : seq&lt;obj&gt;<br /><br />Full name: index.meths</div>
+<div class="tip" id="fs24">BindingFlags.DeclaredOnly ||| BindingFlags.Public ||| BindingFlags.Instance</div>
+<div class="tip" id="fs25">/// Creates &quot;(fun p1 .. pn -&gt; &lt;body&gt;)&quot; and &quot;[p1; ..; pn]&quot;<br />/// (which is used when generating boxed lambdas that pass parameters to the actual function)<br />let createParameterPassing (m:MethodBase) =<br />&#160;&#160;let paramVars = m.GetParameters() |&gt; Array.mapi (fun i p -&gt; Var(sprintf &quot;p%d&quot; i, p.ParameterType))<br />&#160;&#160;let paramArgs = [ for v in paramVars -&gt; Expr.Var(v) ]<br />&#160;&#160;let lambdaConstr = paramVars |&gt; Seq.fold (fun fn var -&gt; fun body -&gt; Expr.Lambda(var, fn body)) id<br />&#160;&#160;lambdaConstr, paramArgs<br /><br />let exportFunctions =<br />&#160;&#160;[ for m in meths -&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;let tv = new Var(&quot;this&quot;, typ)<br />&#160;&#160;&#160;&#160;&#160;&#160;let lambdaConstr, paramArgs = createParameterPassing m<br />&#160;&#160;&#160;&#160;&#160;&#160;Expr.Lambda(tv, lambdaConstr (Expr.Call(Expr.Var(tv), m, paramArgs))) ]<br /><br />let exportCtor =<br />&#160;&#160;Expr.Coerce<br />&#160;&#160;&#160;&#160;( Expr.Lambda(Var(&quot;ign&quot;, typeof&lt;unit&gt;), Expr.NewObject(typ.GetConstructor [||], [])),<br />&#160;&#160;&#160;&#160;&#160;&#160;typeof&lt;obj&gt; )<br />let funcs = [ for f in exportFunctions -&gt; Expr.Coerce(f, typeof&lt;obj&gt;)]</div>
+<div class="tip" id="fs26">val functionArray : obj<br /><br />Full name: index.functionArray</div>
+<div class="tip" id="fs27">val typeof&lt;&#39;T&gt; : System.Type<br /><br />Full name: Microsoft.FSharp.Core.Operators.typeof</div>
+<div class="tip" id="fs28">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs29">val exportCtor : obj<br /><br />Full name: index.exportCtor</div>
+<div class="tip" id="fs30">val funcs : obj list<br /><br />Full name: index.funcs</div>
+<div class="tip" id="fs31">val coreJS : string<br /><br />Full name: index.coreJS</div>
+<div class="tip" id="fs32">val moduleJS : string list</div>
+<div class="tip" id="fs33">yield &quot;var child_process = require(&#39;child_process&#39;);&quot;<br />&#160;&#160;&#160;&#160;yield &quot;window.$ = require(&#39;jquery&#39;);&quot;<br />&#160;&#160;&#160;&#160;yield &quot;&quot;<br />&#160;&#160;&#160;&#160;yield &quot;function wrappedFunScript() { \n&quot; + coreJS + &quot;\n }&quot;<br />&#160;&#160;&#160;&#160;yield &quot;var _funcs = wrappedFunScript();&quot;<br />&#160;&#160;&#160;&#160;yield &quot;var _self = _funcs[0]();&quot;<br />&#160;&#160;&#160;&#160;yield &quot;&quot;</div>
+<div class="tip" id="fs34">val i : int</div>
+<div class="tip" id="fs35">val m : obj</div>
+<div class="tip" id="fs36">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs37">val zip : source1:seq&lt;&#39;T1&gt; -&gt; source2:seq&lt;&#39;T2&gt; -&gt; seq&lt;&#39;T1 * &#39;T2&gt;<br /><br />Full name: Microsoft.FSharp.Collections.Seq.zip</div>
+<div class="tip" id="fs38">let parNames = String.concat &quot;&quot; [ for j in 1 .. m.GetParameters().Length -&gt; sprintf &quot;p%i&quot; j ]<br />&#160;&#160;&#160;&#160;&#160;&#160;let parArgs = String.concat &quot;&quot; [ for j in 1 .. m.GetParameters().Length -&gt; sprintf &quot;(p%i)&quot; j ]</div>
+<div class="tip" id="fs39">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs40">Multiple items<br />type AutoOpenAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; AutoOpenAttribute<br />&#160;&#160;new : path:string -&gt; AutoOpenAttribute<br />&#160;&#160;member Path : string<br /><br />Full name: Microsoft.FSharp.Core.AutoOpenAttribute<br /><br />--------------------<br />new : unit -&gt; AutoOpenAttribute<br />new : path:string -&gt; AutoOpenAttribute</div>
+<div class="tip" id="fs41">namespace System</div>
+<div class="tip" id="fs42">type Type =<br />&#160;&#160;inherit MemberInfo<br />&#160;&#160;member Assembly : Assembly<br />&#160;&#160;member AssemblyQualifiedName : string<br />&#160;&#160;member Attributes : TypeAttributes<br />&#160;&#160;member BaseType : Type<br />&#160;&#160;member ContainsGenericParameters : bool<br />&#160;&#160;member DeclaringMethod : MethodBase<br />&#160;&#160;member DeclaringType : Type<br />&#160;&#160;member Equals : o:obj -&gt; bool + 1 overload<br />&#160;&#160;member FindInterfaces : filter:TypeFilter * filterCriteria:obj -&gt; Type[]<br />&#160;&#160;member FindMembers : memberType:MemberTypes * bindingAttr:BindingFlags * filter:MemberFilter * filterCriteria:obj -&gt; MemberInfo[]<br />&#160;&#160;...<br /><br />Full name: System.Type</div>
+<div class="tip" id="fs43">chartStyle ch, Dock = DockStyle.Fill, Width=500, Height=300</div>
+<div class="tip" id="fs44">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs45">s |&gt; mapSteps sitms fst (function Some k -&gt; td (k.ToString()) | _ -&gt; td &quot; ... &quot;),<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s |&gt; mapSteps sitms snd (function Some v -&gt; formatValue floatFormat &quot;N/A&quot; (OptionalValue.asOption v) | _ -&gt; td &quot; ... &quot;),<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;s |&gt; mapSteps sitms id (*[omit:...]*)(fun _ -&gt; AlignDefault)</div>
+<div class="tip" id="fs46">| :? IFrame as f -&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;// Pretty print frame!<br />&#160;&#160;&#160;&#160;&#160;&#160;{new IFrameOperation&lt;_&gt; with<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;member x.Invoke(f) =<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;let heads  = f.ColumnKeys |&gt; mapSteps fcols id (function Some k -&gt; td (k.ToString()) | _ -&gt; td &quot; ... &quot;)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;let aligns = f.ColumnKeys |&gt; mapSteps fcols id (fun _ -&gt; AlignDefault)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;let rows =<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;f.Rows |&gt; Series.observationsAll |&gt; mapSteps frows id (fun item -&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;let def, k, data =<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;match item with<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;| Some(k, Some d) -&gt; &quot;N/A&quot;, k.ToString(), Series.observationsAll d |&gt; Seq.map snd<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;| Some(k, _) -&gt; &quot;N/A&quot;, k.ToString(), f.ColumnKeys |&gt; Seq.map (fun _ -&gt; None)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;| None -&gt; &quot; ... &quot;, &quot; ... &quot;, f.ColumnKeys |&gt; Seq.map (fun _ -&gt; None)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;let row = data |&gt; mapSteps fcols id (function Some v -&gt; formatValue floatFormat def v | _ -&gt; td &quot; ... &quot;)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(td k)::row )<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Some [<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;InlineMultiformatBlock(&quot;&lt;div class=\&quot;deedleframe\&quot;&gt;&quot;,&quot;\\vspace{1em}&quot;)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;TableBlock(Some ([]::heads), AlignDefault::aligns, rows)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;InlineMultiformatBlock(&quot;&lt;/div&gt;&quot;,&quot;\\vspace{1em}&quot;)<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;] }<br />&#160;&#160;&#160;&#160;&#160;&#160;|&gt; f.Apply<br /><br />&#160;&#160;&#160;&#160;| :? Matrix&lt;float&gt; as m -&gt; Some [ MathDisplay (m |&gt; formatMatrix (formatMathValue floatFormat)) ]<br />&#160;&#160;&#160;&#160;| :? Matrix&lt;float32&gt; as m -&gt; Some [ MathDisplay (m |&gt; formatMatrix (formatMathValue floatFormat)) ]<br />&#160;&#160;&#160;&#160;| :? Vector&lt;float&gt; as v -&gt; Some [ MathDisplay (v |&gt; formatVector (formatMathValue floatFormat)) ]<br />&#160;&#160;&#160;&#160;| :? Vector&lt;float32&gt; as v -&gt; Some [ MathDisplay (v |&gt; formatVector (formatMathValue floatFormat)) ]</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<section >
+
+<h1>The big F# and open-source love story</h1>
+
+<br /><br />
+<img src="images/heart-pink.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br /><br />
+
+<p><strong>Tomas Petricek</strong>, F# Works<br />
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a>
+| <a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a>
+| <a href="http://fsharpworks.com"><a href="http://fsharpworks.com">http://fsharpworks.com</a></a></p>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h1>open-source = community + code</h1>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>History of F# and open-source</h1>
+
+<br /><br />
+<img src="images/heart.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br /><br />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>F#, before it was cool! <em>Before 2010</em></h2>
+
+<img src="images/vintage.png" style="width:700px;border-style:none;" alt="F# Foundation" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>How to get 1500 followers in 10 minutes?</h2>
+
+<p><div class="fragment">
+<blockquote class="twitter-tweet" lang="en"><p>Guys, Don Syme is on twitter
+<a href="https://twitter.com/dsyme">@dsyme</a> he is about to announce something huge. Everyone
+follow!</p>&amp;mdash; Miguel de Icaza (@migueldeicaza)
+<a href="https://twitter.com/migueldeicaza/status/347721978351616">November 5, 2010</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></p>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>F# Goes Open Source <em>11 November 2010</em></h2>
+
+<p><img src="images/donsyme-oss.jpg" alt="F# Goes Open Source" /></p>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>The birth of the F# Foundation <em>October 2012</em></h2>
+
+<img src="images/fsharporg.png" style="width:600px;border-style:none;" alt="F# Foundation" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Contributing to Visual F# <em>14 May 2014</em></h2>
+
+<p><blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p>Visual FSharp Tools is accepting
+community contributions to the FSharp compiler, FSI and core libraries:
+<a href="http://t.co/INDJWPZYUN"><a href="http://t.co/INDJWPZYUN&lt;/a&gt;">http://t.co/INDJWPZYUN</a></a> <a href="https://twitter.com/hashtag/fsharp?src=hash">#fsharp</a></p>&amp;mdash;
+Visual F# Team (@VisualFSharp) <a href="https://twitter.com/VisualFSharp/status/466633178556661760">May 14, 2014</a></blockquote>
+<script asyncsrc="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Moving to GitHub <em>13 January 2015</em></h2>
+
+<p><blockquote class="twitter-tweet" lang="en"><p>The day has arrived: Visual <a href="https://twitter.com/hashtag/fsharp?src=hash">#fsharp</a>
+has moved to Github:<a href="https://t.co/HbVqEmAeGo"><a href="https://t.co/HbVqEmAeGo&lt;/a&gt;">https://t.co/HbVqEmAeGo</a></a> Blog: <a href="http://t.co/bsABvO6epC"><a href="http://t.co/bsABvO6epC&lt;/a&gt;
+&lt;a">http://t.co/bsABvO6epC</a>
+<a</a> href="<a href="http://t.co/IxLtndj15y"&gt;pic.twitter.com/IxLtndj15y&lt;/a&gt;&lt;/p&gt;&amp;mdash;">http://t.co/IxLtndj15y">pic.twitter.com/IxLtndj15y</a></p>&mdash;</a> Visual F# Team (@VisualFSharp)
+<a href="https://twitter.com/VisualFSharp/status/555113681038491649">January 13, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>(Some of the)<br /> F# community projects</h1>
+
+<br /><br />
+<img src="images/heart.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br /><br />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Some F# community projects</h2>
+
+<img src="images/diagrams/s1.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Some F# community projects</h2>
+
+<img src="images/diagrams/s2.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Some F# community projects</h2>
+
+<img src="images/diagrams/s3.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Some F# community projects</h2>
+
+<ul>
+<li>Important "enabler" projects</li>
+<li>Trust in other OSS projects</li>
+<li>Compositional library design</li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Why people trust other OSS projects?</h2>
+
+<ul>
+<li>Community that builds things!</li>
+<li>Documentation, tests, builds...</li>
+<li>Common structure &amp; common style</li>
+</ul>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>Slow development methodology</h1>
+
+<br /><br />
+<img src="images/heart.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br /><br />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Slow development methodology</h2>
+
+<br />
+<img src="images/formatting.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Slow development methodology</h2>
+
+<table>
+<tbody>
+<tr class="odd">
+<td><p>F# Snippets web site</p></td>
+<td><p>Sept 2010</p></td>
+</tr>
+<tr class="even">
+<td><p>Markdown parser (TryJoinads)</p></td>
+<td><p>Jan 2012</p></td>
+</tr>
+<tr class="odd">
+<td><p>F# Data documentation</p></td>
+<td><p>Jan 2013</p></td>
+</tr>
+<tr class="even">
+<td><p>Deedle + ProjectScaffold</p></td>
+<td><p>Oct 2013</p></td>
+</tr>
+<tr class="odd">
+<td><p>FsLab Journal</p></td>
+<td><p>Apr 2014</p></td>
+</tr>
+<tr class="even">
+<td><p>FsReveal project</p></td>
+<td><p>Jul 2014</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Slow development methodology</h2>
+
+<ul>
+<li>Start with experiments
+<ul>
+<li>Share &amp; keep them for later</li>
+</ul></li>
+<li>Wrap useful things in libraries
+<ul>
+<li>Add docs &amp; make them useable</li>
+</ul></li>
+<li>Follow a theme, not a specific goal
+<ul>
+<li>Figure out what you do along the way</li>
+</ul></li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Libraries and frameworks</h2>
+
+<img src="images/diagrams/s4.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Libraries and frameworks</h2>
+
+<img src="images/diagrams/s5.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Libraries and frameworks</h2>
+
+<img src="images/libfwk.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>Interesting integration points</h1>
+
+<br /><br />
+<img src="images/heart.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br /><br />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Atom editor bindings</h2>
+
+<img src="images/diagrams/s3.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Atom editor bindings</h2>
+
+<img src="images/diagrams/s6.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Calling <code>fsautocomplete</code> from Atom</h2>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="t">T</span> <span class="o">=</span> { <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">State</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">State</span>; <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="i">Child</span><span class="o">:</span><span class="i">ChildProcess</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="t">option</span> }
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="f">location</span> () <span class="o">=</span>
+    <span class="i">Globals</span><span class="o">.</span><span class="i">atom</span><span class="o">.</span><span class="i">packages</span><span class="o">.</span><span class="i">packageDirPaths</span><span class="o">.</span>[<span class="n">0</span>]
+    <span class="o">+</span> <span class="s">&quot;/core/bin/fsautocomplete.exe&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="f">start</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">t</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="i">child</span> <span class="o">=</span>  <span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="f">location</span> () <span class="o">|&gt;</span> <span class="i">Globals</span><span class="o">.</span><span class="i">spawn</span>
+    { <span onmouseout="hideTip(event, 'fs7', 11)" onmouseover="showTip(event, 'fs7', 11)" class="i">t</span> <span class="k">with</span> <span class="i">State</span> <span class="o">=</span> <span class="i">State</span><span class="o">.</span><span class="i">On</span>; <span class="i">Child</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="p">Some</span> <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="i">child</span> }
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="f">send</span> <span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="i">msg</span> <span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="i">t</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 17)" onmouseover="showTip(event, 'fs7', 17)" class="i">t</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 18)" onmouseover="showTip(event, 'fs3', 18)" class="i">Child</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs12', 19)" onmouseover="showTip(event, 'fs12', 19)" class="t">Option</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 20)" onmouseover="showTip(event, 'fs13', 20)" class="f">iter</span> (<span class="k">fun</span> <span class="i">c</span> <span class="k">-&gt;</span>
+        <span class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 21)" onmouseover="showTip(event, 'fs14', 21)" class="i">stdin</span><span class="o">.</span><span class="i">write</span> <span onmouseout="hideTip(event, 'fs11', 22)" onmouseover="showTip(event, 'fs11', 22)" class="i">msg</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="i">ignore</span>)
+</pre>
+</td>
+</tr>
+</table>
+
+<div style="height:0px"></div>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="f">parse</span> <span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="i">path</span> <span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="i">text</span> <span onmouseout="hideTip(event, 'fs19', 27)" onmouseover="showTip(event, 'fs19', 27)" class="i">cb</span> <span onmouseout="hideTip(event, 'fs20', 28)" onmouseover="showTip(event, 'fs20', 28)" class="i">service</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 29)" onmouseover="showTip(event, 'fs21', 29)" class="i">str</span> <span class="o">=</span> <span class="s">&quot;parse </span><span class="e">\&quot;</span><span class="s">&quot;</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs17', 30)" onmouseover="showTip(event, 'fs17', 30)" class="i">path</span> <span class="o">+</span> <span class="s">&quot;</span><span class="e">\&quot;</span><span class="s"></span><span class="e">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs18', 31)" onmouseover="showTip(event, 'fs18', 31)" class="i">text</span> <span class="o">+</span> <span class="s">&quot;</span><span class="e">\n</span><span class="s">&lt;&lt;EOF&gt;&gt;</span><span class="e">\n</span><span class="s">&quot;</span>
+    <span onmouseout="hideTip(event, 'fs20', 32)" onmouseover="showTip(event, 'fs20', 32)" class="i">service</span> <span class="o">|&gt;</span> <span class="i">AutocompleteService</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs10', 33)" onmouseover="showTip(event, 'fs10', 33)" class="i">send</span> <span onmouseout="hideTip(event, 'fs21', 34)" onmouseover="showTip(event, 'fs21', 34)" class="i">str</span>
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Generating Atom bindings with FunScript</h2>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// We generate F# quotation that returns all the</span>
+<span class="c">// methods that we want to expose from the class...</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 35)" onmouseover="showTip(event, 'fs22', 35)" class="i">ctor</span> <span class="o">=</span> <span class="i">typ</span><span class="o">.</span><span class="i">GetConstructor</span>([||])
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 36)" onmouseover="showTip(event, 'fs23', 36)" class="i">meths</span> <span class="o">=</span> <span class="i">typ</span><span class="o">.</span><span class="i">GetMethods</span>(<span id="fst24" onmouseout="hideTip(event, 'fs24', 37)" onmouseover="showTip(event, 'fs24', 37, document.getElementById('fst24'))" class="omitted">...</span>)
+<span id="fst25" onmouseout="hideTip(event, 'fs25', 38)" onmouseover="showTip(event, 'fs25', 38, document.getElementById('fst25'))" class="omitted">(Wrap functions using quotations)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 39)" onmouseover="showTip(event, 'fs26', 39)" class="i">functionArray</span> <span class="o">=</span> <span class="i">Expr</span><span class="o">.</span><span class="i">NewArray</span>(<span onmouseout="hideTip(event, 'fs27', 40)" onmouseover="showTip(event, 'fs27', 40)" class="i">typeof</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs28', 41)" onmouseover="showTip(event, 'fs28', 41)" class="i">obj</span><span class="o">&gt;</span>, <span onmouseout="hideTip(event, 'fs29', 42)" onmouseover="showTip(event, 'fs29', 42)" class="i">exportCtor</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs30', 43)" onmouseover="showTip(event, 'fs30', 43)" class="i">funcs</span>)
+</pre>
+</td>
+</tr>
+</table>
+
+<div style="height:0px"></div>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// Call FunScript to do the translation!</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 44)" onmouseover="showTip(event, 'fs31', 44)" class="i">coreJS</span> <span class="o">=</span> <span class="i">Compiler</span><span class="o">.</span><span class="i">Compile</span>(<span onmouseout="hideTip(event, 'fs26', 45)" onmouseover="showTip(event, 'fs26', 45)" class="i">functionArray</span>)
+</pre>
+</td>
+</tr>
+</table>
+
+<div style="height:0px"></div>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// Now we just wrap the generated JavaScript...</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 46)" onmouseover="showTip(event, 'fs32', 46)" class="i">moduleJS</span> <span class="o">=</span>
+  [ <span class="k">yield</span> <span class="s">&quot;var CompositeDisposable = require(&#39;atom&#39;).CompositeDisposable;&quot;</span>
+    <span id="fst33" onmouseout="hideTip(event, 'fs33', 47)" onmouseover="showTip(event, 'fs33', 47, document.getElementById('fst33'))" class="omitted">(Some more JavaScript)</span>
+    <span class="k">yield</span> <span class="s">&quot;module.exports = &quot;</span> <span class="o">+</span> <span class="i">moduleName</span> <span class="o">+</span> <span class="s">&quot; = {&quot;</span>
+    <span class="k">for</span> <span onmouseout="hideTip(event, 'fs34', 48)" onmouseover="showTip(event, 'fs34', 48)" class="i">i</span>, <span onmouseout="hideTip(event, 'fs35', 49)" onmouseover="showTip(event, 'fs35', 49)" class="i">m</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs36', 50)" onmouseover="showTip(event, 'fs36', 50)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 51)" onmouseover="showTip(event, 'fs37', 51)" class="f">zip</span> [<span class="n">1</span> <span class="o">..</span> <span onmouseout="hideTip(event, 'fs23', 52)" onmouseover="showTip(event, 'fs23', 52)" class="i">meths</span><span class="o">.</span><span class="i">Length</span>] <span onmouseout="hideTip(event, 'fs23', 53)" onmouseover="showTip(event, 'fs23', 53)" class="i">meths</span> <span class="k">do</span>
+      <span id="fst38" onmouseout="hideTip(event, 'fs38', 54)" onmouseover="showTip(event, 'fs38', 54, document.getElementById('fst38'))" class="omitted">Helper bindings</span>
+      <span class="k">yield</span> <span class="i">m</span><span class="o">.</span><span class="i">Name</span> <span class="o">+</span> <span class="s">&quot;: function(&quot;</span> <span class="o">+</span> <span class="i">parNames</span> <span class="o">+</span> <span class="s">&quot;) {&quot;</span>
+      <span class="k">yield</span> <span class="s">&quot;  return _funcs[&quot;</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs39', 55)" onmouseover="showTip(event, 'fs39', 55)" class="i">string</span> <span class="i">i</span> <span class="o">+</span> <span class="s">&quot;](_self)&quot;</span> <span class="o">+</span> <span class="i">parArgs</span> <span class="o">+</span> <span class="s">&quot;; }&quot;</span> <span class="o">+</span>
+             ( <span class="k">if</span> <span class="i">i</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 56)" onmouseover="showTip(event, 'fs23', 56)" class="i">meths</span><span class="o">.</span><span class="i">Length</span> <span class="k">then</span> <span class="s">&quot;&quot;</span> <span class="k">else</span> <span class="s">&quot;,&quot;</span> )
+    <span class="k">yield</span> <span class="s">&quot;};&quot;</span> ]
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>FsLab Journal runner</h2>
+
+<img src="images/diagrams/s3.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>FsLab Journal runner</h2>
+
+<img src="images/diagrams/s7.png" style="border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Improving library interop</h2>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+[&lt;<span onmouseout="hideTip(event, 'fs40', 57)" onmouseover="showTip(event, 'fs40', 57)" class="i">AutoOpen</span>&gt;]
+<span class="k">module</span> <span class="i">FSharpChartingExtensions</span> <span class="o">=</span>
+  <span class="k">type</span> <span class="i">FSharp</span><span class="o">.</span><span class="i">Charting</span><span class="o">.</span><span class="i">Chart</span> <span class="k">with</span>
+    <span class="k">static</span> <span class="k">member</span> <span class="i">Line</span>(<span class="i">data</span><span class="o">:</span><span class="i">Series</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">K</span>, <span class="o">&#39;</span><span class="i">V</span><span class="o">&gt;</span>, <span class="o">?</span><span class="i">Name</span>,
+        <span class="o">?</span><span class="i">Title</span>, <span class="o">?</span><span class="i">Labels</span>, <span class="o">?</span><span class="i">Color</span>, <span class="o">?</span><span class="i">XTitle</span>, <span class="o">?</span><span class="i">YTitle</span>) <span class="o">=</span>
+      <span class="i">Chart</span><span class="o">.</span><span class="i">Line</span>(<span class="i">Series</span><span class="o">.</span><span class="i">observations</span> <span class="i">data</span>, <span class="o">?</span><span class="i">Name</span><span class="o">=</span><span class="i">Name</span>, <span class="o">?</span><span class="i">Title</span><span class="o">=</span><span class="i">Title</span>,
+        <span class="o">?</span><span class="i">Labels</span><span class="o">=</span><span class="i">Labels</span>, <span class="o">?</span><span class="i">Color</span><span class="o">=</span><span class="i">Color</span>, <span class="o">?</span><span class="i">XTitle</span><span class="o">=</span><span class="i">XTitle</span>, <span class="o">?</span><span class="i">YTitle</span><span class="o">=</span><span class="i">YTitle</span>)
+</pre>
+</td>
+</tr>
+</table>
+
+<div style="height:0px"></div>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">module</span> <span class="i">Frame</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">inline</span> <span class="i">toMatrix</span> <span class="i">frame</span> <span class="o">=</span>
+    <span class="i">frame</span> <span class="o">|&gt;</span> <span class="i">Frame</span><span class="o">.</span><span class="i">toArray2D</span> <span class="o">|&gt;</span> <span class="i">DenseMatrix</span><span class="o">.</span><span class="i">ofArray2</span>
+<span class="k">module</span> <span class="i">Matrix</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">inline</span> <span class="i">toFrame</span> <span class="i">matrix</span> <span class="o">=</span>
+    <span class="i">matrix</span> <span class="o">|&gt;</span> <span class="i">Matrix</span><span class="o">.</span><span class="i">toArray2</span> <span class="o">|&gt;</span> <span class="i">Frame</span><span class="o">.</span><span class="i">ofArray2D</span>
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h2>Evaluating snippets in Journal</h2>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">/// Builds FSI evaluator that can render</span>
+<span class="c">/// System.Image, F# Charts, series &amp; frames</span>
+<span class="k">let</span> <span class="i">createFsiEvaluator</span> <span class="i">root</span> <span class="i">output</span> <span class="i">failedHandler</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="i">transformation</span> (<span class="i">value</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs28', 58)" onmouseover="showTip(event, 'fs28', 58)" class="i">obj</span>, <span class="i">typ</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs41', 59)" onmouseover="showTip(event, 'fs41', 59)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs42', 60)" onmouseover="showTip(event, 'fs42', 60)" class="i">Type</span>) <span class="o">=</span>
+    <span class="k">match</span> <span class="i">value</span> <span class="k">with</span>
+    | <span class="o">:?</span> <span class="i">ChartTypes</span><span class="o">.</span><span class="i">GenericChart</span> <span class="k">as</span> <span class="i">ch</span> <span class="k">-&gt;</span>
+        ( <span class="k">use</span> <span class="i">ctl</span> <span class="o">=</span> <span class="k">new</span> <span class="i">ChartControl</span>(<span id="fst43" onmouseout="hideTip(event, 'fs43', 61)" onmouseover="showTip(event, 'fs43', 61, document.getElementById('fst43'))" class="omitted">...</span>)
+          <span class="i">ch</span><span class="o">.</span><span class="i">CopyAsBitmap</span>()<span class="o">.</span><span class="i">Save</span>(<span class="i">output</span> <span class="o">@@</span> <span class="s">&quot;images&quot;</span> <span class="o">@@</span> <span class="i">file</span>) )
+        <span onmouseout="hideTip(event, 'fs9', 62)" onmouseover="showTip(event, 'fs9', 62)" class="i">Some</span> [ <span class="i">Paragraph</span> [<span class="i">DirectImage</span> (<span class="s">&quot;&quot;</span>, (<span class="i">root</span> <span class="o">+</span> <span class="s">&quot;/images/&quot;</span> <span class="o">+</span> <span class="i">file</span>, <span onmouseout="hideTip(event, 'fs44', 63)" onmouseover="showTip(event, 'fs44', 63)" class="i">None</span>))]  ]
+    | <span class="i">SeriesValues</span> <span class="i">s</span> <span class="k">-&gt;</span>
+        <span class="k">let</span> <span class="i">heads</span>, <span class="i">row</span>, <span class="i">aligns</span> <span class="o">=</span> <span id="fst45" onmouseout="hideTip(event, 'fs45', 64)" onmouseover="showTip(event, 'fs45', 64, document.getElementById('fst45'))" class="omitted">...</span>
+        [ <span class="i">InlineMultiformatBlock</span>(<span class="s">&quot;&lt;div class=\&quot;deedleseries\&quot;&gt;&quot;</span>, <span class="s">&quot;\\vspace{1em}&quot;</span>)
+          <span class="i">TableBlock</span>(<span onmouseout="hideTip(event, 'fs9', 65)" onmouseover="showTip(event, 'fs9', 65)" class="i">Some</span> ((<span class="i">td</span> <span class="s">&quot;Keys&quot;</span>)<span class="o">::</span><span class="i">heads</span>),
+                     <span class="i">AlignDefault</span><span class="o">::</span><span class="i">aligns</span>, [ (<span class="i">td</span> <span class="s">&quot;Values&quot;</span>)<span class="o">::</span><span class="i">row</span> ])
+          <span class="i">InlineMultiformatBlock</span>(<span class="s">&quot;&lt;/div&gt;&quot;</span>,<span class="s">&quot;\\vspace{1em}&quot;</span>) ] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 66)" onmouseover="showTip(event, 'fs9', 66)" class="i">Some</span>
+    <span id="fst46" onmouseout="hideTip(event, 'fs46', 67)" onmouseover="showTip(event, 'fs46', 67, document.getElementById('fst46'))" class="omitted">(Format Deedle frames, Math.NET Matrices etc.)</span>
+    | _ <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs44', 68)" onmouseover="showTip(event, 'fs44', 68)" class="i">None</span>
+
+  <span class="c">// Create FSI evaluator, register transformations &amp; return</span>
+  <span class="k">let</span> <span class="i">fsiEvaluator</span> <span class="o">=</span> <span class="i">FsiEvaluator</span>()
+  <span class="i">fsiEvaluator</span><span class="o">.</span><span class="i">RegisterTransformation</span>(<span class="i">transformation</span>)
+  <span class="i">fsiEvaluator</span>
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>Conclusions</h1>
+
+<br /><br />
+<img src="images/heart.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br /><br />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h1>F# <img src="images/heart-pink.png" style="width:200px;position:relative;top:85px;border-style:none;background:transparent;" /> open-source!</h1>
+
+<br />
+<br />
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h3>Open-source is an accepted model</h3>
+
+<ul>
+<li>Core libraries are open-source</li>
+<li>Same structure &amp; style helps</li>
+</ul>
+
+<h3>Slow development methodology</h3>
+
+<ul>
+<li>Very compositional design</li>
+<li>Scripts to prototypes to libraries</li>
+<li>Figure thing out as you go</li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+<h1>Thank you!</h1>
+
+<br />
+<img src="images/heart-pink.png" style="width:200px;border-style:none;background:transparent;" />
+<br /><br /><br />
+
+<p><strong>Tomas Petricek</strong>, F# Works<br />
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a>
+| <a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a>
+| <a href="http://fsharpworks.com"><a href="http://fsharpworks.com">http://fsharpworks.com</a></a></p>
+
+</section>
+
+<section author="Tomas Petricek" description="True open-source is not about having the source code available on GitHub.
+It is about the community and the mentality in the community. In this talk, I'll look at
+the thing that I love the most about F# - the active open-source community around it." theme="night" title="The Big F# and Open-Source Love Story" transition="none">
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
