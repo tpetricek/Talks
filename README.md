@@ -9,10 +9,11 @@ and other talks, check out [my other repository](http://github.com/tpetricek/Doc
 Talks and slides
 ----------------
 
- - [Literate programming with F#](http://tpetricek.github.io/Talks/2015/literate-programming/krakow/index.html) - LambdaDays, Krakow
- - [Literate programming with F#](http://tpetricek.github.io/Talks/2015/literate-programming/london/talk.html) - F#unctional Londoners, London (slightly improved)
- - [The origins of monadic and comonadic computations](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/index.html) - Papers We Love, Prague
- - [The big F# open-source love story](http://tpetricek.github.io/Talks/2015/love-open-source/london/index.html) - F# eXchange, London
+ - [Literate programming with F#](http://tpetricek.github.io/Talks/2015/literate-programming/krakow/index.html) (February) - LambdaDays, Krakow
+ - [Literate programming with F#](http://tpetricek.github.io/Talks/2015/literate-programming/london/talk.html) (March) - F#unctional Londoners, London (slightly improved)
+ - [The origins of monadic and comonadic computations](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/index.html) (April) - Papers We Love, Prague
+ - [The big F# open-source love story](http://tpetricek.github.io/Talks/2015/love-open-source/london/index.html) (April) - F# eXchange, London
+ - [Functional library design](http://tpetricek.github.io/Talks/2015/functional-libraries/paris/index.html) (May) - NCrafts.io, Paris
 
 Slides license
 --------------
