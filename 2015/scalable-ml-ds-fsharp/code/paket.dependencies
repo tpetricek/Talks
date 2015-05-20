@@ -1,0 +1,6 @@
+source https://www.nuget.org/api/v2
+
+nuget MBrace.Flow 0.9.8-alpha
+nuget MBrace.Azure 0.6.5-alpha
+nuget MBrace.Azure.Standalone 0.6.5-alpha
+nuget FsLab
