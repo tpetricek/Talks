@@ -18,6 +18,21 @@
 
 ***************************************************************************************************
 
+## Before I tell you how to do things...
+
+<br />
+<div class="fragment">
+
+> To those who look at the rich material provided by history (...) it will become clear that there 
+> is only one principle that can be defended under all circumstances and in all stages of human 
+> development. It is the principle: anything goes.
+>
+> <p style="text-align:right;width:100%;margin:15px 5px 10px;">Paul Feyerabend, Against Method</p>
+
+</div>
+
+---------------------------------------------------------------------------------------------------
+
 <img src="images/fsformatting.png" style="float:right;width:150px;margin-bottom:200px" />
 
 ## Case study: F# Formatting
