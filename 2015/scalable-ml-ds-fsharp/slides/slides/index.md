@@ -1,6 +1,6 @@
-- title : Functional library design
-- description : What is the difference between frameworks and libraries
-    and why (and how) you should design libraries & avoid frameworks.
+- title : Scalable Machine Learning and Data Science with F#
+- description : The F# programming language is a great fit for exploratory data science,
+    implementing machine learning and for scaling your code to run on Big Data in the cloud.
 - author : Tomas Petricek
 - theme : night
 - transition : none
@@ -43,11 +43,11 @@ consulting  _user groups_ research
 
 <div style="padding-left:200px">
 
-## <i class="clr">❶</i> Data science
+## <i style="color:#E3A396">❶</i> Data science
 
-## <i class="clr">❷</i> Machine learning
+## <i style="color:#DE6F48">❷</i> Machine learning
 
-## <i class="clr">❸</i> Scaling to the cloud
+## <i style="color:#C14F13">❸</i> Scaling to the cloud
 
 </div>
 
@@ -64,10 +64,10 @@ consulting  _user groups_ research
 
 # _DATA SCIENCE_
 
-## Visualizing Population Growth Worldwide
+## Visualizing World Indicators
 
 </td><td>
-<img src="images/world.jpg" style="width:600px;border-style:none;background:transparent;" />
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
 </td></tr></table>
 
 ---------------------------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ Data frame & time-series for .NET
 ## Clustering Countries
 
 </td><td>
-<img src="images/world.jpg" style="width:600px;border-style:none;background:transparent;" />
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
 </td></tr></table>
 
 ---------------------------------------------------------------------------------------------------
@@ -117,9 +117,9 @@ td.lines { display:none; }
 .pre pre.fssnip { font-size:115%; }
 </style>
 
-    distance:('T -> 'T -> float) ->
-      aggregate:('T -> 'T[] -> 'T[]) ->
-        count:int -> input:'T[] -> Clustering
+    distance  : ('T -> 'T -> float)  ->
+    aggregate : ('T -> 'T[] -> 'T[]) ->
+      count:int -> input:'T[] -> Clustering
 
 ---------------------------------------------------------------------------------------------------
 
@@ -127,10 +127,10 @@ td.lines { display:none; }
 
 # _CLOUD_
 
-## Clustering Countries in Azure with M-Brace
+## Scaling with M-Brace and Azure
 
 </td><td>
-<img src="images/world.jpg" style="width:600px;border-style:none;background:transparent;" />
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
 </td></tr></table>
 
 ---------------------------------------------------------------------------------------------------

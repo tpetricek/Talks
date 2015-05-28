@@ -1,68 +1,75 @@
 #load "packages/FsLab/FsLab.fsx"
+#load "utils/Credentials.fsx"
+#load "utils/MBrace.fsx"
+
 open System
-open Deedle
+open Credentials
+open MBrace
+open MBrace.Flow
+open MBrace.Azure.Client
+open MBrace.Core
+open MBrace.Store
 open FSharp.Data
+open Deedle
 open XPlot.GoogleCharts
 
 // ----------------------------------------------------------------------------
-// Getting and visualizing population data from WorldBank
+// Running computations in the cloud
 // ----------------------------------------------------------------------------
 
-let wb = WorldBankData.GetDataContext()
+let cluster = Runtime.GetHandle(config)
 
-// Get population for all countries in 2000 and 2010
-let pop2000 = series [ for c in wb.Countries -> c.Name => c.Indicators.``Population, total``.[2000]]
-let pop2010 = series [ for c in wb.Countries -> c.Name => c.Indicators.``Population, total``.[2010]]
+// TODO: Run simple computation in the cloud!
 
-// Visualize the population using Geo chart
-Chart.Geo(Series.observations pop2010)
 
-// Calculate growth and visualize growth
-let growth = (pop2010 - pop2000) / pop2000 * 100.0
-Chart.Geo(Series.observations growth)
+
 
 // ----------------------------------------------------------------------------
-// Getting data for clustering countries
+// Downloading WorldBank data in the cloud
 // ----------------------------------------------------------------------------
 
-// Get frame with multiple indiciators about countries
-let world = 
-  [ for c in wb.Countries ->
-      c.Name => series [ 
-        "Electricity" => c.Indicators.``Access to electricity, rural (% of population)``.[2010]
-        "Life" => c.Indicators.``Life expectancy at birth, total (years)``.[2010]
-        "GDP" => c.Indicators.``GDP per capita (current US$)``.[2010]
-        "Growth" => c.Indicators.``GDP per capita growth (annual %)``.[2010]
-        "CO2" => c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
-        "Births" => c.Indicators.``Population growth (annual %)``.[2010] ] ]
-  |> Frame.ofRows
+let world = cloud {
+  // Download indicators for all countries of the world
+  let wb = WorldBankData.GetDataContext()
+  let world = 
+    [ for c in wb.Countries ->
+        c.Name => series [ 
+          "Electricity" => c.Indicators.``Access to electricity, rural (% of population)``.[2010]
+          "Life" => c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+          "GDP" => c.Indicators.``GDP per capita (current US$)``.[2010]
+          "Growth" => c.Indicators.``GDP per capita growth (annual %)``.[2010]
+          "CO2" => c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+          "Births" => c.Indicators.``Population growth (annual %)``.[2010] ] ]
+    |> Frame.ofRows
 
-// Explore the data interactively
-let lo = world |> Stats.min
-let hi = world |> Stats.max
-let avg = world |> Stats.mean
+  // Scale the values to a range 0.0 .. 1.0
+  let lo = world |> Stats.min
+  let hi = world |> Stats.max
+  let avg = world |> Stats.mean
+  let norm = 
+    world.Rows |> Series.mapValues (fun r ->
+        let vs = r.As<float>() |> Series.fillMissingUsing avg.Get
+        (vs - lo) / (hi - lo) )
+    |> Frame.ofRows
 
-// Scale data to a range 0.0 .. 1.0
-let norm = 
-  world.Rows |> Series.mapValues (fun r ->
-      let vs = r.As<float>() |> Series.fillMissingUsing avg.Get
-      (vs - lo) / (hi - lo) )
-  |> Frame.ofRows
+  // Store the results in Azure using 'CloudValue'
+  let normRows = norm.GetRows<float>() |> Series.observations |> Array.ofSeq
+  let! stored = CloudValue.New(normRows)
+  return stored }
 
-// Draw a scatter plot comparing GDP and Life expectancy
-Seq.zip norm?GDP.Values norm?Life.Values
-|> Chart.Scatter
-|> Chart.WithOptions(Options(hAxis=Axis(title="GDP"), vAxis=Axis(title="Expectancy")))
-
-// Draw correlations using the R type provider
-open RProvider
-open RProvider.graphics
-
-R.plot(world)
+let p2 = world |> cluster.CreateProcess
+cluster.ShowWorkers()
+cluster.ShowProcesses()
+p2.Completed
+let cloudWorld = p2.AwaitResult()
 
 // ----------------------------------------------------------------------------
 // Implementing the K-means clustering algorithm
 // ----------------------------------------------------------------------------
+
+
+// TODO: Modify clustering algorithm to run in the cloud!
+
 
 /// Result of a clustering consisting of cluster assignments for each
 /// of the inputs, number of iterations and average distance
@@ -130,10 +137,20 @@ let aggregator (Country(_, centr)) items =
          |> Stats.mean
   "", avg
 
-// Run the k-mena clustering on the countries & visualize
-let input = norm.GetRows<float>() |> Series.observations |> Array.ofSeq
-let clusters = kmeans distance aggregator 3 input
+// Run the k-means clustering on the Azure cluster
+let p3 = 
+  kmeans distance aggregator 3 cloudWorld
+  |> cluster.CreateProcess
 
-Seq.zip norm.RowKeys clusters.Assignment
+p3.Completed
+let clusters = p3.AwaitResult()
+
+
+// Get the result, get the names & show the chart as before
+let names = cloud {
+  let! data = CloudValue.Read(cloudWorld)
+  return Array.map fst data } |> cluster.Run
+
+Seq.zip names clusters.Assignment
 |> Chart.Geo 
 |> Chart.WithOptions(Options(colorAxis=ColorAxis(colors=[|"red";"blue";"orange"|])))
