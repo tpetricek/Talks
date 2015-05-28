@@ -8,14 +8,6 @@
 ***************************************************************************************************
  - data-background : images/bg-neurons.jpg
 
-# Machine Learning & <br /> Data Science Conference
-
-<br />
-
-### May 28 - 29, 2015, MSCC
-
----------------------------------------------------------------------------------------------------
-
 # Scalable Machine Learning and Data Science with F#
 
 <br />
@@ -66,6 +58,9 @@ consulting  _user groups_ research
 
 ## Visualizing World Indicators
 
+[Code](https://github.com/tpetricek/Talks/blob/master/2015/scalable-ml-ds-fsharp/code/world-cluster.fsx) |
+[Result](images/charts/growth.html)
+
 </td><td>
 <img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
 </td></tr></table>
@@ -106,6 +101,9 @@ Data frame & time-series for .NET
 
 ## Clustering Countries
 
+[Code](https://github.com/tpetricek/Talks/blob/master/2015/scalable-ml-ds-fsharp/code/world-cluster.fsx#L114) |
+[Result](images/charts/cluster.html)
+
 </td><td>
 <img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
 </td></tr></table>
@@ -128,6 +126,9 @@ td.lines { display:none; }
 # _CLOUD_
 
 ## Scaling with M-Brace and Azure
+
+[Code](https://github.com/tpetricek/Talks/blob/master/2015/scalable-ml-ds-fsharp/code/world-scale.fsx) |
+[Result](images/charts/cluster.html)
 
 </td><td>
 <img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
