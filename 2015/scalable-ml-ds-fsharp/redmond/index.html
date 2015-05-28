@@ -1,0 +1,288 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Scalable Machine Learning and Data Science with F#</title>
+    <meta name="description" content="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud.">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="images/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs2">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.int<br /><br />--------------------<br />type int = int32<br /><br />Full name: Microsoft.FSharp.Core.int<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; = int<br /><br />Full name: Microsoft.FSharp.Core.int&lt;_&gt;</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section data-background="images/bg-neurons.jpg">
+
+<h1>Scalable Machine Learning and Data Science with F#</h1>
+
+<br />
+
+<h3><strong>Tomas Petricek</strong>, fsharpWorks <br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://tomasp.net">tomasp.net</a> | <a href="http://fsharpworks.com">fsharpworks.com</a></h3>
+
+</section>
+
+<section class="wordcloud" data-background="images/bg-neurons-dark.jpg">
+
+<p>non-profit <em>books and tutorials</em></p>
+
+<p><em>cross-platform</em> <strong>community</strong> data science</p>
+
+<h2>F# Software Foundation</h2>
+
+<p>commercial support <strong>open-source</strong> <em>contributions</em></p>
+
+<p>machine learning <strong><a href="http://www.fsharp.org">www.fsharp.org</a></strong> web and cloud</p>
+
+<p>consulting  <em>user groups</em> research</p>
+
+</section>
+
+<section data-background="images/bg-neurons-dark.jpg">
+
+<section data-background="images/bg-neurons-dark.jpg">
+
+<div style="padding-left:200px">
+
+<h2><i style="color:#E3A396">❶</i> Data science</h2>
+
+<h2><i style="color:#DE6F48">❷</i> Machine learning</h2>
+
+<h2><i style="color:#C14F13">❸</i> Scaling to the cloud</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<img src="images/loop.png" style="width:500px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<style>
+.vtop td { vertical-align:top; }
+</style>
+<table class="vtop"><tr><td>
+
+<h1><em>DATA SCIENCE</em></h1>
+
+<h2>Visualizing World Indicators</h2>
+
+<p><a href="https://github.com/tpetricek/Talks/blob/master/2015/scalable-ml-ds-fsharp/code/world-cluster.fsx">Code</a> |
+<a href="images/charts/growth.html">Result</a></p>
+
+</td><td>
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<style>
+.reveal .noborder td { border-style:none; vertical-align:top; }
+</style>
+<table class="noborder">
+<tr><td><img src="images/logos/fslab.png" style="margin-top:30px;width:100px;border-style:none;"/></td><td>
+
+<h3>FsLab</h3>
+
+<p>Unified data-science package</p>
+
+</td></tr><tr><td><img src="images/logos/fsharpdata.png" style="margin-top:30px;width:100px;border-style:none;"/></td><td>
+
+<h3>F# Data</h3>
+
+<p>Type providers for data access</p>
+
+</td></tr><tr><td><img src="images/logos/deedle.png" style="margin-top:30px;width:100px;border-style:none;"/></td><td>
+
+<h3>Deedle</h3>
+
+<p>Data frame &amp; time-series for .NET</p>
+
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<table class="vtop"><tr><td>
+
+<h1><em>MACHINE LEARNING</em></h1>
+
+<h2>Clustering Countries</h2>
+
+<p><a href="https://github.com/tpetricek/Talks/blob/master/2015/scalable-ml-ds-fsharp/code/world-cluster.fsx#L114">Code</a> |
+<a href="images/charts/cluster.html">Result</a></p>
+
+</td><td>
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<style>
+td.lines { display:none; }
+.pre pre.fssnip { font-size:115%; }
+</style>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="i">distance</span>  <span class="o">:</span> (<span class="o">&#39;</span><span class="i">T</span> <span class="k">-&gt;</span> <span class="o">&#39;</span><span class="i">T</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">float</span>)  <span class="k">-&gt;</span>
+<span class="i">aggregate</span> <span class="o">:</span> (<span class="o">&#39;</span><span class="i">T</span> <span class="k">-&gt;</span> <span class="o">&#39;</span><span class="i">T</span>[] <span class="k">-&gt;</span> <span class="o">&#39;</span><span class="i">T</span>) <span class="k">-&gt;</span>
+  <span class="i">count</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">int</span> <span class="k">-&gt;</span> <span class="i">input</span><span class="o">:</span><span class="o">&#39;</span><span class="i">T</span>[] <span class="k">-&gt;</span> <span class="i">Clustering</span>
+</pre>
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<table class="vtop"><tr><td>
+
+<h1><em>CLOUD</em></h1>
+
+<h2>Scaling with M-Brace and Azure</h2>
+
+<p><a href="https://github.com/tpetricek/Talks/blob/master/2015/scalable-ml-ds-fsharp/code/world-scale.fsx">Code</a> |
+<a href="images/charts/cluster.html">Result</a></p>
+
+</td><td>
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<pre style="font-size:250%; background:transparent;text-align:center;">
+<span class="k">async</span> { … }
+</pre>
+
+</section>
+
+<section author="Tomas Petricek" description="The F# programming language is a great fit for exploratory data science,
+implementing machine learning and for scaling your code to run on Big Data in the cloud." theme="night" title="Scalable Machine Learning and Data Science with F#" transition="none">
+
+<pre style="font-size:250%; background:transparent;text-align:center;">
+<span class="k">cloud</span> { … }
+</pre>
+
+</section>
+
+</section>
+
+<section class="summary" data-background="images/bg-neurons.jpg">
+
+<h3>Language for ML &amp; DS<a href="http://www.fsharp.org">www.fsharp.org</a></h3>
+
+<h3>Data Science Package <a href="http://www.fslab.org">www.fslab.org</a></h3>
+
+<h3>Scales to the Cloud <a href="http://www.m-brace.net">www.m-brace.net</a></h3>
+
+<div class="fragment" style="margin-top:50px">
+
+<h2>Learn more</h2>
+
+<p>Tomas Petricek (<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> &amp; <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a>)</p>
+
+<p>Come for a Chat at the Poster Session!</p>
+
+<p>F# Meetup on Web + Azure tonight</p>
+
+<p>F# Friday Chat (on campus, Friday 5)</p>
+
+</div>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>

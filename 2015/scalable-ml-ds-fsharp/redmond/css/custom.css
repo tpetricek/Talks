@@ -1,0 +1,145 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600);
+
+i.fa {
+  margin-right:20px;
+  margin-left:20px;
+}
+
+i.clr {
+  color:#C14F13;
+}
+
+i.clr2 {
+  color:#ba5bfb;
+}
+
+.reveal h1 em, .reveal h2 em, .reveal p em, .reveal li em {
+  color:#C14F13;
+  font-style:normal;
+}
+
+/* Slide with FontAwesome icons in a large list */
+.large-icon-list ul li
+{
+  list-style-type:none;
+  font-size:30pt;
+  margin-top:15px;
+}
+
+/* Other things */
+
+.reveal a {
+  color:#67B0E5;
+  text-decoration:none;
+}
+.reveal a:hover {
+  color:#67B0E5;
+}
+.reveal h1 {
+  text-transform:none;
+  font-size:60pt;
+  font-weight:200;
+  font-family:'Segoe UI Light', 'Source Sans Pro', sans-serif;
+  width:100%;
+  text-align:left;
+}
+.reveal h2 {
+  text-transform:none;
+  font-size:40pt;
+  font-weight:200;
+  font-family:'Segoe UI Light', 'Source Sans Pro', sans-serif;
+  margin-bottom:40px;
+  width:100%;
+  text-align:left;
+}
+.reveal .centered h2 {
+  width:auto;
+  text-align:center;
+}
+
+.reveal h3 {
+  text-transform:none;
+  font-weight:200;
+  font-family:'Segoe UI Light', 'Source Sans Pro', sans-serif;
+  font-size:32pt;
+  margin-top:20px;
+  width:100%;
+  text-align:left;
+}
+.reveal p, .reveal li {
+  font-weight:300;
+  font-family:'Segoe UI', 'Source Sans Pro', sans-serif;
+  font-size:26pt;
+}
+.reveal blockquote:before {
+  display:none;
+}
+.reveal blockquote  {
+  background:#303030;
+  padding:10px 25px 10px 25px;
+  margin-top:30px;
+  margin-bottom:50px;
+  text-align:left;
+}
+
+.reveal iframe {
+  margin-left:170px !important;
+  margin-top:70px;
+  -ms-zoom: 1.2;
+  -moz-transform: scale(1.2);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(1.2);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(1.2);
+  -webkit-transform-origin: 0 0;
+}
+.reveal blockquote p {
+  color:white;
+  padding:0px;
+  margin:0px;
+  font-weight:300;
+  font-family:'Source Sans Pro', sans-serif;
+}
+.reveal code
+{
+  font-family:consolas;
+  background:transparent;
+  color:#ba5bfb;
+}
+.reveal h3 .math
+{
+  font-weight:normal;
+}
+.reveal .MathJax_Display {
+  margin-top:15px !important;
+  margin-bottom:30px !important;
+}
+.reveal img
+{
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+}
+.reveal pre
+{
+  font-size:16pt;
+}
+.reveal table.pre
+{
+  width:80% !important;
+  margin-left:10%;
+  margin-right:10%;
+}
+.reveal td p { margin:0px; padding:0px; }
+
+/**************************** Word cloud slide (www.fsharp.org) ***********************************/
+
+.reveal .wordcloud p { font-weight:200; color:white; margin:10px 0px 10px 0px; color:#c8c8c8; }
+.reveal .wordcloud p em { text-style:normal; font-weight:200; font-size:120%; margin-left:15px; margin-right:15px; color:#e0e0e0; }
+.reveal .wordcloud p strong { text-style:normal; font-weight:200; font-size:160%; margin-left:15px; margin-right:15px; color:#d0d0d0; }
+.reveal .wordcloud h2 { width:auto; text-align:center; font-weight:400; font-size:200%; color:#C14F13;  margin:10px 10px 10px 10px; font-family:'Segoe UI', 'Source Sans Pro', sans-serif; }
+.reveal .wordcloud a { text-decoration:none; font-weight:400; font-family:'Segoe UI', 'Source Sans Pro', sans-serif; }
+
+/**************************** Summary slide with lots of things  ***********************************/
+
+.summary h3, .summary h2 { margin:30px 0px 10px 0px; }
+.summary p { width:100%; text-align:left; margin:0px 0px 10px 50px; }
+.summary h3 a { position:absolute; left:500px; }
