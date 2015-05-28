@@ -118,7 +118,7 @@ td.lines { display:none; }
 </style>
 
     distance  : ('T -> 'T -> float)  ->
-    aggregate : ('T -> 'T[] -> 'T[]) ->
+    aggregate : ('T -> 'T[] -> 'T) ->
       count:int -> input:'T[] -> Clustering
 
 ---------------------------------------------------------------------------------------------------
@@ -149,24 +149,22 @@ td.lines { display:none; }
  - data-background : images/bg-neurons.jpg
  - class : summary
 
-## Summary
+### Language for ML & DS[www.fsharp.org](http://www.fsharp.org)
 
-Data Science Package [www.fslab.org](http://www.fslab.org)
+### Data Science Package [www.fslab.org](http://www.fslab.org)
 
-Fit for Machine Learning [www.fsharp.org](http://www.fsharp.org)
+### Scales to the Cloud [www.m-brace.net](http://www.m-brace.net)
 
-Scales to the Cloud [www.m-brace.net](http://www.m-brace.net)
-
-<div class="fragment">
+<div class="fragment" style="margin-top:50px">
 
 ## Learn more
+
+Tomas Petricek ([@tomaspetricek](http://twitter.com/tomaspetricek) & [tomas@tomasp.net](mailto:tomas@tomasp.net))
 
 Come for a Chat at the Poster Session!
 
 F# Meetup on Web + Azure tonight
 
 F# Friday Chat (on campus, Friday 5)
-
-### Tomas Petricek ([@tomaspetricek](http://twitter.com/tomaspetricek) & [tomas@tomasp.net](mailto:tomas@tomasp.net))
 
 </div>

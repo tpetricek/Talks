@@ -142,4 +142,4 @@ i.clr2 {
 
 .summary h3, .summary h2 { margin:30px 0px 10px 0px; }
 .summary p { width:100%; text-align:left; margin:0px 0px 10px 50px; }
-.summary p a { position:absolute; left:450px; }
+.summary h3 a { position:absolute; left:500px; }
