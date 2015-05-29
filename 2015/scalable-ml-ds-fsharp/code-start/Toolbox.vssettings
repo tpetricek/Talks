@@ -1,0 +1,89 @@
+<UserSettings><ApplicationIdentity version="12.0"/><ToolsOptions/><Category name="Environment_Group" RegisteredName="Environment_Group"><Category name="Environment_Toolbox" Category="{481999F2-7479-4e03-83D5-BE808BA142DF}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_Toolbox" PackageName="Visual Studio Environment Package"><PropertyValue name="ShowAllTabs">false</PropertyValue><PropertyValue name="Version">1</PropertyValue><PropertyValue name="DeletedTabCount">0</PropertyValue><PropertyValue name="Tab0.Name">Advertising</PropertyValue><PropertyValue name="Tab0.View">0</PropertyValue><PropertyValue name="Tab0.UseDefaultName">true</PropertyValue><PropertyValue name="Tab0.RecordType">4</PropertyValue><PropertyValue name="Tab0.Position">43</PropertyValue><PropertyValue name="Tab1.ID">MSVSTORibbonV11</PropertyValue><PropertyValue name="Tab1.Name">Office Ribbon Controls</PropertyValue><PropertyValue name="Tab1.View">0</PropertyValue><PropertyValue name="Tab1.UseDefaultName">true</PropertyValue><PropertyValue name="Tab1.RecordType">4</PropertyValue><PropertyValue name="Tab1.Position">53</PropertyValue><PropertyValue name="Tab2.ID">Control Flow</PropertyValue><PropertyValue name="Tab2.Name">Control Flow</PropertyValue><PropertyValue name="Tab2.View">0</PropertyValue><PropertyValue name="Tab2.UseDefaultName">true</PropertyValue><PropertyValue name="Tab2.RecordType">4</PropertyValue><PropertyValue name="Tab2.Position">65</PropertyValue><PropertyValue name="Tab3.ID">{e7f851c8-6267-4794-b0fe-7bcab6dacbb4}-#1071</PropertyValue><PropertyValue name="Tab3.Name">Standard</PropertyValue><PropertyValue name="Tab3.View">0</PropertyValue><PropertyValue name="Tab3.UseDefaultName">true</PropertyValue><PropertyValue name="Tab3.RecordType">4</PropertyValue><PropertyValue name="Tab3.Position">66</PropertyValue><PropertyValue name="Tab4.ID">1 Data Science</PropertyValue><PropertyValue name="Tab4.Name">1 Data Science</PropertyValue><PropertyValue name="Tab4.View">0</PropertyValue><PropertyValue name="Tab4.UseDefaultName">false</PropertyValue><PropertyValue name="Tab4.RecordType">1</PropertyValue><PropertyValue name="Tab4.Position">69</PropertyValue><PropertyValue name="Tab4.OriginalName">1 Data Science</PropertyValue><PropertyValue name="Tab5.ID">2 Machine learning</PropertyValue><PropertyValue name="Tab5.Name">2 Machine learning</PropertyValue><PropertyValue name="Tab5.View">0</PropertyValue><PropertyValue name="Tab5.UseDefaultName">false</PropertyValue><PropertyValue name="Tab5.RecordType">1</PropertyValue><PropertyValue name="Tab5.Position">70</PropertyValue><PropertyValue name="Tab5.OriginalName">2 Machine learning</PropertyValue><PropertyValue name="Tab6.ID">3 Scaling</PropertyValue><PropertyValue name="Tab6.Name">3 Scaling</PropertyValue><PropertyValue name="Tab6.View">0</PropertyValue><PropertyValue name="Tab6.UseDefaultName">false</PropertyValue><PropertyValue name="Tab6.RecordType">1</PropertyValue><PropertyValue name="Tab6.Position">71</PropertyValue><PropertyValue name="Tab6.OriginalName">3 Scaling</PropertyValue><PropertyValue name="TabCount">7</PropertyValue><PropertyValue name="DeletedItemCount">0</PropertyValue><PropertyValue name="Item0.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item0.ID">788A873DD8006363DDA3FE832ABE1E10</PropertyValue><PropertyValue name="Item0.Name">Text: // Get population for all countries in 2000 and 2010
+let pop2000 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2000]]
+let pop2010 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2010]]
+</PropertyValue><PropertyValue name="Item0.UseDefaultName">true</PropertyValue><PropertyValue name="Item0.Tab">1 Data Science</PropertyValue><PropertyValue name="Item0.TabID">1 Data Science</PropertyValue><PropertyValue name="Item0.OriginalTabID">1 Data Science</PropertyValue><PropertyValue name="Item0.OriginalTab">1 Data Science</PropertyValue><PropertyValue name="Item0.RecordType">1</PropertyValue><PropertyValue name="Item0.Data">// Get population for all countries in 2000 and 2010
+let pop2000 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2000]]
+let pop2010 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2010]]
+</PropertyValue><PropertyValue name="Item0.Position">1</PropertyValue><PropertyValue name="Item1.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item1.ID">E2B397BD051374CA5A86D17F5A97E717</PropertyValue><PropertyValue name="Item1.Name">Text: // Calculate growth and visualize growth
+let growth = (pop2010 - pop2000) / pop2000 * 100.0
+Chart.Geo(Series.observations growth)
+</PropertyValue><PropertyValue name="Item1.UseDefaultName">true</PropertyValue><PropertyValue name="Item1.Tab">1 Data Science</PropertyValue><PropertyValue name="Item1.TabID">1 Data Science</PropertyValue><PropertyValue name="Item1.OriginalTabID">1 Data Science</PropertyValue><PropertyValue name="Item1.OriginalTab">1 Data Science</PropertyValue><PropertyValue name="Item1.RecordType">1</PropertyValue><PropertyValue name="Item1.Data">// Calculate growth and visualize growth
+let growth = (pop2010 - pop2000) / pop2000 * 100.0
+Chart.Geo(Series.observations growth)
+</PropertyValue><PropertyValue name="Item1.Position">2</PropertyValue><PropertyValue name="Item2.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item2.ID">3F4923CDCEE0AE8DC9E9CFDAC24612E0</PropertyValue><PropertyValue name="Item2.Name">Text: // Get frame with multiple indiciators about countries
+let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity, rural (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item2.UseDefaultName">true</PropertyValue><PropertyValue name="Item2.Tab">1 Data Science</PropertyValue><PropertyValue name="Item2.TabID">1 Data Science</PropertyValue><PropertyValue name="Item2.OriginalTabID">1 Data Science</PropertyValue><PropertyValue name="Item2.OriginalTab">1 Data Science</PropertyValue><PropertyValue name="Item2.RecordType">1</PropertyValue><PropertyValue name="Item2.Data">// Get frame with multiple indiciators about countries
+let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity, rural (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item2.Position">3</PropertyValue><PropertyValue name="Item3.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item3.ID">57F349D013628E9BD415AED1EE97F6A0</PropertyValue><PropertyValue name="Item3.Name">Text: // Scale data to a range 0.0 .. 1.0
+let norm = 
+  world.Rows |&gt; Series.mapValues (fun r -&gt;
+      let vs = r.As&lt;float&gt;() |&gt; Series.fillMissingUsing avg.Get
+      (vs - lo) / (hi - lo) )
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item3.UseDefaultName">true</PropertyValue><PropertyValue name="Item3.Tab">1 Data Science</PropertyValue><PropertyValue name="Item3.TabID">1 Data Science</PropertyValue><PropertyValue name="Item3.OriginalTabID">1 Data Science</PropertyValue><PropertyValue name="Item3.OriginalTab">1 Data Science</PropertyValue><PropertyValue name="Item3.RecordType">1</PropertyValue><PropertyValue name="Item3.Data">// Scale data to a range 0.0 .. 1.0
+let norm = 
+  world.Rows |&gt; Series.mapValues (fun r -&gt;
+      let vs = r.As&lt;float&gt;() |&gt; Series.fillMissingUsing avg.Get
+      (vs - lo) / (hi - lo) )
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item3.Position">4</PropertyValue><PropertyValue name="Item4.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item4.ID">F625FBCE3ED4A8D4A44F0206F1D23915</PropertyValue><PropertyValue name="Item4.Name">Text: let add = cloud { return 1 + 1 }
+
+let p1 = cluster.CreateProcess(add)
+p1.Completed
+p1.AwaitResult()
+</PropertyValue><PropertyValue name="Item4.UseDefaultName">true</PropertyValue><PropertyValue name="Item4.Tab">3 Scaling</PropertyValue><PropertyValue name="Item4.TabID">3 Scaling</PropertyValue><PropertyValue name="Item4.OriginalTabID">3 Scaling</PropertyValue><PropertyValue name="Item4.OriginalTab">3 Scaling</PropertyValue><PropertyValue name="Item4.RecordType">1</PropertyValue><PropertyValue name="Item4.Data">let add = cloud { return 1 + 1 }
+
+let p1 = cluster.CreateProcess(add)
+p1.Completed
+p1.AwaitResult()
+</PropertyValue><PropertyValue name="Item4.Position">1</PropertyValue><PropertyValue name="Item5.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item5.ID">74352AA2303A04C7E56380859B86FF2E</PropertyValue><PropertyValue name="Item5.Name">Text: /// Calculate the distance between indicators of two countries
+let distance (Country(_, s1)) (Country(_, s2)) = 
+</PropertyValue><PropertyValue name="Item5.UseDefaultName">true</PropertyValue><PropertyValue name="Item5.Tab">2 Machine learning</PropertyValue><PropertyValue name="Item5.TabID">2 Machine learning</PropertyValue><PropertyValue name="Item5.OriginalTabID">2 Machine learning</PropertyValue><PropertyValue name="Item5.OriginalTab">2 Machine learning</PropertyValue><PropertyValue name="Item5.RecordType">1</PropertyValue><PropertyValue name="Item5.Data">/// Calculate the distance between indicators of two countries
+let distance (Country(_, s1)) (Country(_, s2)) = 
+</PropertyValue><PropertyValue name="Item5.Position">1</PropertyValue><PropertyValue name="Item6.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item6.ID">F86D339FCA8794EA7B89EF1BF70CB1F3</PropertyValue><PropertyValue name="Item6.Name">Text: /// Aggregate indicators in a specified cluster to get a centroid
+let aggregator (Country(_, centr)) items = 
+  let avg = 
+    if Array.isEmpty items then centr 
+    else Seq.map snd items
+         |&gt; Frame.ofRowsOrdinal
+         |&gt; Stats.mean
+  "", avg
+</PropertyValue><PropertyValue name="Item6.UseDefaultName">true</PropertyValue><PropertyValue name="Item6.Tab">2 Machine learning</PropertyValue><PropertyValue name="Item6.TabID">2 Machine learning</PropertyValue><PropertyValue name="Item6.OriginalTabID">2 Machine learning</PropertyValue><PropertyValue name="Item6.OriginalTab">2 Machine learning</PropertyValue><PropertyValue name="Item6.RecordType">1</PropertyValue><PropertyValue name="Item6.Data">/// Aggregate indicators in a specified cluster to get a centroid
+let aggregator (Country(_, centr)) items = 
+  let avg = 
+    if Array.isEmpty items then centr 
+    else Seq.map snd items
+         |&gt; Frame.ofRowsOrdinal
+         |&gt; Stats.mean
+  "", avg
+</PropertyValue><PropertyValue name="Item6.Position">2</PropertyValue><PropertyValue name="Item7.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item7.ID">1B873BE5915036BC364EC6AF05D63179</PropertyValue><PropertyValue name="Item7.Name">Text: // Run the k-mena clustering on the countries &amp; visualize
+let input = norm.GetRows&lt;float&gt;() |&gt; Series.observations |&gt; Array.ofSeq
+let clusters = kmeans distance aggregator 3 input
+
+Seq.zip norm.RowKeys clusters.Assignment
+|&gt; Chart.Geo 
+|&gt; Chart.WithOptions(Options(colorAxis=ColorAxis(colors=[|"red";"blue";"orange"|])))</PropertyValue><PropertyValue name="Item7.UseDefaultName">true</PropertyValue><PropertyValue name="Item7.Tab">2 Machine learning</PropertyValue><PropertyValue name="Item7.TabID">2 Machine learning</PropertyValue><PropertyValue name="Item7.OriginalTabID">3 Scaling</PropertyValue><PropertyValue name="Item7.OriginalTab">3 Scaling</PropertyValue><PropertyValue name="Item7.RecordType">1</PropertyValue><PropertyValue name="Item7.Data">// Run the k-mena clustering on the countries &amp; visualize
+let input = norm.GetRows&lt;float&gt;() |&gt; Series.observations |&gt; Array.ofSeq
+let clusters = kmeans distance aggregator 3 input
+
+Seq.zip norm.RowKeys clusters.Assignment
+|&gt; Chart.Geo 
+|&gt; Chart.WithOptions(Options(colorAxis=ColorAxis(colors=[|"red";"blue";"orange"|])))</PropertyValue><PropertyValue name="Item7.Position">3</PropertyValue><PropertyValue name="ItemCount">8</PropertyValue></Category></Category></UserSettings>
