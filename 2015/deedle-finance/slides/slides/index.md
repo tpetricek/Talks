@@ -1,5 +1,7 @@
 ﻿- title : F# in Finance
-- description : a
+- description : In this presentation, we look how to use F# data science tools in the finance
+     industry. The talk introduces business reasons for using F# and then looks at a number of
+     practical examples of accessing, exploring and visualizing financial data sets.
 - author : Tomas Petricek
 - theme : white
 - transition : none

@@ -15,7 +15,8 @@ Talks and slides
  - [The big F# open-source love story](http://tpetricek.github.io/Talks/2015/love-open-source/london/index.html) (April) - F# eXchange, London
  - [Functional library design](http://tpetricek.github.io/Talks/2015/functional-libraries/paris/index.html) (May) - NCrafts.io, Paris
  - [Scalable machine learning and data science with F#](http://tpetricek.github.io/Talks/2015/scalable-ml-ds-fsharp/redmond/index.html) (May) - Microsoft, Redmond
- 
+ - [F# in Finance: Data science with FsLab](http://tpetricek.github.io/Talks/2015/deedle-finance/toronto/) (June) - Citi and S&P, Toronto
+
 Slides license
 --------------
 
