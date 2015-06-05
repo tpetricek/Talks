@@ -1,0 +1,115 @@
+<UserSettings><ApplicationIdentity version="12.0"/><ToolsOptions/><Category name="Environment_Group" RegisteredName="Environment_Group"><Category name="Environment_Toolbox" Category="{481999F2-7479-4e03-83D5-BE808BA142DF}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_Toolbox" PackageName="Visual Studio Environment Package"><PropertyValue name="ShowAllTabs">false</PropertyValue><PropertyValue name="Version">1</PropertyValue><PropertyValue name="DeletedTabCount">0</PropertyValue><PropertyValue name="Tab0.ID">1 World</PropertyValue><PropertyValue name="Tab0.Name">1 World</PropertyValue><PropertyValue name="Tab0.View">0</PropertyValue><PropertyValue name="Tab0.UseDefaultName">false</PropertyValue><PropertyValue name="Tab0.RecordType">1</PropertyValue><PropertyValue name="Tab0.Position">69</PropertyValue><PropertyValue name="Tab0.OriginalName">1 World</PropertyValue><PropertyValue name="Tab1.ID">2 Stocks</PropertyValue><PropertyValue name="Tab1.Name">2 Stocks</PropertyValue><PropertyValue name="Tab1.View">0</PropertyValue><PropertyValue name="Tab1.UseDefaultName">false</PropertyValue><PropertyValue name="Tab1.RecordType">1</PropertyValue><PropertyValue name="Tab1.Position">70</PropertyValue><PropertyValue name="Tab1.OriginalName">2 Stocks</PropertyValue><PropertyValue name="TabCount">2</PropertyValue><PropertyValue name="DeletedItemCount">0</PropertyValue><PropertyValue name="Item0.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item0.ID">28670B3C50339B157A598B791C838062</PropertyValue><PropertyValue name="Item0.Name">Text: let pop2000 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2000]]
+let pop2010 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2010]]
+</PropertyValue><PropertyValue name="Item0.UseDefaultName">true</PropertyValue><PropertyValue name="Item0.Tab">1 World</PropertyValue><PropertyValue name="Item0.TabID">1 World</PropertyValue><PropertyValue name="Item0.OriginalTabID">1 World</PropertyValue><PropertyValue name="Item0.OriginalTab">1 World</PropertyValue><PropertyValue name="Item0.RecordType">1</PropertyValue><PropertyValue name="Item0.Data">let pop2000 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2000]]
+let pop2010 = series [ for c in wb.Countries -&gt; c.Name =&gt; c.Indicators.``Population, total``.[2010]]
+</PropertyValue><PropertyValue name="Item0.Position">1</PropertyValue><PropertyValue name="Item1.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item1.ID">4F1FF916D7164C1AF7E723C27DE7E50C</PropertyValue><PropertyValue name="Item1.Name">Text: let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity, rural (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item1.UseDefaultName">true</PropertyValue><PropertyValue name="Item1.Tab">1 World</PropertyValue><PropertyValue name="Item1.TabID">1 World</PropertyValue><PropertyValue name="Item1.OriginalTabID">1 World</PropertyValue><PropertyValue name="Item1.OriginalTab">1 World</PropertyValue><PropertyValue name="Item1.RecordType">1</PropertyValue><PropertyValue name="Item1.Data">let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity, rural (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item1.Position">2</PropertyValue><PropertyValue name="Item2.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item2.ID">747C9F81719FFC85DEC64921A313F6E1</PropertyValue><PropertyValue name="Item2.Name">Text: let norm = 
+  world.Columns 
+  |&gt; Series.map (fun k -&gt; Series.fillMissingWith (avg.[k]))
+  |&gt; Frame.ofColumns
+
+</PropertyValue><PropertyValue name="Item2.UseDefaultName">true</PropertyValue><PropertyValue name="Item2.Tab">1 World</PropertyValue><PropertyValue name="Item2.TabID">1 World</PropertyValue><PropertyValue name="Item2.OriginalTabID">1 World</PropertyValue><PropertyValue name="Item2.OriginalTab">1 World</PropertyValue><PropertyValue name="Item2.RecordType">1</PropertyValue><PropertyValue name="Item2.Data">let norm = 
+  world.Columns 
+  |&gt; Series.map (fun k -&gt; Series.fillMissingWith (avg.[k]))
+  |&gt; Frame.ofColumns
+
+</PropertyValue><PropertyValue name="Item2.Position">3</PropertyValue><PropertyValue name="Item3.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item3.ID">8C8DE1847926AE1CBD61386606539A75</PropertyValue><PropertyValue name="Item3.Name">Text: Seq.zip norm?GDP.Values norm?Life.Values
+|&gt; Chart.Scatter
+|&gt; Chart.WithOptions(Options(hAxis=Axis(title="GDP"), vAxis=Axis(title="Expectancy")))
+</PropertyValue><PropertyValue name="Item3.UseDefaultName">true</PropertyValue><PropertyValue name="Item3.Tab">1 World</PropertyValue><PropertyValue name="Item3.TabID">1 World</PropertyValue><PropertyValue name="Item3.OriginalTabID">1 World</PropertyValue><PropertyValue name="Item3.OriginalTab">1 World</PropertyValue><PropertyValue name="Item3.RecordType">1</PropertyValue><PropertyValue name="Item3.Data">Seq.zip norm?GDP.Values norm?Life.Values
+|&gt; Chart.Scatter
+|&gt; Chart.WithOptions(Options(hAxis=Axis(title="GDP"), vAxis=Axis(title="Expectancy")))
+</PropertyValue><PropertyValue name="Item3.Position">4</PropertyValue><PropertyValue name="Item4.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item4.ID">ED9F0790545F9626B86BE7B216B2FA12</PropertyValue><PropertyValue name="Item4.Name">Text: let [&lt;Literal&gt;] Sample = __SOURCE_DIRECTORY__ + "/data/stocks/fb.csv"
+type Stocks = CsvProvider&lt;Sample&gt;
+</PropertyValue><PropertyValue name="Item4.UseDefaultName">true</PropertyValue><PropertyValue name="Item4.Tab">2 Stocks</PropertyValue><PropertyValue name="Item4.TabID">2 Stocks</PropertyValue><PropertyValue name="Item4.OriginalTabID">2 Stocks</PropertyValue><PropertyValue name="Item4.OriginalTab">2 Stocks</PropertyValue><PropertyValue name="Item4.RecordType">1</PropertyValue><PropertyValue name="Item4.Data">let [&lt;Literal&gt;] Sample = __SOURCE_DIRECTORY__ + "/data/stocks/fb.csv"
+type Stocks = CsvProvider&lt;Sample&gt;
+</PropertyValue><PropertyValue name="Item4.Position">1</PropertyValue><PropertyValue name="Item5.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item5.ID">43728F8185F00E57AD0F702CFDDE91DF</PropertyValue><PropertyValue name="Item5.Name">Text: let stockPrices name = 
+  let prices = Stocks.Load(__SOURCE_DIRECTORY__ + "/data/stocks/" + name + ".csv")
+  [ for p in prices.Rows -&gt; p.Date, float p.Open ]
+  |&gt; List.rev |&gt; series
+</PropertyValue><PropertyValue name="Item5.UseDefaultName">true</PropertyValue><PropertyValue name="Item5.Tab">2 Stocks</PropertyValue><PropertyValue name="Item5.TabID">2 Stocks</PropertyValue><PropertyValue name="Item5.OriginalTabID">2 Stocks</PropertyValue><PropertyValue name="Item5.OriginalTab">2 Stocks</PropertyValue><PropertyValue name="Item5.RecordType">1</PropertyValue><PropertyValue name="Item5.Data">let stockPrices name = 
+  let prices = Stocks.Load(__SOURCE_DIRECTORY__ + "/data/stocks/" + name + ".csv")
+  [ for p in prices.Rows -&gt; p.Date, float p.Open ]
+  |&gt; List.rev |&gt; series
+</PropertyValue><PropertyValue name="Item5.Position">2</PropertyValue><PropertyValue name="Item6.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item6.ID">663F7F80AB355771E199CEBC0D84D52A</PropertyValue><PropertyValue name="Item6.Name">Text: let returns = (msft13 - (Series.shift 1 msft13)) / msft13 * 100.0 
+Chart.Line(returns)
+</PropertyValue><PropertyValue name="Item6.UseDefaultName">true</PropertyValue><PropertyValue name="Item6.Tab">2 Stocks</PropertyValue><PropertyValue name="Item6.TabID">2 Stocks</PropertyValue><PropertyValue name="Item6.OriginalTabID">2 Stocks</PropertyValue><PropertyValue name="Item6.OriginalTab">2 Stocks</PropertyValue><PropertyValue name="Item6.RecordType">1</PropertyValue><PropertyValue name="Item6.Data">let returns = (msft13 - (Series.shift 1 msft13)) / msft13 * 100.0 
+Chart.Line(returns)
+</PropertyValue><PropertyValue name="Item6.Position">3</PropertyValue><PropertyValue name="Item7.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item7.ID">628B05BDB45896EEFA6C9FE1995CFC23</PropertyValue><PropertyValue name="Item7.Name">Text: // Get data frame with some technology stocks
+let tech =
+  let stocks = [ "YHOO"; "GOOG"; "MSFT"; "FB" ]
+  [ for stock in stocks -&gt; stock =&gt; stockPrices stock ]
+  |&gt; frame 
+
+// Calculate the daily returns for days when we have all data
+let techAll = tech |&gt; Frame.dropSparseRows
+</PropertyValue><PropertyValue name="Item7.UseDefaultName">true</PropertyValue><PropertyValue name="Item7.Tab">2 Stocks</PropertyValue><PropertyValue name="Item7.TabID">2 Stocks</PropertyValue><PropertyValue name="Item7.OriginalTabID">2 Stocks</PropertyValue><PropertyValue name="Item7.OriginalTab">2 Stocks</PropertyValue><PropertyValue name="Item7.RecordType">1</PropertyValue><PropertyValue name="Item7.Data">// Get data frame with some technology stocks
+let tech =
+  let stocks = [ "YHOO"; "GOOG"; "MSFT"; "FB" ]
+  [ for stock in stocks -&gt; stock =&gt; stockPrices stock ]
+  |&gt; frame 
+
+// Calculate the daily returns for days when we have all data
+let techAll = tech |&gt; Frame.dropSparseRows
+</PropertyValue><PropertyValue name="Item7.Position">4</PropertyValue><PropertyValue name="Item8.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item8.ID">40D58E5527C7D0329EDC1CA16398795D</PropertyValue><PropertyValue name="Item8.Name">Text: let names = 
+  [ "Technology", "YHOO"; "Technology", "GOOG"; "Technology", "MSFT"; "Technology", "FB"
+    "Financial", "PRU"; "Financial", "V"; "Financial", "AXP.MX";
+    "Consumer Goods", "AAPL"; "Consumer Goods", "CCE"; "Consumer Goods", "MCD" ]
+
+let stocks = 
+  [ for cat, stock in names -&gt;
+      (cat, stock) =&gt; stockPrices stock ]
+  |&gt; frame 
+
+// Calculate the daily returns for days when we have all data
+let stocksAll = stocks |&gt; Frame.dropSparseRows
+let stocksRet = (stocksAll - (Frame.shift 1 stocksAll)) / stocksAll * 100.0
+</PropertyValue><PropertyValue name="Item8.UseDefaultName">true</PropertyValue><PropertyValue name="Item8.Tab">2 Stocks</PropertyValue><PropertyValue name="Item8.TabID">2 Stocks</PropertyValue><PropertyValue name="Item8.OriginalTabID">General</PropertyValue><PropertyValue name="Item8.OriginalTab">General</PropertyValue><PropertyValue name="Item8.RecordType">1</PropertyValue><PropertyValue name="Item8.Data">let names = 
+  [ "Technology", "YHOO"; "Technology", "GOOG"; "Technology", "MSFT"; "Technology", "FB"
+    "Financial", "PRU"; "Financial", "V"; "Financial", "AXP.MX";
+    "Consumer Goods", "AAPL"; "Consumer Goods", "CCE"; "Consumer Goods", "MCD" ]
+
+let stocks = 
+  [ for cat, stock in names -&gt;
+      (cat, stock) =&gt; stockPrices stock ]
+  |&gt; frame 
+
+// Calculate the daily returns for days when we have all data
+let stocksAll = stocks |&gt; Frame.dropSparseRows
+let stocksRet = (stocksAll - (Frame.shift 1 stocksAll)) / stocksAll * 100.0
+</PropertyValue><PropertyValue name="Item8.Position">5</PropertyValue><PropertyValue name="Item9.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item9.ID">7C2B5236E1F44FA2F5DE8A72903F2650</PropertyValue><PropertyValue name="Item9.Name">Text: // Average daily returns per company
+let perComp = stocksRet |&gt; Stats.mean
+Chart.Column(perComp |&gt; Series.mapKeys snd)
+
+// Average daily returns per sector
+perComp 
+|&gt; Stats.levelMean fst
+|&gt; Chart.Column
+</PropertyValue><PropertyValue name="Item9.UseDefaultName">true</PropertyValue><PropertyValue name="Item9.Tab">2 Stocks</PropertyValue><PropertyValue name="Item9.TabID">2 Stocks</PropertyValue><PropertyValue name="Item9.OriginalTabID">General</PropertyValue><PropertyValue name="Item9.OriginalTab">General</PropertyValue><PropertyValue name="Item9.RecordType">1</PropertyValue><PropertyValue name="Item9.Data">// Average daily returns per company
+let perComp = stocksRet |&gt; Stats.mean
+Chart.Column(perComp |&gt; Series.mapKeys snd)
+
+// Average daily returns per sector
+perComp 
+|&gt; Stats.levelMean fst
+|&gt; Chart.Column
+</PropertyValue><PropertyValue name="Item9.Position">6</PropertyValue><PropertyValue name="ItemCount">10</PropertyValue></Category></Category></UserSettings>
