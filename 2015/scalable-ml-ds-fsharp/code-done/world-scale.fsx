@@ -137,11 +137,14 @@ let aggregator (Country(_, centr)) items =
 
 // Run the k-means clustering on the Azure cluster
 let p3 = 
-  kmeans distance aggregator 3 cloudWorld
+  [ for i in 0 .. 10 -> kmeans distance aggregator 3 cloudWorld ]
+  |> Cloud.Parallel
   |> cluster.CreateProcess
 
 p3.Completed
-let clusters = p3.AwaitResult()
+let clusters = 
+  p3.AwaitResult()
+  |> Seq.minBy (fun res -> res.AverageDist)
 
 
 // Get the result, get the names & show the chart as before
