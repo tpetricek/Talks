@@ -1,0 +1,465 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>F# in Finance</title>
+    <meta name="description" content="a">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="images/styles/light.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<section >
+
+<h1>F# in Finance</h1>
+
+<h2>Doing data science with FsLab</h2>
+
+<img src="images/fsharpworks.png" style="width:300px;position:absolute;right:0px;margin-top:250px" />
+<div style="position:absolute;text-align:left;left:0px;margin-top:220px">
+
+<p>Tomas Petricek<br />
+<a href="http://www.fsharpworks.com">www.fsharpworks.com</a></p>
+
+</div>
+<style>
+.vtop td { vertical-align:top; }
+.libs h2 { color:black; }
+.libs { position:absolute; left:30px; }
+</style>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>About us</h1>
+
+<div style="float:right">
+<img src="images/rwfp.png" style="width:200px" /><br />
+<img src="images/deepdives.png" style="width:200px" />
+</div>
+
+<h2>Tomas Petricek</h2>
+
+<ul>
+<li>F# book author and developer</li>
+<li>Contributed to F# at <em>Microsoft</em></li>
+<li>Working on <em>data science tools</em><br />
+with <em>BlueMountain Capital</em></li>
+</ul>
+
+<h2>fsharpWorks</h2>
+
+<ul>
+<li>Provides <em>F# training &amp; consulting</em></li>
+<li><em>Finance</em>, <em>machine learning</em>, etc.</li>
+<li>Working mostly in <em>UK</em> and <em>US</em></li>
+</ul>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>The F# Software Foundation</h1>
+
+<h2><a href="http://www.fsharp.org">www.fsharp.org</a></h2>
+
+<p>The mission of the <em>F# Software Foundation</em> is to promote, protect, and
+advance the F# programming language.</p>
+
+<br />
+
+<ul>
+<li>Independent registered non-profit</li>
+<li>Open-source community &amp; contributors</li>
+<li>Microsoft, Xamarin, Tachyus, Jet.com,...</li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>F# in the news</h1>
+
+<h2>ThoughtWorks radar, March 2012</h2>
+
+<p><em>F# is excellent at expressing business logic.</em> Developers may opt to express
+their domain in F# with the plumbing code in C#.</p>
+
+<h2>TOBE index, March 2014</h2>
+
+<p>F# has risen to the 12th spot in this month's rankings.
+As the index headline notes, <em>"F# is on its way to the Top 10."</em></p>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>F# for Analytical Components</h1>
+
+<p><strong>Time-to-market</strong></p>
+
+<ul>
+<li>According to testimonials, F# makes development faster</li>
+</ul>
+
+<p><strong>Correctness</strong></p>
+
+<ul>
+<li>Type system prevents many errors including <code>null</code></li>
+</ul>
+
+<p><strong>Complexity</strong></p>
+
+<ul>
+<li>Functional style makes it easier to write complex logic</li>
+</ul>
+
+<p><strong>Efficiency</strong></p>
+
+<ul>
+<li>Performance profile of C# with async and parallelism</li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>F# Testimonials</h1>
+
+<h2><a href="http://fsharp.org/testimonials/">fsharp.org/testimonials</a></h2>
+
+<p>"I have delivered three business critical projects written in F#.<br />
+I am still <em>waiting for the first bug</em> to come in."
+(<a href="http://fsharp.org/testimonials/#simon-cousins-2">source</a>)</p>
+
+<p>"I wrote the first prototype of the click prediction system
+deployed in Microsoft AdCenter in F# in <em>a few days</em>."
+(<a href="http://fsharp.org/testimonials/#simard-1">source</a>)</p>
+
+<p>On-line real-time action game: <em>6 months uptime</em>, 30B+ requests, <em>0 exception, 0 crash, 0 reset</em>
+(<a href="https://twitter.com/viet2nt/status/604310788631736320">source</a>)</p>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>Why are they using F#</h1>
+
+<p><strong> <i class="fa fa-car"></i> Tachyus</strong> oil &amp; gas startup</p>
+
+<ul>
+<li>time-to-market, cross-platform, data analysis</li>
+</ul>
+
+<p><strong> <i class="fa fa-dollar"></i> Credit Suisse</strong> finance industry</p>
+
+<ul>
+<li>complexity, correctness, efficiency</li>
+</ul>
+
+<p><strong> <i class="fa fa-facebook-official"></i> GameSys</strong> building MMORPG games</p>
+
+<ul>
+<li>time-to-market, scalability, efficiency</li>
+</ul>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>FsLab: F# tools for data science</h1>
+
+<h2>www.fslab.org</h2>
+
+<p>FsLab is a collection of <em>libraries for data-science</em>. It provides a rapid development envi­ronment
+that lets you write advanced analysis with a few lines of production-quality code.</p>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1><a href="http://www.fslab.org">FsLab.org</a>: Data science with F#</h1>
+
+<p>The data science workflow</p>
+
+<img src="images/bmc.gif" style="float:right;" />
+
+<ul>
+<li><em>Data access</em> integrated in the language</li>
+<li><em>Interactive analysis</em> using .NET &amp; R</li>
+<li><em>Visualization</em> with HTML &amp; PDF reports</li>
+</ul>
+
+<p>High-quality open-source libraries</p>
+
+<div style="margin-top:30px;margin-left:50px">
+<img src="images/logo-fslab.png" style="width:150px;margin-right:20px;" />
+<img src="images/logo-fsdata.png" style="width:150px;margin-right:20px;" />
+<img src="images/logo-deedle.png" style="width:150px;margin-right:20px;" />
+<img src="images/logo-rprovider.png" style="width:150px;margin-right:20px;" />
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<table class="vtop"><tr><td>
+
+<h1><em>DATA ACCESS</em></h1>
+
+<h2>Visualizing world indicators</h2>
+
+</td><td>
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>Data access</h1>
+
+<table class="libs"><tr><td style="padding-right:30px;padding-top:30px;border-style:none">
+<img src="images/logo-fsdata.png" style="width:150px;margin-right:20px;" />
+</td><td style="padding:left:30px;border-style:none">
+
+<h2>F# Data</h2>
+
+<p>First-class data access</p>
+
+<p>CSV, XML, JSON and more</p>
+
+</td></tr><tr><td style="padding-right:30px;padding-top:30px;border-style:none">
+<img src="images/logo-deedle.png" style="width:150px;margin-right:20px;" />
+</td><td style="padding:left:30px;border-style:none">
+
+<h2>Deedle</h2>
+
+<p>Time-series and data-frames</p>
+
+<p>C# and F# friendly</p>
+
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<table class="vtop"><tr><td>
+
+<h1><em>DATA EXPLORATION</em></h1>
+
+<h2>Working with stock prices</h2>
+
+</td><td>
+<img src="images/exports.jpg" style="width:600px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>Data exploration</h1>
+
+<table class="libs"><tr><td style="padding-right:30px;padding-top:30px;border-style:none">
+<img src="images/logo-deedle.png" style="width:150px;margin-right:20px;" />
+</td><td style="padding:left:30px;border-style:none">
+
+<h2>Deedle time series</h2>
+
+<p>Alignment, missing values, slicing</p>
+
+<p>Exploration, statistics, indexing</p>
+
+<p>Upcoming support for "big data"</p>
+
+</td></tr><tr><td style="padding-right:30px;padding-top:30px;border-style:none">
+<img src="images/logo-rprovider.png" style="width:150px;margin-right:20px;" />
+</td><td style="padding:left:30px;border-style:none">
+
+<h2>R Type provider</h2>
+
+<p>Smooth R and F# integration</p>
+
+<p>Access 5000+ statistical packages</p>
+
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<table class="vtop"><tr><td>
+
+<h1><em>DATA VISUALIZATION</em></h1>
+
+<h2>Stock price reporting</h2>
+
+</td><td>
+<img src="images/nyt.jpg" style="width:400px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>Data visualization</h1>
+
+<table class="libs"><tr><td style="padding-right:30px;padding-top:30px;border-style:none">
+<img src="images/logo-fslab.png" style="width:150px;margin-right:20px;" />
+</td><td style="padding:left:30px;border-style:none">
+
+<h2>FsLab journals</h2>
+
+<p>Produce HTML and PDF reports</p>
+
+<p>Extensible and open-source</p>
+
+</td></tr><tr><td style="padding-right:30px;padding-top:30px;border-style:none">
+<img src="images/logo-charting.png" style="width:150px;margin-right:20px;" />
+</td><td style="padding:left:30px;border-style:none">
+
+<h2>Charting libraries</h2>
+
+<p>Rich charting libraries</p>
+
+<p>Both desktop and HTML5</p>
+
+</td></tr></table>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>Why choose F# for data science?</h1>
+
+<div class="fragment">
+
+<h2>Data access</h2>
+
+<p><em>First-class data support</em> in the language</p>
+
+</div><div class="fragment">
+
+<h2>Data exploration</h2>
+
+<p>Environment both <em>scientists and programmers</em> understand</p>
+
+</div><div class="fragment">
+
+<h2>Data visualization</h2>
+
+<p>Interactive <em>charting and reporting</em> tools</p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="a" theme="white" title="F# in Finance" transition="none">
+
+<h1>Thank you!</h1>
+
+<br />
+
+<table><tr><td style="vertical-align:middle;padding-right:30px;">
+<img src="images/ad-fworks.png" style="width:250px;background:transparent;border:none;" />
+</td><td style="padding-left:30px;">
+<img src="images/ad-qsh.png" style="width:190px;background:transparent;border:none;" />
+</td></tr></table>
+
+<br />
+
+<p><strong>Tomas Petricek</strong>, fsharpWorks</p>
+
+<p>See <a href="http://functional-programming.net/">functional-programming.net</a> for books &amp; trainings!<br />
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a>
+| <a href="http://tomasp.net">tomasp.net</a>
+| <a href="http://fsharpworks.com">fsharpworks.com</a></p>
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
