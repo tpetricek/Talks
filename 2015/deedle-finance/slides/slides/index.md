@@ -71,7 +71,7 @@ advance the F# programming language.
 _F# is excellent at expressing business logic._ Developers may opt to express
 their domain in F# with the plumbing code in C#.
 
-## TOBE index, March 2014
+## TIOBE index, March 2014
 
 F# has risen to the 12th spot in this month's rankings.
 As the index headline notes, _"F# is on its way to the Top 10."_
