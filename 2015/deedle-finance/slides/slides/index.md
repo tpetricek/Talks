@@ -167,6 +167,8 @@ High-quality open-source libraries
 
 ## Visualizing world indicators
 
+[Completed source](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/code-done/1-world.fsx)
+
 </td><td>
 <img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
 </td></tr></table>
@@ -204,6 +206,8 @@ C# and F# friendly
 # _DATA EXPLORATION_
 
 ## Working with stock prices
+
+[Completed source](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/code-done/2-stocks.fsx)
 
 </td><td>
 <img src="images/exports.jpg" style="width:600px;border-style:none;background:transparent;" />
@@ -244,6 +248,9 @@ Access 5000+ statistical packages
 # _DATA VISUALIZATION_
 
 ## Stock price reporting
+
+[Completed source](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/journal/Tutorial.fsx)  
+and [produced report](images/report.html)
 
 </td><td>
 <img src="images/nyt.jpg" style="width:400px;border-style:none;background:transparent;" />

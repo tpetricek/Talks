@@ -6,13 +6,15 @@ open Deedle
 open FSharp.Data
 open XPlot.GoogleCharts
 open XPlot.GoogleCharts.Deedle
+
+let root = __SOURCE_DIRECTORY__
 (**
 Analysing stock prices with F#
 ==============================
 
 This journal demonstrates how to generate elegant reports from your FsLab
 data analysis. In this demo, we use CSV type provider to read stock prices
-from Yahoo finance, then we analyze the data using Deedle and we create a 
+from Yahoo finance, then we analyze the data using Deedle and we create a
 couple of charts to visualize the results using R type provider and F# Charting.
 
 Microsoft stock prices
@@ -21,18 +23,18 @@ We start by looking at individual time series - here, we use MSFT stock prices.
 The following snippet shows how to read the data and get time series for the
 year 2013:
 *)
-type Stocks = CsvProvider<"c:/data/stocks/fb.csv">
+type Stocks = CsvProvider<"stocks/fb.csv">
 
-let stockPrices name = 
-  let prices = Stocks.Load("c:/data/stocks/" + name + ".csv")
+let stockPrices name =
+  let prices = Stocks.Load(root + "/stocks/" + name + ".csv")
   [ for p in prices.Rows -> p.Date, float p.Open ]
   |> List.rev |> series
 
 let msft = stockPrices "AAPL"
 let msft13 = msft.[DateTime(2013, 1, 1) ..]
 (*** include-value:msft13 |> Series.mapKeys (fun d -> d.ToShortDateString())***)
-(** 
-Now we can calculate the average price and draw a line chart: 
+(**
+Now we can calculate the average price and draw a line chart:
 *)
 (*** define-output: line ***)
 Chart.Line(msft13)
@@ -60,12 +62,12 @@ before.
 
 We start by loading data for a number of companies in different sectors:
 *)
-let names = 
+let names =
   [ "Technology", "YHOO"; "Technology", "GOOG"; "Technology", "MSFT"; "Technology", "FB"
     "Financial", "PRU"; "Financial", "V"; "Financial", "AXP.MX";
     "Consumer Goods", "AAPL"; "Consumer Goods", "CCE"; "Consumer Goods", "MCD" ]
 
-let stocks = 
+let stocks =
   frame [ for cat, stock in names -> (cat, stock) => stockPrices stock ]
   |> Frame.sortRowsByKey |> Frame.sortColsByKey
 
