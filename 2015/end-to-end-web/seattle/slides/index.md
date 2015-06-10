@@ -9,7 +9,7 @@
 
 ***************************************************************************************************
 
-# End-to-end functional web development <br /><small>Seattle F# meetup, 28 May</small>
+# End-to-end functional web development
 
 <img src="images/suave.png" style="width:150px;margin:60px;border-color:#F26822" />
 

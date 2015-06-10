@@ -9,36 +9,66 @@ open Suave.Http.Successful
 open Suave.Http.RequestErrors
 open Suave.Http.Applicatives
 
-type ChatMessage =
-  | Add of name:string * text:string
-  | Get of AsyncReplyChannel<string>
+// ------------------------------------------------------------------
 
-let chat = MailboxProcessor.Start(fun inbox ->
-  let rec loop lines = async {
-    let! msg = inbox.Receive()
-    match msg with
-    | Add(name, text) ->
-        let line = sprintf "<li><strong>%s</strong>: %s</li>" name text
-        return! loop (line::lines)
-    | Get(repl) ->
-        repl.Reply(String.concat "\n" lines)
-        return! loop lines }
-  loop [] )
+type ChatMessage = 
+  | Post of string * string
+  | Retrieve of AsyncReplyChannel<string>
 
-let getMessages : WebPart = fun ctx -> async {
-  let! html = chat.PostAndAsyncReply(Get)
-  return! ctx |> OK ("<ul>" + html + "</ul>")
-}
+// ------------------------------------------------------------------
 
-let postMessage : WebPart = fun ctx -> async {
-  let (Choice1Of2 name) = ctx.request.queryParam "name"
-  let text = StreamReader(MemoryStream(ctx.request.rawForm)).ReadToEnd()
-  chat.Post(Add(name, text))
-  return! ctx |> ACCEPTED "OK"
-}
+let startChat () = 
+  MailboxProcessor.Start(fun inbox ->
+    let rec loop messages = async {
+      let! msg = inbox.Receive()
+      match msg with
+      | Post(name, text) ->
+          let html = sprintf "<li><strong>%s</strong>: %s</li>" name text
+          return! loop (html::messages)
+      | Retrieve(repl) ->
+          repl.Reply(String.concat "\n" messages)
+          return! loop messages }
+    loop [] )
+
+// ------------------------------------------------------------------
+
+type AgentDict = Map<string, MailboxProcessor<ChatMessage>>
+
+let router = 
+  MailboxProcessor.Start(fun inbox -> 
+    let rec loop (agents:AgentDict) = async { 
+      let! channel, msg = inbox.Receive()
+      match Map.tryFind channel agents with
+      | Some agent -> 
+          agent.Post(msg)
+          return! loop agents
+      | None ->
+          let agent = startChat()
+          agent.Post(msg)
+          return! loop (Map.add channel agent agents) }
+    loop Map.empty
+  )
+// ------------------------------------------------------------------
+
+let getMessages room ctx = async {
+  let! body = router.PostAndAsyncReply(fun ch -> room, Retrieve ch)
+  let html = "<ul>" + body + "</ul>"
+  return! OK html ctx }
+
+let postMessage room ctx = async {
+  let name = 
+    match ctx.request.queryParam "name" with
+    | Choice1Of2 n -> n
+    | _ -> "Anonymous"
+  use ms = new MemoryStream(ctx.request.rawForm)
+  use sr = new StreamReader(ms)
+  let text = sr.ReadToEnd()  
+  router.Post(room, Post(name, text))
+  return! ACCEPTED "OK" ctx }
+
+// ------------------------------------------------------------------
 
 let index = File.ReadAllText(__SOURCE_DIRECTORY__ + "/web/chat.html")
-let jquery = File.ReadAllText(__SOURCE_DIRECTORY__ + "/web/jquery.js")
 
 let noCache =
   Writers.setHeader "Cache-Control" "no-cache, no-store, must-revalidate"
@@ -47,8 +77,13 @@ let noCache =
 
 let app =
   choose
-    [ path "/" >>= Writers.setMimeType "text/html" >>= OK index
-      path "/jquery.js" >>= Writers.setMimeType "text/javascript" >>= OK jquery
-      path "/chat" >>= GET >>= noCache >>= getMessages
-      path "/post" >>= POST >>= noCache >>= postMessage
+    [ // Routing for default URLs without room names
+      path "/" >>= Writers.setMimeType "text/html" >>= OK index
+      path "/chat" >>= GET >>= noCache >>= getMessages "default"
+      path "/post" >>= POST >>= noCache >>= postMessage "default"
+
+      // Routing for URLs that start with room name
+      pathScan "/%s/" (fun _ -> Writers.setMimeType "text/html" >>= OK index)
+      pathScan "/%s/chat" (fun room -> GET >>= noCache >>= getMessages room)
+      pathScan "/%s/post" (fun room -> POST >>= noCache >>= postMessage room)
       NOT_FOUND "Found no handlers" ]
