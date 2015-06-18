@@ -9,20 +9,18 @@ open Suave.Http.Successful
 open Suave.Http.RequestErrors
 open Suave.Http.Applicatives
 
-// ------------------------------------------------------------------
+
+// DEMO: Add handlers for REST API
+// TODO: Handle /chat with GET & no chache using getMessage
+// TODO: Handle /post with POST & no cache using postMessage
+// TODO: Otherwise, report NOT_FOUND
 
 // TODO: What is the ChatMessage that chat agent handles?
 // TODO: Implement chat agent to store the room state
 // (Format messages as "<li><strong>%s</strong>: %s</li>")
+
 // DEMO: Add support for multiple chat rooms
-
-let getMessages room ctx = async {
-  let body = "<li><strong>System</string>: Nothing!</li>"
-  let html = "<ul>" + body + "</ul>"
-  return! OK html ctx }
-
-let postMessage room ctx = async {
-  return! ACCEPTED "OK" ctx }
+// DEMO: Add routing for multiple rooms
 
 // ------------------------------------------------------------------
 

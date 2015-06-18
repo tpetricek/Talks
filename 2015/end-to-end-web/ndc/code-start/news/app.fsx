@@ -1,6 +1,8 @@
 #r "System.Xml.Linq"
 #r "packages/FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "packages/Suave/lib/net40/Suave.dll"
+#r "packages/DotLiquid/lib/NET45/DotLiquid.dll"
+#load "utils/dotliquid.fs"
 open Suave
 open Suave.Http.Successful
 open Suave.Web
@@ -16,27 +18,37 @@ open FSharp.Data
 let app = OK "Hello world!"
 
 
-// ----------------------------------------------------------------------------
-// Getting News from RSS feed and formatting it
-// ----------------------------------------------------------------------------
-
-// TODO: Get current news using XML type provider
-// http://feeds.bbci.co.uk/news/rss.xml
-// TODO: Read the news & add async
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ----------------------------------------------------------------------------
-// Getting Weather information and formatting it
-// ----------------------------------------------------------------------------
+
+// DEMO: Define the domain model
+
+// TODO: Get current news from BBC
+// (http://feeds.bbci.co.uk/news/rss.xml)
+// TODO: Display using DotLiquid page
 
 // TODO: Get current weather using JSON type provider
-// http://api.openweathermap.org/data/2.5/forecast/daily?q=London,UK&mode=json&units=metric&cnt=10
-// TODO: Read weather forecast
-// TODO: Read weather forecast asynchronously & format
+// (http://api.openweathermap.org/data/2.5/forecast/daily?q=London,UK&mode=json&units=metric&cnt=10)
+// DEMO: Covert UNIX time stamps
 
+// DEMO: Add async entry-point
+// TODO: Make the data reading async
 
-// ----------------------------------------------------------------------------
-// Building asynchronous Suave server
-// ----------------------------------------------------------------------------
-
-// DEMO: Read HTML template
+// TODO: Define NewsFilters.niceDate ('D') & add to template
+// TODO: Register filters by name

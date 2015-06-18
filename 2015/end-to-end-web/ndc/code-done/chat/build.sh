@@ -3,6 +3,8 @@ if test "$OS" = "Windows_NT"
 then
   MONO=""
 else
+  # Mono fix for https://github.com/fsharp/FAKE/issues/805    
+  export MONO_MANAGED_WATCHER=false    
   MONO="mono"
 fi
 

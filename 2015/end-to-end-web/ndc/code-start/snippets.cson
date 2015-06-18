@@ -1,66 +1,75 @@
-﻿# Snippets for Atom
-'.source.fsharp':
-  'web, news, toDateTime':
-    'prefix': 'wn-tdt'
+﻿'.source.fsharp':
+  # -----------------------------------------------------------------
+  # Snippets for the news web site demo
+  # -----------------------------------------------------------------
+
+  'web, news, domain model':
+    'prefix': 'news-domain-model'
+    'body': """
+    type News =
+      { ThumbUrl : string
+        LinkUrl : string
+        Title : string
+        Description : string }
+
+    type Weather =
+      { Date : DateTime
+        Icon : string
+        Day : int
+        Night : int }
+
+    type Home =
+      { News : seq<News>
+        Weather : seq<Weather> }
+    """
+
+  'web, news, to date time':
+    'prefix': 'news-date-time'
     'body': """
     let toDateTime (timestamp:int) =
       let start = DateTime(1970,1,1,0,0,0,DateTimeKind.Utc)
       start.AddSeconds(float timestamp).ToLocalTime()
     """
 
-  'web, news, formatWeather':
-    'prefix': 'wn-fwt'
+  'web, news, async app':
+    'prefix': 'news-async-app'
     'body': """
-    let formatWeather =
-      sprintf "<li><h3>%s</h3><img src=\"http://openweathermap.org/img/w/%s.png\"><p>Day: %.0f°C</p><p>Night: %.0f°C</p></li>"
+    let news = []
+    let weather = []
+    let model = { News = news; Weather = weather }
+    return! DotLiquid.page "index.html" model ctx
     """
 
-  'web, news, formatNews':
-    'prefix': 'wn-fns'
+  # -----------------------------------------------------------------
+  # Snippets for the chat web site demo
+  # -----------------------------------------------------------------
+
+  'web, chat, handlers':
+    'prefix': 'chat-handlers'
     'body': """
-    let formatNews =
-      sprintf "<li><img src=\"%s\" /><h3><a href=\"%s\">%s</a></h3><p>%s</p></li>"
+    let getMessages room ctx = async {
+      let body = "<li><strong>System</string>: Nothing!</li>"
+      let html = "<ul>" + body + "</ul>"
+      return! OK html ctx }
+
+    let postMessage room ctx = async {
+      return! ACCEPTED "OK" ctx }
+
+    let getRooms ctx = async {
+      let html = "<li><a href='/'>Home</a></li>"
+      return! OK html ctx }
     """
 
-  'web, news, html':
-    'prefix': 'wn-html'
+  'web, chat, post handler':
+    'prefix': 'chat-post-handler'
     'body': """
-    let html = File.ReadAllText(__SOURCE_DIRECTORY__ + "/web/index.html")
-    """
-
-  'web, news, replace':
-    'prefix': 'wn-replace'
-    'body': """OK (html.Replace("#1", news).Replace("#2", weather)) ctx"""
-
-  'web, chat, distribute':
-    'prefix': 'wch-distr'
-    'body': """
-    type AgentDict = Map<string, MailboxProcessor<ChatMessage>>
-
-    let router =
-      MailboxProcessor.Start(fun inbox ->
-        let rec loop (agents:AgentDict) = async {
-          // TODO: Receive 'room' and 'message'
-          // TODO: Start new chat room or pick existing
-          return! loop agents }
-        loop Map.empty
-      )
-    """
-
-  'web, chat, read':
-    'prefix': 'wch-read'
-    'body': """
-    let name =
-      match ctx.request.queryParam "name" with
-      | Choice1Of2 n -> n
-      | _ -> "Anonymous"
-    use ms = new MemoryStream(ctx.request.rawForm)
-    use sr = new StreamReader(ms)
+    let name = ctx.request.url.Query.Substring(1)
+    use sr = new StreamReader(new MemoryStream(ctx.request.rawForm))
     let text = sr.ReadToEnd()
     """
 
-  'web, chat, nocache':
-    'prefix': 'wch-nocache'
+  'web, chat, no cache':
+    'prefix': 'chat-no-cache'
     'body': """
     let noCache =
       Writers.setHeader "Cache-Control" "no-cache, no-store, must-revalidate"
@@ -68,14 +77,41 @@
       >>= Writers.setHeader "Expires" "0"
     """
 
-  'web, chat, routing':
-    'prefix': 'wch-routing'
+  'web, chat, multiple rooms':
+    'prefix': 'chat-multiple-rooms'
     'body': """
-      choose
-        [ // TODO: Handle /chat with GET & no chache using getMessage
-          // TODO: Handle /post with POST & no cache using postMessage
+    type AgentDict = Map<string, MailboxProcessor<ChatMessage>>
 
-          // TODO: Handle /<room>/ using index
-          // TODO: Handle /<room>/chat and /<room>/post
-          NOT_FOUND "Found no handlers" ]
+    type RouterMessage =
+      | Send of string * ChatMessage
+      | List of AsyncReplyChannel<string>
+
+    let (|MapFind|_|) map key = Map.tryFind key map
+
+    let router =
+      MailboxProcessor.Start(fun inbox ->
+        let rec loop (agents:AgentDict) = async {
+          let! msg = inbox.Receive()
+          match msg with
+          | List(repl) ->
+              [ for KeyValue(k, _) in agents ->
+                  sprintf "<li><a href=\"/%s/\">%s</a></li>" k k ]
+              |> String.concat "" |> repl.Reply
+              return! loop agents
+          | Send(MapFind agents agent, msg) ->
+              agent.Post(msg)
+              return! loop agents
+          | Send(room, msg) ->
+              let agent = startChat()
+              agent.Post(msg)
+              return! loop (Map.add room agent agents) }
+        loop Map.empty )
+    """
+
+  'web, chat, multiple rooms routing':
+    'prefix': 'chat-multiple-room-routing'
+    'body': """
+      pathScan "/%s/" (fun _ -> Writers.setMimeType "text/html" >>= OK index)
+      pathScan "/%s/chat" (fun room -> GET >>= noCache >>= getMessages (room.Trim('/')))
+      pathScan "/%s/post" (fun room -> POST >>= noCache >>= postMessage (room.Trim('/')))
     """

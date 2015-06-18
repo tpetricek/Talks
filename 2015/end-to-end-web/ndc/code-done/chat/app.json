@@ -1,6 +1,6 @@
 {
-  "name": "F# chat web application",
-  "description": "Simple Suave.io chat with easy Heroku and Azure deployment",
+  "name": "Whats F#: The $22 billion chat",
+  "description": "A simple Suave.io web application that supports Azure and Heroku deployment",
   "website": "http://suave.io/",
   "repository": "https://github.com/tpetricek/???",
   "logo": "https://raw.githubusercontent.com/SuaveIO/suave/gh-pages/images/logo.gif",

@@ -38,30 +38,16 @@
 <span class="p">Request <span class="o">-&gt;</span> <span class="t">Async</span><span class="o">&lt;</span>Response<span class="o">&gt;</span></span>
 </pre>
 
----------------------------------------------------------------------------------------------------
-
-# The web is _alive_!
-
-<br /><br />
-
-<pre style="font:175% consolas; background:transparent;text-align:center;" class="fragment">
-<span class="p">Request <span class="o">-&gt;</span> <span class="t">Async</span><span class="o">&lt;</span>Response<span class="o">&gt;</span></span>
-
-<span class="i">chats</span> <span class="o">:</span> <span class="t">Agent<span class="o">&lt;</span><span class="p">ChatMessage</span><span class="o">&gt;</span></span>
-<span class="i">users</span> <span class="o">:</span> <span class="t">Agent<span class="o">&lt;</span><span class="p">UserMessage</span><span class="o">&gt;</span></span>
-</pre>
-
-
 ***************************************************************************************************
 
-<table><tr><td style="padding-right:50px;">
+<table><tr><td style="padding-right:50px;padding-top:60px">
 
 # DEMO
 
 Hello world and <br />_type providers_
 
-</td><td style="padding-left:50px;">
-<img src="images/nyt.jpg" style="width:400px;border-style:none;" />
+</td><td style="padding-left:50px">
+<img src="images/news.jpg" style="width:400px;border-style:none;" />
 </td></tr></table>
 
 ---------------------------------------------------------------------------------------------------
@@ -123,14 +109,14 @@ _FAKE_ for building and _F# Compiler Service_ for reloading
 
 ---------------------------------------------------------------------------------------------------
 
-<table><tr><td style="padding-right:60px;">
+<table><tr><td style="padding-right:60px;padding-top:100px">
 
 # DEMO
 
 Building _chat app_<br /> with agents
 
 </td><td style="padding-left:60px;">
-<img src="images/agents.jpg" style="width:400px;border-style:none;" />
+<img src="images/telegraph.jpg" style="width:400px;border-style:none;" />
 </td></tr></table>
 
 ---------------------------------------------------------------------------------------------------
@@ -141,7 +127,6 @@ Building _chat app_<br /> with agents
 <div class="large-icon-list">
 
  - <i class="fa clr fa-arrow-circle-right"></i> _Composable library_ for REST APIs
- - <i class="fa clr fa-check-square-o"></i> Nice _unit testing_ and _random testing_
  - <i class="fa clr fa-building-o"></i> Works with _agent-based_ architecture
  - <i class="fa clr fa-cloud"></i> Scale with _Akka.net_, _Cricket_ and _M-Brace_
 
@@ -161,28 +146,14 @@ Using F# power for _domain-specific languages_
 
 ---------------------------------------------------------------------------------------------------
 
-# Testing Suave servers
-
-    let [<Test>] ``Requesting "/" returns HTTP 200``() =
-      let ctx = HttpContext.empty
-      let resp = App.app ctx |> Async.RunSynchronously
-      Assert.AreEqual(HttpCode.HTTP_200, resp.Value.response.status)
-
- - Nice lightweight _F# syntax_
- - Easy unit testing with _NUnit_
- - Powerful random testing with _FsCheck_
- - Integrated with _FAKE_
-
----------------------------------------------------------------------------------------------------
-
-<table><tr><td style="padding-right:60px;">
+<table><tr><td style="padding-right:60px;padding-top:100px">
 
 # DEMO
 
-Teaching F# with<br /> _functional 3D DSL_
+Testing _chat app_<br /> with FsCheck
 
 </td><td style="padding-left:60px;">
-<img src="images/fun3d.png" style="width:400px;border-style:none;" />
+<img src="images/telegraph.jpg" style="width:400px;border-style:none;" />
 </td></tr></table>
 
 ---------------------------------------------------------------------------------------------------
@@ -192,9 +163,9 @@ Teaching F# with<br /> _functional 3D DSL_
 <br />
 <div class="large-icon-list">
 
-  - <i class="fa clr fa-magic"></i> _Complex problems_ with _little code_
-  - <i class="fa clr fa-cogs"></i> Powered by _F# Compiler services_
-  - <i class="fa clr fa-book"></i> F# to JavaScript with _FunScript_
+ - <i class="fa clr fa-check-square-o"></i> Nice _unit testing_ with _simple syntax_
+ - <i class="fa clr fa-trophy"></i> Powerful random testing with _FsCheck_
+ - <i class="fa clr fa-institution"></i> Integrated with _FAKE_ and _CI servers_
 
 </div>
 

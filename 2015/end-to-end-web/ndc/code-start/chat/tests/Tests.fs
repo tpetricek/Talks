@@ -1,16 +1,9 @@
-﻿#if INTERACTIVE
-#r "../packages/FsCheck/lib/net45/FsCheck.dll"
-#r "../packages/Suave/lib/net40/Suave.dll"
-#r "../packages/NUnit/lib/nunit.framework.dll"
-#load "../app.fsx"
-#else
 module ChatTests
-#endif
+
 open System
-open NUnit.Framework
 open FsCheck
-open App
 open Suave.Types
+open NUnit.Framework
 
 [<Test>]
 let ``Requesting "/" returns HTTP 200``() =
@@ -39,8 +32,9 @@ let ``Requesting "/chat" via POST returns HTTP 404``() =
 let ``Roundtripping does not lose messages`` () =
   Check.Quick(fun (s:string) ->
     s <> null ==> lazy
-      let req = 
-        { HttpRequest.empty with 
+      // Send the message to the chat room
+      let req =
+        { HttpRequest.empty with
             url = Uri("http://localhost/post?name=Test")
             rawQuery = "name=Test"
             rawForm = System.Text.UTF8Encoding.UTF8.GetBytes(s)
@@ -48,14 +42,15 @@ let ``Roundtripping does not lose messages`` () =
       let ctx = { HttpContext.empty with request = req }
       App.app ctx |> Async.RunSynchronously |> ignore
 
+      // Check that the message has been received
       let req = { HttpRequest.empty with url = Uri("http://localhost/chat"); ``method`` = HttpMethod.GET }
       let ctx = { HttpContext.empty with request = req }
       let resp = App.app ctx |> Async.RunSynchronously
       Assert.IsTrue(resp.IsSome)
       Assert.AreEqual(HttpCode.HTTP_200, resp.Value.response.status)
-      let html = 
+      let html =
         match resp.Value.response.content with
         | HttpContent.Bytes(bytes) -> System.Text.UTF8Encoding.UTF8.GetString(bytes)
         | _ -> ""
-      Assert.IsTrue(html.Contains(": " + s + "</li>")) 
+      Assert.IsTrue(html.Contains(": " + s + "</li>"))
   )
