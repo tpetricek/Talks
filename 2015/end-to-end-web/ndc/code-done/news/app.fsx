@@ -45,9 +45,10 @@ let getWeather() = async {
   let! res = Forecast.AsyncLoad("http://api.openweathermap.org/data/2.5/forecast/daily?q=Seattle&mode=json&units=metric&cnt=10")
   return
     [ for item in res.List ->
-      { Date = toDateTime item.Dt;
+      { Date = toDateTime item.Dt
         Icon = item.Weather.[0].Icon
-        Day = int item.Temp.Day; Night = int item.Temp.Night } ] }
+        Day = int item.Temp.Day
+        Night = int item.Temp.Night } ] }
 
 // ----------------------------------------------------------------------------
 // Getting News from RSS feed and formatting it

@@ -85,7 +85,7 @@ Target "run" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
-//
+// Targets for running build script in background (for Atom)
 // --------------------------------------------------------------------------------------
 
 open System.Diagnostics
@@ -137,6 +137,28 @@ Target "stop" (fun _ ->
     failwith "The build is not running!"
   File.Delete(runningFile)
 )
+
+// --------------------------------------------------------------------------------------
+// Building test project and running tests
+// --------------------------------------------------------------------------------------
+
+Target "build" (fun _ ->
+    !! ("tests/Chat.Tests.fsproj")
+    |> MSBuildRelease "" "Rebuild"
+    |> Log "AppBuild-Output: "
+)
+
+Target "tests" (fun _ ->
+    ActivateFinalTarget "tests-close"
+    !! "tests/bin/Release/*Tests.dll"
+    |> NUnit id
+)
+
+FinalTarget "tests-close" (fun _ ->
+    ProcessHelper.killProcess "nunit-agent.exe"
+)
+
+"build" ==> "tests"
 
 // --------------------------------------------------------------------------------------
 // Minimal Azure deploy script - just overwrite old files with new ones
