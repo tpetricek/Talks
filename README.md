@@ -25,7 +25,7 @@ Talks and slides
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/scalable-ml-ds-fsharp/code-done)
 
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/usa/) (May, June) - Seattle and New York F# meetups  
-   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/demos)
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
  - [**F# in Finance: Data science with FsLab**](http://tpetricek.github.io/Talks/2015/deedle-finance/toronto/) (June) - Citi and S&P, Toronto  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/deedle-finance/code-done) and [journal source code](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/journal/Tutorial.fsx)
