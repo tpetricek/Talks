@@ -1,0 +1,7 @@
+source https://nuget.org/api/v2
+
+nuget FAKE
+nuget Suave
+nuget DotLiquid
+nuget FSharp.Data
+nuget FSharp.Compiler.Service

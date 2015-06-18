@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>F# Times</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Arapey' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+    body {
+      font-family: 'Arapey', serif;
+    }
+    .page-header h1 {
+      font-size:300%;
+    }
+    p {
+      font-size:13pt;
+    }
+    .weather h3 {
+      font-size:14pt;
+    }
+    .weather ul, .news ul {
+      margin:0px;
+      padding:0px;
+    }
+    .weather li, .news li {
+      list-style:none;
+      padding:0px;
+      margin:0px;
+    }
+    .news li {
+      min-height: 100px;
+    }
+    .news img, .weather img {
+      float: left;
+      margin-right:20px;
+    }
+    .news img {
+      margin-top:10px;
+      margin-bottom:20px;
+    }
+    .weather p {
+      margin:0px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-header">
+          <h1>F# Times <small>Powered by type providers</small></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 news">
+        <ul>
+          {% for item in model.News %}
+            <li>
+              <img src="{{ item.ThumbUrl }}" />
+              <h3><a href="{{ item.LinkUrl }}">{{ item.Title }}</a></h3>
+              <p>{{ item.Description }}</p>
+            </li>
+          {% endfor item %}
+        </ul>
+      </div>
+      <div class="col-md-4 weather">
+        {% for item in model.Weather %}
+          <li>
+            <h3>{{ item.Date | niceDate }}</h3>
+            <img src="http://openweathermap.org/img/w/{{ item.Icon }}.png">
+            <p>Day: {{ item.Day }}°C</p>
+            <p>Night: {{ item.Night }}°C</p>
+          </li>
+        {% endfor item %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

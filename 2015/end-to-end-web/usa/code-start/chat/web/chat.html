@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatF#app: The 800 million chat</title>
+  <style type="text/css">
+    * { padding:0px; margin:0px; }
+    body { background:#8096b3; font-family:cambria; padding:10px; }
+    hr { margin:20px; border-top-style:none; border-bottom:2px solid white; }
+    #textBox { padding:3px; width:290px; }
+    #nameBox { padding:3px; width:60px; }
+    button { padding:3px 10px 3px 10px; }
+    h1 { text-align:center; font:20pt 'Book Antiqua';	font-style:italic;	margin:0px 0px 20px 0px;}
+    #page {	padding:10px;	width:500px;	margin:0px auto 0px auto; 	background:#c0d6e3; }
+    li { list-style-type:none; background:white; padding:10px; margin:10px; }
+    #input { background:#8096b3; margin:20px 10px 10px 10px; padding:20px; }
+    #output {	min-height:300px; }
+  </style>
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript">
+
+    function refresh() {
+      $.ajax({ type: "GET", url: window.location + "/chat", dataType: "text",
+        success: function (data) {
+          $("#output").html(data);
+        }
+      });
+    };
+
+    function send() {
+      var msg = $("#textBox").val();
+      var name = $("#nameBox").val();
+      $.ajax({ type: "POST", url: window.location + "/post?name=" + name, dataType: "text",
+          data: msg, success: refresh });
+      $("#textBox").val("");
+    }
+
+    setInterval(function () { refresh(); return true; }, 500);
+
+  </script>
+</head>
+<body>
+  <div id="page">
+    <h1>WhatsF#app: The 800 million chat!</h1>
+    <div id="output"></div>
+    <div id="input">
+    <input type="text" id="nameBox" />
+    <input type="text" id="textBox" />
+    <button onclick="send();">Send</button>
+    </div>
+  </div>
+</body>
+</html>
