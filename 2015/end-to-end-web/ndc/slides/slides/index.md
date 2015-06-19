@@ -169,6 +169,31 @@ Testing _chat app_<br /> with FsCheck
 
 </div>
 
+---------------------------------------------------------------------------------------------------
+
+<table><tr><td style="padding-right:60px;padding-top:100px">
+
+# DEMO
+
+Deploying chat app<br /> to _Azure_ and _Heroku_
+
+</td><td style="padding-left:60px;">
+<img src="images/engine.jpg" style="width:400px;border-style:none;" />
+</td></tr></table>
+
+---------------------------------------------------------------------------------------------------
+
+# Demo summary
+
+<br />
+<div class="large-icon-list">
+
+ - <i class="fa clr fa-cloud"></i> Easy _Heroku_ and _Azure_ deployment
+ - <i class="fa clr fa-external-link"></i> See [blog post by Scott Hanselman](http://www.hanselman.com/blog/RunningSuaveioAndFWithFAKEInAzureWebAppsWithGitAndTheDeployButton.aspx)
+ - <i class="fa clr fa-external-link"></i> See [two](https://channel9.msdn.com/Blogs/Seth-Juarez/Type-Providers-in-F-with-Tomas-Petricek) [part](https://channel9.msdn.com/Blogs/Seth-Juarez/Deploying-an-F-Web-Application-with-Suave) video on _Channel 9_.
+
+</div>
+
 ***************************************************************************************************
 
 # Summary
@@ -190,17 +215,7 @@ Testing _chat app_<br /> with FsCheck
 
 # Thank you!
 
-<br />
-
-<table><tr><td style="vertical-align:middle;padding-right:30px;">
-<img src="images/ad-fworks.png" style="width:250px;background:transparent;border:none;" />
-</td><td style="padding-left:30px;">
-<img src="images/ad-qsh.png" style="width:190px;background:transparent;border:none;" />
-</td></tr></table>
-
-<br />
-
-**Tomas Petricek**, fsharpWorks  
+<img src="images/ad-fworks.png" style="width:500px;background:transparent;border:none;margin:120px 0px 150px 0px" />
 
 See [functional-programming.net](http://functional-programming.net/) for books & trainings!  
 [@tomaspetricek](http://twitter.com/tomaspetricek)

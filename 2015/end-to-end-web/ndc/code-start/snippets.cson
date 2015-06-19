@@ -31,6 +31,20 @@
       start.AddSeconds(float timestamp).ToLocalTime()
     """
 
+  'web, news, thumbnails':
+    'prefix': 'news-thumbnails'
+    'body': """let thumb = item.Thumbnails |> Seq.maxBy (fun t -> t.Width)"""
+
+  'web, news, weather':
+    'prefix': 'news-weather'
+    'body': """
+    [ for d in w.List ->
+      { Date = toDateTime d.Dt
+        Day = int d.Temp.Day
+        Icon = d.Weather.[0].Icon
+        Night = int d.Temp.Night }]
+    """
+
   'web, news, async app':
     'prefix': 'news-async-app'
     'body': """
@@ -48,7 +62,7 @@
     'prefix': 'chat-handlers'
     'body': """
     let getMessages room ctx = async {
-      let body = "<li><strong>System</string>: Nothing!</li>"
+      let body = "<li><strong>System</strong>: Nothing!</li>"
       let html = "<ul>" + body + "</ul>"
       return! OK html ctx }
 
@@ -95,7 +109,7 @@
           match msg with
           | List(repl) ->
               [ for KeyValue(k, _) in agents ->
-                  sprintf "<li><a href=\"/%s/\">%s</a></li>" k k ]
+                  sprintf "<li><a href='/%s/'>%s</a></li>" k k ]
               |> String.concat "" |> repl.Reply
               return! loop agents
           | Send(MapFind agents agent, msg) ->
