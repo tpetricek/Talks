@@ -30,6 +30,9 @@ Talks and slides
  - [**F# in Finance: Data science with FsLab**](http://tpetricek.github.io/Talks/2015/deedle-finance/toronto/) (June) - Citi and S&P, Toronto  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/deedle-finance/code-done) and [journal source code](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/journal/Tutorial.fsx)
 
+ - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June) - NDC Oslo 2015, Improved version  
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/ndc/code-done)
+
 Slides license
 --------------
 
