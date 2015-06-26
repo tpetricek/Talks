@@ -16,12 +16,12 @@ Talks and slides
    See also: [source code for the talk materials](https://github.com/tpetricek/Talks/tree/master/2015/literate-programming)
 
  - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April) - Papers We Love, Prague
- 
+
  - [**The big F# open-source love story**](http://tpetricek.github.io/Talks/2015/love-open-source/london/) (April) - F# eXchange, London
- 
+
  - [**Functional library design**](http://tpetricek.github.io/Talks/2015/functional-libraries/paris/) (May) - NCrafts.io, Paris
- 
- - [**Scalable machine learning and data science with F#**](http://tpetricek.github.io/Talks/2015/scalable-ml-ds-fsharp/redmond/) (May) - Microsoft, Redmond   
+
+ - [**Scalable machine learning and data science with F#**](http://tpetricek.github.io/Talks/2015/scalable-ml-ds-fsharp/redmond/) (May) - Microsoft, Redmond
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/scalable-ml-ds-fsharp/code-done)
 
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/usa/) (May, June) - Seattle and New York F# meetups  
@@ -32,6 +32,8 @@ Talks and slides
 
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June) - NDC Oslo 2015, Improved version  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/ndc/code-done)
+
+ - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June) - STTI 2015, MFF, Prague
 
 Slides license
 --------------
