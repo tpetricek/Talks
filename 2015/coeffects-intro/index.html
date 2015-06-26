@@ -1,0 +1,575 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Coeffects: Theory of context-aware programming languages</title>
+    <meta name="description" content="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly.">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">type RulePart =<br />&#160;&#160;| Expr of string<br />&#160;&#160;| Text of string<br />&#160;&#160;| Op of string * RulePart * RulePart<br />&#160;&#160;| Color of string * RulePart<br />&#160;&#160;| Frac of RulePart * RulePart<br />&#160;&#160;| Space of RulePart<br />&#160;&#160;member AsLatex : unit -&gt; string<br />&#160;&#160;static member ( + ) : l:RulePart * r:RulePart -&gt; RulePart<br /><br />Full name: Index.RulePart</div>
+<div class="tip" id="fs2">union case RulePart.Expr: string -&gt; RulePart</div>
+<div class="tip" id="fs3">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs4">union case RulePart.Text: string -&gt; RulePart</div>
+<div class="tip" id="fs5">union case RulePart.Op: string * RulePart * RulePart -&gt; RulePart</div>
+<div class="tip" id="fs6">union case RulePart.Color: string * RulePart -&gt; RulePart</div>
+<div class="tip" id="fs7">union case RulePart.Frac: RulePart * RulePart -&gt; RulePart</div>
+<div class="tip" id="fs8">union case RulePart.Space: RulePart -&gt; RulePart</div>
+<div class="tip" id="fs9">val x : RulePart</div>
+<div class="tip" id="fs10">member RulePart.AsLatex : unit -&gt; string<br /><br />Full name: Index.RulePart.AsLatex</div>
+<div class="tip" id="fs11">val format : (RulePart -&gt; string)</div>
+<div class="tip" id="fs12">val s : string</div>
+<div class="tip" id="fs13">val r : RulePart</div>
+<div class="tip" id="fs14">val t : RulePart</div>
+<div class="tip" id="fs15">val b : RulePart</div>
+<div class="tip" id="fs16">val c : string</div>
+<div class="tip" id="fs17">val op : string</div>
+<div class="tip" id="fs18">val l : RulePart</div>
+<div class="tip" id="fs19">val l : string</div>
+<div class="tip" id="fs20">val r : string</div>
+<div class="tip" id="fs21">val e : RulePart<br /><br />Full name: Index.e</div>
+<div class="tip" id="fs22">val e1 : RulePart<br /><br />Full name: Index.e1</div>
+<div class="tip" id="fs23">val e2 : RulePart<br /><br />Full name: Index.e2</div>
+<div class="tip" id="fs24">val t : RulePart<br /><br />Full name: Index.t</div>
+<div class="tip" id="fs25">val t1 : RulePart<br /><br />Full name: Index.t1</div>
+<div class="tip" id="fs26">val t2 : RulePart<br /><br />Full name: Index.t2</div>
+<div class="tip" id="fs27">val tn : RulePart<br /><br />Full name: Index.tn</div>
+<div class="tip" id="fs28">val v : RulePart<br /><br />Full name: Index.v</div>
+<div class="tip" id="fs29">val v1 : RulePart<br /><br />Full name: Index.v1</div>
+<div class="tip" id="fs30">val v2 : RulePart<br /><br />Full name: Index.v2</div>
+<div class="tip" id="fs31">val vn : RulePart<br /><br />Full name: Index.vn</div>
+<div class="tip" id="fs32">val x : RulePart<br /><br />Full name: Index.x</div>
+<div class="tip" id="fs33">val s : RulePart<br /><br />Full name: Index.s</div>
+<div class="tip" id="fs34">val s1 : RulePart<br /><br />Full name: Index.s1</div>
+<div class="tip" id="fs35">val s2 : RulePart<br /><br />Full name: Index.s2</div>
+<div class="tip" id="fs36">val r : RulePart<br /><br />Full name: Index.r</div>
+<div class="tip" id="fs37">val Gamma : RulePart<br /><br />Full name: Index.Gamma</div>
+<div class="tip" id="fs38">val clr1 : e:RulePart -&gt; RulePart<br /><br />Full name: Index.clr1</div>
+<div class="tip" id="fs39">val e : RulePart</div>
+<div class="tip" id="fs40">val clr2 : e:RulePart -&gt; RulePart<br /><br />Full name: Index.clr2</div>
+<div class="tip" id="fs41">val white : e:RulePart -&gt; RulePart<br /><br />Full name: Index.white</div>
+<div class="tip" id="fs42">val v : RulePart</div>
+<div class="tip" id="fs43">val g : RulePart</div>
+<div class="tip" id="fs44">val a : RulePart</div>
+<div class="tip" id="fs45">val kvd : s:string -&gt; RulePart<br /><br />Full name: Index.kvd</div>
+<div class="tip" id="fs46">val ident : s:string -&gt; RulePart<br /><br />Full name: Index.ident</div>
+<div class="tip" id="fs47">Multiple items<br />val ref : _arg1:RulePart -&gt; RulePart<br /><br />Full name: Index.ref<br /><br />--------------------<br />type &#39;T ref = Ref&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.ref&lt;_&gt;</div>
+<div class="tip" id="fs48">val failwith : message:string -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.Operators.failwith</div>
+<div class="tip" id="fs49">val effs : l:RulePart list -&gt; RulePart<br /><br />Full name: Index.effs</div>
+<div class="tip" id="fs50">val l : RulePart list</div>
+<div class="tip" id="fs51">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
+<div class="tip" id="fs52">val reduce : reduction:(&#39;T -&gt; &#39;T -&gt; &#39;T) -&gt; list:&#39;T list -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Collections.List.reduce</div>
+<div class="tip" id="fs53">val rref : _arg1:RulePart -&gt; RulePart<br /><br />Full name: Index.rref</div>
+<div class="tip" id="fs54">val wref : l:RulePart -&gt; r:RulePart -&gt; RulePart<br /><br />Full name: Index.wref</div>
+<div class="tip" id="fs55">val fn : x:RulePart -&gt; f:RulePart -&gt; t:RulePart -&gt; RulePart<br /><br />Full name: Index.fn</div>
+<div class="tip" id="fs56">val f : RulePart</div>
+<div class="tip" id="fs57">val abs : v:RulePart -&gt; e:RulePart -&gt; RulePart<br /><br />Full name: Index.abs</div>
+<div class="tip" id="fs58">val sem : e:RulePart -&gt; RulePart<br /><br />Full name: Index.sem</div>
+<div class="tip" id="fs59">val getNews : unit -&gt; &#39;a<br /><br />Full name: index.getNews</div>
+<div class="tip" id="fs60">val news : &#39;a * string</div>
+<div class="tip" id="fs61">val query : Linq.QueryBuilder<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.query</div>
+<div class="tip" id="fs62">val let_jdg : RulePart<br /><br />Full name: Index.let_jdg</div>
+<div class="tip" id="fs63">val let_drv : RulePart<br /><br />Full name: Index.let_drv</div>
+<div class="tip" id="fs64">val ef_gam : RulePart<br /><br />Full name: Index.ef_gam</div>
+<div class="tip" id="fs65">val ef_simple : RulePart<br /><br />Full name: Index.ef_simple</div>
+<div class="tip" id="fs66">val ef_full : RulePart<br /><br />Full name: Index.ef_full</div>
+<div class="tip" id="fs67">val abs_write : RulePart<br /><br />Full name: Index.abs_write</div>
+<div class="tip" id="fs68">val abs_access : RulePart<br /><br />Full name: Index.abs_access</div>
+<div class="tip" id="fs69">val abs_eff : RulePart<br /><br />Full name: Index.abs_eff</div>
+<div class="tip" id="fs70">val abs_coeff : RulePart<br /><br />Full name: Index.abs_coeff</div>
+<div class="tip" id="fs71">val sem_plain : RulePart<br /><br />Full name: Index.sem_plain</div>
+<div class="tip" id="fs72">val sem_coeff : RulePart<br /><br />Full name: Index.sem_coeff</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<h1><strong>Coeffects</strong>: Theory of context-aware programming languages</h1>
+
+<div style="margin:50px 0px 50px 0px">
+<a href="http://tomasp.net/academic/papers/coeffects/">
+<img title="Coeffects: Unified static analysis of context-dependence" src="images/coeffects.png" style="height:280px" />
+</a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://tomasp.net/academic/papers/structural/">
+<img title="Coeffects: A calculus of context-dependent computation" src="images/structural.png" style="height:280px" />
+</a>
+</div>
+
+<p><strong>Tomas Petricek</strong>, University of Cambridge <br/>
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+<p><span class="math">\[\definecolor{cw}{RGB}{255,255,255}
+\definecolor{mc}{RGB}{0,32,172}
+\definecolor{cc}{RGB}{172,0,32}\]</span></p>
+
+<style>
+.wide-p-spaces p { margin:50px 0px 30px 0px; }
+.reveal em { font-style:normal; font-weight:bold; color:#2C7DA0; }
+.reveal strong { font-style:normal; font-weight:bold; color:#9B2B40; }
+.reveal h3 { font-weight:normal; }
+.reveal .h3-left h3 { position:relative; left:-100px; }
+</style>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Programming languages and context</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Computing in rich environments</h1>
+
+<table><tr><td style="text-align:center;padding:40px 40px 0px 0px">
+<i class="fa fa-windows" style="font-size:200%;color:#2C7DA0;position:relative;top:40px"></i>
+<br /><br /><br />
+<i class="fa fa-mobile-phone" style="font-size:250%;color:#9B2B40;position:relative;top:40px"></i>
+</td><td style="text-align:center">
+
+<div class="fragment">
+
+<h3>Execution environments are <strong>rich</strong> <br /> but gradually more <strong>diverse</strong></h3>
+
+</div><div class="fragment" style="padding-top:30px">
+
+<h3>Programming <em>context-aware <br /> applications</em> is hard!</h3>
+
+</div>
+</td><td style="text-align:center;padding:40px 0px 0px 40px">
+<i class="fa fa-apple" style="font-size:200%;color:#2C7DA0;position:relative;top:40px"></i>
+<br /><br /><br />
+<i class="fa fa-coffee" style="font-size:200%;color:#9B2B40;position:relative;top:40px"></i>
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Programming in rich contexts</h1>
+
+<div style="padding:30px">
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 222)" onmouseover="showTip(event, 'fs59', 222)" class="f">getNews</span>() <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs60', 223)" onmouseover="showTip(event, 'fs60', 223)" class="i">news</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs61', 224)" onmouseover="showTip(event, 'fs61', 224)" class="i">query</span>(<span class="k">extern</span>(<span class="i">DB</span>), <span class="s">&quot;News&quot;</span>)
+  <span class="i">filterByLocation</span>(<span onmouseout="hideTip(event, 'fs60', 225)" onmouseover="showTip(event, 'fs60', 225)" class="i">news</span>, <span class="k">extern</span>(<span class="i">GPS</span>))
+</pre>
+</td>
+</tr>
+</table>
+
+</div><div class="fragment">
+
+<h3>This is becoming <strong>important problem!</strong></h3>
+
+<ul>
+<li>What <em>resources</em> are available?</li>
+<li>What features does a <em>device</em> support?</li>
+<li>Is the source <em>secure</em> and <em>trustworthy</em>?</li>
+</ul>
+
+</div><div class="fragment">
+
+<h3>Coeffects provide <strong>unified abstraction.</strong></h3>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Checking program properties with types</h1>
+
+<div class="wide-p-spaces fragment">
+
+<p><em>Typing judgements</em> specify program type</p>
+
+<p><span class="math">\[\Gamma \vdash ~{\color{mc} \text{let}}~v_1=e_1~{\color{mc} \text{in}}~e_2:\tau_2\]</span></p>
+
+<div class="fragment">
+
+<p><em>Typing rules</em> define checking procedure</p>
+
+<p><span class="math">\[\dfrac{ \Gamma \vdash e_1:\tau_1~~~~\Gamma, v_1:\tau_1 \vdash e_2:\tau_2 }{ \Gamma \vdash ~{\color{mc} \text{let}}~v_1=e_1~{\color{mc} \text{in}}~e_2:\tau_2 }\]</span></p>
+
+</div></div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Checking effects and coeffects</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Checking memory accesses with effects</h1>
+
+<div style="padding-top:20px">
+
+<p>Language with <em>mutable references</em> on the heap:</p>
+
+<p><span class="math">\[\Gamma=v_1:\text{ref}_{\sigma_1}\text{int}, v_2:\text{ref}_{\sigma_2}\text{int}\]</span></p>
+
+</div><div class="fragment" style="margin-top:40px">
+
+<p>Simple <em>type system</em> does not tell us much:</p>
+
+<p><span class="math">\[\Gamma \vdash ~{\color{mc} \text{let}}~x=~! v_1~{\color{mc} \text{in}}~v_2\leftarrow x:~\text{unit}~\]</span></p>
+
+</div><div class="fragment" style="margin-top:40px">
+
+<p><em>Effect systems</em> check memory locations!</p>
+
+<p><span class="math">\[\Gamma \vdash ~{\color{mc} \text{let}}~x=~! v_1~{\color{mc} \text{in}}~v_2\leftarrow x:~\text{unit}~{\color{cc} ~\&amp;~ \{~\text{read}~\sigma_1, ~\text{write}~\sigma_2\}}\]</span></p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<table><tr><td style="padding-right:40px">
+
+<h2>Effect systems</h2>
+
+<p>What <strong>program does</strong> <br /> (to the environment)</p>
+
+<p><span class="math">\[\Gamma \vdash e:\tau{\color{cc} ~\&amp;~ \sigma}\]</span></p>
+
+<ul>
+<li>Memory access</li>
+<li>Input, output</li>
+<li>Non-determinism</li>
+</ul>
+
+</td><td style="padding-left:40px" class="fragment">
+
+<h2>Coeffect systems</h2>
+
+<p>What <em>program needs</em> <br /> (from the environment)</p>
+
+<p><span class="math">\[\Gamma{\color{mc}  @~  r} \vdash e:\tau\]</span></p>
+
+<ul>
+<li>Variable access</li>
+<li>Resources and data</li>
+<li>History, neighbours</li>
+</ul>
+
+</tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>The fun part: Typing rules</h1>
+
+<p>What happens when we create a <strong>function value</strong>?</p>
+
+<br />
+
+<p><span class="math">\[\Gamma \vdash ~{\color{mc} \text{fun}}~x\Rightarrow v\leftarrow 42:~ ?\]</span></p>
+
+<p><span class="math">\[\Gamma \vdash ~{\color{mc} \text{fun}}~x\Rightarrow ~{\color{mc} \text{extern}}~~\text{gps}~:~ ?\]</span></p>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Effectful and coeffectful functions</h1>
+
+<p><em>Effect systems</em> delay all effects</p>
+
+<p><span class="math">\[\dfrac{ \Gamma, v:\tau_1 \vdash e:\tau_2{\color{cc} ~\&amp;~ \sigma} }{ \Gamma \vdash ~{\color{mc} \text{fun}}~v\Rightarrow e:\tau_1\xrightarrow{{\color{cc}  \sigma}}\tau_2 }\]</span></p>
+
+<div class="fragment" style="padding-top:30px">
+
+<p><em>Coeffect systems</em> split context requirements</p>
+
+<p><span class="math">\[\dfrac{ \Gamma, v:\tau_1{\color{cc}  @~  \sigma_1\cup\sigma_2} \vdash e:\tau_2 }{ \Gamma{\color{cc}  @~  \sigma_1} \vdash ~{\color{mc} \text{fun}}~v\Rightarrow e:\tau_1\xrightarrow{{\color{cc}  \sigma_2}}\tau_2 }\]</span></p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Why coeffect systems matter?</h1>
+
+<div class="h3-left">
+
+<h3>Programming language <strong>theory</strong></h3>
+
+<ul>
+<li><em>Unify</em> systems explored before</li>
+<li><em>Variable</em> usage, <em>data-flow</em> and <em>resources</em></li>
+<li>Interesting and <em>differnet shape</em></li>
+<li>Semantics using <em>comonad structure</em></li>
+</ul>
+
+<h3>Programming language <strong>practice</strong></h3>
+
+<ul>
+<li>Foundations for <em>context-aware</em> languages</li>
+</ul>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Categorical approach to semantics</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h2>Categorical approach to semantics</h2>
+
+<p>What is the <em>meaning</em> of an expression <span class="math">\(e\)</span>?</p>
+
+<p><span class="math">\[v_1:\tau_1, \ldots, v_n:\tau_n \vdash e : \tau\]</span></p>
+
+<div class="fragment">
+
+<p>Function between sets or <em>morphism between objects</em>:</p>
+
+<p><span class="math">\[\tau_1\times\ldots\times\tau_n \rightarrow \tau\]</span></p>
+
+<p>Maps product of input variables to the output</p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Semantics of context-aware langauges</h1>
+
+<p>Coeffects sdd some <em>additional structure</em>:</p>
+
+<p><span class="math">\[[\![v_1:\tau_1, \ldots, v_n:\tau_n \vdash e:\tau]\!]\]</span></p>
+
+<p>Wrap input in a comonad <span class="math">\({\color{cc} C}\)</span>:</p>
+
+<p><span class="math">\[{\color{cc} C}(\tau_1\times\ldots\times\tau_n) \rightarrow \tau\]</span></p>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Semantics of context-aware langauges</h1>
+
+<p>Coeffects sdd some <em>additional structure</em>:</p>
+
+<p><span class="math">\[[\![v_1:\tau_1, \ldots, v_n:\tau_n{\color{cc}  @~  r} \vdash e:\tau]\!]\]</span></p>
+
+<p>Wrap input in an <em>indexed</em> comonad <span class="math">\({\color{cc} C^r}\)</span>:</p>
+
+<p><span class="math">\[{\color{cc} C^r}(\tau_1\times\ldots\times\tau_n) \rightarrow \tau\]</span></p>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Comonadic semantics of coeffects</h1>
+
+<p><span class="math">\[{\color{cc} C}(\tau_1\times\ldots\times\tau_n) \rightarrow \tau\]</span></p>
+
+<ul>
+<li><p>Context provides <em>additional resources</em> <br/>
+<span class="math">\(~~~{\color{cc} C}\alpha = \alpha \times \Psi\)</span></p></li>
+<li><p>Context <em>may be missing</em> (dead variables) <br />
+<span class="math">\(~~~{\color{cc} C}\alpha = \alpha_\bot\)</span></p></li>
+<li><p>Context provides <em>historical values</em> <br />
+<span class="math">\(~~~{\color{cc} C}\alpha = \alpha_1 \times \ldots \times \alpha_n ~~(n \geq 1)\)</span></p></li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="Modern computer programs do not execute in void. They run in rich environments
+that provide access to resources (GPS sensor, etc.), information (Facebook data) and other
+context. Coeffects provide a way for tracking the context and making sure it is used
+correctly." theme="white" title="Coeffects: Theory of context-aware programming languages" transition="transform">
+
+<h1>Comonadic semantics of coeffects</h1>
+
+<p><span class="math">\[{\color{cc} C^r}(\tau_1\times\ldots\times\tau_n) \rightarrow \tau\]</span></p>
+
+<ul>
+<li><p>Context provides <em>additional resources</em> <br/>
+<span class="math">\(~~~{\color{cc} C^r}\alpha = \alpha \times \psi^{\color{cc} r}\)</span></p></li>
+<li><p>Context <em>may be missing</em> (dead variables) <br />
+<span class="math">\(~~~{\color{cc} C^1}\alpha = \alpha~~~~{\color{cc} C^0}\alpha = \bot\)</span></p></li>
+<li><p>Context provides <em>historical values</em> <br />
+<span class="math">\(~~~{\color{cc} C^n}\alpha = \alpha_{\color{cc} 1} \times \ldots \times \alpha_{\color{cc} n}\)</span></p></li>
+</ul>
+
+</section>
+
+</section>
+
+<section >
+
+<h1>Summary</h1>
+
+<h3><strong>Programming language</strong> theory problems</h3>
+
+<ul>
+<li>Features in <em>small calculus</em></li>
+<li><em>Type system</em> properties</li>
+<li>Programming language <em>semantics</em></li>
+</ul>
+
+<h3><strong>Context-aware</strong> programming langauges</h3>
+
+<ul>
+<li><em>Unifying</em> languages with context</li>
+<li>Interesting <em>theory structure</em></li>
+</ul>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'transform', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
