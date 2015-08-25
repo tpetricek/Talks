@@ -3,12 +3,12 @@ if test "$OS" = "Windows_NT"
 then
   MONO=""
 else
-  # Mono fix for https://github.com/fsharp/FAKE/issues/805    
-  export MONO_MANAGED_WATCHER=false    
+  # Mono fix for https://github.com/fsharp/FAKE/issues/805
+  export MONO_MANAGED_WATCHER=false
   MONO="mono"
 fi
 
-if [ ! -e ".paket/paket.bootstrapper.exe" ]; then
+if [ ! -e ".paket/paket.exe" ]; then
   $MONO .paket/paket.bootstrapper.exe
   exit_code=$?
   if [ $exit_code -ne 0 ]; then
