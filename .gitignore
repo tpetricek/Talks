@@ -1,3 +1,4 @@
+*.svclog
 .DS_Store
 paket.exe
 output
