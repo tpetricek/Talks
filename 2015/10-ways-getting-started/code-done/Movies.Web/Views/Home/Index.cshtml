@@ -1,0 +1,27 @@
+﻿@model Movies.Movie[]
+@{
+    ViewBag.Title = "Movies";
+}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+      <h1>Movie Listing</h1>
+
+      @foreach (var movie in Model)
+      {
+        <h2>@movie.Title</h2>
+        <p>Released: @movie.Released.ToLongDateString()</p>
+        <ul>
+          @foreach (var cast in movie.Cast)
+          {
+            <li>@cast.Actor as @cast.Character</li>
+          }
+        </ul>
+      }
+
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
