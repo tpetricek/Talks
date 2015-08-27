@@ -36,6 +36,9 @@ Talks and slides
  - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June) - STTI 2015, MFF, Prague
 
  - [**Functional Machine Learning with F#**](http://tpetricek.github.io/Talks/2015/functional-machine-learning/qconrio/) together with [@evelinag](http://www.github.com/evelinag) (August) - QCon Rio 2015
+
+ - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/qconrio/) (August) - QCon Rio 2015  
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
  
 Slides license
 --------------
