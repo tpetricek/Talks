@@ -1,0 +1,317 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>10 Ways of Getting Started with F#</title>
+    <meta name="description" content="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="images/styles/light.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<h1>10 Ways of Getting Started with F#</h1>
+
+<img src="images/qcon-rio.png" style="transform:scale(1.5,1.5); position:absolute;top:330px;right:80px" />
+<div style="position:absolute;text-align:left;left:0px;margin-top:220px">
+
+<p><strong>Tomas Petricek</strong>, <a href="http://www.twitter.com/tomaspetricek">@tomaspetricek</a><br />
+<a href="http://www.tomasp.net">tomasp.net</a>
+| <a href="http://www.fsharpworks.com">fsharpworks.com</a></p>
+
+</div>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>1. Exploring .NET libraries</h1>
+
+<div class="fragment">
+
+<h2>F# Interactive gives you quick feedback</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>2. Calling REST APIs</h1>
+
+<div class="fragment">
+
+<h2>Easy using JSON and XML type providers</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>3. Unit testing</h1>
+
+<div class="fragment">
+
+<h2>Simple syntax &amp; domain specific languages</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>4. Creating domain model</h1>
+
+<div class="fragment">
+
+<h2>F# Records for simple immutable types</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>5. Testing web UIs</h1>
+
+<div class="fragment">
+
+<h2>Canopy domain specific language</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>6. Build automation</h1>
+
+<div class="fragment">
+
+<h2>FAKE is the most powerful .NET build system</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>7. Understanding the world</h1>
+
+<div class="fragment">
+
+<h2>Access interesting data with type providers</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>8. Property based testing</h1>
+
+<div class="fragment">
+
+<h2>Automatically discovers corner cases</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>9. Reading data from the web</h1>
+
+<div class="fragment">
+
+<h2>Access tables using HTML type provider</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>10. Build a web server</h1>
+
+<div class="fragment">
+
+<h2>Suave is a composable functional web server</h2>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>10+1. Design a museum!</h1>
+
+<div class="fragment">
+<img src="images/louvre.jpg"/>
+
+<p>See <a href="http://fsharp.org/testimonials/#goswin-1">testimonial</a> from Goswin Rothenthal at F# Foundation web</p>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h1>The F# Software Foundation</h1>
+
+<div style="float:right">
+<img src="images/fsharp.png" style="width:200px;margin-left:50px;" />
+</div>
+
+<h2><a href="http://www.fsharp.org">www.fsharp.org</a></h2>
+
+<ul>
+<li>More information about F#</li>
+<li>Testimonials and case studies</li>
+<li>Open-source projects used here</li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="In just 45 minutes, you'll see 10 ways of using F# to solve 
+interesting problems - including the exploration of .NET and Mono libraries,
+calling JSON-based web services, getting statistics about countries, unit
+testing your .NET code, building a simple web application or a REST service
+and many more!" theme="white" title="10 Ways of Getting Started with F#" transition="none">
+
+<h1>Thank you</h1>
+
+<h2>10 Ways of Getting Started with F#</h2>
+
+<img src="images/rwfp.png" style="height:300px;margin:0px 50px 0px 100px" />
+<img src="images/deepdives.png" style="height:300px" />
+
+<p>Personal: <a href="http://www.twitter.com/tomaspetricek">@tomaspetricek</a>
+| <a href="http://tomasp.net">tomasp.net</a><br />
+Work: <a href="http://fsharpworks.com">fsharpworks.com</a>
+| <a href="http://functional-programming.net/">functional-programming.net</a></p>
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
