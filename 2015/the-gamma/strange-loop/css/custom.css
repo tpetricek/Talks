@@ -1,0 +1,148 @@
+@import url(http://fonts.googleapis.com/css?family=Rufina:300,400,700|Pontano+Sans:400,700,400italic);
+
+/******************* Hide navigation controls ********************/
+.navigate-left, .navigate-up, .navigate-right, .navigate-down {
+  display:none;
+}
+
+/******************** Left align layout  ********************/
+.reveal .slides > section {
+  width:800px;
+  margin-left:120px;
+}
+
+/******************** Headings and intro page ********************/
+.reveal h1 {
+  text-transform:none;
+  font-size:50pt;
+  font-weight:bold;
+  font-family: Rufina,'Times New Roman', Times, serif;
+}
+.reveal h2 {
+  text-transform:none;
+  font-size:36pt;
+  font-family: Rufina,'Times New Roman', Times, serif;
+  font-weight:bold;
+  margin-bottom:40px;
+}
+.reveal h3 {
+  text-transform:none;
+  font-size:32pt;
+  font-family: Rufina,'Times New Roman', Times, serif;
+  font-weight:bold;
+  margin-bottom:20px;
+  margin-top:30px;
+}
+.reveal h2 {
+  font:bold 40pt Rufina,'Times New Roman', Times, serif;
+  margin-bottom:60px;
+}
+.reveal .intro h1, .reveal h2, .reveal h3, .reveal p {
+  text-align:left;
+}
+.reveal .intro h1 {
+  font-size:60pt;
+}
+.reveal .intro p strong {
+  color:white;
+  font-weight:bold;
+}
+.reveal .sep {
+  padding:0px 6px 0px 6px;
+}
+
+/******************* Normal formatting *******************/
+
+.reveal h1 em, .reveal h2 em, .reveal h3 em, .reveal p em, .reveal li em {
+  color:#78AEDB;
+  font-weight:normal;
+  font-style:normal;
+}
+.reveal h1 strong, .reveal h2 strong, .reveal h3 strong, .reveal p strong, .reveal li strong {
+  color:#ddc060;
+  font-weight:normal;
+  font-style:normal;
+}
+.reveal a {
+  color:#67B0E5;
+  text-decoration:none;
+}
+.reveal a:hover {
+  color:#67B0E5;
+}
+.reveal ul {
+  width:100%;
+  padding-left:20px;
+}
+.reveal p, .reveal li {
+  font: 30pt 'Pontano Sans','Trebuchet MS', sans-serif;
+}
+.reveal a {
+  color:#ddc060;
+  text-decoration:none;
+}
+.reveal a:hover {
+  color:#f0c040;
+}
+
+/******************* Source code and other *******************/
+.reveal code
+{
+  font-family:consolas;
+  background:transparent;
+  color:#ba5bfb;
+}
+.reveal .MathJax_Display {
+  margin-top:15px !important;
+  margin-bottom:30px !important;
+}
+.reveal pre
+{
+  font-size:16pt;
+}
+.reveal table.pre
+{
+  width:80% !important;
+  margin-left:20px;
+}
+
+.reveal div.tip
+{
+  font:14pt 'Pontano Sans','Trebuchet MS', sans-serif;
+}
+
+.reveal pre code
+{
+  background-color:transparent;
+}
+.reveal pre
+{
+  box-shadow:none;
+}
+
+/******************* Special elements *******************/
+
+.reveal section img { 
+  border-style:none;
+  background:transparent;
+}
+.summary p {
+  font-size:24pt;
+}
+.reference p { 
+  font-size:14pt;
+  text-align:center;
+}
+.reveal blockquote { 
+  background:transparent;
+  margin:0px;
+  padding:0px;
+  width:100%;
+  text-align:left;
+}
+.reveal blockquote em { 
+  font-style:italic; 
+}
+.reveal blockquote strong {
+  font-weight:bold;
+}
