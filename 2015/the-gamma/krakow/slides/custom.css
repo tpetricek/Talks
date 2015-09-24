@@ -1,0 +1,73 @@
+@import url(http://fonts.googleapis.com/css?family=Rufina:300,400,700|Pontano+Sans:400,700,400italic);
+
+.reveal h1 em, .reveal h2 em, .reveal p em, .reveal li em {
+  color:#4DC1A6;
+  font-style:normal;
+}
+.reveal a {
+  color:#67B0E5;
+  text-decoration:none;
+}
+.reveal a:hover {
+  color:#67B0E5;
+}
+.reveal h1 {
+  text-transform:none;
+  font-size:50pt;
+  font-weight:bold;
+  font-family: Rufina,'Times New Roman', Times, serif;
+}
+.reveal .intro h1 {
+  font-size:40pt;
+}
+.reveal h2 {
+  text-transform:none;
+  font-size:36pt;
+  font-family: Rufina,'Times New Roman', Times, serif;
+  font-weight:bold;
+  margin-bottom:40px;
+}
+.reveal h3 {
+  text-transform:none;
+  font-size:30pt;
+  font-family: Rufina,'Times New Roman', Times, serif;
+  font-weight:bold;
+  margin-bottom:30px;
+}
+.reveal p, .reveal li {
+  font-family:'Pontano Sans','Trebuchet MS', sans-serif;
+  font-size:26pt;
+}
+.reveal code
+{
+  font-family:consolas;
+  background:transparent;
+  color:#ba5bfb;
+}
+.reveal .MathJax_Display {
+  margin-top:15px !important;
+  margin-bottom:30px !important;
+}
+.reveal pre
+{
+  font-size:16pt;
+}
+.reveal table.pre
+{
+  width:80% !important;
+  margin-left:10%;
+  margin-right:10%;
+}
+.reveal div.tip
+{
+  font:14pt 'Pontano Sans','Trebuchet MS', sans-serif;
+}
+
+.reveal pre code
+{
+  background-color:transparent;
+}
+.reveal pre
+{
+  box-shadow:none;
+}
