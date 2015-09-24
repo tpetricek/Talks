@@ -39,6 +39,12 @@ Talks and slides
 
  - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August) - QCon Rio 2015  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
+
+ - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September) - DevDay Krakow, 2015
+   See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
+ 
+ - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September) - Future Programming Workshop, 2015
+   See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
  
 Slides license
 --------------
