@@ -46,6 +46,8 @@ Talks and slides
  - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September) - Future Programming Workshop, 2015
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
  
+ - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) (September) - StrangeLoop 2015
+
 Slides license
 --------------
 
