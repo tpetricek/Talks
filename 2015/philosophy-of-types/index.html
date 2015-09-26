@@ -1,0 +1,605 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>History and Philosophy of Types</title>
+    <meta name="description" content="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js","http://localhost:8083/images/xypic.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://localhost:8083/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<section >
+
+<h1>History and Philosophy of Types</h1>
+
+<div style="margin:40px 0px 40px 0px">
+<img src="images/russell.jpg" style="height:300px" />
+</div>
+
+<p><strong>Tomas Petricek</strong>, University of Cambridge<br />
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+<p><span class="math">\[\definecolor{mc}{RGB}{0,32,172}
+\definecolor{cc}{RGB}{172,0,32}\]</span></p>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h1>What is a <em>type</em>?</h1>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<blockquote>
+  <p>Science is much more ‘sloppy’ and ‘irrational’ <br /> 
+than its methodological image.</p>
+
+  <p>(Against Method, Paul Feyerabend)</p>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Uses of types and type systems</h2>
+
+<ol>
+<li>Detecting errors via type-checking, statically or dynamically</li>
+<li>Abstraction and support for structuring large systems</li>
+<li>Documentation</li>
+<li>Efﬁciency</li>
+<li>Whole-language safety</li>
+</ol>
+
+<div class="reference">
+
+<p>Source: <a href="http://www.cl.cam.ac.uk/teaching/1314/Types/">Lecture notes from Types lecture</a></p>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>History of types</h2>
+
+<h3>How the meaning of 'type' changes</h3>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>Mathematical logic as based on the theory of types</h3>
+
+<img src="images/russell.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px">
+
+<p>Bertrand Russell, 1908</p>
+
+<div class="fragment" style="padding-top:20px">
+
+<p>Avoid paradoxes of the kind:</p>
+
+<blockquote>
+  <p>Class of all classes that do not contain themselves as elements</p>
+</blockquote>
+
+</div></div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>Mathematical logic as based on the theory of types</h3>
+
+<img src="images/russell.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px">
+
+<p>Base formulas have type <span class="math">\(0\)</span></p>
+
+<p>Formula that uses a formula of <br />
+type <span class="math">\(n\)</span> has a type <span class="math">\(n+1\)</span>.</p>
+
+<div class="fragment" style="padding-top:20px;">
+
+<blockquote>
+  <p>We must interpret “I am lying” as “There is a proposition of order 
+<span class="math">\(n\)</span> which I affirm and which is false”. This is a proposition of order <span class="math">\(n+1\)</span>.</p>
+</blockquote>
+
+</div>
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>Mathematical logic as based on the theory of types</h3>
+
+<img src="images/russell.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px">
+
+<blockquote>
+  <p>It is unnecessary, in practice, to know what objects belong to the lowest type (...). 
+In practice, only the relative types of variables are relevant.</p>
+</blockquote>
+
+<div class="fragment" style="padding-top:20px;">
+
+<p>Types are not sets of values!</p>
+
+</div>
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>Simple theory of types and <span class="math">\(\lambda\)</span>-calculus</h3>
+
+<p>Alonzo Church, 1940</p>
+
+<ul>
+<li><span class="math">\(\lambda\)</span>-calculus and types as foundations of mathematics</li>
+<li>Not created for ruling out invalid terms!</li>
+</ul>
+
+<div class="fragment" style="padding-top:40px;">
+
+<blockquote>
+  <p>We refrain from making more definite the nature of the types <span class="math">\(\omicron\)</span> and <span class="math">\(\iota\)</span>, 
+(...) the formal theory admits a variety of interpretations.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>From expression types to computation types</h3>
+
+<img src="images/hoare.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px">
+
+<p>John McCarthy, Tony Hoare, 1970s</p>
+
+<div class="fragment" style="padding-top:20px;">
+
+<blockquote>
+  <p>McCarthy’s theory was developed by Hoare, who proposed that 
+data types in PLs   could be understood as sets of data values.</p>
+</blockquote>
+
+</div>
+<div class="reference fragment">
+
+<p>Source: <a href="http://www.springer.com/us/book/9781848825543">Science of Operations, Mark Priestley</a></p>
+
+</div>
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>From expression types to computation types</h3>
+
+<p><span class="math">\(r := ~ !s\)</span></p>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>From expression types to computation types</h3>
+
+<p><span class="math">\({\color{cc} r:{ref}_\rho, s:{ref}_\sigma} \vdash r := ~ !s : \color{mc} unit~\&amp;~\{ write~\rho, read~\sigma \}\)</span></p>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h3>From expression types to computation types</h3>
+
+<p>What is the set of a type: <span class="math">\(\color{mc} unit~\&amp;~\{ write~\rho, read~\sigma \}\)</span>?</p>
+
+<div class="reference fragment">
+
+<h3 style="margin:50px 0px 20px 0px">Types are not sets but relations!</h3>
+
+<blockquote>
+  <p>Express meaning of high-level types as relational,  <br />
+extensional constraints on the behaviour of compiled code</p>
+</blockquote>
+
+<p>Source: <a href="http://research.microsoft.com/en-us/um/people/nick">Nick Benton: What we talk about when we talk about types</a></p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Types in modern programming</h2>
+
+<ul>
+<li><strong>Unsound</strong> - Dart, Type Script</li>
+<li><strong>Super sound</strong> - Idris, Agda, F*</li>
+<li><strong>Relatively sound</strong> - F# type providers</li>
+</ul>
+
+<div class="fragment">
+
+<p>We are not getting closer to one right definition!</p>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Philosophy of types</h2>
+
+<h3>Against a formal universal definition</h3>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Feyerabend's epistemological anarchism</h2>
+
+<img src="images/feyerabend.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px" class="fragment">
+
+<p>Should there be a clear definition of type?</p>
+
+</div>
+<div style="margin-right:300px" class="fragment">
+
+<blockquote>
+  <p>To 'clarify' the terms does not mean to study the additional properties of the domain in question,
+it means to fill them with existing notions from the entirely different domain of logic.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Lakatos and research programmes</h2>
+
+<img src="images/lakatos.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px" class="fragment">
+
+<p>Science consists of multiple competing mutually inconsistent research programmes.</p>
+
+</div>
+<div style="margin-right:300px" class="fragment">
+
+<p><strong>Hard core</strong> and protective <br/> belt of <strong>auxiliary assumptions</strong></p>
+
+</div>
+<div style="margin-right:300px" class="fragment">
+
+<blockquote>
+  <p>[Core assumptions] are not to be blamed for any apparent failure. 
+Rather, the blame is to be placed on the less fundamental components.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Lakatos and concept stretching</h2>
+
+<img src="images/lakatos.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px" class="fragment">
+
+<p>A new counterexample of a previously inconceivable form is discovered</p>
+
+</div>
+<div style="margin-right:300px" class="fragment">
+
+<blockquote>
+  <p>In their critical zeal [the refutationists] stretched 
+the concept of polyhedron, to cover objects that were alien to the intended interpretation.</p>
+</blockquote>
+
+</div>
+<div style="margin-right:300px" class="fragment">
+
+<p>We do not notice it &amp; we cannot unthink it!</p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Concept stretching and functions</h2>
+
+<img src="images/hermite.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px" class="fragment">
+
+<br />
+
+<blockquote>
+  <p>I turn aside with a shudder of horror from<br />
+this lamentable plague of functions<br />
+which have no derivatives.</p>
+
+  <p>Charles Hermite, 1893</p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Concept stretching and <span style="color:#a02030">types</span></h2>
+
+<img src="images/hermite.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px">
+
+<br />
+
+<blockquote>
+  <p>I turn aside with a shudder of horror from<br />
+this lamentable plague of <span style="color:#a02030">type systems</span><br />
+which have no <span style="color:#a02030">soundness proof</span>.</p>
+
+<p><span style="color:#a02030">Anonymous on Hacker News, 2015</span></p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Feyerabend's epistemological anarchism</h2>
+
+<img src="images/feyerabend.jpg" style="float:right; width:200px" />
+<div style="margin-right:300px" class="fragment">
+
+<p>What is the correct scientific method?</p>
+
+</div>
+<div style="margin-right:300px" class="fragment">
+
+<blockquote>
+  <p>To those who look at the rich material provided by history, it will become clear that there 
+is only one principle that can be defended under all circumstances. It is the principle: anything goes.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Living without clear notion of 'type'</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?" theme="white" title="History and Philosophy of Types" transition="none">
+
+<h2>Living without clear notion of 'type'</h2>
+
+<div class="fragment">
+
+<h4>Meaning is use</h4>
+
+</div><div class="fragment">
+
+<p>How we use types in language?</p>
+
+<p>Construct interesting contexts for types!</p>
+
+</div><div class="fragment">
+
+<div class="fragment">
+
+<h4>Types as scientific entities</h4>
+
+</div><div class="fragment">
+
+<p>What can we cause with types?</p>
+
+<p>We can experiment without having theory!</p>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<h2>Summary</h2>
+
+<blockquote>
+  <p>Precise answers “hamper the growth of knowledge” <br />
+and “deflect the course of investigation into narrow<br />
+channels of things already understood”.</p>
+</blockquote>
+
+<p><a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
