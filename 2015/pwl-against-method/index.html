@@ -1,0 +1,748 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Paul Feyerabend's Against Method</title>
+    <meta name="description" content="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js","http://localhost:8083/images/xypic.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://localhost:8083/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<h1>Paul Feyerabend's Against Method</h1>
+
+<div style="margin:40px 0px 40px 0px">
+<img src="images/method.jpg" style="height:300px" />
+</div>
+
+<p><strong>Tomas Petricek</strong>, University of Cambridge<br />
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+<p><span class="math">\[\definecolor{mc}{RGB}{0,32,172}
+\definecolor{cc}{RGB}{172,0,32}\]</span></p>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Philosophy of Science</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Philosophy of Science</h2>
+
+<blockquote>
+  <p>The success of physics over the last three hundred years is to be 
+attributed to the application of ‘the scientific method’. If other 
+disciplines are to emulate the success of physics then that is to 
+be achieved by understanding and applying this method.</p>
+</blockquote>
+
+<div class="reference">
+
+<p>Alan Chalmers (1999). <strong>What Is This Thing Called Science?</strong></p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<p>Karl Popper (1934/1959)<br />
+<strong>The Logic of Scientific Discovery</strong></p>
+
+<p>Thomas Kuhn (1962)<br />
+<strong>The Structure of Scientific Revolutions</strong></p>
+
+<p>Imre Lakatos (1978)<br />
+<strong>The Methodology of Scientific Research Programmes</strong></p>
+
+<p>Paul Feyerabend (1975)<br />
+<strong>Against Method</strong></p>
+
+<p>Bruno Latour (1987)<br />
+<strong>Science in Action</strong></p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Anything goes</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Anything goes</h2>
+
+<blockquote>
+  <p>To those who look at the rich material provided by history,
+it will become clear that there is only one principle that can be
+defended under all circumstances. It is the principle: <em>anything goes</em>.</p>
+</blockquote>
+
+<br />
+<div class="fragment">
+
+<blockquote>
+  <p><em>Anything goes</em> is not a 'principle' I hold... but the terrified 
+exclamation of a rationalist who takes a closer look at history.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Galilei and heliocentrism</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<blockquote>
+  <p>For Galileo uses propaganda. He uses <em>psychological tricks</em> 
+in addition to whatever intellectual reasons he has to offer.</p>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Natural interpretations</h2>
+
+<p><strong>Against the movement of Earth</strong></p>
+
+<ul>
+<li>We do not feel any movement</li>
+<li>Stone falling from a tower argument</li>
+</ul>
+
+<div class="fragment" style="padding-top:20px">
+
+<p><strong>Galileo invents a new story</strong></p>
+
+<ul>
+<li>Relativity of all movement</li>
+<li>Law of circular inertia</li>
+</ul>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Natural interpretations</h2>
+
+<p><strong>Assumptions that we do not question</strong></p>
+
+<ul>
+<li>Hard core of research programmes</li>
+</ul>
+
+<div class="fragment" style="padding-top:20px">
+
+<p><strong>Common in any computer science field</strong></p>
+
+<ul>
+<li>Pure functional programming &amp; mutation</li>
+<li>Computations are modelled as monads</li>
+<li>Type systems are sound &amp; prevent errors</li>
+</ul>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Galileo and telescope</h2>
+
+<div class="fragment">
+
+<blockquote>
+  <p>The first telescopic observations of the sky are indistinct and in conflict 
+with what everyone can see with his unaided eyes.</p>
+</blockquote>
+
+</div><div class="fragment" style="padding-top:30px">
+
+<blockquote>
+  <p>The problem is different for celestial and terrestrial objects (...)
+because of the contemporary idea that celestial and terrestrial objects
+are made from different materials and obey different laws.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Language may have to be revised</h2>
+
+<div class="fragment">
+
+<blockquote>
+  <p>The language in which we express our observations may have to be revised so that
+the new cosmology is not endangered by an unnoticed collaboration of older ideas.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Language may have to be revised</h2>
+
+<p><strong>Avoid unnoticed interaction with older ideas</strong></p>
+
+<div class="fragment">
+
+<ul>
+<li>F# computation expressions and monads</li>
+<li>Union types in type providers</li>
+</ul>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>The Galileo trial</h2>
+
+<div class="fragment">
+
+<blockquote>
+  <p>The experts declared the doctrine to be 'foolish  and absurd in philosophy' (unscientific to use
+a modern term) based  exclusively on the scientific situation of the time.</p>
+
+  <p><em>It was incorrect.</em></p>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Unscientific <span class="math">\(\neq\)</span> wrong</h2>
+
+<blockquote>
+  <p>Science is much more ‘sloppy’ and ‘irrational’ <br />than its methodological image.</p>
+</blockquote>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Against method</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<blockquote>
+  <p>Theoretical anarchism is more humanitarian and is more likely to 
+encourage progress than its law-and-order alternatives.</p>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Consistency condition</h2>
+
+<p><strong>New hypotheses should agree with accepted theories</strong></p>
+
+<div class="fragment">
+
+<blockquote>
+  <p>The consistency condition is unreasonable because it preserves the older theory,
+and not the better theory.</p>
+</blockquote>
+
+</div><div class="fragment" style="padding-top:20px">
+
+<p><strong>In computer science</strong></p>
+
+<p>Follow the framework used by other solutions</p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Structure of science</h2>
+
+<blockquote>
+  <p>The methodological unit to which we must refer is a whole set of 
+partly overlapping, factually adequate, but mutually inconsistent theories.</p>
+</blockquote>
+
+<div class="fragment" style="padding-top:20px">
+
+<p><strong>In programming languages</strong></p>
+
+<p>Types in Dart, TypeScript, Idris and F#</p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Empirical observations</h2>
+
+<blockquote>
+  <p>This need to wait and to ignore large masses of critical observations is hardly 
+ever discussed in our methodologies.</p>
+</blockquote>
+
+<div class="fragment" style="margin-top:20px">
+
+<p><strong>In programming languages</strong></p>
+
+<p>Purely functional programming cannot do I/O</p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Clarity requirement</h2>
+
+<blockquote>
+  <p>To 'clarify' the terms does not mean to study the additional properties of the domain in 
+question, it means to fill them with existing notions from the entirely different domain of 
+logic and to take care that the process of filling obeys the accepted laws of logic.</p>
+</blockquote>
+
+<div class="fragment">
+
+<blockquote>
+  <p>So the course of an investigation is deflected into the narrow channels of things already 
+understood and the possibility of fundamental conceptual discovery is significantly reduced.</p>
+</blockquote>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Theoretical anarchism</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Alternative theories</h2>
+
+<blockquote>
+  <p>The alternatives may be taken from the past as well. As a matter of fact, they may be 
+taken from wherever one is able to find them - from ancient myths and modern prejudices; 
+from the lucubrations of experts and from the fantasies of cranks.</p>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Alternative theories</h2>
+
+<p><strong>Charles Babbage</strong></p>
+
+<div class="fragment">
+
+<p>Builds on Adam Smith and division of labor</p>
+
+</div>
+
+<p><strong>Ada Lovelace</strong></p>
+
+<div class="fragment">
+
+<p>Builds on poetry and music</p>
+
+</div>
+
+<p><strong>John von Neumann</strong></p>
+
+<div class="fragment">
+
+<p>Computer model as a model of brain</p>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Metaphors in programming</h2>
+
+<p>Concurrency?</p>
+
+<p>Language?</p>
+
+<p>Libraries?</p>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Rationalism as after-thought</h2>
+
+<blockquote>
+  <p>'Voice of reason' is but a <em>causal after-effect</em> of the training.</p>
+</blockquote>
+
+<div class="fragment">
+
+<p><strong>We only present perfect after-version in papers</strong></p>
+
+<ul>
+<li>Science does not start with problems</li>
+<li>Discovery and justification is intertwined</li>
+<li>Metaphors behind theories matter</li>
+</ul>
+
+</div>
+<div class="fragment">
+
+<p><strong>Be careful when reading papers we love :-)</strong></p>
+
+</div>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Summary</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<h2>Summary</h2>
+
+<p>There is no rule of thumb for distinguishing good and bad science.</p>
+
+<p>Epistemological anarchism is more likely to encourage progress than its law-and-order alternatives.</p>
+
+</section>
+
+<section author="Tomas Petricek" description="How is computer science research done? What we take for granted and what we 
+question? And how do theories in computer science tell us something about the real world?
+Those are some of the questions that may inspire computer scientist like me (and you!) to look
+into philosophy of science. I’ll present the work of one of the more extreme (and interesting!)
+philosophers of science, Paul Feyerabend. In “Against Method”, Feyerabend looks at the history
+of science and finds that there is no fixed scientific methodology and the only methodology
+that can encompass the rich history is ‘anything goes’. We see (not only computer) science as
+a perfect methodology for building correct knowledge, but is this really the case?" theme="white" title="Paul Feyerabend's Against Method" transition="none">
+
+<blockquote>
+  <p>I make my selection in a highly individual way. Science needs people who are adaptable 
+and inventive, not rigid imitators of ‘established’ behavioural patterns.</p>
+</blockquote>
+
+<div class="fragment">
+<img src="images/feyerabend2.jpg" />
+<br />
+</div>
+
+<p><a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
