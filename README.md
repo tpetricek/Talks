@@ -43,16 +43,16 @@ Talks and slides
 
 ### Data Journalism and The Gamma
 
- - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September) - DevDay Krakow, 2015
+ - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September) - DevDay Krakow, 2015  
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
  - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September) - Future Programming Workshop, 2015
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
   
-### Research and Philosophy of Science 
+### Philosophy of Science and Research
 
  - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April) - Papers We Love, Prague  
- - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June) - STTI 2015, MFF, Prague
+ - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June) - STTI 2015, MFF
  - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) (September) - StrangeLoop 2015
  - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October) - Papers We Love, NYC, 2015
  - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2015/living-with-errors/) (October) - HaPoC 2015, Pisa
