@@ -1,0 +1,612 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Miscomputation: Learning to live with errors</title>
+    <meta name="description" content="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js","http://localhost:8083/images/xypic.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://localhost:8083/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<h1>Miscomputation</h1>
+
+<h3>Learning to live with errors</h3>
+
+<div style="margin:120px 0px 60px 0px">
+<img src="images/hapoc.jpg" style="height:150px" />
+</div>
+
+<p><strong>Tomas Petricek</strong>, University of Cambridge<br />
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Miscomputation</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<blockquote>
+<img src="images/babbage.png" style="float:right;width:170px;margin:0px 0px 0px 10px"/>
+
+  <p>If trials of three or four simple cases have been made, and are found to agree with the 
+results given by the engine, it is scarcely possible that there can be any error (...).</p>
+
+<br />
+
+  <blockquote>
+    <p>Charles Babbage, On the mathematical<br />
+powers of the calculating engine (1837)</p>
+  </blockquote>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<blockquote>
+  <p>Errors in coding were only gradually recognized to be a significant problem: a typical early 
+comment was that of Miller [circa 1949], who wrote that such errors, along with hardware faults, 
+could be "expected, in time, to become infrequent".</p>
+
+  <blockquote>
+    <p>Mark Priestley, Science of Operations (2011)</p>
+  </blockquote>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Examples of miscomputations</h2>
+
+<ul>
+<li>Invalid specification</li>
+<li>Invalid implementation</li>
+<li>No specification available</li>
+<li>Physical error condition</li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<img src="images/error.png" style="height:650px" />
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Living with errors</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<img src="images/hero1.png" />
+<img src="images/hero2.png" />
+<img src="images/hero3.png" />
+<img src="images/hero4.png" />
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Errors as a curse</h2>
+
+<br />
+<img src="images/hero1.png" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Algol research programme (1960s)</h2>
+
+<blockquote>
+  <p>One of the goals (..) was to utilize the resources of logic to increase<br />
+the confidence (..) in the correctness of a program. As McCarthy had<br />
+put it, "[instead] of debugging a program, one should prove that it<br />
+meets its specifications (...)".</p>
+
+  <blockquote>
+    <p>Mark Priestley, Science of Operations (2011)</p>
+  </blockquote>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Dependently typed programming (2010s)</h2>
+
+<p>Tries to make proof a part of programming practice</p>
+
+<div class="fragment">
+
+<blockquote>
+  <p>[T]oday most people who write software (...) assume that the costs 
+of formal program verification outweigh the benefits. The purpose 
+of this book is to convince you that the technology of program 
+verification is mature enough today (...).</p>
+
+  <blockquote>
+    <p>Adam Chlipala, Certified Programming<br />
+with Dependent Types (2013)</p>
+  </blockquote>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Error as a curse</h2>
+
+<p class="fragment">Dream for the last 50 years</p>
+<p class="fragment">Common point of view in academic<br />programming language community</p>
+<p class="fragment">Mixed success in practice</p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Errors as progress</h2>
+
+<br />
+<img src="images/hero2.png" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<img src="images/noproof.png" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Engineering approach</h2>
+
+<p>Solid engineering practices are often good enough.</p>
+
+<p>Testing software is one such practice.</p>
+
+<ul>
+ <li class="fragment"><b>Tests</b> to rule out errors</li>
+ <li class="fragment"><b>Tests</b> to rule out regression errors</li>
+ <li class="fragment"><b>Tests</b> as a specification</li>
+</ul>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Test-Driven Development (TDD)</h2>
+
+<blockquote>
+  <p>[In TDD] we drive development with automated tests (...). We</p>
+
+<ol>
+<li>write new code only if an automated test has failed</li>
+<li>eliminate duplication.</li>
+</ol>
+
+  <p>These are two simple rules, but they generate complex<br />
+individual and group behavior (...).</p>
+
+  <blockquote>
+    <p>Kent Beck, Test-Driven<br />
+Development by Example (2003)</p>
+  </blockquote>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Test-Driven Development (TDD)</h2>
+
+<ol>
+<li>Introduce controlled isolated miscomputation</li>
+<li>Eliminate miscomputation by writing more code</li>
+</ol>
+
+<p class="fragment">TDD incorporates miscomputation<br />
+as a part of the development cycle!</p>
+
+<p class="fragment">Tests serve as specification and documentation</p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Errors as the unavoidable</h2>
+
+<br />
+<img src="images/hero3.png" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Erlang programming langauge</h2>
+
+<p>Created by Ericsson for telecomunications</p>
+
+<p>Distributed long-running reliable systems</p>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Miscomputations in Erlang</h2>
+
+<blockquote>
+<ul>
+<li><strong>exceptions</strong> occur when the run-time does not know what to do.</li>
+<li><strong>errors</strong> occur when the programmer doesn’t know what to do.</li>
+</ul>
+
+  <blockquote>
+    <p>Joe Armstrong, Programming reliable systems (2003)</p>
+  </blockquote>
+</blockquote>
+
+<p class="fragment" style="padding-top:35px">Errors are expected. Specification does not cover all cases.</p>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Handling errors in Erlang</h2>
+
+<blockquote>
+  <p>What kind of code must the programmer write when they find an error? 
+The philosophy is let some other process fix the error, but what 
+does this mean for their code? The answer is <strong>let it crash</strong>.</p>
+
+  <blockquote>
+    <p>Joe Armstrong, Programming reliable systems (2003)</p>
+  </blockquote>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Errors as the unavoidable</h2>
+
+<p>Miscomputation is a normal part of execution.</p>
+
+<p class="fragment">(Should we still call it miscomputation?)</p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Errors as an inspiration</h2>
+
+<br />
+<img src="images/hero4.png" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Smalltalk ecosystem (1970s)</h2>
+
+<blockquote>
+  <p>[Smalltalk approach] to the design of programming languages [is] 
+quite different from what was familiar in the Algol [programme].</p>
+
+  <p>Programming was not thought of as the task of constructing a 
+linguistic entity, but rather as a process of working interactively with the 
+semantic representation of the program, using text as one possible interface.</p>
+
+  <blockquote>
+    <p>Mark Priestley, Science of Operations (2011)</p>
+  </blockquote>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h1>Computation as interaction</h1>
+
+<p>Live coding environments for performing music</p>
+
+<br />
+
+<div class="fragment">
+
+<blockquote>
+  <p>In musical genres that are not notated so closely (...), there are no wrong notes – 
+only notes that are more or less appropriate to the performance.</p>
+
+  <blockquote>
+    <p>Alan Blackwell and Nick Collins,
+The Programming Language as a Musical Instrument (2005</p>
+  </blockquote>
+</blockquote>
+
+</div>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h1>Miscomputation in live coding</h1>
+
+<blockquote>
+  <p>[Live coders] may well prefer to accept the results of an imperfect execution. 
+[They] might perhaps compensate for an unexpected result by manual intervention,
+or even accept the result as a serendipitous alternative to the original note.</p>
+
+  <blockquote>
+    <p>Alan Blackwell and Nick Collins,
+The Programming Language as a Musical Instrument (2005)</p>
+  </blockquote>
+</blockquote>
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Errors as an inspiration</h2>
+
+<p class="fragment">Make miscomputations more apparent.</p>
+
+<p class="fragment">Enable quick human intervention.</p>
+
+<p class="fragment">Not limited to live coded art performances!</p>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<h2>Summary</h2>
+
+<br />
+<img src="images/literate.png" style="width:300px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="Charles Babbage once said that 'if trials of three or four simple cases have been 
+made, it is scarcely possible that there can be any error'. We now know that errors are more
+common and harder to eliminate. In this talk, I look at different strategies that
+programmers use for dealing with errors. It turns out that there is a surprisingly wide
+range of options!" theme="white" title="Miscomputation: Learning to live with errors" transition="none">
+
+<h2>Summary</h2>
+
+<div class="fragment">
+
+<p><strong>Not all miscomputation is bad</strong></p>
+
+<p>(Is it still a miscomputation when it's expected?)</p>
+
+</div><div class="fragment" style="padding-top:20px">
+
+<p><strong>Different research programmes</strong></p>
+
+<p>(No approach is better in general)</p>
+
+</div>
+<br />
+
+<p><a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
