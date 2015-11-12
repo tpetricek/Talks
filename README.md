@@ -32,14 +32,17 @@ Talks and slides
 
 ### FsLab and Data Science
 
-
  - [**Scalable machine learning and data science with F#**](http://tpetricek.github.io/Talks/2015/scalable-ml-ds-fsharp/redmond/) (May) - Microsoft, Redmond  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/scalable-ml-ds-fsharp/code-done)
 
  - [**F# in Finance: Data science with FsLab**](http://tpetricek.github.io/Talks/2015/deedle-finance/toronto/) (June) - Citi and S&P, Toronto  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/deedle-finance/code-done) and [journal source  code](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/journal/Tutorial.fsx)
-  
+
  - [**Functional Machine Learning with F#**](http://tpetricek.github.io/Talks/2015/functional-machine-learning/qconrio/) together with [@evelinag](http://www.github.com/evelinag) (August) - QCon Rio 2015
+
+- [**Data Science with FsLab**](http://tpetricek.github.io/Talks/2015/data-science-with-fslab/) (November) - MVP Summit, Redmond  
+  See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/data-science-with-fslab/code-done) and [journal source  code](https://github.com/tpetricek/Talks/blob/master/2015/data-science-with-fslab/code-done/journal/Tutorial.fsx)
+  
 
 ### Data Journalism and The Gamma
 

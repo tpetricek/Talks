@@ -1,0 +1,343 @@
+<UserSettings><ApplicationIdentity version="12.0"/><ToolsOptions/><Category name="Environment_Group" RegisteredName="Environment_Group"><Category name="Environment_Toolbox" Category="{481999F2-7479-4e03-83D5-BE808BA142DF}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_Toolbox" PackageName="Visual Studio Environment Package"><PropertyValue name="ShowAllTabs">false</PropertyValue><PropertyValue name="Version">1</PropertyValue><PropertyValue name="DeletedTabCount">0</PropertyValue><PropertyValue name="Tab0.ID">1 World</PropertyValue><PropertyValue name="Tab0.Name">1 World</PropertyValue><PropertyValue name="Tab0.View">0</PropertyValue><PropertyValue name="Tab0.UseDefaultName">false</PropertyValue><PropertyValue name="Tab0.RecordType">1</PropertyValue><PropertyValue name="Tab0.Position">57</PropertyValue><PropertyValue name="Tab0.OriginalName">1 World</PropertyValue><PropertyValue name="Tab1.ID">2 Presidents</PropertyValue><PropertyValue name="Tab1.Name">2 Presidents</PropertyValue><PropertyValue name="Tab1.View">0</PropertyValue><PropertyValue name="Tab1.UseDefaultName">false</PropertyValue><PropertyValue name="Tab1.RecordType">1</PropertyValue><PropertyValue name="Tab1.Position">58</PropertyValue><PropertyValue name="Tab1.OriginalName">2 Presidents</PropertyValue><PropertyValue name="Tab2.ID">3 Journal</PropertyValue><PropertyValue name="Tab2.Name">3 Journal</PropertyValue><PropertyValue name="Tab2.View">0</PropertyValue><PropertyValue name="Tab2.UseDefaultName">false</PropertyValue><PropertyValue name="Tab2.RecordType">1</PropertyValue><PropertyValue name="Tab2.Position">59</PropertyValue><PropertyValue name="Tab2.OriginalName">3 Journal</PropertyValue><PropertyValue name="TabCount">3</PropertyValue><PropertyValue name="DeletedItemCount">0</PropertyValue><PropertyValue name="Item0.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item0.ID">BBE6B6FB0AF5C404B872B9531EBBFE14</PropertyValue><PropertyValue name="Item0.Name">Text: let getWeather n = 
+  let w = Weather.Load("http://api.openweathermap.org/data/2.5/weather?APPID=cb63a1cf33894de710a1e3a64f036a27&amp;q=" + n)
+  float w.Main.Temp - 273.15
+</PropertyValue><PropertyValue name="Item0.UseDefaultName">true</PropertyValue><PropertyValue name="Item0.Tab">1 World</PropertyValue><PropertyValue name="Item0.TabID">1 World</PropertyValue><PropertyValue name="Item0.OriginalTabID">1 World</PropertyValue><PropertyValue name="Item0.OriginalTab">1 World</PropertyValue><PropertyValue name="Item0.RecordType">1</PropertyValue><PropertyValue name="Item0.Data">let getWeather n = 
+  let w = Weather.Load("http://api.openweathermap.org/data/2.5/weather?APPID=cb63a1cf33894de710a1e3a64f036a27&amp;q=" + n)
+  float w.Main.Temp - 273.15
+</PropertyValue><PropertyValue name="Item0.Position">1</PropertyValue><PropertyValue name="Item1.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item1.ID">D5A3B69B9560FA57F305CDC7FC28CCC9</PropertyValue><PropertyValue name="Item1.Name">Text: let temps = 
+  [ for c in wb.Countries -&gt; 
+      printfn "%s" c.Name
+      c.Name, getWeather(c.CapitalCity + "," + c.Name) ]</PropertyValue><PropertyValue name="Item1.UseDefaultName">true</PropertyValue><PropertyValue name="Item1.Tab">1 World</PropertyValue><PropertyValue name="Item1.TabID">1 World</PropertyValue><PropertyValue name="Item1.OriginalTabID">General</PropertyValue><PropertyValue name="Item1.OriginalTab">General</PropertyValue><PropertyValue name="Item1.RecordType">1</PropertyValue><PropertyValue name="Item1.Data">let temps = 
+  [ for c in wb.Countries -&gt; 
+      printfn "%s" c.Name
+      c.Name, getWeather(c.CapitalCity + "," + c.Name) ]</PropertyValue><PropertyValue name="Item1.Position">2</PropertyValue><PropertyValue name="Item2.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item2.ID">F51003B24D70FD9BFD77E2389D81A9CC</PropertyValue><PropertyValue name="Item2.Name">Text: let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item2.UseDefaultName">true</PropertyValue><PropertyValue name="Item2.Tab">1 World</PropertyValue><PropertyValue name="Item2.TabID">1 World</PropertyValue><PropertyValue name="Item2.OriginalTabID">General</PropertyValue><PropertyValue name="Item2.OriginalTab">General</PropertyValue><PropertyValue name="Item2.RecordType">1</PropertyValue><PropertyValue name="Item2.Data">let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+</PropertyValue><PropertyValue name="Item2.Position">3</PropertyValue><PropertyValue name="Item3.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item3.ID">BE30B1A27F6F45FADCE82E80127B4719</PropertyValue><PropertyValue name="Item3.Name">Text: let options = 
+  Options
+    ( pointSize=4, colors=[|"#3B8FCC"|], 
+      trendlines=[|Trendline(opacity=0.5,lineWidth=10,color="#C0D9EA")|],
+      hAxis=Axis(title="Log of GDP (per capita)"), 
+      vAxis=Axis(title="Life expectancy (years)") )
+
+Series.zipInner (log10 world?GDP) world?Life
+|&gt; Series.values
+|&gt; Chart.Scatter
+|&gt; Chart.WithOptions(options)</PropertyValue><PropertyValue name="Item3.UseDefaultName">true</PropertyValue><PropertyValue name="Item3.Tab">1 World</PropertyValue><PropertyValue name="Item3.TabID">1 World</PropertyValue><PropertyValue name="Item3.OriginalTabID">1 World</PropertyValue><PropertyValue name="Item3.OriginalTab">1 World</PropertyValue><PropertyValue name="Item3.RecordType">1</PropertyValue><PropertyValue name="Item3.Data">let options = 
+  Options
+    ( pointSize=4, colors=[|"#3B8FCC"|], 
+      trendlines=[|Trendline(opacity=0.5,lineWidth=10,color="#C0D9EA")|],
+      hAxis=Axis(title="Log of GDP (per capita)"), 
+      vAxis=Axis(title="Life expectancy (years)") )
+
+Series.zipInner (log10 world?GDP) world?Life
+|&gt; Series.values
+|&gt; Chart.Scatter
+|&gt; Chart.WithOptions(options)</PropertyValue><PropertyValue name="Item3.Position">4</PropertyValue><PropertyValue name="Item4.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item4.ID">5500BDE387611899F5ACFC788565EB68</PropertyValue><PropertyValue name="Item4.Name">Text:   |&gt; Frame.indexRowsInt "Year"
+  |&gt; Frame.indexColsWith ["GDP"; "Population"; "Debt"; "Kind" ]
+</PropertyValue><PropertyValue name="Item4.UseDefaultName">true</PropertyValue><PropertyValue name="Item4.Tab">2 Presidents</PropertyValue><PropertyValue name="Item4.TabID">2 Presidents</PropertyValue><PropertyValue name="Item4.OriginalTabID">2 Presidents</PropertyValue><PropertyValue name="Item4.OriginalTab">2 Presidents</PropertyValue><PropertyValue name="Item4.RecordType">1</PropertyValue><PropertyValue name="Item4.Data">  |&gt; Frame.indexRowsInt "Year"
+  |&gt; Frame.indexColsWith ["GDP"; "Population"; "Debt"; "Kind" ]
+</PropertyValue><PropertyValue name="Item4.Position">1</PropertyValue><PropertyValue name="Item5.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item5.ID">B7034EFDB89CC62782D39200885CE47C</PropertyValue><PropertyValue name="Item5.Name">Text: Chart.Line [ debtData?GDP; debtData?GDP_WB ]
+|&gt; Chart.WithLabels ["CSV file"; "WorldBank"]
+|&gt; Chart.WithLegend true
+
+let debt = debtData.Columns.[ ["Debt"] ]
+</PropertyValue><PropertyValue name="Item5.UseDefaultName">true</PropertyValue><PropertyValue name="Item5.Tab">2 Presidents</PropertyValue><PropertyValue name="Item5.TabID">2 Presidents</PropertyValue><PropertyValue name="Item5.OriginalTabID">2 Presidents</PropertyValue><PropertyValue name="Item5.OriginalTab">2 Presidents</PropertyValue><PropertyValue name="Item5.RecordType">1</PropertyValue><PropertyValue name="Item5.Data">Chart.Line [ debtData?GDP; debtData?GDP_WB ]
+|&gt; Chart.WithLabels ["CSV file"; "WorldBank"]
+|&gt; Chart.WithLegend true
+
+let debt = debtData.Columns.[ ["Debt"] ]
+</PropertyValue><PropertyValue name="Item5.Position">2</PropertyValue><PropertyValue name="Item6.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item6.ID">58D103F1EFA955271FF5C2BADBD59FD3</PropertyValue><PropertyValue name="Item6.Name">Text: let filterNoise s = 
+  Regex.Replace(s, "(\[[^\]]*\])|(\([^\)]*\))", "").Trim()
+
+let parseYears (s:string) = 
+  match filterNoise(s).Split('-') with
+  | [| f; t |] when t.Trim() = "Incumbent" -&gt; DateTime.Parse(f),  DateTime.Today
+  | [| f; t |] -&gt; DateTime.Parse(f),  DateTime.Parse(t)
+  | _ -&gt; failwith "Unexpected date format"
+</PropertyValue><PropertyValue name="Item6.UseDefaultName">true</PropertyValue><PropertyValue name="Item6.Tab">2 Presidents</PropertyValue><PropertyValue name="Item6.TabID">2 Presidents</PropertyValue><PropertyValue name="Item6.OriginalTabID">2 Presidents</PropertyValue><PropertyValue name="Item6.OriginalTab">2 Presidents</PropertyValue><PropertyValue name="Item6.RecordType">1</PropertyValue><PropertyValue name="Item6.Data">let filterNoise s = 
+  Regex.Replace(s, "(\[[^\]]*\])|(\([^\)]*\))", "").Trim()
+
+let parseYears (s:string) = 
+  match filterNoise(s).Split('-') with
+  | [| f; t |] when t.Trim() = "Incumbent" -&gt; DateTime.Parse(f),  DateTime.Today
+  | [| f; t |] -&gt; DateTime.Parse(f),  DateTime.Parse(t)
+  | _ -&gt; failwith "Unexpected date format"
+</PropertyValue><PropertyValue name="Item6.Position">3</PropertyValue><PropertyValue name="Item7.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item7.ID">DD004E4E1330AC2E7FD1F2356ACFB053</PropertyValue><PropertyValue name="Item7.Name">Text:   |&gt; Seq.distinctBy id
+  |&gt; Frame.ofRecords
+  |&gt; Frame.indexColsWith ["Name"; "Start"; "End"; "Party"]
+  |&gt; Frame.filterRowValues (fun row -&gt; row?End &gt; 1900.0)  
+</PropertyValue><PropertyValue name="Item7.UseDefaultName">true</PropertyValue><PropertyValue name="Item7.Tab">2 Presidents</PropertyValue><PropertyValue name="Item7.TabID">2 Presidents</PropertyValue><PropertyValue name="Item7.OriginalTabID">2 Presidents</PropertyValue><PropertyValue name="Item7.OriginalTab">2 Presidents</PropertyValue><PropertyValue name="Item7.RecordType">1</PropertyValue><PropertyValue name="Item7.Data">  |&gt; Seq.distinctBy id
+  |&gt; Frame.ofRecords
+  |&gt; Frame.indexColsWith ["Name"; "Start"; "End"; "Party"]
+  |&gt; Frame.filterRowValues (fun row -&gt; row?End &gt; 1900.0)  
+</PropertyValue><PropertyValue name="Item7.Position">4</PropertyValue><PropertyValue name="Item8.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item8.ID">B619FA7BD93699B866ACE9E89B260E21</PropertyValue><PropertyValue name="Item8.Name">Text: let byStart = presidents |&gt; Frame.indexRowsInt "Start"
+let yearDebt = debt.Join(byStart, JoinKind.Left, Lookup.ExactOrSmaller)
+</PropertyValue><PropertyValue name="Item8.UseDefaultName">true</PropertyValue><PropertyValue name="Item8.Tab">2 Presidents</PropertyValue><PropertyValue name="Item8.TabID">2 Presidents</PropertyValue><PropertyValue name="Item8.OriginalTabID">2 Presidents</PropertyValue><PropertyValue name="Item8.OriginalTab">2 Presidents</PropertyValue><PropertyValue name="Item8.RecordType">1</PropertyValue><PropertyValue name="Item8.Data">let byStart = presidents |&gt; Frame.indexRowsInt "Start"
+let yearDebt = debt.Join(byStart, JoinKind.Left, Lookup.ExactOrSmaller)
+</PropertyValue><PropertyValue name="Item8.Position">5</PropertyValue><PropertyValue name="Item9.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item9.ID">39E1A1AB96A6BE6862F07D18452E3A66</PropertyValue><PropertyValue name="Item9.Name">Text: let groups = 
+  yearDebt
+  |&gt; Frame.groupRowsByString "Name"
+  |&gt; Frame.nest
+  |&gt; Series.observations
+
+Chart.Column [for k, v in groups -&gt; v?Debt ]
+|&gt; Chart.WithLabels [for k, v in groups -&gt; k ]
+|&gt; Chart.WithOptions(Options(isStacked=true, legend=Legend(textStyle=TextStyle(fontSize=10))))
+|&gt; Chart.WithLegend(true)
+</PropertyValue><PropertyValue name="Item9.UseDefaultName">true</PropertyValue><PropertyValue name="Item9.Tab">2 Presidents</PropertyValue><PropertyValue name="Item9.TabID">2 Presidents</PropertyValue><PropertyValue name="Item9.OriginalTabID">2 Presidents</PropertyValue><PropertyValue name="Item9.OriginalTab">2 Presidents</PropertyValue><PropertyValue name="Item9.RecordType">1</PropertyValue><PropertyValue name="Item9.Data">let groups = 
+  yearDebt
+  |&gt; Frame.groupRowsByString "Name"
+  |&gt; Frame.nest
+  |&gt; Series.observations
+
+Chart.Column [for k, v in groups -&gt; v?Debt ]
+|&gt; Chart.WithLabels [for k, v in groups -&gt; k ]
+|&gt; Chart.WithOptions(Options(isStacked=true, legend=Legend(textStyle=TextStyle(fontSize=10))))
+|&gt; Chart.WithLegend(true)
+</PropertyValue><PropertyValue name="Item9.Position">6</PropertyValue><PropertyValue name="Item10.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item10.ID">33FB242D99734E4222D059F6C3BD808D</PropertyValue><PropertyValue name="Item10.Name">Text: // Get debt at the end of the presidential term
+let byEnd = presidents |&gt; Frame.indexRowsInt "End"
+let presDebt = byEnd.Join(debt, JoinKind.Left)
+
+// Calculate change for each president
+presDebt?Difference &lt;-
+  presDebt?Debt 
+  |&gt; Series.pairwiseWith (fun _ (prev, curr) -&gt; curr - prev)
+
+// Compare Republican and Democratic presidents
+let partyDebts =
+  presDebt
+  |&gt; Frame.groupRowsByString "Party"
+  |&gt; Frame.getCol "Debt"
+  |&gt; Stats.levelMean fst
+
+Chart.Pie(partyDebts)
+|&gt; Chart.WithLabels partyDebts.Keys
+|&gt; Chart.WithLegend true
+</PropertyValue><PropertyValue name="Item10.UseDefaultName">true</PropertyValue><PropertyValue name="Item10.Tab">2 Presidents</PropertyValue><PropertyValue name="Item10.TabID">2 Presidents</PropertyValue><PropertyValue name="Item10.OriginalTabID">2 Presidents</PropertyValue><PropertyValue name="Item10.OriginalTab">2 Presidents</PropertyValue><PropertyValue name="Item10.RecordType">1</PropertyValue><PropertyValue name="Item10.Data">// Get debt at the end of the presidential term
+let byEnd = presidents |&gt; Frame.indexRowsInt "End"
+let presDebt = byEnd.Join(debt, JoinKind.Left)
+
+// Calculate change for each president
+presDebt?Difference &lt;-
+  presDebt?Debt 
+  |&gt; Series.pairwiseWith (fun _ (prev, curr) -&gt; curr - prev)
+
+// Compare Republican and Democratic presidents
+let partyDebts =
+  presDebt
+  |&gt; Frame.groupRowsByString "Party"
+  |&gt; Frame.getCol "Debt"
+  |&gt; Stats.levelMean fst
+
+Chart.Pie(partyDebts)
+|&gt; Chart.WithLabels partyDebts.Keys
+|&gt; Chart.WithLegend true
+</PropertyValue><PropertyValue name="Item10.Position">7</PropertyValue><PropertyValue name="Item11.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item11.ID">DC5ABEF822A7171EDE1653D454AAC35E</PropertyValue><PropertyValue name="Item11.Name">Text: (**
+Understanding the World with F#
+===============================
+
+This journal demonstrates how to generate nice reports from your FsLab
+data analysis. With FsLab journals, you can take your F# Script files, 
+add inline comments using Markdown and turn them into HTML or PDF reports.
+In this demo, we use WorldBank type provider to obtain various information 
+about countries, then we analyze the data using Deedle and we create a 
+number of charts using Foogle Charts. We look at two topics:
+
+ - **Population growth** - Which countries have the largest population? 
+   This is an easy question! But in which countries has the population
+   have been growing the most over the last 10 years?
+ - **Correlation of indicators** - Are there any interesting correlations
+   between the indicators from the WorldBank? For example, does life
+   expectancy depend on the GDP?
+
+Population growth
+-----------------
+
+Let's start by looking at population and population growth. The following 
+snippet reads population information in year 2000 and 2010 for all countries 
+of the world using the WorldBank type provider. We store the results in two
+series with the country names as keys:
+*)
+</PropertyValue><PropertyValue name="Item11.UseDefaultName">true</PropertyValue><PropertyValue name="Item11.Tab">3 Journal</PropertyValue><PropertyValue name="Item11.TabID">3 Journal</PropertyValue><PropertyValue name="Item11.OriginalTabID">3 Journal</PropertyValue><PropertyValue name="Item11.OriginalTab">3 Journal</PropertyValue><PropertyValue name="Item11.RecordType">1</PropertyValue><PropertyValue name="Item11.Data">(**
+Understanding the World with F#
+===============================
+
+This journal demonstrates how to generate nice reports from your FsLab
+data analysis. With FsLab journals, you can take your F# Script files, 
+add inline comments using Markdown and turn them into HTML or PDF reports.
+In this demo, we use WorldBank type provider to obtain various information 
+about countries, then we analyze the data using Deedle and we create a 
+number of charts using Foogle Charts. We look at two topics:
+
+ - **Population growth** - Which countries have the largest population? 
+   This is an easy question! But in which countries has the population
+   have been growing the most over the last 10 years?
+ - **Correlation of indicators** - Are there any interesting correlations
+   between the indicators from the WorldBank? For example, does life
+   expectancy depend on the GDP?
+
+Population growth
+-----------------
+
+Let's start by looking at population and population growth. The following 
+snippet reads population information in year 2000 and 2010 for all countries 
+of the world using the WorldBank type provider. We store the results in two
+series with the country names as keys:
+*)
+</PropertyValue><PropertyValue name="Item11.Position">1</PropertyValue><PropertyValue name="Item12.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item12.ID">2C19CBFED4A82790E5620E9B69B323FD</PropertyValue><PropertyValue name="Item12.Name">Text: (**
+Now we can display the population in 2010 using a chart:
+*)
+(*** define-output: geo1 ***)
+Chart.Geo(pop2010)
+(*** include-it: geo1 ***)
+</PropertyValue><PropertyValue name="Item12.UseDefaultName">true</PropertyValue><PropertyValue name="Item12.Tab">3 Journal</PropertyValue><PropertyValue name="Item12.TabID">3 Journal</PropertyValue><PropertyValue name="Item12.OriginalTabID">3 Journal</PropertyValue><PropertyValue name="Item12.OriginalTab">3 Journal</PropertyValue><PropertyValue name="Item12.RecordType">1</PropertyValue><PropertyValue name="Item12.Data">(**
+Now we can display the population in 2010 using a chart:
+*)
+(*** define-output: geo1 ***)
+Chart.Geo(pop2010)
+(*** include-it: geo1 ***)
+</PropertyValue><PropertyValue name="Item12.Position">2</PropertyValue><PropertyValue name="Item13.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item13.ID">B39471007BA25E38294E5B72F68F27AC</PropertyValue><PropertyValue name="Item13.Name">Text: (**
+This shows the expected results. The countries with the largest population are
+China and India. But what if we look at the growth? With Deedle series, we can
+easily calculate the population growth between years 2000 and 2010. Deedle 
+provides overloaded operators on series and it automatically aligns the two
+series based on the keys (country names):
+*)
+(*** define-output: geo2 ***)
+let growth = (pop2010 - pop2000) / pop2010 * 100.0
+Chart.Geo(growth)
+(*** include-it: geo2 ***)
+</PropertyValue><PropertyValue name="Item13.UseDefaultName">true</PropertyValue><PropertyValue name="Item13.Tab">3 Journal</PropertyValue><PropertyValue name="Item13.TabID">3 Journal</PropertyValue><PropertyValue name="Item13.OriginalTabID">3 Journal</PropertyValue><PropertyValue name="Item13.OriginalTab">3 Journal</PropertyValue><PropertyValue name="Item13.RecordType">1</PropertyValue><PropertyValue name="Item13.Data">(**
+This shows the expected results. The countries with the largest population are
+China and India. But what if we look at the growth? With Deedle series, we can
+easily calculate the population growth between years 2000 and 2010. Deedle 
+provides overloaded operators on series and it automatically aligns the two
+series based on the keys (country names):
+*)
+(*** define-output: geo2 ***)
+let growth = (pop2010 - pop2000) / pop2010 * 100.0
+Chart.Geo(growth)
+(*** include-it: geo2 ***)
+</PropertyValue><PropertyValue name="Item13.Position">3</PropertyValue><PropertyValue name="Item14.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item14.ID">DB8C0F282B084DE4AFFC2A3A4A2C5D0F</PropertyValue><PropertyValue name="Item14.Name">Text: (**
+Indicator correlation
+---------------------
+
+Another interesting thing we can do is to look at correlation between 
+different indicators that we can get from the WorldBank. The following
+snippet creates a Deedle frame with a number of indicators. Feel free to
+explore other options! Here, we download data on GDP, life expectancy,
+access to electricity, CO2 emissions and population growth:
+*)
+let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+(*** include-value:world***)
+(**
+With the `include-value` command, it is easy to embed charts, but also Deedle frames.
+The above table gives us a quick summary of what the data look like and you can also
+see where missing values appear most often. To display the correlation, we can use the 
+`plot` function from R using the R type provider
+*)
+(*** define-output: cor ***)
+open RProvider.graphics
+R.plot(world)
+(*** include-output: cor ***)</PropertyValue><PropertyValue name="Item14.UseDefaultName">true</PropertyValue><PropertyValue name="Item14.Tab">3 Journal</PropertyValue><PropertyValue name="Item14.TabID">3 Journal</PropertyValue><PropertyValue name="Item14.OriginalTabID">3 Journal</PropertyValue><PropertyValue name="Item14.OriginalTab">3 Journal</PropertyValue><PropertyValue name="Item14.RecordType">1</PropertyValue><PropertyValue name="Item14.Data">(**
+Indicator correlation
+---------------------
+
+Another interesting thing we can do is to look at correlation between 
+different indicators that we can get from the WorldBank. The following
+snippet creates a Deedle frame with a number of indicators. Feel free to
+explore other options! Here, we download data on GDP, life expectancy,
+access to electricity, CO2 emissions and population growth:
+*)
+let world = 
+  [ for c in wb.Countries -&gt;
+      c.Name =&gt; series [ 
+        "Electricity" =&gt; c.Indicators.``Access to electricity (% of population)``.[2010]
+        "Life" =&gt; c.Indicators.``Life expectancy at birth, total (years)``.[2010]
+        "GDP" =&gt; c.Indicators.``GDP per capita (current US$)``.[2010]
+        "Growth" =&gt; c.Indicators.``GDP per capita growth (annual %)``.[2010]
+        "CO2" =&gt; c.Indicators.``CO2 emissions (metric tons per capita)``.[2010]
+        "Births" =&gt; c.Indicators.``Population growth (annual %)``.[2010] ] ]
+  |&gt; Frame.ofRows
+(*** include-value:world***)
+(**
+With the `include-value` command, it is easy to embed charts, but also Deedle frames.
+The above table gives us a quick summary of what the data look like and you can also
+see where missing values appear most often. To display the correlation, we can use the 
+`plot` function from R using the R type provider
+*)
+(*** define-output: cor ***)
+open RProvider.graphics
+R.plot(world)
+(*** include-output: cor ***)</PropertyValue><PropertyValue name="Item14.Position">4</PropertyValue><PropertyValue name="Item15.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item15.ID">A35D0B60589641819EB3CA94441E5BE8</PropertyValue><PropertyValue name="Item15.Name">Text: (**
+Are GDP and life expectancy correlated?
+---------------------------------------
+
+If you look at the above picture carefuly, it looks like there might be some correlation
+between life expectancy and GDP. The higher the GDP of a country is, the larger the life
+expectancy. It also looks that the correlation is not linear, so let's try to plot
+the life expectancy compared to a logarithm of GDP:
+*)
+(*** define-output: gdp ***)
+let options = 
+  Options
+    ( pointSize=4, colors=[|"#3B8FCC"|], 
+      trendlines=[|Trendline(opacity=0.5,lineWidth=10,color="#C0D9EA")|],
+      hAxis=Axis(title="Log of GDP (per capita)"), 
+      vAxis=Axis(title="Life expectancy (years)") )
+
+Series.zipInner (log10 world?GDP) world?Life
+|&gt; Series.values
+|&gt; Chart.Scatter
+|&gt; Chart.WithOptions(options)
+(*** include-it: gdp ***)
+</PropertyValue><PropertyValue name="Item15.UseDefaultName">true</PropertyValue><PropertyValue name="Item15.Tab">3 Journal</PropertyValue><PropertyValue name="Item15.TabID">3 Journal</PropertyValue><PropertyValue name="Item15.OriginalTabID">3 Journal</PropertyValue><PropertyValue name="Item15.OriginalTab">3 Journal</PropertyValue><PropertyValue name="Item15.RecordType">1</PropertyValue><PropertyValue name="Item15.Data">(**
+Are GDP and life expectancy correlated?
+---------------------------------------
+
+If you look at the above picture carefuly, it looks like there might be some correlation
+between life expectancy and GDP. The higher the GDP of a country is, the larger the life
+expectancy. It also looks that the correlation is not linear, so let's try to plot
+the life expectancy compared to a logarithm of GDP:
+*)
+(*** define-output: gdp ***)
+let options = 
+  Options
+    ( pointSize=4, colors=[|"#3B8FCC"|], 
+      trendlines=[|Trendline(opacity=0.5,lineWidth=10,color="#C0D9EA")|],
+      hAxis=Axis(title="Log of GDP (per capita)"), 
+      vAxis=Axis(title="Life expectancy (years)") )
+
+Series.zipInner (log10 world?GDP) world?Life
+|&gt; Series.values
+|&gt; Chart.Scatter
+|&gt; Chart.WithOptions(options)
+(*** include-it: gdp ***)
+</PropertyValue><PropertyValue name="Item15.Position">5</PropertyValue><PropertyValue name="ItemCount">16</PropertyValue></Category></Category></UserSettings>
