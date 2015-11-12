@@ -1,0 +1,278 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Data Science with FsLab</title>
+    <meta name="description" content="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools.">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="images/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+
+<h1>Data Science with <em>FsLab</em></h1>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3><strong>Tomas Petricek</strong>, fsharpWorks <br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://tomasp.net">tomasp.net</a> | <a href="http://fsharpworks.com">fsharpworks.com</a></h3>
+
+</section>
+
+<section class="wordcloud">
+
+<p>community <em>books and tutorials</em></p>
+
+<p><em>type providers</em> <strong>analytics</strong> cross-platform</p>
+
+<h2>FsLab Data Science Package</h2>
+
+<p>numerical computing <strong>visualization</strong> <em>open-source</em></p>
+
+<p>data frames <strong><a href="http://www.fslab.org">www.fslab.org</a></strong> web and cloud</p>
+
+<p>productivity  <em>R integration</em> support</p>
+
+</section>
+
+<section >
+
+<section >
+
+<img src="images/loop.png" style="width:500px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools." theme="night" title="Data Science with FsLab" transition="none">
+
+<style>
+.vtop td { vertical-align:middle; }
+</style>
+<table class="vtop"><tr><td>
+
+<h1><em>DATA ACCESS</em></h1>
+
+<h2>Understanding<br />the world</h2>
+
+</td><td>
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools." theme="night" title="Data Science with FsLab" transition="none">
+
+<style>
+.reveal .noborder td { border-style:none; vertical-align:top; }
+</style>
+<table class="noborder">
+<tr><td><img src="images/logos/fsharpdata.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+
+<h3>F# Data</h3>
+
+<p>Access JSON, XML, CSV &amp; more</p>
+
+</td></tr>
+<tr><td style="height:20px"></td><td></td></tr>
+<tr><td><img src="images/logos/rprovider.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+
+<h3>R Provider</h3>
+
+<p>Call thousands of stats packages</p>
+
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Tomas Petricek" description="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools." theme="night" title="Data Science with FsLab" transition="none">
+
+<table class="vtop"><tr><td>
+
+<h1><em>DATA ANALYSIS</em></h1>
+
+<h2>Looking at US debt</h2>
+
+</td><td>
+<img src="images/lincoln.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools." theme="night" title="Data Science with FsLab" transition="none">
+
+<style>
+.reveal .noborder td { border-style:none; vertical-align:top; }
+</style>
+<table class="noborder">
+<tr><td><img src="images/logos/deedle.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+
+<h3>Deedle</h3>
+
+<p>Analyze time-series and data frames</p>
+
+</td></tr>
+<tr><td style="height:20px"></td><td></td></tr>
+<tr><td><img src="images/logos/charting.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+
+<h3>XPlot</h3>
+
+<p>Wrapper over Plot.ly and Google Charts</p>
+
+</td>
+</tr>
+</table>
+
+</section>
+
+<section author="Tomas Petricek" description="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools." theme="night" title="Data Science with FsLab" transition="none">
+
+<table class="vtop"><tr><td>
+
+<h1><em>DATA VISUALIZATION</em></h1>
+
+<h2>Producing research journals</h2>
+
+</td><td>
+<img src="images/principia.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+
+</section>
+
+<section author="Tomas Petricek" description="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools." theme="night" title="Data Science with FsLab" transition="none">
+
+<style>
+.reveal .noborder td { border-style:none; vertical-align:top; }
+</style>
+<table class="noborder">
+<tr><td><img src="images/logos/fsformatting.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+
+<h3>F# Formatting</h3>
+
+<p>Turn Markdown + F# into elegant reports</p>
+
+</td></tr>
+<tr><td style="height:20px"></td><td></td></tr>
+<tr><td><img src="images/logos/fslab.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+
+<h3>FsLab Package</h3>
+
+<p>Simple package to rule them all!</p>
+
+</td>
+</tr>
+</table>
+
+</section>
+
+</section>
+
+<section >
+
+<section >
+
+<img src="images/loop.png" style="width:500px;border-style:none;background:transparent;" />
+
+</section>
+
+<section author="Tomas Petricek" description="FsLab is a data science package that brings together the power
+of F# type providers, exploratory libraries and visualization tools." theme="night" title="Data Science with FsLab" transition="none">
+
+<h1><em>Summary</em></h1>
+
+<h3>Language for ML &amp; DS: <a href="http://www.fsharp.org">www.fsharp.org</a></h3>
+
+<h3>Data science package: <a href="http://www.fslab.org">www.fslab.org</a></h3>
+
+<h3>Scales to the cloud: <a href="http://www.m-brace.net">www.m-brace.net</a></h3>
+
+<br />
+
+<h2 style="position:relative;top:30px"><em>Tomas Petricek</em></h2>
+
+<h3><a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a></h3>
+
+</section>
+
+</section>
+
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
