@@ -1,0 +1,22 @@
+﻿@model PasswordValidator.Web.Controllers.Result
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8" style="margin:50px;background:#e8e8e8;padding:50px">
+      <h2>Password validation demo</h2>
+      <br /><br />
+      <form class="form-inline">
+        <div class="form-group" style="width:100%">
+          <label for="pwd">Enter your testing password here</label><br />
+          <input type="text" class="form-control" name="pwd" id="pwd" placeholder="Password" value="@Model.Input">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+        <div style="margin-top:15px" class="alert alert-@Model.Style" role="alert">@Html.Raw(Model.Text)</div>        
+      </form>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>

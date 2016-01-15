@@ -1,0 +1,6 @@
+redirects: on
+source https://nuget.org/api/v2
+
+nuget FsCheck
+nuget FsUnit
+nuget canopy

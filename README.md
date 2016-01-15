@@ -30,6 +30,9 @@ Talks and slides
  - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August) - QCon Rio 2015  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
 
+ - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January) - NDC London 2016  
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/taking-your-craft-seriously/code-done) and [slide with library list](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously/#/4)
+
 ### FsLab and Data Science
 
  - [**Scalable machine learning and data science with F#**](http://tpetricek.github.io/Talks/2015/scalable-ml-ds-fsharp/redmond/) (May) - Microsoft, Redmond  

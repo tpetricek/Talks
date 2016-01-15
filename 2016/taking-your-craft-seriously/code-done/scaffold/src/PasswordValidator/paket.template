@@ -1,0 +1,23 @@
+type project
+owners
+    Tomas Petricek
+authors 
+    Tomas Petricek
+projectUrl
+    http://github.com/tpetricek/PasswordValidator
+iconUrl
+    https://raw.githubusercontent.com/tpetricek/PasswordValidator/master/docs/files/img/logo.png
+licenseUrl
+    http://github.com/tpetricek/PasswordValidator/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    password validation demo
+summary
+    A demo project that implements a simple password validation library
+description
+    A demo project to showcase the ProjectScaffold tool. The demo is a password validation library that checks a number of password properties (length, presence of certain characters, etc.).
+
+

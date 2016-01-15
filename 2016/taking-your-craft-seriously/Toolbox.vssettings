@@ -1,0 +1,389 @@
+<UserSettings><ApplicationIdentity version="14.0"/><ToolsOptions/><Category name="Environment_Group" RegisteredName="Environment_Group"><Category name="Environment_Toolbox" Category="{481999F2-7479-4e03-83D5-BE808BA142DF}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_Toolbox" PackageName="Visual Studio Environment Package"><PropertyValue name="ShowAllTabs">false</PropertyValue><PropertyValue name="Version">1</PropertyValue><PropertyValue name="DeletedTabCount">0</PropertyValue><PropertyValue name="Tab0.Name">1 From scripts to tests</PropertyValue><PropertyValue name="Tab0.View">0</PropertyValue><PropertyValue name="Tab0.UseDefaultName">false</PropertyValue><PropertyValue name="Tab0.RecordType">1</PropertyValue><PropertyValue name="Tab0.Position">53</PropertyValue><PropertyValue name="Tab0.OriginalName">1 From scripts to tests</PropertyValue><PropertyValue name="Tab1.Name">2 Mocking without frameworks</PropertyValue><PropertyValue name="Tab1.View">0</PropertyValue><PropertyValue name="Tab1.UseDefaultName">false</PropertyValue><PropertyValue name="Tab1.RecordType">1</PropertyValue><PropertyValue name="Tab1.Position">54</PropertyValue><PropertyValue name="Tab1.OriginalName">2 Mocking without frameworks</PropertyValue><PropertyValue name="Tab2.Name">3 Property-based testing</PropertyValue><PropertyValue name="Tab2.View">0</PropertyValue><PropertyValue name="Tab2.UseDefaultName">false</PropertyValue><PropertyValue name="Tab2.RecordType">1</PropertyValue><PropertyValue name="Tab2.Position">55</PropertyValue><PropertyValue name="Tab2.OriginalName">3 Property-based testing</PropertyValue><PropertyValue name="Tab3.Name">4 Web testing with canopy</PropertyValue><PropertyValue name="Tab3.View">0</PropertyValue><PropertyValue name="Tab3.UseDefaultName">false</PropertyValue><PropertyValue name="Tab3.RecordType">1</PropertyValue><PropertyValue name="Tab3.Position">56</PropertyValue><PropertyValue name="Tab3.OriginalName">4 </PropertyValue><PropertyValue name="Tab4.Name">5 Writing documentation</PropertyValue><PropertyValue name="Tab4.View">0</PropertyValue><PropertyValue name="Tab4.UseDefaultName">false</PropertyValue><PropertyValue name="Tab4.RecordType">1</PropertyValue><PropertyValue name="Tab4.Position">57</PropertyValue><PropertyValue name="Tab4.OriginalName">5 Writing documentation</PropertyValue><PropertyValue name="Tab5.Name">Advertising</PropertyValue><PropertyValue name="Tab5.View">0</PropertyValue><PropertyValue name="Tab5.UseDefaultName">true</PropertyValue><PropertyValue name="Tab5.RecordType">4</PropertyValue><PropertyValue name="Tab5.Position">59</PropertyValue><PropertyValue name="TabCount">6</PropertyValue><PropertyValue name="DeletedItemCount">0</PropertyValue><PropertyValue name="Item0.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item0.ID">8CCCD1D378002C03E489B78A3B146D83</PropertyValue><PropertyValue name="Item0.Name">Text: // Reference PasswordValidator
+#r "PasswordValidator/bin/Debug/PasswordValidator.dll"
+open PasswordValidator</PropertyValue><PropertyValue name="Item0.UseDefaultName">true</PropertyValue><PropertyValue name="Item0.Tab">1 From scripts to tests</PropertyValue><PropertyValue name="Item0.OriginalTabID">General</PropertyValue><PropertyValue name="Item0.OriginalTab">General</PropertyValue><PropertyValue name="Item0.RecordType">1</PropertyValue><PropertyValue name="Item0.Data">// Reference PasswordValidator
+#r "PasswordValidator/bin/Debug/PasswordValidator.dll"
+open PasswordValidator</PropertyValue><PropertyValue name="Item0.Position">1</PropertyValue><PropertyValue name="Item1.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item1.ID">C29402033186DB1DB987E39ED7A75374</PropertyValue><PropertyValue name="Item1.Name">Text: // Power validator demo
+let reqs = 
+  [ Validators.LengthRequirement
+    Validators.AsciiUpperRequirement ]
+
+let pow = PowerValidator(reqs)
+
+pow.IsSatisfied("TEST")
+pow.IsSatisfied("long test")
+pow.IsSatisfied("long TEST")
+</PropertyValue><PropertyValue name="Item1.UseDefaultName">true</PropertyValue><PropertyValue name="Item1.Tab">1 From scripts to tests</PropertyValue><PropertyValue name="Item1.OriginalTabID">General</PropertyValue><PropertyValue name="Item1.OriginalTab">General</PropertyValue><PropertyValue name="Item1.RecordType">1</PropertyValue><PropertyValue name="Item1.Data">// Power validator demo
+let reqs = 
+  [ Validators.LengthRequirement
+    Validators.AsciiUpperRequirement ]
+
+let pow = PowerValidator(reqs)
+
+pow.IsSatisfied("TEST")
+pow.IsSatisfied("long test")
+pow.IsSatisfied("long TEST")
+</PropertyValue><PropertyValue name="Item1.Position">2</PropertyValue><PropertyValue name="Item2.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item2.ID">F2AF4295506722E271EDC4A9AD1A968D</PropertyValue><PropertyValue name="Item2.Name">Text: // Power validator test
+[&lt;Test&gt;]
+let ``Power validator can combine length and upper-case`` () =
+  let reqs = 
+    [ Validators.LengthRequirement
+      Validators.AsciiUpperRequirement ]
+  let pow = PowerValidator(reqs)
+  pow.IsSatisfied("TEST") |&gt; should equal false
+  pow.IsSatisfied("long test") |&gt; should equal false
+  pow.IsSatisfied("long TEST") |&gt; should equal true
+</PropertyValue><PropertyValue name="Item2.UseDefaultName">true</PropertyValue><PropertyValue name="Item2.Tab">1 From scripts to tests</PropertyValue><PropertyValue name="Item2.OriginalTab">1 From scripts to tests</PropertyValue><PropertyValue name="Item2.RecordType">1</PropertyValue><PropertyValue name="Item2.Data">// Power validator test
+[&lt;Test&gt;]
+let ``Power validator can combine length and upper-case`` () =
+  let reqs = 
+    [ Validators.LengthRequirement
+      Validators.AsciiUpperRequirement ]
+  let pow = PowerValidator(reqs)
+  pow.IsSatisfied("TEST") |&gt; should equal false
+  pow.IsSatisfied("long test") |&gt; should equal false
+  pow.IsSatisfied("long TEST") |&gt; should equal true
+</PropertyValue><PropertyValue name="Item2.Position">3</PropertyValue><PropertyValue name="Item3.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item3.ID">20108A341F16672A6883C64A6ADF4860</PropertyValue><PropertyValue name="Item3.Name">Text: // Mocking without frameworks
+[&lt;Test&gt;]
+let ``When a requirement is not satisfied, the password is rejected`` () =
+  let password = "invalid"
+  let requirement = 
+    { new IRequirement with 
+        member x.IsSatisfied pwd = false }
+  let validator = PowerValidator([requirement])
+  Assert.AreEqual(validator.IsSatisfied(password), false)
+</PropertyValue><PropertyValue name="Item3.UseDefaultName">true</PropertyValue><PropertyValue name="Item3.Tab">2 Mocking without frameworks</PropertyValue><PropertyValue name="Item3.OriginalTabID">General</PropertyValue><PropertyValue name="Item3.OriginalTab">General</PropertyValue><PropertyValue name="Item3.RecordType">1</PropertyValue><PropertyValue name="Item3.Data">// Mocking without frameworks
+[&lt;Test&gt;]
+let ``When a requirement is not satisfied, the password is rejected`` () =
+  let password = "invalid"
+  let requirement = 
+    { new IRequirement with 
+        member x.IsSatisfied pwd = false }
+  let validator = PowerValidator([requirement])
+  Assert.AreEqual(validator.IsSatisfied(password), false)
+</PropertyValue><PropertyValue name="Item3.Position">1</PropertyValue><PropertyValue name="Item4.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item4.ID">BE4A8BFD6506922A09B74920ED1FAA4A</PropertyValue><PropertyValue name="Item4.Name">Text: // Loading dependencies for F# Interactive
+#if INTERACTIVE
+#r "../PasswordValidator/bin/Debug/PasswordValidator.dll"
+#r "../packages/NUnit/lib/nunit.framework.dll"
+#r "../packages/FsUnit/lib/net45/FsUnit.NUnit.dll"
+#r "../packages/FsCheck/lib/net45/FsCheck.dll"
+#else
+module PasswordValidator.SimpleTests
+#endif
+open FsCheck
+open FsUnit
+open NUnit.Framework
+open PasswordValidator
+</PropertyValue><PropertyValue name="Item4.UseDefaultName">true</PropertyValue><PropertyValue name="Item4.Tab">3 Property-based testing</PropertyValue><PropertyValue name="Item4.OriginalTab">3 Property-based testing</PropertyValue><PropertyValue name="Item4.RecordType">1</PropertyValue><PropertyValue name="Item4.Data">// Loading dependencies for F# Interactive
+#if INTERACTIVE
+#r "../PasswordValidator/bin/Debug/PasswordValidator.dll"
+#r "../packages/NUnit/lib/nunit.framework.dll"
+#r "../packages/FsUnit/lib/net45/FsUnit.NUnit.dll"
+#r "../packages/FsCheck/lib/net45/FsCheck.dll"
+#else
+module PasswordValidator.SimpleTests
+#endif
+open FsCheck
+open FsUnit
+open NUnit.Framework
+open PasswordValidator
+</PropertyValue><PropertyValue name="Item4.Position">1</PropertyValue><PropertyValue name="Item5.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item5.ID">7137C605F61F51AD1652EF65A635EC1B</PropertyValue><PropertyValue name="Item5.Name">Text: let letters = set "ABCDEFGHIJKLMNOPQRSTUVWXYZ"</PropertyValue><PropertyValue name="Item5.UseDefaultName">true</PropertyValue><PropertyValue name="Item5.Tab">3 Property-based testing</PropertyValue><PropertyValue name="Item5.OriginalTab">3 Property-based testing</PropertyValue><PropertyValue name="Item5.RecordType">1</PropertyValue><PropertyValue name="Item5.Data">let letters = set "ABCDEFGHIJKLMNOPQRSTUVWXYZ"</PropertyValue><PropertyValue name="Item5.Position">2</PropertyValue><PropertyValue name="Item6.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item6.ID">03B15A351D11408932D73F40B418CA0E</PropertyValue><PropertyValue name="Item6.Name">Text: let config = { Config.QuickThrowOnFailure with MaxTest = 1000 }</PropertyValue><PropertyValue name="Item6.UseDefaultName">true</PropertyValue><PropertyValue name="Item6.Tab">3 Property-based testing</PropertyValue><PropertyValue name="Item6.OriginalTab">3 Property-based testing</PropertyValue><PropertyValue name="Item6.RecordType">1</PropertyValue><PropertyValue name="Item6.Data">let config = { Config.QuickThrowOnFailure with MaxTest = 1000 }</PropertyValue><PropertyValue name="Item6.Position">3</PropertyValue><PropertyValue name="Item7.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item7.ID">638D9A2E5DC22F9B195B4C64B278CA27</PropertyValue><PropertyValue name="Item7.Name">Text:   // Testing upper case ASCII
+  let up = Validators.AsciiUpperRequirement
+  let letters = set "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  let config = { Config.QuickThrowOnFailure with MaxTest = 1000 }
+  Check.One(config, fun (s:string) -&gt; true)
+</PropertyValue><PropertyValue name="Item7.UseDefaultName">true</PropertyValue><PropertyValue name="Item7.Tab">3 Property-based testing</PropertyValue><PropertyValue name="Item7.OriginalTab">3 Property-based testing</PropertyValue><PropertyValue name="Item7.RecordType">1</PropertyValue><PropertyValue name="Item7.Data">  // Testing upper case ASCII
+  let up = Validators.AsciiUpperRequirement
+  let letters = set "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  let config = { Config.QuickThrowOnFailure with MaxTest = 1000 }
+  Check.One(config, fun (s:string) -&gt; true)
+</PropertyValue><PropertyValue name="Item7.Position">4</PropertyValue><PropertyValue name="Item8.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item8.ID">BF5C368FD78AEA1FC09529D2FD191C79</PropertyValue><PropertyValue name="Item8.Name">Text: // Loading dependencies for canopy
+#if INTERACTIVE
+#r "../packages/NUnit/lib/nunit.framework.dll"
+#r "../packages/Selenium.Support/lib/net40/WebDriver.Support.dll"
+#r "../packages/Selenium.WebDriver/lib/net40/WebDriver.dll"
+#r "../packages/canopy/lib/canopy.dll"
+#else
+module PasswordValidator.WebTests
+#endif
+open FsUnit
+open NUnit.Framework
+open canopy</PropertyValue><PropertyValue name="Item8.UseDefaultName">true</PropertyValue><PropertyValue name="Item8.Tab">4 </PropertyValue><PropertyValue name="Item8.OriginalTab">4 Web testing with canopy</PropertyValue><PropertyValue name="Item8.RecordType">1</PropertyValue><PropertyValue name="Item8.Data">// Loading dependencies for canopy
+#if INTERACTIVE
+#r "../packages/NUnit/lib/nunit.framework.dll"
+#r "../packages/Selenium.Support/lib/net40/WebDriver.Support.dll"
+#r "../packages/Selenium.WebDriver/lib/net40/WebDriver.dll"
+#r "../packages/canopy/lib/canopy.dll"
+#else
+module PasswordValidator.WebTests
+#endif
+open FsUnit
+open NUnit.Framework
+open canopy</PropertyValue><PropertyValue name="Item8.Position">1</PropertyValue><PropertyValue name="Item9.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item9.ID">354BBF681A9F007A479A6B8B16F5D8BD</PropertyValue><PropertyValue name="Item9.Name">Text: // COMPLETED: Testing the web site
+[&lt;Test&gt;]
+let ``'Something' is valid and 'aa' is not valid`` () =
+  configuration.chromeDir &lt;- __SOURCE_DIRECTORY__ 
+  start chrome  
+  url "http://localhost:6581/"
+  "#pwd" &lt;&lt; "Something"
+  element "form button" |&gt; click
+  element ".alert" |&gt; read |&gt; contains "Success"
+
+  url "http://localhost:6581/"
+  "#pwd" &lt;&lt; "aa"
+  element "form button" |&gt; click
+  element ".alert" |&gt; read |&gt; contains "Error"
+  quit()</PropertyValue><PropertyValue name="Item9.UseDefaultName">true</PropertyValue><PropertyValue name="Item9.Tab">4 </PropertyValue><PropertyValue name="Item9.OriginalTabID">General</PropertyValue><PropertyValue name="Item9.OriginalTab">General</PropertyValue><PropertyValue name="Item9.RecordType">1</PropertyValue><PropertyValue name="Item9.Data">// COMPLETED: Testing the web site
+[&lt;Test&gt;]
+let ``'Something' is valid and 'aa' is not valid`` () =
+  configuration.chromeDir &lt;- __SOURCE_DIRECTORY__ 
+  start chrome  
+  url "http://localhost:6581/"
+  "#pwd" &lt;&lt; "Something"
+  element "form button" |&gt; click
+  element ".alert" |&gt; read |&gt; contains "Success"
+
+  url "http://localhost:6581/"
+  "#pwd" &lt;&lt; "aa"
+  element "form button" |&gt; click
+  element ".alert" |&gt; read |&gt; contains "Error"
+  quit()</PropertyValue><PropertyValue name="Item9.Position">2</PropertyValue><PropertyValue name="Item10.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item10.ID">61E2B12EA7241AE769344F5C0AF45B9E</PropertyValue><PropertyValue name="Item10.Name">Text: // Testing the web site
+[&lt;Test&gt;]
+let ``'Something' is valid and 'aa' is not valid`` () =
+  configuration.chromeDir &lt;- __SOURCE_DIRECTORY__ 
+
+  // TODO: Start chrome &amp; go to: http://localhost:6581
+  // TODO: Set #pwd to something valid &lt;&lt; &amp; click 'form button'
+  // TODO: Read ".alert", check it contains Success/Error
+  // TODO: Quit chrome</PropertyValue><PropertyValue name="Item10.UseDefaultName">true</PropertyValue><PropertyValue name="Item10.Tab">4 </PropertyValue><PropertyValue name="Item10.OriginalTab">4 Web testing with canopy</PropertyValue><PropertyValue name="Item10.RecordType">1</PropertyValue><PropertyValue name="Item10.Data">// Testing the web site
+[&lt;Test&gt;]
+let ``'Something' is valid and 'aa' is not valid`` () =
+  configuration.chromeDir &lt;- __SOURCE_DIRECTORY__ 
+
+  // TODO: Start chrome &amp; go to: http://localhost:6581
+  // TODO: Set #pwd to something valid &lt;&lt; &amp; click 'form button'
+  // TODO: Read ".alert", check it contains Success/Error
+  // TODO: Quit chrome</PropertyValue><PropertyValue name="Item10.Position">3</PropertyValue><PropertyValue name="Item11.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item11.ID">DCF507F25B0188934A7F315EDB6C1A9B</PropertyValue><PropertyValue name="Item11.Name">Text: (**
+Password validator tutorial
+===========================
+
+This is a demo library for validating passwords. You can check that password 
+has a minimal _length_, contains an _upper case_ and a _lower case_ letter.
+
+Referencing the library
+-----------------------
+
+If you're using F# Interactive, you can reference the library as follows:
+*)
+#r "PasswordValidator.dll"
+open PasswordValidator
+(**
+Validating passwords
+--------------------
+
+There are two ways of validating passwords:
+
+ * **Requirements** - You can use individual requirements via
+   the `IRequirement` interface. The implementations can be found
+   in the `Validators` module.
+
+ * **Power validator** - Alternatively, you can use the 
+   `PowerValidator` type, which takes a collection of requirements.
+
+### Requirements
+
+The following snippet demonstrates the length requirement:
+*)
+let len = Validators.LengthRequirement
+len.IsSatisfied("hello")       // 'false'
+len.IsSatisfied("hello world") // 'true'
+(**
+
+### Power validator
+
+The following demonstrates how to use `PowerValidator` to 
+check for the presence of an uppr case letter and sufficient length:
+*)
+let valids = 
+  [ Validators.LengthRequirement
+    Validators.AsciiUpperRequirement ]
+
+let pow = PowerValidator(valids)
+pow.IsSatisfied("Hello")  // 'false'
+pow.IsSatisfied("1Hello") // 'true'</PropertyValue><PropertyValue name="Item11.UseDefaultName">true</PropertyValue><PropertyValue name="Item11.Tab">5 Writing documentation</PropertyValue><PropertyValue name="Item11.OriginalTab">5 Writing documentation</PropertyValue><PropertyValue name="Item11.RecordType">1</PropertyValue><PropertyValue name="Item11.Data">(**
+Password validator tutorial
+===========================
+
+This is a demo library for validating passwords. You can check that password 
+has a minimal _length_, contains an _upper case_ and a _lower case_ letter.
+
+Referencing the library
+-----------------------
+
+If you're using F# Interactive, you can reference the library as follows:
+*)
+#r "PasswordValidator.dll"
+open PasswordValidator
+(**
+Validating passwords
+--------------------
+
+There are two ways of validating passwords:
+
+ * **Requirements** - You can use individual requirements via
+   the `IRequirement` interface. The implementations can be found
+   in the `Validators` module.
+
+ * **Power validator** - Alternatively, you can use the 
+   `PowerValidator` type, which takes a collection of requirements.
+
+### Requirements
+
+The following snippet demonstrates the length requirement:
+*)
+let len = Validators.LengthRequirement
+len.IsSatisfied("hello")       // 'false'
+len.IsSatisfied("hello world") // 'true'
+(**
+
+### Power validator
+
+The following demonstrates how to use `PowerValidator` to 
+check for the presence of an uppr case letter and sufficient length:
+*)
+let valids = 
+  [ Validators.LengthRequirement
+    Validators.AsciiUpperRequirement ]
+
+let pow = PowerValidator(valids)
+pow.IsSatisfied("Hello")  // 'false'
+pow.IsSatisfied("1Hello") // 'true'</PropertyValue><PropertyValue name="Item11.Position">1</PropertyValue><PropertyValue name="Item12.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item12.ID">5F80ED992B182C306564A01FB8278143</PropertyValue><PropertyValue name="Item12.Name">Text: Password validator tutorial
+===========================
+
+This is a demo library for validating passwords. You can check that password 
+has a minimal _length_, contains an _upper case_ and a _lower case_ letter.
+
+Referencing the library
+-----------------------
+
+When using the library in C#, just add a reference to `PasswordValidator.dll`
+and open the `PasswordValidator` namespace.
+
+Validating passwords
+--------------------
+
+There are two ways of validating passwords:
+
+ * **Requirements** - You can use individual requirements via
+   the `IRequirement` interface. The implementations can be found
+   in the `Validators` module.
+
+ * **Power validator** - Alternatively, you can use the 
+   `PowerValidator` type, which takes a collection of requirements.
+
+### Requirements
+
+The following snippet demonstrates the length requirement:
+
+    [lang=csharp]
+    var len = Validators.LengthRequirement;
+    len.IsSatisfied("hello");       // 'false'
+    len.IsSatisfied("hello world"); // 'true'
+
+### Power validator
+
+The following demonstrates how to use `PowerValidator` to 
+check for the presence of an uppr case letter and sufficient length:
+
+    [lang=csharp]
+    let valids = 
+      new[] { 
+        Validators.LengthRequirement
+        Validators.AsciiUpperRequirement };
+
+    var pow = new PowerValidator(valids);
+    pow.IsSatisfied("hello world");  // 'false'
+    pow.IsSatisfied("Hello world");  // 'true'</PropertyValue><PropertyValue name="Item12.UseDefaultName">true</PropertyValue><PropertyValue name="Item12.Tab">5 Writing documentation</PropertyValue><PropertyValue name="Item12.OriginalTab">5 Writing documentation</PropertyValue><PropertyValue name="Item12.RecordType">1</PropertyValue><PropertyValue name="Item12.Data">Password validator tutorial
+===========================
+
+This is a demo library for validating passwords. You can check that password 
+has a minimal _length_, contains an _upper case_ and a _lower case_ letter.
+
+Referencing the library
+-----------------------
+
+When using the library in C#, just add a reference to `PasswordValidator.dll`
+and open the `PasswordValidator` namespace.
+
+Validating passwords
+--------------------
+
+There are two ways of validating passwords:
+
+ * **Requirements** - You can use individual requirements via
+   the `IRequirement` interface. The implementations can be found
+   in the `Validators` module.
+
+ * **Power validator** - Alternatively, you can use the 
+   `PowerValidator` type, which takes a collection of requirements.
+
+### Requirements
+
+The following snippet demonstrates the length requirement:
+
+    [lang=csharp]
+    var len = Validators.LengthRequirement;
+    len.IsSatisfied("hello");       // 'false'
+    len.IsSatisfied("hello world"); // 'true'
+
+### Power validator
+
+The following demonstrates how to use `PowerValidator` to 
+check for the presence of an uppr case letter and sufficient length:
+
+    [lang=csharp]
+    let valids = 
+      new[] { 
+        Validators.LengthRequirement
+        Validators.AsciiUpperRequirement };
+
+    var pow = new PowerValidator(valids);
+    pow.IsSatisfied("hello world");  // 'false'
+    pow.IsSatisfied("Hello world");  // 'true'</PropertyValue><PropertyValue name="Item12.Position">2</PropertyValue><PropertyValue name="Item13.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item13.ID">FC3370AE999172AF787A6D668AD513DA</PropertyValue><PropertyValue name="Item13.Name">Text:   /// &lt;summary&gt;
+  /// A validator that lets you combine multiple different validators.
+  /// For example:
+  /// 
+  ///     [lang=csharp]
+  ///     var valids = new PowerValidator(new[] {
+  ///       Validators.LengthRequirement,
+  ///       Validators.AsciiUpperRequirement
+  ///     });
+  /// &lt;/summary&gt;
+</PropertyValue><PropertyValue name="Item13.UseDefaultName">true</PropertyValue><PropertyValue name="Item13.Tab">5 Writing documentation</PropertyValue><PropertyValue name="Item13.OriginalTab">5 Writing documentation</PropertyValue><PropertyValue name="Item13.RecordType">1</PropertyValue><PropertyValue name="Item13.Data">  /// &lt;summary&gt;
+  /// A validator that lets you combine multiple different validators.
+  /// For example:
+  /// 
+  ///     [lang=csharp]
+  ///     var valids = new PowerValidator(new[] {
+  ///       Validators.LengthRequirement,
+  ///       Validators.AsciiUpperRequirement
+  ///     });
+  /// &lt;/summary&gt;
+</PropertyValue><PropertyValue name="Item13.Position">3</PropertyValue><PropertyValue name="Item14.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item14.ID">0D40E28F878EA2274A6FE9D058793EDB</PropertyValue><PropertyValue name="Item14.Name">Text:   /// &lt;summary&gt;
+  /// Exposes `IRequirement` implementations for common password rules:
+  /// 
+  ///  * `LengthRequirement` requires password to have 8 or more characters
+  ///  * `AsciiLowerRequirement` requires password to contain a 
+  ///     lower-case ascii character
+  ///  * `AsciiUppperRequirement` requires password to contain an
+  ///     upper-case ascii character
+  /// 
+  /// &lt;/summary&gt;</PropertyValue><PropertyValue name="Item14.UseDefaultName">true</PropertyValue><PropertyValue name="Item14.Tab">5 Writing documentation</PropertyValue><PropertyValue name="Item14.OriginalTab">5 Writing documentation</PropertyValue><PropertyValue name="Item14.RecordType">1</PropertyValue><PropertyValue name="Item14.Data">  /// &lt;summary&gt;
+  /// Exposes `IRequirement` implementations for common password rules:
+  /// 
+  ///  * `LengthRequirement` requires password to have 8 or more characters
+  ///  * `AsciiLowerRequirement` requires password to contain a 
+  ///     lower-case ascii character
+  ///  * `AsciiUppperRequirement` requires password to contain an
+  ///     upper-case ascii character
+  /// 
+  /// &lt;/summary&gt;</PropertyValue><PropertyValue name="Item14.Position">4</PropertyValue><PropertyValue name="ItemCount">15</PropertyValue></Category></Category></UserSettings>
