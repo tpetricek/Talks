@@ -57,10 +57,16 @@ Talks and slides
   
 ### Philosophy of Science and Research
 
+ - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2016/philosophy-of-types) (February) - LambdaDays Krakow, 2016  
+   See also: [Philosophy books every computer scientist should read](http://tomasp.net/blog/2015/reading-list/)
+   and [older version of the talk](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
+
  - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April) - Papers We Love, Prague  
+ 
  - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June) - STTI 2015, MFF
- - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) (September) - StrangeLoop 2015
+ 
  - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October) - Papers We Love, NYC, 2015
+ 
  - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2015/living-with-errors/) (October) - HaPoC 2015, Pisa
 
 Slides license

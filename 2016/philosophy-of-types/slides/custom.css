@@ -1,0 +1,103 @@
+@import url(http://fonts.googleapis.com/css?family=Cardo:700,400,400italic|Pontano+Sans);
+
+.reveal h1 {
+  text-transform:none;
+  font-size:38pt;
+  font-weight:bold;
+  font-family:'Cardo', serif;
+}
+.reveal h2 {
+  text-transform:none;
+  font-size:38pt;
+  font-family:'Cardo', serif;
+  font-weight:bold;
+  margin-bottom:65px;
+}
+.reveal h3 {
+  text-transform:none;
+  font-family:'Cardo', serif;
+  font-size:30pt;
+  font-weight:bold;
+  margin-bottom:65px;
+}
+.reveal h4 {
+  margin:50px 0px 0px 0px;
+}
+.reveal p, .reveal li {
+  font-family:'Pontano Sans', sans-serif;
+  font-size:26pt;
+}
+.reveal blockquote:before {
+  display:none;
+}
+.reveal blockquote  {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+  padding:0px;
+  margin:0px;
+  width:100%;
+}
+.reveal blockquote p {
+  color:black;
+  padding:0px; margin:10px 0px 10px 0px;
+  font-style:italic;
+  font-family:'Cardo', serif;
+  font-size:26pt;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+}
+.reveal code
+{
+  font-family:consolas;
+}
+.reveal h3 .math
+{
+  font-weight:normal;
+}
+.reveal .MathJax_Display {
+  margin-top:15px !important;
+  margin-bottom:30px !important;
+}
+.reveal img
+{
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+  border-style:none !important;
+}
+.reveal pre
+{
+  font-size:14pt;
+}
+.reveal table.pre
+{
+  width:60% !important;
+  margin-left:20%;
+  margin-right:20%;
+}
+.reveal div.tip
+{
+  font:14pt 'Droid Sans', arial, sans-serif;
+}
+td.lines {
+  display:none;
+}
+
+.grid .cur {
+  background:#d0b840;
+}
+.grid .nb {
+  background:#f0e888;
+}
+.grid td, .grid tr
+{
+  background:white;
+  border:solid 2px black;
+}
+.grid td
+{
+  width:50px;
+  text-align:center !important;
+}
+
+.reference p
+{
+  padding-top:20px;
+  font-size:22pt;
+}
