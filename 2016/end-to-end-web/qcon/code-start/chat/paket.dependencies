@@ -1,0 +1,9 @@
+source https://nuget.org/api/v2
+
+nuget FAKE
+nuget FsCheck
+nuget NUnit
+nuget NUnit.Runners
+nuget Suave
+nuget FSharp.Data
+nuget FSharp.Compiler.Service

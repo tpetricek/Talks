@@ -1,0 +1,11 @@
+{
+  "name": "Whats F#: The $22 billion chat",
+  "description": "A simple Suave.io web application that supports Azure and Heroku deployment",
+  "website": "http://suave.io/",
+  "repository": "https://github.com/tpetricek/???",
+  "logo": "https://raw.githubusercontent.com/SuaveIO/suave/gh-pages/images/logo.gif",
+  "keywords": [ "suave", "fsharp" ],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/SuaveIO/mono-script-buildpack.git"
+  }
+}
