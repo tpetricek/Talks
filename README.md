@@ -24,8 +24,11 @@ Talks and slides
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/usa/) (May, June) - Seattle and New York F# meetups  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
- - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June) - NDC Oslo 2015, Improved version  
+ - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June) - NDC Oslo 2015, Improved
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/ndc/code-done)
+
+ - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/ndc/) (March) - QCon Sao Paulo 2016, Updated
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/end-to-end-web/qcon/code-done)
 
  - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August) - QCon Rio 2015  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
