@@ -1,0 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
+
+.reveal section img
+{
+  border:0px none white;
+  box-shadow:0 0 0px rgba(0, 0, 0, 1) !important;
+}
+
+.reveal h1 { font:45pt 'Roboto Slab'; }
+.reveal h1 small { font-size:35pt; color:white; }
