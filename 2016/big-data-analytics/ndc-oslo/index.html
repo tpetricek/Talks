@@ -1,0 +1,241 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Analysing Big Data in the Cloud</title>
+    <meta name="description" content="Working with small time-series data is fun. You can easily load daily Microsoft stock
+prices into memory and find the most successful year it its history.  But what if you have prices
+at millisecond frequency for thousands of stocks or high-resolution temperatures for the entire globe?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">val fsi : Compiler.Interactive.InteractiveSession<br /><br />Full name: Microsoft.FSharp.Compiler.Interactive.Settings.fsi</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="withbackground" data-background="images/houses3.jpg">
+<h1>Analysing<br /> <em>Big Time-Series Data</em> <br /> in the Cloud</h1>
+<br />
+<br />
+<br />
+<br />
+<br />
+<h3>Tomas Petricek, fsharpWorks <br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://tomasp.net">tomasp.net</a> | <a href="http://fsharpworks.com">fsharpworks.com</a></h3>
+</section>
+<section >
+<h2>F# is a <em>general purpose</em> language</h2>
+</section>
+<section >
+<h2>Why F# for <em>analytical components</em>?</h2>
+</section>
+<section >
+<h2>F# Software Foundation</h2>
+<ul>
+<li><em>Language</em> design and <em>compiler</em></li>
+<li><em>Editor and tool</em> creators</li>
+<li><em>Commercial user</em> contributions</li>
+<li><em>Open-source</em> community</li>
+</ul>
+<br /><br /><br />
+<h3><a href="http://fsharp.org">www.fsharp.org</a> | <a href="http://twitter.com/fsharporg">@fsharporg</a> | <a href="https://twitter.com/search?q=%23fsharp">#fsharp</a></h3>
+</section>
+<section class="withbackground" data-background="images/houses1.jpg">
+<h1>DEMO</h1>
+<h2>UK housing crisis<br />(April 2016)</h2>
+</section>
+<section >
+<img src="images/ionide1.png" />
+</section>
+<section >
+<h1>www.<strong>ionide</strong>.io</h1>
+<br/>
+<div class="fragment">
+<p><em>Atom</em> and <em>VS Code</em> bindings for F#</p>
+<p><em>Open</em> with support for <em>community tooling</em></p>
+<br /><br />
+</div>
+</section>
+<section >
+<h2>HTML formatters</h2>
+<br/>
+<div class="fragment">
+<p>Supported in <em>Ionide</em> and <em>FsLab Journals</em></p>
+<p>Planned support in <em>Jupyter</em> notebooks</p>
+</div>
+</section>
+<section >
+<h2>HTML formatters</h2>
+<br/>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">fsi</span><span class="o">.</span><span class="i">AddHtmlPrinter</span>(<span class="k">fun</span> (<span class="i">table</span><span class="o">:</span><span class="i">Table</span>) <span class="k">-&gt;</span>
+  [ <span class="s">&quot;style&quot;</span>, <span class="s">&quot;&lt;style&gt;td { color:red; }&lt;/style&gt;&quot;</span> ],
+  <span class="i">table</span><span class="o">.</span><span class="i">InlineHtml</span> )
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section class="withbackground" data-background="images/houses3.jpg">
+<h1>DEMO</h1>
+<h2>UK housing crisis<br />(1995 - 2016)</h2>
+</section>
+<section >
+<img src="images/ionide2.png" />
+</section>
+<section >
+<h2>Deedle and Big Deedle</h2>
+<br/>
+<div class="fragment">
+<p>Exploratory <em>data frame</em> and <em>time-series</em> library</p>
+<p><em>In-memory</em> data and <em>virtual</em> data sources</p>
+<br />
+<p>Define addressing <code>IRangeKeyOperations&lt;'A&gt;</code> <br />
+and data souurces <code>IVirtualVectorSource&lt;'T&gt;</code></p>
+</div>
+</section>
+<section class="withbackground" data-background="images/clouds.jpg">
+<h1>DEMO</h1>
+<h2>Processing house <br />prices in the cloud</h2>
+</section>
+<section >
+<img src="images/ionide3.png" />
+</section>
+<section >
+<code class="fragment" style="font-size:70pt">async { .. }</code>
+</section>
+<section >
+<code style="font-size:70pt;color:#ec7c4B;">cloud { .. }</code>
+</section>
+<section >
+<h1>www.<strong>mbrace</strong>.io</h1>
+<br/>
+<div class="fragment">
+<p>Data <em>scripting</em> for the <em>cloud</em></p>
+<p><em>Cloud</em> computations, <em>data flow</em> streams</p>
+<br /><br />
+</div>
+</section>
+<section class="withbackground" data-background="images/london.jpg">
+<h1>DEMO</h1>
+<h2>Tick trades with bid/ask<br />(WDC 2010-2015)</h2>
+</section>
+<section >
+<h2>Run your <em>computations</em> <br />where your <em>data</em> is</h2>
+</section>
+<section >
+<h2>Integrate with anything<br /> via <em>type providers</em></h2>
+</section>
+<section >
+<h2>Analysing big data with F#</h2>
+<ul>
+<li><em>fsharp.org</em> for expressive, efficient &amp; correct code</li>
+<li><em>ionide.io</em> for modern extensible tooling</li>
+<li><em>fslab.org</em> for all things data science</li>
+<li><em>mbrace.io</em> for interactive scalable computing<div style="margin-bottom:30px"></div></li>
+<li><em>Deedle</em> for time-series and data frames</li>
+<li><em>R Provider</em> for world-class stats packages</li>
+<li><em>XPlot</em> for rich HTML5 charting</li>
+</ul>
+</section>
+<section class="wordcloud">
+<p>software stacks <em>trainings</em></p>
+<p><em>mac and linux</em> <strong>cross platform</strong> tutorials</p>
+<h2>F# Software Foundation</h2>
+<p>user groups <strong>open source</strong> <em>Xamarin</em></p>
+<p>community <strong><a href="http://www.fsharp.org">www.fsharp.org</a></strong> research</p>
+<p>support  <em>contributions</em> diversity</p>
+</section>
+<section >
+<h1>Thank you!</h1>
+<br />
+<ul>
+<li><em>FP Lab Hour</em> - 13:40, room 10</li>
+<li><em>FP Session</em> - Elixir and more, room 3</li>
+<li><em>fsharpWorks</em> - trainings &amp; consulting</li>
+</ul>
+<br /><br /><br />
+<h3 style="position:relative;top:20px">Tomas Petricek</h3>
+<p><a href="http://tomasp.net">tomasp.net</a> | <a href="http://www.fsharpworks.com">fsharpworks.com</a><br />
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a></p>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
