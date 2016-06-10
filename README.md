@@ -11,66 +11,68 @@ Talks and slides
 
 ### F# and Functional Programming
 
- - [**Literate programming with F#**](http://tpetricek.github.io/Talks/2015/literate-programming/krakow/) (February) - LambdaDays, Krakow  
+ - [**Literate programming with F#**](http://tpetricek.github.io/Talks/2015/literate-programming/krakow/) (February 2015) - LambdaDays, Krakow  
    See also: [source code for the talk materials](https://github.com/tpetricek/Talks/tree/master/2015/literate-programming)
 
- - [**Literate programming with F#**](http://tpetricek.github.io/Talks/2015/literate-programming/london/talk.html) (March) - F#unctional Londoners, London (slightly improved)  
+ - [**Literate programming with F#**](http://tpetricek.github.io/Talks/2015/literate-programming/london/talk.html) (March 2015) - F#unctional Londoners, London (slightly improved)  
    See also: [source code for the talk materials](https://github.com/tpetricek/Talks/tree/master/2015/literate-programming)
 
- - [**The big F# open-source love story**](http://tpetricek.github.io/Talks/2015/love-open-source/london/) (April) - F# eXchange, London
+ - [**The big F# open-source love story**](http://tpetricek.github.io/Talks/2015/love-open-source/london/) (April 2015) - F# eXchange, London
 
- - [**Functional library design**](http://tpetricek.github.io/Talks/2015/functional-libraries/paris/) (May) - NCrafts.io, Paris
+ - [**Functional library design**](http://tpetricek.github.io/Talks/2015/functional-libraries/paris/) (May 2015) - NCrafts.io, Paris
 
- - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/usa/) (May, June) - Seattle and New York F# meetups  
+ - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/usa/) (May, June 2015) - Seattle and New York F# meetups  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
- - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June) - NDC Oslo 2015, Improved  
+ - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June 2015) - NDC Oslo, Improved  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/ndc/code-done)
 
- - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/qcon/) (March) - QCon Sao Paulo 2016, Updated  
+ - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/qcon/) (March 2016) - QCon Sao Paulo 2016, Updated  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/end-to-end-web/qcon/code-done)
 
- - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August) - QCon Rio 2015  
+ - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August 2015) - QCon Rio
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
 
- - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January) - NDC London 2016  
+ - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January 2016) - NDC London
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/taking-your-craft-seriously/code-done) and [slide with library list](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously/#/4)
 
 ### FsLab and Data Science
 
- - [**Scalable machine learning and data science with F#**](http://tpetricek.github.io/Talks/2015/scalable-ml-ds-fsharp/redmond/) (May) - Microsoft, Redmond  
+ - [**Scalable machine learning and data science with F#**](http://tpetricek.github.io/Talks/2015/scalable-ml-ds-fsharp/redmond/) (May 2015) - Microsoft, Redmond  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/scalable-ml-ds-fsharp/code-done)
 
- - [**F# in Finance: Data science with FsLab**](http://tpetricek.github.io/Talks/2015/deedle-finance/toronto/) (June) - Citi and S&P, Toronto  
+ - [**F# in Finance: Data science with FsLab**](http://tpetricek.github.io/Talks/2015/deedle-finance/toronto/) (June 2015) - Citi and S&P, Toronto  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/deedle-finance/code-done) and [journal source  code](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/journal/Tutorial.fsx)
 
- - [**Functional Machine Learning with F#**](http://tpetricek.github.io/Talks/2015/functional-machine-learning/qconrio/) together with [@evelinag](http://www.github.com/evelinag) (August) - QCon Rio 2015
+ - [**Functional Machine Learning with F#**](http://tpetricek.github.io/Talks/2015/functional-machine-learning/qconrio/) together with [@evelinag](http://www.github.com/evelinag) (August 2015) - QCon Rio
 
-- [**Data Science with FsLab**](http://tpetricek.github.io/Talks/2015/data-science-with-fslab/) (November) - MVP Summit, Redmond  
+- [**Data Science with FsLab**](http://tpetricek.github.io/Talks/2015/data-science-with-fslab/) (November 2015) - MVP Summit, Redmond  
   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/data-science-with-fslab/code-done) and [journal source  code](https://github.com/tpetricek/Talks/blob/master/2015/data-science-with-fslab/code-done/journal/Tutorial.fsx)
   
+- [**Analyzing big time-series data in the cloud**](http://tpetricek.github.io/Talks/2016/big-data-analytics/ndc-oslo) (June 2016) - NDC Oslo
+  See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/big-data-analytics) and sample [Big Deedle data providers](https://github.com/BlueMountainCapital/Deedle.BigDemo)
 
 ### Data Journalism and The Gamma
 
- - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September) - DevDay Krakow, 2015  
+ - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow  
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
- - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September) - Future Programming Workshop, 2015
+ - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September) - Future Programming Workshop 2015  
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
   
 ### Philosophy of Science and Research
 
- - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2016/philosophy-of-types) (February) - LambdaDays Krakow, 2016  
+ - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2016/philosophy-of-types) (February 2016) - LambdaDays Krakow  
    See also: [Philosophy books every computer scientist should read](http://tomasp.net/blog/2015/reading-list/)
    and [older version of the talk](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
 
- - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April) - Papers We Love, Prague  
+ - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague  
  
  - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June) - STTI 2015, MFF
  
- - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October) - Papers We Love, NYC, 2015
+ - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC
  
- - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2015/living-with-errors/) (October) - HaPoC 2015, Pisa
+ - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2015/living-with-errors/) (October 2015) - HaPoC 2015, Pisa
 
 Slides license
 --------------
