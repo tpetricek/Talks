@@ -30,10 +30,10 @@ Talks and slides
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/qcon/) (March 2016) - QCon Sao Paulo 2016, Updated  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/end-to-end-web/qcon/code-done)
 
- - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August 2015) - QCon Rio
+ - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August 2015) - QCon Rio  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
 
- - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January 2016) - NDC London
+ - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January 2016) - NDC London  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/taking-your-craft-seriously/code-done) and [slide with library list](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously/#/4)
 
 ### FsLab and Data Science
@@ -49,7 +49,7 @@ Talks and slides
 - [**Data Science with FsLab**](http://tpetricek.github.io/Talks/2015/data-science-with-fslab/) (November 2015) - MVP Summit, Redmond  
   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/data-science-with-fslab/code-done) and [journal source  code](https://github.com/tpetricek/Talks/blob/master/2015/data-science-with-fslab/code-done/journal/Tutorial.fsx)
   
-- [**Analyzing big time-series data in the cloud**](http://tpetricek.github.io/Talks/2016/big-data-analytics/ndc-oslo) (June 2016) - NDC Oslo
+- [**Analyzing big time-series data in the cloud**](http://tpetricek.github.io/Talks/2016/big-data-analytics/ndc-oslo) (June 2016) - NDC Oslo  
   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/big-data-analytics) and sample [Big Deedle data providers](https://github.com/BlueMountainCapital/Deedle.BigDemo)
 
 ### Data Journalism and The Gamma
