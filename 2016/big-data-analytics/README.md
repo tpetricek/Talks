@@ -21,7 +21,7 @@ The repository contains the following files:
 
  3. `2-houses-big.fsx` - Uses BigDeedle to access data remotely.
     For this you need to download and compile
-    [Deedle.BigDemo project]([BigDeedle](https://github.com/BlueMountainCapital/Deedle.BigDemo)
+    [Deedle.BigDemo project](https://github.com/BlueMountainCapital/Deedle.BigDemo)
     (see instructions below).
 
  4. `3-houses-cloud.fsx` - Uses BigDeedle to access data and MBrace
