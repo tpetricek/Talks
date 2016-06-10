@@ -21,20 +21,26 @@ Talks and slides
 
  - [**Functional library design**](http://tpetricek.github.io/Talks/2015/functional-libraries/paris/) (May 2015) - NCrafts.io, Paris
 
+ - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August 2015) - QCon Rio  
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
+
+ - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January 2016) - NDC London  
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/taking-your-craft-seriously/code-done) and [slide with library list](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously/#/4)
+
+### Web and Reactive programming
+
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/usa/) (May, June 2015) - Seattle and New York F# meetups  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June 2015) - NDC Oslo, Improved  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/ndc/code-done)
 
- - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/qcon/) (March 2016) - QCon Sao Paulo 2016, Updated  
+ - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/qcon/) (March 2016) - QCon Sao Paulo, Updated  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/end-to-end-web/qcon/code-done)
 
- - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August 2015) - QCon Rio  
-   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
+ - [**Celebrating New Year's Eve with F# and Suave**](http://tpetricek.github.io/Talks/2016/new-year-tweets) (April 2016) - F# eXchange, London    
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/new-year-tweets-web) and [the original project](https://github.com/tpetricek/new-year-tweets-2016)
 
- - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January 2016) - NDC London  
-   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/taking-your-craft-seriously/code-done) and [slide with library list](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously/#/4)
 
 ### FsLab and Data Science
 
