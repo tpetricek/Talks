@@ -8,6 +8,3 @@ nuget MBrace.Azure.Management 1.3.0
 nuget FsLab 0.4.8-beta
 nuget WindowsAzure.Storage 4.3.0
 nuget FSharp.Azure.StorageTypeProvider 1.2.0
-
-git https://github.com/BlueMountainCapital/Deedle.BigDemo.git master build: "build.cmd", OS: windows
-git https://github.com/BlueMountainCapital/Deedle.BigDemo.git master build: "build.sh", OS: mono

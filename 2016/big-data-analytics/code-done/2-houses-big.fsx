@@ -1,7 +1,7 @@
 #nowarn "211"
 #load "packages/FsLab/Themes/AtomChester.fsx"
 #load "packages/FsLab/FsLab.fsx"
-#r "paket-files/github.com/BlueMountainCapital/Deedle.BigDemo/src/Deedle.BigSources/bin/Release/Deedle.BigSources.dll"
+#r "bigdeedle/Deedle.BigSources.dll"
 
 open System
 open Deedle
@@ -20,9 +20,6 @@ let dt (y, m, d) =
 let materialize (df:Frame<_, _>) =
   df.Rows |> Series.observations |> Frame.ofRows
 
-// ------------------------------------------------------------------------------------------------
-// DEMO #1: Charting most expensive towns in a given month
-// ------------------------------------------------------------------------------------------------
 
 // Get all house price data
 let housesAll = BigDeedle.Houses.GetFrame()

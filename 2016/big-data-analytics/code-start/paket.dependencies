@@ -1,0 +1,10 @@
+framework: >= net45
+redirects: on
+source https://www.nuget.org/api/v2
+
+nuget MBrace.Flow
+nuget MBrace.Thespian
+nuget MBrace.Azure.Management 1.3.0
+nuget FsLab 0.4.8-beta
+nuget WindowsAzure.Storage 4.3.0
+nuget FSharp.Azure.StorageTypeProvider 1.2.0

@@ -1,0 +1,139 @@
+﻿'.source.fsharp':
+  # -----------------------------------------------------------------
+  # Snippets for the news web site demo
+  # -----------------------------------------------------------------
+
+  'houses, cleaning':
+    'prefix': 'houses-1-cleaned'
+    'body': """
+      let cleaned =
+        houses |> Frame.filterRows (fun k row ->
+          row.GetAs("Duration") = "F" &&
+          row.GetAs<DateTime>("Date").Year = 2016 )"""
+
+  'houses, top 20':
+    'prefix': 'houses-2-top20'
+    'body': """
+      let top20 =
+        merged
+        |> Frame.filterRows (fun k row -> row?Count > 100.0)
+        |> Frame.sortRows "Price"
+        |> Frame.takeLast 20
+      """
+
+  'houses, geo chart':
+    'prefix': 'houses-3-geo'
+    'body': """
+      top20?Price
+      |> Series.observations
+      |> Chart.Geo
+      |> Chart.WithOptions
+          (Options(region="GB", displayMode="markers",
+            colorAxis=ColorAxis(colors=[|"#3B7732";"#7A6942";"#7C1C1C"|])))
+      """
+
+  'houses, aggregate prices':
+    'prefix': 'houses-4-aggregate'
+    'body': """
+      let avgPrices =
+        april2010
+        |> Frame.aggregateRowsBy ["Town"] ["Price"] Stats.mean
+        |> Frame.indexRowsString "Town"
+      let counts =
+        april2010
+        |> Frame.aggregateRowsBy ["Town"] ["Price"] Stats.count
+        |> Frame.indexRowsString "Town"
+      let merged =
+        avgPrices |> Frame.addCol "Count" (counts.GetColumn<int>("Price"))
+      """
+
+  'houses, top 20 and geo':
+    'prefix': 'houses-5-top20geo'
+    'body': """
+      let top20 =
+        merged
+        |> Frame.filterRows (fun k row -> row?Count > 100.0)
+        |> Frame.sortRows "Price"
+        |> Frame.takeLast 20
+
+      top20?Price
+      |> Series.observations
+      |> Chart.Geo
+      |> Chart.WithOptions
+          (Options(region="GB", displayMode="markers",
+            colorAxis=ColorAxis(colors=[|"#3B7732";"#7A6942";"#7C1C1C"|])))
+      """
+
+
+  'houses, average range':
+    'prefix': 'houses-6-avgprices'
+    'body': """
+      let averagePrice dt1 dt2 town =
+        let houses = getHouses()
+        let part =
+          houses.Rows.[dt1 .. dt2]
+          |> Frame.filterRows (fun k row ->
+              row.GetAs("Town") = town &&
+              row.GetAs("Duration") = "F")
+        Stats.mean part?Price
+      """
+
+  'prices, day 1':
+    'prefix': 'prices-1-day'
+    'body': """wdc.Rows.[dt (2009,9,28) (9,45,0) .. dt (2009,9,28) (15,40,0)]?Diff"""
+
+  'prices, sampling':
+    'prefix': 'prices-2-sampling'
+    'body': """
+      let vals =
+        wdc.Rows.[dt (2009,9,28) (9,45,0) .. dt (2009,9,28) (15,40,0)]?Ask
+        |> Series.sampleTimeInto (TimeSpan.FromMinutes 1.0) Direction.Forward Stats.mean
+        |> Series.values
+      """
+
+  'prices, minute means':
+    'prefix': 'prices-3-minute-means'
+    'body': """
+      let meanMinuteReturns id day =
+        let prices = BigDeedle.Trades.GetFrame(id)?Price
+        let byMinute =
+          prices.[dt day (10,0,0) .. dt day (15,0,0)]
+          |> Series.sampleTimeInto (TimeSpan.FromMinutes 1.0)
+              Direction.Forward Stats.mean
+        R.mean(R.na_omit(R.Delt(byMinute.Values))).AsNumeric().[0]
+    """
+
+  'prices, returns month':
+    'prefix': 'prices-4-month-returns'
+    'body': """
+      let returnsForMonth id y m =
+        let lastDay = DateTime(y,m,1).AddMonths(1).AddDays(-1.0).Day
+        [| for d in 1 .. lastDay -> local {
+            try
+              do! Cloud.Logf "Processing %d/%d/%d" y m d
+              let res = meanMinuteReturns id (y, m, d)
+              return Some(d, res)
+            with e ->
+              do! Cloud.Logf "Failed: %A" e
+              return None } |]
+        |> Cloud.Parallel
+
+      let q1 =
+        [ returnsForMonth "WDC" 2015 1
+          returnsForMonth "WDC" 2015 2
+          returnsForMonth "WDC" 2015 3 ]
+        |> Cloud.Parallel |> cluster.CreateProcess
+      """
+
+  'prices, Q1 line chart':
+    'prefix': 'prices-5-q1'
+    'body': """
+      q1.Result
+      |> Array.map (fun data ->
+          data
+          |> Array.choose id
+          |> series
+          |> Series.realign [0 .. 31]
+          |> Series.fillMissingWith 0.0)
+      |> Chart.Line
+      """

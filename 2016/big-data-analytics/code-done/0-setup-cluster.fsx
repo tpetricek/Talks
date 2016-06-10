@@ -7,6 +7,10 @@ open MBrace.Azure
 open MBrace.Flow
 open MBrace.Azure.Management
 
+// -------------------------------------------------------------------------------------------------
+// Create cluster (needed for `houses-cloud.fsx` and `prices-cloud.fsx`)
+// -------------------------------------------------------------------------------------------------
+
 // Create cluster & check progress until it's done
 let deployment = Config.ProvisionCluster()
 deployment.ShowInfo()
@@ -26,9 +30,10 @@ t.Result
 cluster
 
 // Delete the cluster for fun & profit (mostly profit)
-Config.DeleteCluster()
+// Config.DeleteCluster()
 
-
+// -------------------------------------------------------------------------------------------------
+// Install R  on the cluster (needed for `prices-cloud.fsx`)
 // -------------------------------------------------------------------------------------------------
 
 open System
@@ -78,6 +83,8 @@ let rp = installR() |> cluster.CreateProcess
 rp.Status
 
 // -------------------------------------------------------------------------------------------------
+// Install quantmod on the cluster (needed for `prices-cloud.fsx`)
+// -------------------------------------------------------------------------------------------------
 
 open RDotNet
 open RProvider
@@ -89,6 +96,7 @@ namedParams
     "repos", "http://cran.us.r-project.org" ]
 |> R.install_packages
 
+// Remote install
 let installQuantmod () = cloud {
   namedParams
     [ "pkgs", "quantmod"
@@ -96,7 +104,7 @@ let installQuantmod () = cloud {
   |> R.install_packages
   |> ignore }
 
-// Remote install
+// Spawn remote install
 let ip =
   Cloud.ParallelEverywhere (installQuantmod())
   |> cluster.CreateProcess
@@ -104,12 +112,8 @@ let ip =
 ip.Status
 ip.Result
 
-let ensureRwithQuantmod() = cloud {
-  if not (isRInstalled()) then
-    do! installR()
-    do! installQuantmod()
-}
-
+// -------------------------------------------------------------------------------------------------
+// Test R and quantmod on the cluster
 // -------------------------------------------------------------------------------------------------
 
 open RDotNet
@@ -125,10 +129,3 @@ let testR() = cloud {
 let tp = testR() |> cluster.CreateProcess
 tp.Status
 tp.Result
-
-
-
-
-
-
-//
