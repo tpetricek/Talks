@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Kreon:300,400,700|Jaldi');
+
+td.lines { display:none; }
+
+span.o { color:#66AEBA; }
+span.s { color:#9CCB42; }
+span.i { color:#9CCB42; }
+span.k { color:#66AEBA; }
+
+div.tipbox { position:relative; border:solid 4px #F26722; }
+div.tiplbl { position:relative; background:#F26722; color:white; font-size:16pt; padding:6px; }
+
+.reveal h1 {
+  font-family: 'Kreon', serif;
+  font-size:60pt;
+  margin-bottom:10px;
+}
+
+.reveal h2 {
+  font-family: 'Kreon', serif;
+  font-size:46pt;
+  margin-bottom:50px;
+}
+
+.reveal h3 {
+  font-family: 'Kreon', serif;
+  font-size:42pt;
+  margin-bottom:10px;
+}
+
+.reveal section img {
+  border-style:none;
+  background:transparent;
+}
+
+.reveal p, .reveal li {
+  font-size: 35pt;
+  font-family: Jaldi,sans-serif;
+}
+.reveal a {
+  color:#9CCB42;
+}
+
+.reveal em {
+  color:#66AEBA;
+  font-style: normal;
+}
+
+.diagram1 span {
+  padding:6px 15px 6px 15px;
+  font-size:30pt;
+  background:#AF471D;
+}
+
+.diagram2 span {
+  padding:6px 15px 6px 15px;
+  font-size:30pt;
+  background:#6B6944;
+}
+
+.reveal .diagram1 .arrow-down {
+  padding:0px;
+  background:transparent;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #A04419;
+}
+
+.reveal .diagram2 .arrow-down {
+  padding:0px;
+  background:transparent;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #6B6944;
+}
