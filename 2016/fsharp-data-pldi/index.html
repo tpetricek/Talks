@@ -1,0 +1,371 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>FsReveal</title>
+    <meta name="description" content="Introduction to FsReveal">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1>Types from data</h1>
+<h2>Making structured data first-class citizens in F#</h2>
+<br /><br /><br /><br />
+<p>Tomas Petricek, University of Cambridge<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<h2>Unsafe dynamic access</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://dvd.netflix.com/Top100RSS"</span>;
+<span class="k">var</span> rss <span class="o">=</span> XDocument.Load(topRssFeed);
+<span class="k">var</span> channel <span class="o">=</span> rss.Element(<span class="s">"rss"</span>).Element(<span class="s">"channel"</span>);
+
+<span class="k">foreach</span>(<span class="k">var</span> item <span class="k">in</span> channel.Elements(<span class="s">"item"</span>)) {    
+  Console.WriteLine(item.Element(<span class="s">"text"</span>).Value);
+}
+</code></pre></td></tr></table>
+<div class="fragment">
+  <div class="tipbox" style="left:445px;top:-88px;width:84px;height:25px"></div>
+  <div class="tiplbl" style="left:500px;top:-78px;width:150px;">Not found!</div>
+</div>
+</section>
+<section >
+<h2>Unsafe dynamic access</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://dvd.netflix.com/Top100RSS"</span>;
+<span class="k">var</span> rss <span class="o">=</span> XDocument.Load(topRssFeed);
+<span class="k">var</span> channel <span class="o">=</span> rss.Element(<span class="s">"rss"</span>).Element(<span class="s">"channel"</span>);
+
+<span class="k">foreach</span>(<span class="k">var</span> item <span class="k">in</span> channel.Elements(<span class="s">"item"</span>)) {    
+  Console.WriteLine(item.Element(<span class="s">"title"</span>).Value);
+}
+</code></pre></td></tr></table>
+<div>
+  <div class="tipbox" style="left:445px;top:-88px;width:96px;height:25px"></div>
+  <br />
+</div>
+</section>
+<section data-transition="fade">
+<img src="images/api1.png" style="position:relative;top:-50px;" />
+</section>
+<section data-transition="fade">
+<img src="images/api2.png" style="position:relative;top:-50px;" />
+</section>
+<section >
+<h2>Tedious handwritten mappings</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">class</span> SearchResults
+{  
+  <span class="k">public</span> <span class="k">int</span> Page { get; set; }  
+  <span class="k">public</span> List&lt;Result&gt; Results { get; set; }
+  <span class="k">public</span> <span class="k">int</span> TotalPages { get; set; }  
+  <span class="k">public</span> <span class="k">int</span> TotalResults { get; set; }
+}
+<span class="k">public</span> <span class="k">class</span> Result
+{  
+  <span class="k">public</span> <span class="k">int</span> ID { get; set; }  
+  <span class="k">public</span> List&lt;KnownFor&gt; KnownFor { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> Name { get; set; }  
+  <span class="k">public</span> <span class="k">double</span> Popularity { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> ProfilePath { get; set; }
+}
+</code></pre></td></tr></table>
+<div class="fragment">
+  <div class="tiplbl" style="left:770px;width:150px;">And more...</div>
+</div>
+</section>
+<section >
+<h2>Tedious handwritten mappings</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">class</span> KnownFor
+{  
+  <span class="k">public</span> <span class="k">bool</span> Adult { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> BackdropPath { get; set; }  
+  <span class="k">public</span> List&lt;<span class="k">int</span>&gt; GenreIDs { get; set; }  
+  <span class="k">public</span> <span class="k">int</span> ID { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> Overview { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> ReleaseDate { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> PosterPath { get; set; }  
+  <span class="k">public</span> <span class="k">double</span> Popularity { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> Title { get; set; }  
+  <span class="k">public</span> <span class="k">double</span> VoteAverage { get; set; }  
+  <span class="k">public</span> <span class="k">int</span> VoteCount { get; set; }  
+  <span class="k">public</span> <span class="k">string</span> Name { get; set; }
+}
+</code></pre></td></tr></table>
+<div>
+  <div class="tiplbl" style="left:770px;width:230px;">Much much more...</div>
+</div>
+</section>
+<section >
+<h1><em>DEMO</em></h1>
+<h2>Reading news from RSS feed</h2>
+</section>
+<section >
+<div class="diagram1">
+<p>
+  <span>{title&nbsp;:&nbsp;string,&nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;int}}</span>
+  <span style="margin-left:50px">{author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}}</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:70px;left:90px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;top:30px;left:40px">{&nbsp;title&nbsp;:&nbsp;option&lt;string&gt;,
+    &nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}&nbsp;}</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<div class="diagram2">
+<p>
+  <span>{&nbsp;location&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}</span>
+  <span style="margin-left:50px">{&nbsp;location&nbsp;:&nbsp;string&nbsp;}</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:70px;left:90px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;top:30px;left:40px">
+  {&nbsp;location&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}&nbsp;+&nbsp;{&nbsp;location&nbsp;:&nbsp;string&nbsp;}</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<h1><em>DEMO</em></h1>
+<h2>Getting weather via REST service</h2>
+</section>
+<section >
+<h1>Behind the scenes</h1>
+<br /><br />
+<div class="fragment">
+<div class="diagram1">
+  <p><span style="padding:7px 30px 7px 30px">Structural shape inference</span></p>
+</div>
+</div>
+<div class="fragment" style="padding:20px">
+<div class="diagram2">
+  <p><span style="padding:7px 30px 7px 30px">Language integration via type providers</span></p>
+</div>
+</div><div class="fragment">
+<div class="diagram1">
+  <p><span style="padding:7px 30px 7px 30px">Relative type safety</span></p>
+</div>
+</div>
+<br /><br />
+</section>
+<section >
+<h1>Relative type safety</h1>
+<div class="fragment" style="margin-top:70px">
+<p>Given <em>representative samples</em> and <em>an input</em> value</p>
+<p><span class="math">\(S(d')\sqsubset S(d_1, \ldots, d_n)\)</span></p>
+</div><div class="fragment" style="margin-top:70px">
+<p>Any <em>program</em> written user <em>type provider</em> reduces</p>
+<p><span class="math">\(e_{user}[x\leftarrow e_{provided}(d')] \rightsquigarrow^* v\)</span></p>
+</div>
+</section>
+<section >
+<h1><em>DEMO</em></h1>
+<h2>Error handling and schema change</h2>
+</section>
+<section >
+<h1>Schema change and stability</h1>
+<p><em>Inferred type</em> can change only in <em>limited ways</em></p>
+<br />
+<div class="fragment">
+<p><span class="math">\(C[e] \rightarrow C[e.M]\)</span></p>
+<p><span class="math">\(C[e] \rightarrow C[{\sf match}~e~{\sf with}~\ldots]\)</span></p>
+<p><span class="math">\(C[e] \rightarrow C[int(e)]\)</span></p>
+</div>
+<br />
+</section>
+<section >
+<h1>Addressing practical concerns</h1>
+<br />
+<ul>
+<li><em>Prefer records</em> for tooling support</li>
+<li><em>Predictable and stable</em> shape inference</li>
+<li><em>Open world</em> assumption about top shapes</li>
+</ul>
+</section>
+<section >
+<h1>Summary</h1>
+</section>
+<section >
+<h3><em>Works in practice</em></h3>
+<p>(148k downloads, 1900 commits, 47 contributors)</p>
+<h3><em>Type safety revisited</em></h3>
+<p>Relative safety necessary for modern programs</p>
+<br /><br /><br />
+<p>Tomas Petricek, University of Cambridge<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<h1>Bonus slides</h1>
+</section>
+<section >
+<div style="width:1500px;margin-left:-250px">
+<img src="http://www.pinksquirrellabs.com/image.axd?picture=2013%2f7%2fcyoa2.png" />
+</div>
+</section>
+<section >
+<p><img src="images/hierarchy.png" alt="Shape hierarchy" /></p>
+</section>
+<section >
+<h1>Labelled top types</h1>
+<br />
+<p>Fundamental <em>open world</em> assumption</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="xml"><span class="k">&lt;</span><span class="i">doc</span><span class="k">&gt;</span>
+  <span class="k">&lt;</span><span class="i">heading</span><span class="k">&gt;</span>Working with JSON<span class="k">&lt;/</span><span class="i">heading</span><span class="k">&gt;</span>
+  <span class="k">&lt;</span><span class="i">p</span><span class="k">&gt;</span>Type providers make this easy.<span class="k">&lt;/</span><span class="i">p</span><span class="k">&gt;</span>
+  <span class="k">&lt;</span><span class="i">heading</span><span class="k">&gt;</span>Working with XML<span class="k">&lt;/</span><span class="i">heading</span><span class="k">&gt;</span>
+  <span class="k">&lt;</span><span class="i">p</span><span class="k">&gt;</span>Processing XML is as easy as JSON.<span class="k">&lt;/</span><span class="i">p</span><span class="k">&gt;</span>
+  <span class="k">&lt;</span><span class="i">image</span> <span class="o">source</span><span class="k">="xml.png"</span> <span class="k">/&gt;</span>
+<span class="k">&lt;/</span><span class="i">doc</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1>Labelled top types</h1>
+<br />
+<p><em>Top type</em> annotated with <em>possible cases</em></p>
+<p><span class="math">\({\sf any}\langle \sigma_1, \ldots, \sigma_n \rangle\)</span></p>
+<br />
+<div class="fragment">
+<p>Provides access to <em><span class="math">\(\sigma_1, \ldots, \sigma_n\)</span></em></p>
+<p>Requires handling of <em>unknown case</em></p>
+</div>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
