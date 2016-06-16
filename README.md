@@ -80,6 +80,9 @@ Talks and slides
  
  - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2015/living-with-errors/) (October 2015) - HaPoC 2015, Pisa
 
+ - [**Types from data: Making structured data first-class citizens in F#**](http://tpetricek.github.io/Talks/2016/fsharp-data-pldi/) (June 2016) - PLDI, Santa Barbara  
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2016/fsharp-data-pldi/code) and [F# Data library documentation](http://fsharp.github.io/FSharp.Data)
+
 Slides license
 --------------
 
