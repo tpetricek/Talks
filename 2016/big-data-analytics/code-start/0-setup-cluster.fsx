@@ -41,7 +41,7 @@ open System.IO
 open System.Diagnostics
 
 /// Path to R installer mirror; change as appropriate
-let R_Installer = "https://cran.cnr.berkeley.edu/bin/windows/base/R-3.3.0-win.exe"
+let R_Installer = "https://cran.r-project.org/bin/windows/base/R-3.3.1-win.exe"
 
 /// checks whether R is installed in the local computer
 let isRInstalled() = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\R-core") <> null
