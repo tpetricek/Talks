@@ -1,0 +1,6 @@
+.fake
+.paket/paket.exe
+packages
+.ionide.debug
+client/node_modules
+client/out

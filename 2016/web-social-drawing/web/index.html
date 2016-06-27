@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+</head>
+<body>
+  <button id="circ">Circles</button>
+  <button id="rect">Rectangles</button>
+
+  <canvas align="center" id="canvas" width="1000" height="1000"></canvas>
+
+  <script src="node_modules/core-js/client/core.min.js"></script>
+  <script src="node_modules/requirejs/require.js"></script>
+  <script>
+    requirejs.config({
+      baseUrl: 'out',
+      paths: { 'fable-core': '../node_modules/fable-core/fable-core.min' }
+    });
+    requirejs(["client"]);
+  </script>
+</body>
+</html>
