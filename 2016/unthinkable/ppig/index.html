@@ -1,0 +1,305 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>History and Philosophy of Types</title>
+    <meta name="description" content="What are types? We can try to answer this question with a formal definition. 
+But there are numerous incompatible definitions and they fail to capture important aspects
+of what types actually are - how are they used in practice, how we talk about them and how
+we think about them. Why we often cannot even find a common language when talking about types?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1>Thinking the unthinkable</h1>
+<div style="margin:60px 0px 60px 0px">
+<img src="images/foucault.jpg" style="height:250px" />
+</div>
+<p><strong>Tomas Petricek</strong>, Alan Turing Institute <br />
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section >
+<h1>Founding of natural sciences</h1>
+<h3>A story about incommensurability</h3>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h1>Founding of natural sciences</h1>
+<blockquote>
+<p>The Order of Things<br />Michael Foucault (1966)</p>
+</blockquote>
+<br />
+<ul>
+<li>Ulisse Aldrovandi (1522 - 1605)</li>
+<li>Comte de Buffon (1707 - 1788)</li>
+</ul>
+<br /><br /><br />
+</section>
+<section >
+<h1>Founding of natural sciences</h1>
+<blockquote>
+<p>Buffon was [astonished by Aldrovandi's] mixture of exact descriptions, reported
+quotations, fables, remarks dealing indifferently with an animal’s anatomy, its use in
+heraldry, its habitat, its mythological values or the uses to which it could be put
+in medicine or magic.</p>
+</blockquote>
+<img src="images/draco.jpg" class="fragment" style="height:350px" />
+</section>
+<section >
+<h1>Incommensurability</h1>
+<p>Two theories do not share a basis that would <br />
+allow evaluating them using a common metric.</p>
+<br />
+<div class="fragment">
+<h4>Appears in multiple forms</h4>
+<ul>
+<li>Foucault's episteme</li>
+<li>Kuhn's paradigms</li>
+<li>Lakatos' research programmes</li>
+<li>Polanyi's personal knowledge</li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>Hidden assumptions in programming</h1>
+<h3>Episteme, paradigms &amp; research programmes</h3>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<blockquote>
+<p>Programming is error-prone. It is even worse when programming a quantum computer (...)
+because human intuition is much better adapted to the classical world than to the quantum world.</p>
+<p>How can we build automatic tools for verifying correctness of quantum programs?
+A logic for verification of both partial correctness and total correctness of quantum programs was developed (...).</p>
+<p>(<a href="http://talks.cam.ac.uk/talk/index/66539">talks.cam.ac.uk/talk/index/66539</a>)</p>
+</blockquote>
+<br /><br />
+</section>
+<section >
+<h2>Algol research programme</h2>
+<blockquote>
+<p>One of the goals of the Algol research programme was to utilize the resources of logic
+to increase the confidence that it was possible to have in the correctness of a program.</p>
+<p style="text-align:right;width:100%;margin-top:40px">Science of Operations<br />Mark Priestley (2012)</p>
+</blockquote>
+</section>
+<section >
+<p>Episteme, paradigm or research programme</p>
+<h1>Change what <em>questions</em> we ask</h1>
+<br />
+<br />
+</section>
+<section >
+<h2>What does the <em>PL</em> community assume?</h2>
+</section>
+<section >
+<h2>What does the <em style="color:#c00000">PPIG</em> community assume?</h2>
+</section>
+<section >
+<h2>Mathematization of computer science</h2>
+<blockquote>
+<p>The rise of theoretical computer science was anything but inevitable. (...) Advocates of
+theoretical computer science pursued a strategy that served them well within the university,
+but increasingly alienated them from their colleagues in the industry.</p>
+<p style="text-align:right;width:100%;margin-top:40px">The Computer Boys Take Over<br />Nathan Ensmenger (2012)</p>
+</blockquote>
+</section>
+</section>
+<section >
+<section >
+<h1>Thinking the unthinkable</h1>
+<h3>What else could programming research be?</h3>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h1>Foucalt's classical episteme</h1>
+<br />
+<img src="images/lizzard.jpg" style="float:right;height:300px" />
+<br />
+<p><em>Museums</em> and <em>encyclopedias</em></p>
+<p>Collections of <em>species</em> as they are</p>
+<p>Organized according to <em>taxonomy</em></p>
+<br />
+<br />
+</section>
+<section >
+<h1>Programming and sample species?</h1>
+<br />
+<div class="fragment">
+<blockquote>
+<p>Common Law is founded on precedent. (...) Courts [today] will follow the example of other courts which have decided similar cases in the past.</p>
+</blockquote>
+</div><div class="fragment">
+<blockquote>
+<p>This procedure recognizes the principle (...) that practical wisdom is more truly embodied in action than expressed in rules of action.</p>
+<p style="text-align:right;width:100%;margin-top:40px">Personal Knowledge<br />Michael Polanyi (1958)</p>
+</blockquote>
+</div>
+</section>
+<section >
+<h1>Renaissance episteme</h1>
+<img src="images/quixote.png" style="float:right;height:400px" />
+<br />
+<br />
+<p>Resemblances between <em>signs</em></p>
+<p>Across all areas of knowledge</p>
+<br /><br /><br />
+</section>
+<section >
+<h1>Programming with signs?</h1>
+<p>Resemblances between <em>signs</em></p>
+<br />
+<p>Animal's anatomy, its habitat and the<br />
+uses to which it could be put in magic.</p>
+<br /><br /><br />
+</section>
+<section >
+<h1>Programming with signs?</h1>
+<p>Resemblances between <em>signs</em></p>
+<br />
+<p><span style="color:#c00000">Programming tool's theory</span> and the<br /> 
+uses to which it could be put in <span style="color:#c00000">practice</span>.</p>
+<br /><br /><br />
+</section>
+<section >
+<h1>Programming with signs?</h1>
+<br />
+<p>Stories, metaphors and analogies bridge the <br />
+boundaries across different forms of knowledge</p>
+<br /> 
+<div class="fragment">
+<blockquote>
+<p>If a subject does not permit exactness,<br />
+it is not sufficient to be exact about something else.</p>
+<p>Personal Knowledge, Michael Polanyi (1958)</p>
+</blockquote>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>Summary</h1>
+<h3>Animal's anatomy and its uses in magic</h3>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h1>Summary</h1>
+<h3><span style="color:#c00000">Programming tool</span> anatomy its uses in magic</h3>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h2>Summary</h2>
+<blockquote>
+<p>During the 18th century the French Academy of Sciences <br />
+stubbornly denied the evidence for the fall of meteorites.</p>
+</blockquote>
+<hr />
+<div class="fragment">
+<blockquote>
+<p>We no longer consider falling of meteorites to be incompatible with the scientific world view.
+But other doubts, which we now sustain as reasonable have only our beliefs to warrant them.</p>
+</blockquote>
+</div>
+<br />
+</section>
+<section >
+<h2>More information</h2>
+<p>More philosophy of science<br />
+<a href="http://tomasp.net/blog/tag/philosophy/">tomasp.net/blog/tag/philosophy</a></p>
+<p>Current PPIG paper draft<br />
+<a href="http://tomasp.net/academic/drafts/unthinkable/">tomasp.net/academic/drafts/unthinkable</a></p>
+<p>What I'm also working on :-)<br />
+<a href="http://thegamma.net/">thegamma.net</a></p>
+<br />
+<p><a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
