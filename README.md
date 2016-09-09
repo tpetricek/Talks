@@ -83,6 +83,8 @@ Talks and slides
  - [**Types from data: Making structured data first-class citizens in F#**](http://tpetricek.github.io/Talks/2016/fsharp-data-pldi/) (June 2016) - PLDI, Santa Barbara  
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2016/fsharp-data-pldi/code) and [F# Data library documentation](http://fsharp.github.io/FSharp.Data)
 
+ - [**Thinking the Unthinkable**](http://tpetricek.github.io/Talks/2016/unthinkable/ppig/) (September 2016) - PPIG, Cambridge
+
 Slides license
 --------------
 
