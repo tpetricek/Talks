@@ -63,8 +63,11 @@ Talks and slides
  - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow  
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
- - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September) - Future Programming Workshop 2015  
+ - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September 2015) - Future Programming Workshop  
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
+
+ - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup  
+   See also: [soruce code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
   
 ### Philosophy of Science and Research
 

@@ -1,0 +1,8 @@
+{
+    "module": "amd",
+    "sourceMaps": true,
+    "projFile": "./todo.fsx",
+    "outDir": "out",
+    "scripts": {
+    }
+}
