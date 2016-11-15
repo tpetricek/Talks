@@ -39,7 +39,7 @@ Talks and slides
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/end-to-end-web/qcon/code-done)
 
  - [**Celebrating New Year's Eve with F# and Suave**](http://tpetricek.github.io/Talks/2016/new-year-tweets) (April 2016) - F# eXchange, London    
-   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/new-year-tweets-web) and [the original project](https://github.com/tpetricek/new-year-tweets-2016)
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/new-year-tweets-web/london) and [the original project](https://github.com/tpetricek/new-year-tweets-2016)
 
 
 ### FsLab and Data Science
