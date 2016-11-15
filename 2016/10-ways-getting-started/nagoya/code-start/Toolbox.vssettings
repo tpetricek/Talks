@@ -1,0 +1,125 @@
+<UserSettings><ApplicationIdentity version="12.0"/><ToolsOptions/><Category name="Environment_Group" RegisteredName="Environment_Group"><Category name="Environment_Toolbox" Category="{481999F2-7479-4e03-83D5-BE808BA142DF}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_Toolbox" PackageName="Visual Studio Environment Package"><PropertyValue name="ShowAllTabs">false</PropertyValue><PropertyValue name="Version">1</PropertyValue><PropertyValue name="DeletedTabCount">0</PropertyValue><PropertyValue name="Tab0.ID">1 Exploration</PropertyValue><PropertyValue name="Tab0.Name">1 Exploration</PropertyValue><PropertyValue name="Tab0.View">0</PropertyValue><PropertyValue name="Tab0.UseDefaultName">false</PropertyValue><PropertyValue name="Tab0.RecordType">1</PropertyValue><PropertyValue name="Tab0.Position">53</PropertyValue><PropertyValue name="Tab0.OriginalName">1 Exploration</PropertyValue><PropertyValue name="Tab1.ID">2 REST Service</PropertyValue><PropertyValue name="Tab1.Name">2 REST Service</PropertyValue><PropertyValue name="Tab1.View">0</PropertyValue><PropertyValue name="Tab1.UseDefaultName">false</PropertyValue><PropertyValue name="Tab1.RecordType">1</PropertyValue><PropertyValue name="Tab1.Position">54</PropertyValue><PropertyValue name="Tab1.OriginalName">2 REST Service</PropertyValue><PropertyValue name="Tab2.ID">3 Testing</PropertyValue><PropertyValue name="Tab2.Name">3 Testing</PropertyValue><PropertyValue name="Tab2.View">0</PropertyValue><PropertyValue name="Tab2.UseDefaultName">false</PropertyValue><PropertyValue name="Tab2.RecordType">1</PropertyValue><PropertyValue name="Tab2.Position">55</PropertyValue><PropertyValue name="Tab2.OriginalName">3 Testing</PropertyValue><PropertyValue name="Tab3.ID">3 Domain</PropertyValue><PropertyValue name="Tab3.Name">4 Domain</PropertyValue><PropertyValue name="Tab3.View">0</PropertyValue><PropertyValue name="Tab3.UseDefaultName">false</PropertyValue><PropertyValue name="Tab3.RecordType">1</PropertyValue><PropertyValue name="Tab3.Position">56</PropertyValue><PropertyValue name="Tab3.OriginalName">3 Domain</PropertyValue><PropertyValue name="Tab4.ID">5 Canopy</PropertyValue><PropertyValue name="Tab4.Name">5 Canopy</PropertyValue><PropertyValue name="Tab4.View">0</PropertyValue><PropertyValue name="Tab4.UseDefaultName">false</PropertyValue><PropertyValue name="Tab4.RecordType">1</PropertyValue><PropertyValue name="Tab4.Position">57</PropertyValue><PropertyValue name="Tab4.OriginalName">5 Canopy</PropertyValue><PropertyValue name="Tab5.ID">7 Countries</PropertyValue><PropertyValue name="Tab5.Name">7 Countries</PropertyValue><PropertyValue name="Tab5.View">0</PropertyValue><PropertyValue name="Tab5.UseDefaultName">false</PropertyValue><PropertyValue name="Tab5.RecordType">1</PropertyValue><PropertyValue name="Tab5.Position">58</PropertyValue><PropertyValue name="Tab5.OriginalName">7 Countries</PropertyValue><PropertyValue name="Tab6.ID">8 Random</PropertyValue><PropertyValue name="Tab6.Name">8 Random</PropertyValue><PropertyValue name="Tab6.View">0</PropertyValue><PropertyValue name="Tab6.UseDefaultName">false</PropertyValue><PropertyValue name="Tab6.RecordType">1</PropertyValue><PropertyValue name="Tab6.Position">59</PropertyValue><PropertyValue name="Tab6.OriginalName">8 Random</PropertyValue><PropertyValue name="Tab7.ID">9 Wiki</PropertyValue><PropertyValue name="Tab7.Name">9 Wiki</PropertyValue><PropertyValue name="Tab7.View">0</PropertyValue><PropertyValue name="Tab7.UseDefaultName">false</PropertyValue><PropertyValue name="Tab7.RecordType">1</PropertyValue><PropertyValue name="Tab7.Position">60</PropertyValue><PropertyValue name="Tab7.OriginalName">9 Wiki</PropertyValue><PropertyValue name="Tab8.ID">10 Suave</PropertyValue><PropertyValue name="Tab8.Name">10 Suave</PropertyValue><PropertyValue name="Tab8.View">0</PropertyValue><PropertyValue name="Tab8.UseDefaultName">false</PropertyValue><PropertyValue name="Tab8.RecordType">1</PropertyValue><PropertyValue name="Tab8.Position">61</PropertyValue><PropertyValue name="Tab8.OriginalName">10 Suave</PropertyValue><PropertyValue name="Tab9.ID">Control Flow</PropertyValue><PropertyValue name="Tab9.Name">Control Flow</PropertyValue><PropertyValue name="Tab9.View">0</PropertyValue><PropertyValue name="Tab9.UseDefaultName">true</PropertyValue><PropertyValue name="Tab9.RecordType">4</PropertyValue><PropertyValue name="Tab9.Position">63</PropertyValue><PropertyValue name="Tab10.ID">{e7f851c8-6267-4794-b0fe-7bcab6dacbb4}-#1071</PropertyValue><PropertyValue name="Tab10.Name">Standard</PropertyValue><PropertyValue name="Tab10.View">0</PropertyValue><PropertyValue name="Tab10.UseDefaultName">true</PropertyValue><PropertyValue name="Tab10.RecordType">4</PropertyValue><PropertyValue name="Tab10.Position">64</PropertyValue><PropertyValue name="Tab11.Name">Advertising</PropertyValue><PropertyValue name="Tab11.View">0</PropertyValue><PropertyValue name="Tab11.UseDefaultName">true</PropertyValue><PropertyValue name="Tab11.RecordType">4</PropertyValue><PropertyValue name="Tab11.Position">65</PropertyValue><PropertyValue name="TabCount">12</PropertyValue><PropertyValue name="DeletedItemCount">0</PropertyValue><PropertyValue name="Item0.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item0.ID">69E9BA2DC84E0B9915DF69A1BE14C60C</PropertyValue><PropertyValue name="Item0.Name">Text: """\[([^\]]*)\]\(([^\)]*)\)"""</PropertyValue><PropertyValue name="Item0.UseDefaultName">true</PropertyValue><PropertyValue name="Item0.Tab">1 Exploration</PropertyValue><PropertyValue name="Item0.TabID">1 Exploration</PropertyValue><PropertyValue name="Item0.OriginalTabID">1 Exploration</PropertyValue><PropertyValue name="Item0.OriginalTab">1 Exploration</PropertyValue><PropertyValue name="Item0.RecordType">1</PropertyValue><PropertyValue name="Item0.Data">"""\[([^\]]*)\]\(([^\)]*)\)"""</PropertyValue><PropertyValue name="Item0.Position">1</PropertyValue><PropertyValue name="Item1.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item1.ID">ABF139E69BB55EDF24B5C2758D216699</PropertyValue><PropertyValue name="Item1.Name">Text: for m in regLink.Matches(markdown) do
+  printfn "%s %s" m.Groups.[1].Value m.Groups.[2].Value</PropertyValue><PropertyValue name="Item1.UseDefaultName">true</PropertyValue><PropertyValue name="Item1.Tab">1 Exploration</PropertyValue><PropertyValue name="Item1.TabID">1 Exploration</PropertyValue><PropertyValue name="Item1.OriginalTabID">1 Exploration</PropertyValue><PropertyValue name="Item1.OriginalTab">1 Exploration</PropertyValue><PropertyValue name="Item1.RecordType">1</PropertyValue><PropertyValue name="Item1.Data">for m in regLink.Matches(markdown) do
+  printfn "%s %s" m.Groups.[1].Value m.Groups.[2].Value</PropertyValue><PropertyValue name="Item1.Position">2</PropertyValue><PropertyValue name="Item2.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item2.ID">10072F31FBF233CA24B23E03B9646413</PropertyValue><PropertyValue name="Item2.Name">Text:       var movies = 
+        new[] {
+          new Movie("The Matrix", new DateTime(1999, 3, 31), 
+            new[] {
+              new Cast("Keanu Reeves", "Neo"),
+              new Cast("Laurence Fishburne", "Morpheus"),
+              new Cast("Carrie-Anne Moss", "Trinity") }),
+
+          new Movie("Star Wars: Episode IV", new DateTime(1977, 5, 25), 
+            new[] {
+              new Cast("Mark Hamill", "Luke Skywalker"),
+              new Cast("Harrison Ford", "Han Solo"),
+              new Cast("Carrie Fisher", "Princess Leia Organa") })
+        };
+      return View(movies);</PropertyValue><PropertyValue name="Item2.UseDefaultName">true</PropertyValue><PropertyValue name="Item2.Tab">3 Domain</PropertyValue><PropertyValue name="Item2.TabID">3 Domain</PropertyValue><PropertyValue name="Item2.OriginalTabID">3 Domain</PropertyValue><PropertyValue name="Item2.OriginalTab">4 Domain</PropertyValue><PropertyValue name="Item2.RecordType">1</PropertyValue><PropertyValue name="Item2.Data">      var movies = 
+        new[] {
+          new Movie("The Matrix", new DateTime(1999, 3, 31), 
+            new[] {
+              new Cast("Keanu Reeves", "Neo"),
+              new Cast("Laurence Fishburne", "Morpheus"),
+              new Cast("Carrie-Anne Moss", "Trinity") }),
+
+          new Movie("Star Wars: Episode IV", new DateTime(1977, 5, 25), 
+            new[] {
+              new Cast("Mark Hamill", "Luke Skywalker"),
+              new Cast("Harrison Ford", "Han Solo"),
+              new Cast("Carrie Fisher", "Princess Leia Organa") })
+        };
+      return View(movies);</PropertyValue><PropertyValue name="Item2.Position">1</PropertyValue><PropertyValue name="Item3.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item3.ID">8324233BADC639C6ABFD98F738C431F3</PropertyValue><PropertyValue name="Item3.Name">Text: [&lt;Test&gt;]
+let ``Average of no numbers is not a number``() = 
+  let calc = Calculator()
+  calc.Average |&gt; should equal nan
+</PropertyValue><PropertyValue name="Item3.UseDefaultName">true</PropertyValue><PropertyValue name="Item3.Tab">3 Testing</PropertyValue><PropertyValue name="Item3.TabID">3 Testing</PropertyValue><PropertyValue name="Item3.OriginalTabID">3 Testing</PropertyValue><PropertyValue name="Item3.OriginalTab">3 Testing</PropertyValue><PropertyValue name="Item3.RecordType">1</PropertyValue><PropertyValue name="Item3.Data">[&lt;Test&gt;]
+let ``Average of no numbers is not a number``() = 
+  let calc = Calculator()
+  calc.Average |&gt; should equal nan
+</PropertyValue><PropertyValue name="Item3.Position">1</PropertyValue><PropertyValue name="Item4.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item4.ID">6B123D19A93FBAA5893AA4E8962DB87C</PropertyValue><PropertyValue name="Item4.Name">Text: [&lt;Test&gt;]
+let ``Average of numbers from 1 to 10``() = 
+  let calc = Calculator()
+  for n in 1.0 .. 10.0 do calc.Add(n)
+  calc.Average |&gt; should equal 5.5
+
+</PropertyValue><PropertyValue name="Item4.UseDefaultName">true</PropertyValue><PropertyValue name="Item4.Tab">3 Testing</PropertyValue><PropertyValue name="Item4.TabID">3 Testing</PropertyValue><PropertyValue name="Item4.OriginalTabID">3 Testing</PropertyValue><PropertyValue name="Item4.OriginalTab">3 Testing</PropertyValue><PropertyValue name="Item4.RecordType">1</PropertyValue><PropertyValue name="Item4.Data">[&lt;Test&gt;]
+let ``Average of numbers from 1 to 10``() = 
+  let calc = Calculator()
+  for n in 1.0 .. 10.0 do calc.Add(n)
+  calc.Average |&gt; should equal 5.5
+
+</PropertyValue><PropertyValue name="Item4.Position">2</PropertyValue><PropertyValue name="Item5.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item5.ID">FC7CF4DD250C39C1CC5E1AED0ED70B27</PropertyValue><PropertyValue name="Item5.Name">Text: type Weather = JsonProvider&lt;"http://api.openweathermap.org/data/2.5/forecast/daily?units=metric&amp;q=Prague"&gt;</PropertyValue><PropertyValue name="Item5.UseDefaultName">true</PropertyValue><PropertyValue name="Item5.Tab">2 REST Service</PropertyValue><PropertyValue name="Item5.TabID">2 REST Service</PropertyValue><PropertyValue name="Item5.OriginalTabID">2 REST Service</PropertyValue><PropertyValue name="Item5.OriginalTab">2 REST Service</PropertyValue><PropertyValue name="Item5.RecordType">1</PropertyValue><PropertyValue name="Item5.Data">type Weather = JsonProvider&lt;"http://api.openweathermap.org/data/2.5/forecast/daily?units=metric&amp;q=Prague"&gt;</PropertyValue><PropertyValue name="Item5.Position">1</PropertyValue><PropertyValue name="Item6.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item6.ID">1BF6C3052927D5484665F2450D32A9C0</PropertyValue><PropertyValue name="Item6.Name">Text: let w = Weather.Load("http://api.openweathermap.org/data/2.5/forecast/daily?units=metric&amp;q=Rio+de+Janeiro")
+for t in w.List do
+  printfn "%A" t.Temp.Day</PropertyValue><PropertyValue name="Item6.UseDefaultName">true</PropertyValue><PropertyValue name="Item6.Tab">2 REST Service</PropertyValue><PropertyValue name="Item6.TabID">2 REST Service</PropertyValue><PropertyValue name="Item6.OriginalTabID">2 REST Service</PropertyValue><PropertyValue name="Item6.OriginalTab">2 REST Service</PropertyValue><PropertyValue name="Item6.RecordType">1</PropertyValue><PropertyValue name="Item6.Data">let w = Weather.Load("http://api.openweathermap.org/data/2.5/forecast/daily?units=metric&amp;q=Rio+de+Janeiro")
+for t in w.List do
+  printfn "%A" t.Temp.Day</PropertyValue><PropertyValue name="Item6.Position">2</PropertyValue><PropertyValue name="Item7.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item7.ID">4C88F996F5439A42159356AC2F285F45</PropertyValue><PropertyValue name="Item7.Name">Text: "#lst-ib" &lt;&lt; "rio de janeiro"
+click ".lsb"
+</PropertyValue><PropertyValue name="Item7.UseDefaultName">true</PropertyValue><PropertyValue name="Item7.Tab">5 Canopy</PropertyValue><PropertyValue name="Item7.TabID">5 Canopy</PropertyValue><PropertyValue name="Item7.OriginalTabID">5 Canopy</PropertyValue><PropertyValue name="Item7.OriginalTab">5 Canopy</PropertyValue><PropertyValue name="Item7.RecordType">1</PropertyValue><PropertyValue name="Item7.Data">"#lst-ib" &lt;&lt; "rio de janeiro"
+click ".lsb"
+</PropertyValue><PropertyValue name="Item7.Position">1</PropertyValue><PropertyValue name="Item8.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item8.ID">5072876D878453055F7B8C94972FA50E</PropertyValue><PropertyValue name="Item8.Name">Text: for a in element "#search" |&gt; elementsWithin "a" do
+  if a.Text &lt;&gt; "" then
+    printfn " - %s\n    %s" a.Text (a.GetAttribute("href"))
+</PropertyValue><PropertyValue name="Item8.UseDefaultName">true</PropertyValue><PropertyValue name="Item8.Tab">5 Canopy</PropertyValue><PropertyValue name="Item8.TabID">5 Canopy</PropertyValue><PropertyValue name="Item8.OriginalTabID">General</PropertyValue><PropertyValue name="Item8.OriginalTab">General</PropertyValue><PropertyValue name="Item8.RecordType">1</PropertyValue><PropertyValue name="Item8.Data">for a in element "#search" |&gt; elementsWithin "a" do
+  if a.Text &lt;&gt; "" then
+    printfn " - %s\n    %s" a.Text (a.GetAttribute("href"))
+</PropertyValue><PropertyValue name="Item8.Position">2</PropertyValue><PropertyValue name="Item9.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item9.ID">F63B5B21AE0E18ADF71D02BE51EC9B5E</PropertyValue><PropertyValue name="Item9.Name">Text: ".b_searchbox" &lt;&lt; "rio de janeiro"
+click "#sb_form_go"
+</PropertyValue><PropertyValue name="Item9.UseDefaultName">true</PropertyValue><PropertyValue name="Item9.Tab">5 Canopy</PropertyValue><PropertyValue name="Item9.TabID">5 Canopy</PropertyValue><PropertyValue name="Item9.OriginalTabID">5 Canopy</PropertyValue><PropertyValue name="Item9.OriginalTab">5 Canopy</PropertyValue><PropertyValue name="Item9.RecordType">1</PropertyValue><PropertyValue name="Item9.Data">".b_searchbox" &lt;&lt; "rio de janeiro"
+click "#sb_form_go"
+</PropertyValue><PropertyValue name="Item9.Position">3</PropertyValue><PropertyValue name="Item10.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item10.ID">80EC12888D28649F7F02CC10F543038D</PropertyValue><PropertyValue name="Item10.Name">Text: for a in element "#b_results" |&gt; elementsWithin "h2 a" do
+  if a.Text &lt;&gt; "" then
+    printfn " - %s\n    %s" a.Text (a.GetAttribute("href"))
+</PropertyValue><PropertyValue name="Item10.UseDefaultName">true</PropertyValue><PropertyValue name="Item10.Tab">5 Canopy</PropertyValue><PropertyValue name="Item10.TabID">5 Canopy</PropertyValue><PropertyValue name="Item10.OriginalTabID">5 Canopy</PropertyValue><PropertyValue name="Item10.OriginalTab">5 Canopy</PropertyValue><PropertyValue name="Item10.RecordType">1</PropertyValue><PropertyValue name="Item10.Data">for a in element "#b_results" |&gt; elementsWithin "h2 a" do
+  if a.Text &lt;&gt; "" then
+    printfn " - %s\n    %s" a.Text (a.GetAttribute("href"))
+</PropertyValue><PropertyValue name="Item10.Position">4</PropertyValue><PropertyValue name="Item11.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item11.ID">FB2AB34743CAEEC23F4B07AB0DFCD973</PropertyValue><PropertyValue name="Item11.Name">Text: [ wb.Countries.Brazil.Indicators.``Total Population (in number of people)``
+  wb.Countries.Argentina.Indicators.``Total Population (in number of people)`` ]
+|&gt; Chart.Line
+</PropertyValue><PropertyValue name="Item11.UseDefaultName">true</PropertyValue><PropertyValue name="Item11.Tab">7 Countries</PropertyValue><PropertyValue name="Item11.TabID">7 Countries</PropertyValue><PropertyValue name="Item11.OriginalTabID">7 Countries</PropertyValue><PropertyValue name="Item11.OriginalTab">7 Countries</PropertyValue><PropertyValue name="Item11.RecordType">1</PropertyValue><PropertyValue name="Item11.Data">[ wb.Countries.Brazil.Indicators.``Total Population (in number of people)``
+  wb.Countries.Argentina.Indicators.``Total Population (in number of people)`` ]
+|&gt; Chart.Line
+</PropertyValue><PropertyValue name="Item11.Position">1</PropertyValue><PropertyValue name="Item12.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item12.ID">15EA51E82B831A1CACB920E12C476F51</PropertyValue><PropertyValue name="Item12.Name">Text: let pop2000 = 
+  [ for c in wb.Countries -&gt; 
+      c.Name, c.Indicators.``Total Population (in number of people)``.[2000] ] |&gt; series
+let pop2010 = 
+  [ for c in wb.Countries -&gt; 
+      c.Name, c.Indicators.``Total Population (in number of people)``.[2010] ] |&gt; series
+</PropertyValue><PropertyValue name="Item12.UseDefaultName">true</PropertyValue><PropertyValue name="Item12.Tab">7 Countries</PropertyValue><PropertyValue name="Item12.TabID">7 Countries</PropertyValue><PropertyValue name="Item12.OriginalTabID">7 Countries</PropertyValue><PropertyValue name="Item12.OriginalTab">7 Countries</PropertyValue><PropertyValue name="Item12.RecordType">1</PropertyValue><PropertyValue name="Item12.Data">let pop2000 = 
+  [ for c in wb.Countries -&gt; 
+      c.Name, c.Indicators.``Total Population (in number of people)``.[2000] ] |&gt; series
+let pop2010 = 
+  [ for c in wb.Countries -&gt; 
+      c.Name, c.Indicators.``Total Population (in number of people)``.[2010] ] |&gt; series
+</PropertyValue><PropertyValue name="Item12.Position">2</PropertyValue><PropertyValue name="Item13.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item13.ID">3104224C884F4BE7BFAAAB95E6F8B0FE</PropertyValue><PropertyValue name="Item13.Name">Text: Check.Quick(fun l (v:float) -&gt;
+  let l1, l2 = splitList l v
+  l1.Length + l2.Length = l.Length )
+</PropertyValue><PropertyValue name="Item13.UseDefaultName">true</PropertyValue><PropertyValue name="Item13.Tab">8 Random</PropertyValue><PropertyValue name="Item13.TabID">8 Random</PropertyValue><PropertyValue name="Item13.OriginalTabID">8 Random</PropertyValue><PropertyValue name="Item13.OriginalTab">8 Random</PropertyValue><PropertyValue name="Item13.RecordType">1</PropertyValue><PropertyValue name="Item13.Data">Check.Quick(fun l (v:float) -&gt;
+  let l1, l2 = splitList l v
+  l1.Length + l2.Length = l.Length )
+</PropertyValue><PropertyValue name="Item13.Position">1</PropertyValue><PropertyValue name="Item14.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item14.ID">9FA1E8889A027BD031173617B8273414</PropertyValue><PropertyValue name="Item14.Name">Text: Check.Quick(fun l (v:float) -&gt;
+  let l1, l2 = splitList l v
+  l1 |&gt; List.forall (fun v1 -&gt;
+    l2 |&gt; List.forall (fun v2 -&gt;
+      not (v1 &gt; v2) )))
+
+</PropertyValue><PropertyValue name="Item14.UseDefaultName">true</PropertyValue><PropertyValue name="Item14.Tab">8 Random</PropertyValue><PropertyValue name="Item14.TabID">8 Random</PropertyValue><PropertyValue name="Item14.OriginalTabID">General</PropertyValue><PropertyValue name="Item14.OriginalTab">General</PropertyValue><PropertyValue name="Item14.RecordType">1</PropertyValue><PropertyValue name="Item14.Data">Check.Quick(fun l (v:float) -&gt;
+  let l1, l2 = splitList l v
+  l1 |&gt; List.forall (fun v1 -&gt;
+    l2 |&gt; List.forall (fun v2 -&gt;
+      not (v1 &gt; v2) )))
+
+</PropertyValue><PropertyValue name="Item14.Position">2</PropertyValue><PropertyValue name="Item15.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item15.ID">EE9A06D2A840D8039CA9EF011DF85B69</PropertyValue><PropertyValue name="Item15.Name">Text: type States = HtmlProvider&lt;"https://en.wikipedia.org/wiki/States_of_Brazil"&gt;
+</PropertyValue><PropertyValue name="Item15.UseDefaultName">true</PropertyValue><PropertyValue name="Item15.Tab">9 Wiki</PropertyValue><PropertyValue name="Item15.TabID">9 Wiki</PropertyValue><PropertyValue name="Item15.OriginalTabID">9 Wiki</PropertyValue><PropertyValue name="Item15.OriginalTab">9 Wiki</PropertyValue><PropertyValue name="Item15.RecordType">1</PropertyValue><PropertyValue name="Item15.Data">type States = HtmlProvider&lt;"https://en.wikipedia.org/wiki/States_of_Brazil"&gt;
+</PropertyValue><PropertyValue name="Item15.Position">1</PropertyValue><PropertyValue name="Item16.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item16.ID">5B8A3A36BCB3DBAE2E82CAF093E97C0F</PropertyValue><PropertyValue name="Item16.Name">Text: [ for state in States.GetSample().Tables.``List of Brazilian states``.Rows -&gt;
+    state.State, Double.Parse(state.``Population (2014)``.Split('♠').[1], us) ]
+|&gt; Seq.sortBy snd
+|&gt; Seq.iter (printfn "%A")</PropertyValue><PropertyValue name="Item16.UseDefaultName">true</PropertyValue><PropertyValue name="Item16.Tab">9 Wiki</PropertyValue><PropertyValue name="Item16.TabID">9 Wiki</PropertyValue><PropertyValue name="Item16.OriginalTabID">9 Wiki</PropertyValue><PropertyValue name="Item16.OriginalTab">9 Wiki</PropertyValue><PropertyValue name="Item16.RecordType">1</PropertyValue><PropertyValue name="Item16.Data">[ for state in States.GetSample().Tables.``List of Brazilian states``.Rows -&gt;
+    state.State, Double.Parse(state.``Population (2014)``.Split('♠').[1], us) ]
+|&gt; Seq.sortBy snd
+|&gt; Seq.iter (printfn "%A")</PropertyValue><PropertyValue name="Item16.Position">2</PropertyValue><PropertyValue name="Item17.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item17.ID">51CF4D2F80A0965827C9F6DCAD1DEC79</PropertyValue><PropertyValue name="Item17.Name">Text: let app = 
+  choose [ pathScan "/city/%s" getTemp
+           getTemp "Rio+de+Janeiro" ]
+startWebServer defaultConfig app</PropertyValue><PropertyValue name="Item17.UseDefaultName">true</PropertyValue><PropertyValue name="Item17.Tab">10 Suave</PropertyValue><PropertyValue name="Item17.TabID">10 Suave</PropertyValue><PropertyValue name="Item17.OriginalTabID">10 Suave</PropertyValue><PropertyValue name="Item17.OriginalTab">10 Suave</PropertyValue><PropertyValue name="Item17.RecordType">1</PropertyValue><PropertyValue name="Item17.Data">let app = 
+  choose [ pathScan "/city/%s" getTemp
+           getTemp "Rio+de+Janeiro" ]
+startWebServer defaultConfig app</PropertyValue><PropertyValue name="Item17.Position">1</PropertyValue><PropertyValue name="ItemCount">18</PropertyValue></Category></Category></UserSettings>

@@ -1,0 +1,12 @@
+framework: >= net40
+source https://www.nuget.org/api/v2
+
+nuget FsLab
+nuget FsCheck
+nuget FsUnit
+nuget NUnit.Runners
+nuget FAKE
+nuget Suave
+nuget canopy
+
+	

@@ -1,0 +1,5 @@
+C:\Tomas\Materials\Talks\2016\10-ways-getting-started\qconrio\code-start\Calculator\bin\Debug\Calculator.dll
+C:\Tomas\Materials\Talks\2016\10-ways-getting-started\qconrio\code-start\Calculator\bin\Debug\Calculator.pdb
+C:\Tomas\Materials\Talks\2016\10-ways-getting-started\qconrio\code-start\Calculator\obj\Debug\Calculator.Library.csprojResolveAssemblyReference.cache
+C:\Tomas\Materials\Talks\2016\10-ways-getting-started\qconrio\code-start\Calculator\obj\Debug\Calculator.dll
+C:\Tomas\Materials\Talks\2016\10-ways-getting-started\qconrio\code-start\Calculator\obj\Debug\Calculator.pdb

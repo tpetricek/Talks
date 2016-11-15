@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 Domain Model", "04 Domain Model", "{0B50F543-F0E9-4955-9967-CF8EA57CA188}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Exploration", "01 Exploration", "{C30F8F31-281A-45E8-8D0C-CABC0CD1E9FE}"
+	ProjectSection(SolutionItems) = preProject
+		Exploration.fsx = Exploration.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Calling REST", "02 Calling REST", "{F493429E-E48C-4F12-A5B0-D7F42E986AD3}"
+	ProjectSection(SolutionItems) = preProject
+		Weather.fsx = Weather.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Unit Testing", "03 Unit Testing", "{90B44075-1BF9-4276-B75B-8FE4F1765778}"
+	ProjectSection(SolutionItems) = preProject
+		RELEASE_NOTES.md = RELEASE_NOTES.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10 Web Sites", "10 Web Sites", "{D51384A7-31F4-475C-AEA8-2A6B2C05090C}"
+	ProjectSection(SolutionItems) = preProject
+		Web.fsx = Web.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08 Random Testing", "08 Random Testing", "{2A834FAE-DB2B-4DE3-B5AD-D192325A3EA8}"
+	ProjectSection(SolutionItems) = preProject
+		Random.fsx = Random.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 Visualizing Countries", "07 Visualizing Countries", "{11E3924D-42E2-496A-B38D-E0937EE4859F}"
+	ProjectSection(SolutionItems) = preProject
+		Countries.fsx = Countries.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 Web Testing", "05 Web Testing", "{7AADD7A9-9735-429E-AE9B-EDADA92F5E78}"
+	ProjectSection(SolutionItems) = preProject
+		Canopy.fsx = Canopy.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09 Reading HTML", "09 Reading HTML", "{94338A26-D402-435D-AF79-55BD8561CBBA}"
+	ProjectSection(SolutionItems) = preProject
+		Wikipedia.fsx = Wikipedia.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 FAKE", "06 FAKE", "{107364C2-C99A-42CA-BF09-20712A10B949}"
+	ProjectSection(SolutionItems) = preProject
+		Build.fsx = Build.fsx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Library", "Calculator\Calculator.Library.csproj", "{84F75E2E-0868-47FD-B473-28F5A82C1E26}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Calculator.Tests", "Calculator.Tests\Calculator.Tests.fsproj", "{20399E27-A139-4B64-AED8-0D85977EDF5C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Movies.Domain", "Movies.Domain\Movies.Domain.fsproj", "{3C276CDB-C97A-4EF3-AA43-0A2B2172E0EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Web", "Movies.Web\Movies.Web.csproj", "{86D2B3E1-A2C4-4399-B04F-21C2CE64FA12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84F75E2E-0868-47FD-B473-28F5A82C1E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F75E2E-0868-47FD-B473-28F5A82C1E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F75E2E-0868-47FD-B473-28F5A82C1E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F75E2E-0868-47FD-B473-28F5A82C1E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20399E27-A139-4B64-AED8-0D85977EDF5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20399E27-A139-4B64-AED8-0D85977EDF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20399E27-A139-4B64-AED8-0D85977EDF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20399E27-A139-4B64-AED8-0D85977EDF5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C276CDB-C97A-4EF3-AA43-0A2B2172E0EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C276CDB-C97A-4EF3-AA43-0A2B2172E0EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C276CDB-C97A-4EF3-AA43-0A2B2172E0EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C276CDB-C97A-4EF3-AA43-0A2B2172E0EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86D2B3E1-A2C4-4399-B04F-21C2CE64FA12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D2B3E1-A2C4-4399-B04F-21C2CE64FA12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86D2B3E1-A2C4-4399-B04F-21C2CE64FA12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D2B3E1-A2C4-4399-B04F-21C2CE64FA12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84F75E2E-0868-47FD-B473-28F5A82C1E26} = {90B44075-1BF9-4276-B75B-8FE4F1765778}
+		{20399E27-A139-4B64-AED8-0D85977EDF5C} = {90B44075-1BF9-4276-B75B-8FE4F1765778}
+		{3C276CDB-C97A-4EF3-AA43-0A2B2172E0EF} = {0B50F543-F0E9-4955-9967-CF8EA57CA188}
+		{86D2B3E1-A2C4-4399-B04F-21C2CE64FA12} = {0B50F543-F0E9-4955-9967-CF8EA57CA188}
+	EndGlobalSection
+EndGlobal
