@@ -1,0 +1,270 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Visualizing Olympic Medals with F# and Fable</title>
+    <meta name="description" content="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way.">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="withbackground" data-background="images/rio.jpg">
+<section class="withbackground" data-background="images/rio.jpg">
+<br /><br /><br /><br />
+<h2><em>The Gamma</em>: Towards open and transparent data-driven storytelling</h2>
+<br /><br /><br /><br />
+<h4>Tomas Petricek, Alan Turing Institute<br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://thegamma.net">thegamma.net</a> | <a href="http://tomasp.net">tomasp.net</a></h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<img src="images/ati-logo.png" style="background:transparent;height:170px;margin-right:120px"/>
+<img src="images/dni-logo.png" style="background:transparent;height:170px;"/>
+</section>
+</section>
+<section class="withbackground" data-background="images/post-fact.jpg">
+<section class="withbackground" data-background="images/post-fact.jpg">
+<div class="fragment">
+<h1>Welcome to the <em>post-fact</em> world</h1>
+</div>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h2>Technology democratized <em>opinions</em></h2>
+<div class="fragment">
+<h2>Can it also democratize <em>facts</em>?</h2>
+</div>
+</section>
+</section>
+<section class="withbackground" data-background="images/rowing.jpg">
+<section class="withbackground" data-background="images/rowing.jpg">
+<h1><em>Data-driven</em> storytelling</h1>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<img src="images/nyt.png" style="background:transparent;width:900px;" />
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h2><em>Open</em> data-driven storytelling</h2>
+<ul>
+<li>
+<p>Can the result be <em>reproduced</em>?<br />
+<small style="margin-bottom:20px">Reinhart–Rogoff, Growth in a Time of Debt</small></p>
+</li>
+<li>
+<p>Is the visualization <em>misleading</em>?<br />
+<small>One medal per boat or 8 medals per boat?</small></p>
+</li>
+</ul>
+</section>
+</section>
+<section class="withbackground" data-background="images/world.jpg">
+<section class="withbackground" data-background="images/world.jpg">
+<h1>
+  <img src="images/gamma-logo.png" style="width:100px;position:relative;top:37px;margin-right:30px"/>
+  The Gamma
+</h1>  
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h4><em>DEMO</em>: Visualizing Olympic medalists</h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<div class="fragment">
+<h3>Data-driven article is just a <em>program</em>!</h3>
+</div>
+<div class="fragment" style="margin-top:50px">
+<ul>
+<li>We first see the <em>resulting story</em></li>
+<li>Readers can <em>modify the parameters</em></li>
+<li>Power users can <em>verify the code</em></li>
+</ul>
+</div>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h2><em>Article as a program #1</em></h2>
+<h4>Automatically allowing readers<br /> to modify parameters</h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h4><em>DEMO</em>: Choosing disciplines for a timeline</h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h2><em>Article as a program #2</em></h2>
+<h4>Type providers for simplifying<br />access to open government data</h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h4><em>DEMO</em>: Exploring World Bank data</h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h2><em>Article as a program #3</em></h2>
+<h4>Improving usability of languages<br /> by learning from Excel</h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h4><em>DEMO</em>: Pivot type provider</h4>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h1><em>Article as a program</em><br />is a powerful paradigm</h1>
+</section>
+</section>
+<section class="withbackground" data-background="images/tggh.png">
+<section class="withbackground" data-background="images/tggh.png">
+<div class="fragment">
+<img src="images/gh-logo.png" style="background:transparent;height:110px;margin-right:180px"/>
+<img src="images/npm-logo.png" style="background:transparent;height:100px;"/>
+</div>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h2><em>The Gamma</em> open-source library</h2>
+<ul>
+<li><em>JavaScript</em> Web component anyone can use</li>
+<li><em>Data source</em> Service anyone can write</li>
+<li><em>Sample</em> Data sources and visualizations</li>
+</ul>
+</section>
+<section author="Tomas Petricek" description="What if you could right-click on every number, table or chart you see in 
+online media and choose "view source" to understand how the information has been obtained,
+processed and visualized? In this talk, I'll present a project that tries to make this
+possible and I'll cover how F# and Fable helped along the way." theme="night" title="Visualizing Olympic Medals with F# and Fable" transition="none">
+<h2>Interested in <em>collaboration</em>!</h2>
+<ul>
+<li><em>Journalists</em> interested in transparency</li>
+<li>Exposing UK <em>open government data</em></li>
+<li><em>Automagic</em> linking and cleaning of data</li>
+</ul>
+</section>
+</section>
+<section class="withbackground" data-background="images/tggh.png">
+<h1>Summary</h1>
+</section>
+<section class="withbackground" data-background="images/trump.jpg">
+<h1>Make <em>facts</em> great again!</h1>
+</section>
+<section class="withbackground" data-background="images/rio.jpg">
+<br /><br />
+<h3>Using <em>open government data</em></h3>
+<h3>Using <em>machine learning</em> &amp; <em>data science</em></h3>
+<h3>Using <em>programming research</em></h3>
+<br /><br /><br />
+<h4>Tomas Petricek, <a href="tpetricek@turing.ac.uk">tpetricek@turing.ac.uk</a><br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://thegamma.net">thegamma.net</a> | <a href="http://tomasp.net">tomasp.net</a></h4>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
