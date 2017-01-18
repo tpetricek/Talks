@@ -68,6 +68,9 @@ Talks and slides
 
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup  
    See also: [soruce code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
+
+ - [**The Gamma: Towards open and transparent data-driven storytelling**](http://tpetricek.github.io/Talks/2016/open-storytelling/) (November 2016) - Alan Turing Institute  
+   See also: [thegamma.net(https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/) using The Gamma
   
 ### Philosophy of Science and Research
 

@@ -53,8 +53,8 @@ let render trigger state =
         ]
     ]
     h?input [
-      "value" => state.Input
-      "oninput" =!> fun d -> trigger (Input(unbox d?target?value)) ] []
+      "value" => state.Input + "A"
+      "onchange" =!> fun d -> trigger (Input(unbox d?target?value)) ] []
     h?button 
       [ yield "onclick" =!> fun _ -> trigger Create 
         if state.Input = "" then 

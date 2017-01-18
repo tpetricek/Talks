@@ -1,0 +1,6 @@
+source http://nuget.org/api/v2
+
+nuget FAKE
+nuget Suave
+nuget FSharp.Data.Toolbox.Twitter
+nuget FSharp.Compiler.Service

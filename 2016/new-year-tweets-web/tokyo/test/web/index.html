@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy New Year 2016 around the World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+  <script src="/datamaps.world.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Raleway|Comfortaa:700' rel='stylesheet' type='text/css'>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@tomaspetricek">
+  <meta name="twitter:creator" content="@tomaspetricek">
+  <meta name="twitter:title" content="Happy New Year 2016">
+  <meta name="twitter:description" content="Watch the #HappyNewYear #FelizAnoNuevo tweets live across the globe to celebrate the New Year 2016!">
+  <meta name="twitter:image" content="http://newyear-tweets.cloudapp.net/card.gif">
+
+  <style>
+    * { margin:0px; padding:0px; }
+    body { font:16px Raleway; background:black; color:#f0f0f0; }
+    h1 { font:40px Comfortaa; margin:0px 0px 5px 0px; }
+    h2 { font:30px Comfortaa; margin:30px 0px 5px 0px; }
+    #content { max-width:1200px; padding:30px 10px 30px 10px; background:#181818; margin-left:auto; margin-right:auto; }
+
+    #map { margin:30px 0px 0px 0px; }
+    .hoverinfo { padding:10px !important; border-color:#404040 !important; background:rgba(0,0,0,0.75) !important; max-width:300px; }
+    .hoverinfo img { float:left; width:50px; height:50px; border-radius:25px; opacity:0.8; }
+    .hoverinfo p { font:10pt Raleway; margin-left:60px; min-height:50px; }
+    #phrases { padding:20px 10% 10px 10%; text-align:center; }
+    #phrases span { font-family:Comfortaa; margin-top:10px; margin-bottom:10px; transition:all 1s ease; }
+
+    #tweets { margin-top:20px; }
+    #tweets, #tweets li { list-style-type:none; }
+    #tweets li { margin:0px 20px 0px 30px; }
+    #tweets li img { float:left; width:50px; height:50px; border-radius:25px; opacity:0.7; }
+    #tweets li p { font-size:16px; position:relative; margin-left:80px; }
+
+    #tweetthis { float:right; margin-top:15px; }
+    .cb { clear:both; margin-bottom:100px }
+    .cb p { color:#909090; margin-bottom:15px; }
+    .cb a { color:#a0a0a0; font-weight:bold; }
+
+    @media (min-width: 800px) {
+      #content { padding:30px; }
+      #phrases { padding-top:50px; }
+      .cl { float:left; min-height:500px; width:48%; }
+      .cr { width:48%;margin-left:51%; }
+      .cb p { margin-left:220px; }
+      .cb h2 { float:left; margin-top:20px; width:200px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <div id="tweetthis">
+      <a href="https://twitter.com/share" class="twitter-share-button"{count}
+        data-url="http://newyear-tweets.cloudapp.net/"
+        data-text="Happy New Year 2016 around the World #fsharp #dataviz"
+        data-via="tomaspetricek" data-size="large" data-dnt="true">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
+
+    <h1>Happy New Year 2016 around the World</h1>
+    <p>Follow the beginning of 2016 on Twitter. Watch the 'Happy New Year' tweets live across the globe!</p>
+    <div id="map" style="position:relative; width:90%; margin-left:5%;"></div>
+
+    <div class="cl">
+      <h2>Trending Wishes</h2>
+      <p>What are the most frequently tweeted phrases right now? Where on the globe is the New Year starting?</p>
+      <div id="phrases" style="color:white"></div>
+    </div>
+
+    <div class="cr">
+      <h2>Selected Tweets</h2>
+      <ul id="tweets">
+      </ul>
+    </div>
+
+    <div class="cb">
+      <h2>About This</h2>
+      <p>This project was put together by <a href="https://twitter.com/tomaspetricek/">@tomaspetricek</a>
+        for <a href="https://twitter.com/search?q=%23FsAdvent">#FsAdvent</a>. It is created using the
+        awesome <a href="http://www.fsharp.org">F# language</a>. The back-end is hosted on Azure using
+        the <a href="http://suave.io">Suave.io</a> server and the front-end is using
+        <a href="http://datamaps.github.io/">Datamaps</a>. It is partly inspired by
+        <a href="http://twitter.github.io/interactive/newyear2014/">Twitter's New Year 2014</a>.
+      </p>
+      <p>
+        I wrote a <a href="http://tomasp.net/blog/2015/happy-new-year-tweets">detailed blog post</a>
+        about the technical details and so if you are a developer, you can find more information there.
+        The complete source code is available <a href="https://github.com/tpetricek/new-year-tweets-2016">on GitHub</a> under
+        the Apache 2.0 license. Have fun!
+      </p>
+    </div>
+
+</div>
+<script>
+
+  // Resize the map depending on its width
+  $("#map").height($("#map").width()/2);
+
+  // We often need to keep some history and overwrite it as we go...
+  var RingBuffer = function(count) {
+    var buffer = new Array(count);
+    var index = 0;
+    this.add = function(v) {
+      buffer[index] = v;
+      index = (index + 1) % count;
+    }
+    this.values = function() {
+      return buffer.filter(function(a){ return a != null; });
+    }
+  }
+
+  // Clean some twitter noise from a tweet text
+  function cleanText(text) {
+    return text.replace(/((RT )?@[0-9_A-Za-z]+:?)|(https?:[^ ]+)/g, "");
+  }
+
+  // Keeps a reference to the current map object, once created
+  var map = null;
+  var root = "ws://" + window.location.hostname;
+  if (window.location.port != "") root = root + ":" + window.location.port;
+  root = root + "/";
+
+  // Listen to tweets with geolocation and show them on the map
+  function listenToMapTweets() {
+    var tweets = new RingBuffer(20);
+    websocket = new WebSocket(root + "maptweets");
+    websocket.onmessage = function(evt) {
+      var res = JSON.parse(evt.data);
+      res.radius = 10;
+      res.fillKey = "tweet";
+      tweets.add(res);
+      if (map != null) {
+        map.bubbles(tweets.values(), {
+          popupTemplate: function (geo, data) {
+            //  return ['<div class="hoverinfo"><strong>', data.originalArea, '</strong> (',
+            //    data.geocoder, ')<br/>', cleanText(data.text), '</div>' ].join('');
+            return ['<div class="hoverinfo"><img src="', data.picture,
+              '" /><p><strong>', data.screenName, '</strong><br/>',
+              cleanText(data.text), '</p></div>' ].join('');
+          }
+        });
+      }
+    };
+  }
+
+  // Listen to tweets without geolocation and show them in the feed
+  function listenToFeedTweets() {
+    websocket = new WebSocket(root + "feedtweets");
+    websocket.onmessage = function(evt) {
+      var res = JSON.parse(evt.data);
+      $("#tweets li").slice(6, $("#tweets li").length).remove();
+
+      var li = $("<li style='opacity:0;xoverflow:hidden' />");
+      var p = $("<p>" + cleanText(res.text) + "</p>");
+      li.append($("<img src='" + res.picture + "'/>"));
+      li.append(p);
+
+      $("#tweets").prepend(li);
+      var oh = p.height();
+      var nh = oh < 50 ? 50 : oh;
+      if (oh < 40) p.css("padding-top", (40-oh)/2);
+      li.css("height", "0px")
+      li.animate({opacity:1, height:nh + 15}, "linear");
+
+      var minHeight = 150;
+      var heights = $("#tweets li").toArray().forEach(function(el) { minHeight += $(el).height(); });
+      if (window.minCrHeight == null || minHeight > window.minCrHeight) {
+        window.minCrHeight = minHeight;
+        $(".cr").css("min-height", minHeight + "px");
+      }
+    };
+  }
+
+  // Listen to phrase frequency updates and update the word cloud
+  function listenToFrequencies() {
+    websocket = new WebSocket(root + "frequencies");
+    websocket.onmessage = function(evt) {
+      var res = JSON.parse(evt.data);
+      var pps = $("#phrases span");
+      if (pps.length == 0)
+      {
+        // Initialize the word cloud with <span> for each phrase (1st time only)
+        res.forEach(function(pc) {
+          $("#phrases").append($("<span style='font-size:0px;margin-left:0px;margin-right:0px'>" + pc.phrase + "</span>"));
+        });
+        pps = $("#phrases span");
+      }
+
+      // Create lookup with counts for each phrase
+      var lookup = { };
+      res.forEach(function(pc) { lookup[pc.phrase] = pc.count; });
+
+      var mult = ($("body").width() > 800) ? 1 : 0.6;
+      var colors = ['#7fc97f', '#beaed4', '#fdc086', '#ffff99' ];
+      var colorIndex = -1;
+      pps.each(function() {
+        var count = lookup[$(this).text()];
+        var size = mult * (15 + 40 * ((1 + count) / 300));
+        if (count == 0) size = 0;
+        else
+        {
+          if (++colorIndex == colors.length) colorIndex = 0;
+          $(this).css("color", colors[colorIndex]);
+        }
+        $(this).css("display", "inline-block");
+        $(this).css("font-size", Math.round(size)+"px");
+        $(this).css("margin-left", Math.round(size)+"px");
+        $(this).css("margin-right", Math.round(size)+"px");
+      });
+    };
+  }
+
+  // Construct the map (once we get time zone info via REST call)
+  function createMapFromZones(res) {
+    // Create a lookup mapping country names to country IDs (as in Datamap)
+    var lookup = {};
+    var data = {};
+    Datamap.prototype.worldTopo.objects.world.geometries.forEach(function (topo) {
+      lookup[topo.properties.name] = topo.id;
+      data[topo.id] = { fillKey: "missing" };
+    });
+
+    // Create a lookup mapping country IDs to the time zone info
+    var o = JSON.parse(res);
+    o.countries.forEach(function (kv) {
+      data[lookup[kv.country]] = { fillKey: kv.zone };
+    });
+
+    // Create fills object with color for each time zone
+    var fills = {
+      defaultFill: '#EDDC4E',
+      tweet: '#f0027f',
+      missing: '#E0C374'
+    }
+    var colors = ['#7fc97f', '#beaed4', '#fdc086', '#ffff99'];
+    var index = -1;
+    o.zones.forEach(function (tz) {
+      if (++index == colors.length) index = 0;
+      fills[tz] = colors[index];
+    });
+
+    // Create the data map!
+    map = new Datamap({
+      element: document.getElementById('map'),
+      scope: 'world',
+      geographyConfig: {
+        popupOnHover: true,
+        highlightOnHover: true,
+        borderColor: "#606060"
+      },
+      bubblesConfig: {
+        borderWidth: 1,
+        highlightFillColor: '#FF60B5',
+        highlightBorderColor: '#ffffff',
+        highlightBorderWidth: 1,
+      },
+      fills: fills,
+      data: data
+    });
+  }
+
+  // Create map - if the server does not reply, use defaults
+  function createMap() {
+    $.ajax({ url: "/zones", type: "GET" })
+      .error(function () { createMapFromZones("{\"countries\":[], \"zones\":[]}"); })
+      .done(function (res) { createMapFromZones(res); });
+  }
+
+  window.addEventListener("load", createMap, false);
+  window.addEventListener("load", listenToMapTweets, false);
+  window.addEventListener("load", listenToFeedTweets, false);
+  window.addEventListener("load", listenToFrequencies, false);
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1561220-6', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
