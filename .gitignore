@@ -8,3 +8,4 @@ paket-files
 TestResult.xml
 *.publishsettings
 credentials.fsx
+.fake

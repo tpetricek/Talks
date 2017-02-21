@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <style>
+    section {
+      margin:50px auto 0px auto;
+      width:400px;
+      font:normal 16pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h1 {
+      font:normal 24pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-bottom:40px;
+    }
+    input, button {
+      font:normal 14pt 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    ul {
+      margin:0px;
+      padding:0px;
+    }
+    li {
+      list-style-type: none;
+      border:solid 2px #4597EF;
+      padding:8px;
+      margin:0px 0px 10px 0px;
+      background:#D0E1F2;
+    }
+    .done {
+      text-decoration:line-through;
+    }
+    li input {
+      -moz-appearance:none;
+      -webkit-appearance:none;
+      -o-appearance:none;
+      width:20px;
+      border:solid 2px #4597EF;
+      color:white;
+      position:relative;
+      top:5px;
+      margin-right:15px;
+    }
+    li input:checked {
+      background:#4597EF;
+    }
+    li a {
+      float:right;
+      background:#4597EF;
+      border-radius:12px;
+      width:24px;
+      height:24px;
+      color:#D0E1F2;
+      overflow:hidden;
+      text-decoration:none;
+    }
+    input {
+      width:290px;
+      padding:8px;
+      border:solid 2px #4597EF;
+      background:#D0E1F2;
+    }
+    button {
+      width:88px;
+      padding:8px;
+      background:#4597EF;
+      border:solid 2px #4597EF;
+      color:white;
+      cursor:pointer;
+    }
+    button:disabled {
+      color:#D0E1F2;
+      cursor:not-allowed;
+    }
+    li a span {
+      font-weight:bold;
+      font-size:12pt;
+      position:relative;
+      top:-5px;
+      left:7px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h1><strong>YATL</strong>: Yet another todo list</h1>
+    <div id="todo">
+    </div>
+  </section>
+
+  <script src="node_modules/core-js/client/core.min.js"></script>
+  <script src="out/bundle.js"></script>
+</body>
+</html>

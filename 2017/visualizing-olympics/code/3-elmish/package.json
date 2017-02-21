@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "fable-samples-virtualdom",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "node node_modules/.bin/fable",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tomas Jansson",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "2.4.0",
+    "fable-core": "^0.7.14",
+    "virtual-dom": "^2.1.1"
+  },
+  "devDependencies": {
+    "fable-compiler": "^0.7.18",
+    "fable-import-virtualdom": "^0.8.1"
+  }
+}
