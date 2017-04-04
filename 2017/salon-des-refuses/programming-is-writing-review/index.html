@@ -1,0 +1,208 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Programming is Writing is Programming</title>
+    <meta name="description" content="">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>    
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h2>Programming is Writing is Programming<br /><span style="font-weight:300">(Felienne Hermans)</span></h2>
+<div style="margin:60px 0px 60px 0px">
+<img src="images/zen.png" style="height:300px" />
+</div>
+<p><strong>Tomas Petricek</strong>, The Alan Turing Institute <br />
+<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section >
+<h2>Formatting in programming and writing</h2>
+</section>
+<section >
+<img src="images/ioccc.png" style="height:600px" />
+<p class="fragment">(mario.c, International Obfuscated C Code Contest, 2014)</p>
+</section>
+<section >
+<img src="images/atjde.png" style="height:600px" />
+<p class="fragment">(Ať jde každý vlastní cestou, Antikódy, Václav Havel, 1964)</p>
+</section>
+<section >
+<h2>Formatting and meaning</h2>
+<p>Can make consumption easier in <em>writing</em> ✔<br />
+Can make consumption easier in <em>programming</em> ✔</p>
+<div class="fragment" style="margin-top:50px">
+<p>Can support the meaning in <em>writing</em> ✔<br />
+Can support the meaning in <em>programming</em> <strong>?</strong></p>
+</div><div class="fragment" style="margin-top:50px">
+<p>Can form the key component of meaning in <em>writing</em> ✔<br />
+Can form the key component of meaning in <em>programming</em> ✘<br />
+</div></p>
+</section>
+<section >
+<h3>What if <em>formatting</em> was<br />a proper part of <em>meaning</em>?</h3>
+</section>
+</section>
+<section >
+<section >
+<h2>Process of writing</h2>
+</section>
+<section >
+<h2>Process of writing and programming</h2>
+<img src="images/process.png" style="height:300px" />
+<br /><br />
+<p class="fragment">(Programming is Writing is Programming, Hermans & Aldewereld)</p>
+</section>
+<section >
+<h2>Pirsig on rules for "good writing"</h2>
+<blockquote>
+<p>[T]he rule was pasted on to the writing after the writing was all done. <br />
+It was post hoc, after the fact, instead of prior to the fact.</p>
+<p>And he became convinced that all the writers the students were supposed to
+mimic wrote without rules, putting down whatever sounded right, then
+going back to see if it still sounded right and changing it if it didn't.</p>
+</blockquote>
+<br />
+<p class="fragment">(Zen and the art of motorcycle maintenance, Pirsig 1974)</p>
+</section>
+<section >
+<h3>Do we mistake <em>descriptive</em> for <em>prescriptive</em>?</h3>
+<div class="fragment">
+<h3>Is programming more <em>constrained</em><br />because computer has to run your program?</h3>
+</div>
+</section>
+</section>
+<section >
+<section >
+<p>How to learn from Programming is Writing is Programming?</p>
+<div class="fragment">
+<h3><em>Write programs for reading, not for execution!</em></h3>
+</div>
+</section>
+<section >
+<h2><em>Programs just for reading</em></h2>
+<img src="images/algol.png" style="" class="fragment" />
+<img src="images/pub.png" style="height:300px" class="fragment" />
+</section>
+</section>
+<section >
+<h2 style="margin:0px">Summary</h2>
+<h3><em style="font-size:90%">Liberate programming from the tyranny of execution?</em></h3>
+<ul>
+<li>Explore how coding style can <em>carry meaning</em></li>
+<li>What <em>rules</em> might be worth <em>breaking</em>?</li>
+<li>Not joking! <em>Pseudocode</em> is the same since 1960s</li>
+</ul>
+<br />
+<br />
+<br />
+<p>Tomas Petricek | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section >
+<h2>The essence of program or text</h2>
+</section>
+<section >
+<blockquote>
+<p>Eventually, Estragon dozes off and Vladimir rouses him but then stops him before he can share his
+dreams—another recurring activity between the two men. Estragon wants to hear an old joke, which
+Vladimir cannot finish without going off to urinate. Upon Vladimir's return, Estragon suggests
+that they hang themselves, but they abandon the idea when the logistics seem ineffective.</p>
+</blockquote>
+<p class="fragment">(Waiting for Godot, Samuel Beckett 1953)</p>
+</section>
+<section >
+<h2>The essence of program or text</h2>
+<p>For text, we know <em>plot is not the essence</em> of text.</p>
+<div class="fragment">
+<p>For programs, we believe there is a succinct <br />
+essence or high-level program description.</p>
+</div>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
