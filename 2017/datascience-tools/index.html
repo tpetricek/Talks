@@ -1,0 +1,312 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Building Better Data Science Tools (while avoiding a real world job!)</title>
+    <meta name="description" content="Building Better Data Science Tools (while avoiding a real world job!)">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<section >
+<h2><em>Building Better Data Science Tools</em> <br/>(while avoiding a real world job!)</h2>
+<br />
+<br />
+<br />
+<br />
+<br />
+<h4><strong>Tomas Petricek</strong>, Alan Turing Institute + fsharpWorks <br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://tomasp.net">tomasp.net</a> | <a href="http://fsharpworks.com">fsharpworks.com</a></h4>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<img src="images/cv.png" style="width:480px"/>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<img src="images/rwfp.png" style="width:480px"/>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2>Programming languages and tools</h2>
+<br />
+<div class="fragment">
+<p>Surely, there must be a <em>better way</em>!</p>
+</div><div class="fragment">
+<p>Change <em>how we think</em> about the world?</p>
+</div><div class="fragment">
+<p>Nice <em>open-source</em> community!</p>
+</div>
+<br />
+</section>
+</section>
+<section >
+<section >
+<h1><em>DATA SCIENCE</em></h1>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<img src="images/loop.png" style="width:500px;border-style:none;background:transparent;" />
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<style>
+.vtop td { vertical-align:middle; }
+</style>
+<table class="vtop"><tr><td>
+<h1><em>DATA ACCESS</em></h1>
+<h2>Understanding<br />the world</h2>
+</td><td>
+<img src="images/world.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<style>
+.reveal .noborder td { border-style:none; vertical-align:top }
+.reveal .noborder td h3 { text-align:left; font-weight:bold; }
+</style>
+<table class="noborder">
+<tr><td><img src="images/logos/fsharpdata.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+<h3>F# Data</h3>
+<p>Access JSON, XML, CSV &amp; more</p>
+</td></tr>
+<tr><td style="height:20px"></td><td></td></tr>
+<tr><td><img src="images/logos/rprovider.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+<h3>R Provider</h3>
+<p>Call thousands of stats packages</p>
+</td>
+</tr>
+</table>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<table class="vtop"><tr><td>
+<h1><em>DATA ANALYSIS</em></h1>
+<h2>US government debt</h2>
+</td><td>
+<img src="images/lincoln.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<style>
+.reveal .noborder td { border-style:none; vertical-align:top; }
+</style>
+<table class="noborder">
+<tr><td><img src="images/logos/deedle.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+<h3>Deedle</h3>
+<p>Analyze time-series and data frames</p>
+</td></tr>
+<tr><td style="height:20px"></td><td></td></tr>
+<tr><td><img src="images/logos/charting.png" style="margin-top:30px;width:120px;border-style:none;"/></td><td>
+<h3>XPlot</h3>
+<p>Wrapper over Plot.ly and Google Charts</p>
+</td>
+</tr>
+</table>
+</section>
+</section>
+<section >
+<section >
+<h1><em>DATA JOURNALISM</em></h1>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2>Welcome to the <em>post-fact</em> world</h2>
+<br />
+<div class="fragment">
+<h3>Technology democratized <em>opinions</em></h3>
+</div>
+<div class="fragment">
+<h3>Can it also democratize <em>facts</em>?</h3>
+</div>
+<br />
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2><em>Data-driven</em> storytelling</h2>
+<img src="images/nyt.png" style="background:transparent;width:700px;" />
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2><em>Open</em> data-driven storytelling</h2>
+<ul>
+<li>
+<p>Can the result be <em>reproduced</em>?<br />
+<small style="margin-bottom:20px">Reinhart–Rogoff, Growth in a Time of Debt</small></p>
+</li>
+<li>
+<p>Is the visualization <em>misleading</em>?<br />
+<small>One medal per boat or 8 medals per boat?</small></p>
+</li>
+</ul>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h1>
+  <img src="images/gamma-logo.png" style="width:100px;position:relative;top:37px;margin-right:30px"/>
+  The Gamma
+</h1>  
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<table class="vtop"><tr><td>
+<h1><em>OLYMPICS</em></h1>
+<h2>Visualizing medalists</h2>
+<h3>(<a href="http://thegamma.net">thegamma.net</a>)</h3>
+</td><td>
+<img src="images/medals.png" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2>Simple data journalism tools</h2>
+<br />
+<div class="fragment">
+<p>Millions of <em>spreadsheet programmers</em>!</p>
+<p>What is the <em>simplest language</em>?</p>
+<p>Is <em>programming</em> the new <em>literacy</em>?</p>
+</div>
+<br />
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<table class="vtop"><tr><td>
+<h1><em>OLYMPICS</em></h1>
+<h2>Choosing disciplines</h2>
+<h3>(<a href="http://rio2016.thegamma.net/shared/12/table-tennis-medalists-timeline">load demo</a>)</h3>
+</td><td>
+<img src="images/cycle.jpg" style="width:500px;border-style:none;background:transparent;" />
+</td></tr></table>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2>Code vs user interface</h2>
+<br />
+<div class="fragment">
+<p>Treat <em>article as a program</em></p>
+<p>Use <em>program analysis</em> research!</p>
+<p>How <em>theory</em> helps in <em>practice</em></p>
+</div>
+<br />
+</section>
+</section>
+<section class="withbackground" data-background="images/trump.jpg">
+<h1>Make <em>facts</em> great again!</h1>
+</section>
+<section >
+<a href="https://www.nytimes.com/interactive/2017/01/15/us/politics/you-draw-obama-legacy.html">
+<img src="images/obama.png" style="background:transparent;width:700px;" /></a>
+</section>
+<section >
+<section >
+<h1><em>SUMMARY</em></h1>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2>Computer science</h2>
+<br />
+<div class="fragment">
+<p><em>Can be</em> biology, journalism, mathematics</p>
+<p>Enough demand to get a <em>lot of freedom</em></p>
+<p>What is <em>fun</em> and also <em>matters</em>?</p>
+</div>
+<br />
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h2>Open-source software</h2>
+<br />
+<div class="fragment">
+<p>Not <em>1960s hippies</em> culture anymore</p>
+<p>Look for <em>new interesting</em> technologies!</p>
+<p>Meet <em>interesting</em> people &amp; get a <em>job</em> too.</p>
+</div>
+<br />
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<img src="images/philo.png" style="width:480px"/>
+</section>
+<section author="Tomas Petricek" description="Building Better Data Science Tools (while avoiding a real world job!)" theme="night" title="Building Better Data Science Tools (while avoiding a real world job!)" transition="none">
+<h1>Thank you!</h1>
+<br />
+<style>
+.clr1links a { color:#D1336F; !important; }
+.clr1links ul { color:black; !important; }
+</style>
+<div class="clr1links">
+<ul>
+<li><a href="http://fsharp.org"><a href="http://fsharp.org">http://fsharp.org</a></a></li>
+<li><a href="http://fslab.org"><a href="http://fslab.org">http://fslab.org</a></a></li>
+<li><a href="http://thegamma.net"><a href="http://thegamma.net">http://thegamma.net</a></a></li>
+</ul>
+</div>
+<br /><br />
+<h3 style="position:relative;top:20px">Tomas Petricek</h3>
+<p><a href="http://tomasp.net">tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
