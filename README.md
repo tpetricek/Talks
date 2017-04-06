@@ -14,7 +14,8 @@ Talks and slides
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
- - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University. See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
+ - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University<br />
+   See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
  
  - [**The Gamma: Towards open and transparent data-driven storytelling**](http://tpetricek.github.io/Talks/2016/open-storytelling/) (November 2016) - Alan Turing Institute<br />
    See also: [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/) using The Gamma
@@ -30,8 +31,8 @@ Talks and slides
    
 ### Philosophy of Science and Research
 
- - [**Salon des Refusés: Welcome**](http://tpetricek.github.io/Talks/2017/salon-des-refuses/welcome) at Brussels 2017 and<br />
-   [**Critical commentary for Programming is Writing is Programming (Felienne Hermans)**](http://tpetricek.github.io/Talks/2017/salon-des-refuses/programming-is-writing-review)
+ - **Salon des Refusés**: [Welcome to Salon des Refusés](http://tpetricek.github.io/Talks/2017/salon-des-refuses/welcome), Brussels 2017<br />
+   [Critical commentary for Programming is Writing is Programming](http://tpetricek.github.io/Talks/2017/salon-des-refuses/programming-is-writing-review) 
  
  - [**Monads are not what they seem**](http://tpetricek.github.io/Talks/2017/monads-are-not-what-they-seem/paris/) (February 2017) - CNRS, Paris
 
