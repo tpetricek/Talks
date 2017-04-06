@@ -14,6 +14,8 @@ Talks and slides
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
+ - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University. See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
+ 
  - [**The Gamma: Towards open and transparent data-driven storytelling**](http://tpetricek.github.io/Talks/2016/open-storytelling/) (November 2016) - Alan Turing Institute<br />
    See also: [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/) using The Gamma
 
@@ -28,10 +30,13 @@ Talks and slides
    
 ### Philosophy of Science and Research
 
+ - [**Salon des Refusés: Welcome**](http://tpetricek.github.io/Talks/2017/salon-des-refuses/welcome) at Brussels 2017 and<br />
+   [**Critical commentary for Programming is Writing is Programming (Felienne Hermans)**](http://tpetricek.github.io/Talks/2017/salon-des-refuses/programming-is-writing-review)
+ 
  - [**Monads are not what they seem**](http://tpetricek.github.io/Talks/2017/monads-are-not-what-they-seem/paris/) (February 2017) - CNRS, Paris
 
  - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2016/living-with-errors) (November 2016) - CodeMesh, London<br />
-   See also: [older short version](http://tpetricek.github.io/Talks/2015/living-with-errors/) from HaPoC 2015 conference in Pisa
+   See also: [Programming 2017 (Brussels) version](http://tpetricek.github.io/Talks/2017/living-with-errors/) and [HaPoC 2015 (Pisa) version](http://tpetricek.github.io/Talks/2015/living-with-errors/)
 
  - [**Thinking the Unthinkable**](http://tpetricek.github.io/Talks/2016/unthinkable/ppig/) (September 2016) - PPIG, Cambridge
 
