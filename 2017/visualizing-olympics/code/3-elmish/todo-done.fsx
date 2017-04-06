@@ -5,7 +5,6 @@ open System
 open Fable.Core
 open Fable.Import
 open Fable.Import.Browser
-open Fable.Helpers
 open Elmish
 
 // ------------------------------------------------------------------------------------------------
@@ -29,7 +28,7 @@ let update state action =
   printfn "%A %A" action state 
   match action with
   | Input s -> { state with Input = s }
-  | Create -> { state with Items = state.Items @ [ Guid.NewGuid(), state.Input ] }
+  | Create -> { Input = ""; Items = state.Items @ [ Guid.NewGuid(), state.Input ] }
   | Remove id -> { state with Items = state.Items |> List.filter (fun (i, _) -> id <> i) }
 
 // ------------------------------------------------------------------------------------------------

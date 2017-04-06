@@ -16,7 +16,7 @@
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
-    "fable-compiler": "^0.7.18",
+    "fable-compiler": "0.7.18",
     "fable-import-virtualdom": "^0.8.1"
   }
 }
