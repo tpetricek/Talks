@@ -1,0 +1,668 @@
+{
+  "base": "USD",
+  "disclaimer": "Exchange rates are provided for informational purposes only, and do not constitute financial advice of any kind. Although every attempt is made to ensure quality, NO guarantees are given whatsoever of accuracy, validity, availability, or fitness for any purpose - please use at your own risk. All usage is subject to your acceptance of the Terms and Conditions of Service, available at: https://openexchangerates.org/terms/",
+  "license": "Data sourced from various providers with public-facing APIs; copyright may apply; resale is prohibited; no warranties given of any kind. All usage is subject to your acceptance of the License Agreement available at: https://openexchangerates.org/license/",
+  "rates": [
+    {
+      "code": "AED",
+      "value": 3.672926
+    },
+    {
+      "code": "AFN",
+      "value": 54.806767
+    },
+    {
+      "code": "ALL",
+      "value": 105.613
+    },
+    {
+      "code": "AMD",
+      "value": 418.66875
+    },
+    {
+      "code": "ANG",
+      "value": 1.78875
+    },
+    {
+      "code": "AOA",
+      "value": 96.253334
+    },
+    {
+      "code": "ARS",
+      "value": 5.336675
+    },
+    {
+      "code": "AUD",
+      "value": 1.055116
+    },
+    {
+      "code": "AWG",
+      "value": 1.791033
+    },
+    {
+      "code": "AZN",
+      "value": 0.7846
+    },
+    {
+      "code": "BAM",
+      "value": 1.46311
+    },
+    {
+      "code": "BBD",
+      "value": 2
+    },
+    {
+      "code": "BDT",
+      "value": 77.794951
+    },
+    {
+      "code": "BGN",
+      "value": 1.463147
+    },
+    {
+      "code": "BHD",
+      "value": 0.377016
+    },
+    {
+      "code": "BIF",
+      "value": 1553.051667
+    },
+    {
+      "code": "BMD",
+      "value": 1
+    },
+    {
+      "code": "BND",
+      "value": 1.25786
+    },
+    {
+      "code": "BOB",
+      "value": 6.916208
+    },
+    {
+      "code": "BRL",
+      "value": 2.170041
+    },
+    {
+      "code": "BSD",
+      "value": 1
+    },
+    {
+      "code": "BTC",
+      "value": 0.00934
+    },
+    {
+      "code": "BTN",
+      "value": 58.4712
+    },
+    {
+      "code": "BWP",
+      "value": 8.558873
+    },
+    {
+      "code": "BYR",
+      "value": 8687.5125
+    },
+    {
+      "code": "BZD",
+      "value": 1.980076
+    },
+    {
+      "code": "CAD",
+      "value": 1.020292
+    },
+    {
+      "code": "CDF",
+      "value": 920.157363
+    },
+    {
+      "code": "CHF",
+      "value": 0.920653
+    },
+    {
+      "code": "CLF",
+      "value": 0.02187
+    },
+    {
+      "code": "CLP",
+      "value": 497.757476
+    },
+    {
+      "code": "CNY",
+      "value": 6.134514
+    },
+    {
+      "code": "COP",
+      "value": 1893.223107
+    },
+    {
+      "code": "CRC",
+      "value": 500.2852
+    },
+    {
+      "code": "CUP",
+      "value": 22.687419
+    },
+    {
+      "code": "CVE",
+      "value": 82.6521
+    },
+    {
+      "code": "CZK",
+      "value": 19.174525
+    },
+    {
+      "code": "DJF",
+      "value": 177.8075
+    },
+    {
+      "code": "DKK",
+      "value": 5.575046
+    },
+    {
+      "code": "DOP",
+      "value": 41.48056
+    },
+    {
+      "code": "DZD",
+      "value": 78.463585
+    },
+    {
+      "code": "EEK",
+      "value": 11.771245
+    },
+    {
+      "code": "EGP",
+      "value": 6.996192
+    },
+    {
+      "code": "ETB",
+      "value": 18.691475
+    },
+    {
+      "code": "EUR",
+      "value": 0.746783
+    },
+    {
+      "code": "FJD",
+      "value": 1.842204
+    },
+    {
+      "code": "FKP",
+      "value": 0.639192
+    },
+    {
+      "code": "GBP",
+      "value": 0.639192
+    },
+    {
+      "code": "GEL",
+      "value": 1.653375
+    },
+    {
+      "code": "GHS",
+      "value": 2.006085
+    },
+    {
+      "code": "GIP",
+      "value": 0.639192
+    },
+    {
+      "code": "GMD",
+      "value": 36.488038
+    },
+    {
+      "code": "GNF",
+      "value": 7007.283333
+    },
+    {
+      "code": "GTQ",
+      "value": 7.804611
+    },
+    {
+      "code": "GYD",
+      "value": 203.061666
+    },
+    {
+      "code": "HKD",
+      "value": 7.758962
+    },
+    {
+      "code": "HNL",
+      "value": 20.280609
+    },
+    {
+      "code": "HRK",
+      "value": 5.592367
+    },
+    {
+      "code": "HTG",
+      "value": 43.072625
+    },
+    {
+      "code": "HUF",
+      "value": 218.897847
+    },
+    {
+      "code": "IDR",
+      "value": 9903.400025
+    },
+    {
+      "code": "ILS",
+      "value": 3.591997
+    },
+    {
+      "code": "INR",
+      "value": 58.599853
+    },
+    {
+      "code": "IQD",
+      "value": 1161.066655
+    },
+    {
+      "code": "IRR",
+      "value": 12271
+    },
+    {
+      "code": "ISK",
+      "value": 120.028751
+    },
+    {
+      "code": "JEP",
+      "value": 0.639192
+    },
+    {
+      "code": "JMD",
+      "value": 100.339392
+    },
+    {
+      "code": "JOD",
+      "value": 0.708533
+    },
+    {
+      "code": "JPY",
+      "value": 95.259498
+    },
+    {
+      "code": "KES",
+      "value": 85.630651
+    },
+    {
+      "code": "KGS",
+      "value": 48.4872
+    },
+    {
+      "code": "KHR",
+      "value": 4023.686683
+    },
+    {
+      "code": "KMF",
+      "value": 367.975136
+    },
+    {
+      "code": "KPW",
+      "value": 900
+    },
+    {
+      "code": "KRW",
+      "value": 1131.666684
+    },
+    {
+      "code": "KWD",
+      "value": 0.283247
+    },
+    {
+      "code": "KYD",
+      "value": 0.820127
+    },
+    {
+      "code": "KZT",
+      "value": 151.247163
+    },
+    {
+      "code": "LAK",
+      "value": 7709.241602
+    },
+    {
+      "code": "LBP",
+      "value": 1511.421075
+    },
+    {
+      "code": "LKR",
+      "value": 128.558546
+    },
+    {
+      "code": "LRD",
+      "value": 74.923932
+    },
+    {
+      "code": "LSL",
+      "value": 9.984099
+    },
+    {
+      "code": "LTL",
+      "value": 2.580269
+    },
+    {
+      "code": "LVL",
+      "value": 0.524295
+    },
+    {
+      "code": "LYD",
+      "value": 1.257653
+    },
+    {
+      "code": "MAD",
+      "value": 8.35509
+    },
+    {
+      "code": "MDL",
+      "value": 12.362112
+    },
+    {
+      "code": "MGA",
+      "value": 2167.136667
+    },
+    {
+      "code": "MKD",
+      "value": 46.267388
+    },
+    {
+      "code": "MMK",
+      "value": 943.4395
+    },
+    {
+      "code": "MNT",
+      "value": 1417.5
+    },
+    {
+      "code": "MOP",
+      "value": 7.985374
+    },
+    {
+      "code": "MRO",
+      "value": 299.772
+    },
+    {
+      "code": "MTL",
+      "value": 0.683602
+    },
+    {
+      "code": "MUR",
+      "value": 30.792702
+    },
+    {
+      "code": "MVR",
+      "value": 15.364025
+    },
+    {
+      "code": "MWK",
+      "value": 326.7735
+    },
+    {
+      "code": "MXN",
+      "value": 12.858704
+    },
+    {
+      "code": "MYR",
+      "value": 3.149452
+    },
+    {
+      "code": "MZN",
+      "value": 29.7791
+    },
+    {
+      "code": "NAD",
+      "value": 9.976493
+    },
+    {
+      "code": "NGN",
+      "value": 160.42184
+    },
+    {
+      "code": "NIO",
+      "value": 24.39561
+    },
+    {
+      "code": "NOK",
+      "value": 5.732015
+    },
+    {
+      "code": "NPR",
+      "value": 93.389197
+    },
+    {
+      "code": "NZD",
+      "value": 1.252322
+    },
+    {
+      "code": "OMR",
+      "value": 0.385036
+    },
+    {
+      "code": "PAB",
+      "value": 1
+    },
+    {
+      "code": "PEN",
+      "value": 2.743453
+    },
+    {
+      "code": "PGK",
+      "value": 2.250072
+    },
+    {
+      "code": "PHP",
+      "value": 43.16801
+    },
+    {
+      "code": "PKR",
+      "value": 98.57343
+    },
+    {
+      "code": "PLN",
+      "value": 3.18112
+    },
+    {
+      "code": "PYG",
+      "value": 4402.362835
+    },
+    {
+      "code": "QAR",
+      "value": 3.641358
+    },
+    {
+      "code": "RON",
+      "value": 3.348848
+    },
+    {
+      "code": "RSD",
+      "value": 85.118614
+    },
+    {
+      "code": "RUB",
+      "value": 31.960863
+    },
+    {
+      "code": "RWF",
+      "value": 650.3925
+    },
+    {
+      "code": "SAR",
+      "value": 3.750341
+    },
+    {
+      "code": "SBD",
+      "value": 7.191332
+    },
+    {
+      "code": "SCR",
+      "value": 11.838023
+    },
+    {
+      "code": "SDG",
+      "value": 4.406345
+    },
+    {
+      "code": "SEK",
+      "value": 6.451783
+    },
+    {
+      "code": "SGD",
+      "value": 1.259958
+    },
+    {
+      "code": "SHP",
+      "value": 0.639192
+    },
+    {
+      "code": "SLL",
+      "value": 4321.78161
+    },
+    {
+      "code": "SOS",
+      "value": 1428.681667
+    },
+    {
+      "code": "SRD",
+      "value": 3.28125
+    },
+    {
+      "code": "STD",
+      "value": 18377
+    },
+    {
+      "code": "SVC",
+      "value": 8.741975
+    },
+    {
+      "code": "SYP",
+      "value": 70.135986
+    },
+    {
+      "code": "SZL",
+      "value": 9.984421
+    },
+    {
+      "code": "THB",
+      "value": 30.813668
+    },
+    {
+      "code": "TJS",
+      "value": 4.762533
+    },
+    {
+      "code": "TMT",
+      "value": 2.85075
+    },
+    {
+      "code": "TND",
+      "value": 1.616917
+    },
+    {
+      "code": "TOP",
+      "value": 1.784454
+    },
+    {
+      "code": "TRY",
+      "value": 1.882227
+    },
+    {
+      "code": "TTD",
+      "value": 6.412557
+    },
+    {
+      "code": "TWD",
+      "value": 29.874755
+    },
+    {
+      "code": "TZS",
+      "value": 1638.15903
+    },
+    {
+      "code": "UAH",
+      "value": 8.15142
+    },
+    {
+      "code": "UGX",
+      "value": 2597.083395
+    },
+    {
+      "code": "USD",
+      "value": 1
+    },
+    {
+      "code": "UYU",
+      "value": 20.675985
+    },
+    {
+      "code": "UZS",
+      "value": 2090.683155
+    },
+    {
+      "code": "VEF",
+      "value": 6.292976
+    },
+    {
+      "code": "VND",
+      "value": 20969.583325
+    },
+    {
+      "code": "VUV",
+      "value": 94.416667
+    },
+    {
+      "code": "WST",
+      "value": 2.322182
+    },
+    {
+      "code": "XAF",
+      "value": 490.186366
+    },
+    {
+      "code": "XAG",
+      "value": 0.042936
+    },
+    {
+      "code": "XAU",
+      "value": 0.000721
+    },
+    {
+      "code": "XCD",
+      "value": 2.70195
+    },
+    {
+      "code": "XDR",
+      "value": 0.65485
+    },
+    {
+      "code": "XOF",
+      "value": 490.080501
+    },
+    {
+      "code": "XPF",
+      "value": 89.356476
+    },
+    {
+      "code": "YER",
+      "value": 215.424249
+    },
+    {
+      "code": "ZAR",
+      "value": 9.994871
+    },
+    {
+      "code": "ZMK",
+      "value": 5227.108333
+    },
+    {
+      "code": "ZMW",
+      "value": 5.433418
+    },
+    {
+      "code": "ZWL",
+      "value": 322.387247
+    }
+  ],
+  "timestamp": 1371596400
+}

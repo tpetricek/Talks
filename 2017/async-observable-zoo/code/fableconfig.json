@@ -1,0 +1,14 @@
+{
+    "sourceMaps": true,
+    "projFile": "./demo.fsx",
+    "outDir": "out",
+    "rollup": {
+        "plugins": [
+            ["commonjs", {
+                "namedExports": {
+                    "virtual-dom": [ "h", "create", "diff", "patch" ]
+                }
+            }]
+        ]
+    }
+}

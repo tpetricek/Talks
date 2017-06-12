@@ -11,6 +11,12 @@ Talks and slides
 
 ### Data Journalism and The Gamma
 
+ - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/) (June 2017) - Cambridge Spark Data Science Summit<br />
+   See also: [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
+
+ - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
+   See also: Shorter [ECOOP 2017 version](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
+
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
@@ -31,13 +37,13 @@ Talks and slides
    
 ### Philosophy of Science and Research
 
+ - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2017/living-with-errors/ncrafts) (May 2017) - NCrafts, Paris<br /> 
+   See also: [CodeMesh 2016 (London) version](http://tpetricek.github.io/Talks/2016/living-with-errors), [Programming 2017 (Brussels) version](http://tpetricek.github.io/Talks/2017/living-with-errors/programming/) and [HaPoC 2015 (Pisa) version](http://tpetricek.github.io/Talks/2015/living-with-errors/)
+
  - **Salon des Refusés**: [Welcome to Salon des Refusés](http://tpetricek.github.io/Talks/2017/salon-des-refuses/welcome), Brussels 2017<br />
    [Critical commentary for Programming is Writing is Programming](http://tpetricek.github.io/Talks/2017/salon-des-refuses/programming-is-writing-review) 
  
  - [**Monads are not what they seem**](http://tpetricek.github.io/Talks/2017/monads-are-not-what-they-seem/paris/) (February 2017) - CNRS, Paris
-
- - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2016/living-with-errors) (November 2016) - CodeMesh, London<br />
-   See also: [Programming 2017 (Brussels) version](http://tpetricek.github.io/Talks/2017/living-with-errors/) and [HaPoC 2015 (Pisa) version](http://tpetricek.github.io/Talks/2015/living-with-errors/)
 
  - [**Thinking the Unthinkable**](http://tpetricek.github.io/Talks/2016/unthinkable/ppig/) (September 2016) - PPIG, Cambridge
 
@@ -71,6 +77,9 @@ Talks and slides
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/scalable-ml-ds-fsharp/code-done)
 
 ### Web and Reactive programming
+
+ - [**Observables, Events, Asynchronous Sequences and Other Wild Animals**](http://tpetricek.github.io/Talks/2017/async-observable-zoo/) (April 2017) - F# eXchange, London<br />  
+   See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2017/async-observable-zoo/code)
 
  - [**Celebrating New Year's Eve with F# and Suave**](http://tpetricek.github.io/Talks/2016/new-year-tweets) (April 2016) - F# eXchange, London<br />  
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/new-year-tweets-web/london) and [the original project](https://github.com/tpetricek/new-year-tweets-2016)
