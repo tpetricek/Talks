@@ -1,0 +1,137 @@
+@import url(http://fonts.googleapis.com/css?family=Kreon:300,400,700|PT+Sans:400,700,400italic);
+
+.print-pdf p { width:100%; }
+.print-pdf li { width:100%; }
+
+i.fa {
+  margin-right:20px;
+  margin-left:20px;
+}
+
+.reveal td {
+  vertical-align:top;
+}
+
+.reveal h1 em, .reveal h2 em, .reveal h3 em, .reveal p em, .reveal li em {
+  color:#9B344E;
+  font-style:normal;
+}
+
+.reveal h1 strong, .reveal h2 strong, .reveal p strong, .reveal td em {
+  color:#064E94;
+  font-weight:normal;
+}
+
+.reveal a {
+  color:#064E94;
+  text-decoration:none;
+}
+.reveal a:hover {
+  color:#A7B71B;
+}
+.reveal ul, .reveal h1, .reveal h2, .reveal h3, .reveal p {
+  margin-left:0px;
+  text-align:left;
+}
+.reveal ul {
+  margin-left:20px;
+  padding-left:0px;
+}
+.reveal .slides {
+  text-align:left;
+}
+.reveal ul li {
+  margin-left:40px;
+  padding-left:0px;
+}
+.reveal p {
+  margin-top:20px;
+  margin-bottom:5px;
+}
+.reveal h1 {
+  text-transform:none;
+  font-size:46pt;
+  font-weight:bold;
+  margin-bottom:0px;
+  font-family: Kreon,'Times New Roman', Times, serif;
+}
+.reveal h2 {
+  text-transform:none;
+  font-size:36pt;
+  font-family: Kreon,'Times New Roman', Times, serif;
+  font-weight:bold;
+  margin-top:20px;
+  margin-bottom:30px;
+  color:#9B344E;
+}
+
+.reveal h3 {
+  text-transform:none;
+  font-family: Kreon,'Times New Roman', Times, serif;
+  font-size:36pt;
+  font-weight:bold;
+  margin-top:30px;
+  margin-bottom:-20px;
+}
+.reveal p, .reveal li {
+  font-family:'PT Sans','Trebuchet MS', sans-serif;
+  font-size:30pt;
+}
+.reveal blockquote:before {
+  display:none;
+}
+.reveal blockquote  {
+  padding:0px; margin:0px;
+  width:100%;
+  box-shadow:none;
+}
+
+.reveal blockquote em {
+  font-style:italic;
+}
+
+.reveal blockquote p {
+  color:black;
+  padding:0px; margin:0px;
+  margin-bottom:40px;
+  font-family:'PT Sans','Trebuchet MS', sans-serif;
+  font-style:italic;
+  font-size:28pt;
+}
+
+.reveal blockquote blockquote p {
+  width:100%;
+  color:#064E94;
+  font-size:24pt;
+  text-align:right;
+}
+
+.reveal code
+{
+  font-size:18pt;
+  font-family:consolas;
+  background:transparent;
+  color:#009671;
+}
+.reveal section img
+{
+  border:0px none white;
+  box-shadow:0 0 0px rgba(0, 0, 0, 1) !important;
+}
+.reveal pre
+{
+  font-size:18pt;
+  box-shadow:0 0 0px rgba(0, 0, 0, 1) !important;
+}
+.reveal table.pre
+{
+  border-style:none;
+  width:98% !important;
+  margin-left:1%;
+  margin-right:1%;
+}
+.reveal div.tip
+{
+  font:14pt 'PT Sans','Trebuchet MS', sans-serif;
+}
+.reveal td p { margin:0px; padding:0px; }
