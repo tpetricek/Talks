@@ -15,7 +15,7 @@ Talks and slides
    See also: [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
  - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
-   See also: Shorter [ECOOP 2017 version](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
+   See also: [short ECOOP 2017 version](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/), homepage at [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
@@ -78,10 +78,10 @@ Talks and slides
 
 ### Web and Reactive programming
 
- - [**Observables, Events, Asynchronous Sequences and Other Wild Animals**](http://tpetricek.github.io/Talks/2017/async-observable-zoo/) (April 2017) - F# eXchange, London<br />  
+ - [**Observables, Events, Asynchronous Sequences and Other Wild Animals**](http://tpetricek.github.io/Talks/2017/async-observable-zoo/) (April 2017) - F# eXchange, London<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2017/async-observable-zoo/code)
 
- - [**Celebrating New Year's Eve with F# and Suave**](http://tpetricek.github.io/Talks/2016/new-year-tweets) (April 2016) - F# eXchange, London<br />  
+ - [**Celebrating New Year's Eve with F# and Suave**](http://tpetricek.github.io/Talks/2016/new-year-tweets) (April 2016) - F# eXchange, London<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/new-year-tweets-web/london) and [the original project](https://github.com/tpetricek/new-year-tweets-2016)
 
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/qcon/) (March 2016) - QCon Sao Paulo, Updated<br />
