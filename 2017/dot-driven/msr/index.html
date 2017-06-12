@@ -1,0 +1,261 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The Gamma: Democratizing Data Science</title>
+    <meta name="description" content="">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="withbackground" data-background="images/post-fact.jpg">
+<h2>The Gamma: <em>Data exploration<br /> through dot-driven development</em></h2>
+<br /><br /><br /><br /><br />
+<h4>Tomas Petricek<br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://tomasp.net">tomasp.net</a> | <a href="http://thegamma.net">thegamma.net</a></h4>
+</section>
+<section class="withbackground" data-background="images/kiss.jpg">
+<div class="fragment">
+<h1>Welcome to the <em>post-fact</em> world</h1>
+</div>
+</section>
+<section class="withbackground" data-background="images/guardian.jpg">
+<p>In recent years, divergent levels of trust in statistics has become one of
+the key schisms that have opened up in western liberal democracies.</p>
+<p><em>William Davies, The Guardian, January 2017</em></p>
+</section>
+<section class="withbackground" data-background="images/rowing.jpg">
+<img src="images/nyt.png" style="background:transparent;width:900px;" />
+</section>
+<section class="withbackground" data-background="images/rowing.jpg">
+<h4>Can the result be <em>reproduced</em>?</h4>
+<h4>Is the visualization <em>misleading</em>?</h4>
+<h4>Can it be done by <em>non-experts</em>?</h4>
+<h4>Can the reader <em>explore further</em>?</h4>
+</section>
+<section class="withbackground" data-background="images/rowing.jpg">
+<h1>
+  <img src="images/gamma-logo.png" style="width:100px;position:relative;top:37px;margin-right:30px"/>
+  The Gamma
+</h1>  
+</section>
+<section class="withbackground" data-background="images/glacier.jpg">
+<h1><em>DEMO</em></h1>
+<h2>Understanding carbon emissions</h2>
+</section>
+<section class="withbackground" data-background="images/glacier.jpg">
+<h3>Language that <em>understands data</em></h3>
+<h3>Simple programming <em>using dot</em></h3>
+</section>
+<section class="withbackground" data-background="images/rio.jpg">
+<h1>Dot-driven <em>data exploration</em></h1>
+</section>
+<section class="withbackground" data-background="images/rio-dark.jpg">
+<img src="images/pl1.png" style="background:transparent;width:100%" />
+<style>.ref p { font-size:18pt; margin:20px 0px 0px 0px; text-align:right; }</style>
+<div class="ref">
+<p>Based on <a href="https://www.youtube.com/watch?v=XBpwysZtkkQ">Transcript: End-user programming of social apps</a><br />
+Jonathan Edwards, YOW 2015</p>
+</div>
+</section>
+<section class="withbackground" data-background="images/rio-dark.jpg">
+<img src="images/pl2.png" style="background:transparent;width:100%" />
+<div class="ref">
+<p>Based on <a href="https://www.youtube.com/watch?v=XBpwysZtkkQ">Transcript: End-user programming of social apps</a><br />
+Jonathan Edwards, YOW 2015</p>
+</div>
+</section>
+<section class="withbackground" data-background="images/rio.jpg">
+<h1><em>DEMO</em></h1>
+<h2>Visualizing Olympic medals</h2>
+</section>
+<section class="withbackground" data-background="images/science.jpg">
+<h3><em>Type providers</em> for member generation</h3>
+<h3><em>Laziness</em> for scaling to large hierarchies</h3>
+<h3><em>Fancy types</em> for the masses!</h3>
+</section>
+<section class="withbackground" data-background="images/science2.jpg">
+<h3><em>Pivot type provider</em></h3>
+<br /><div class="fragment">
+<p><span class="math">\(L\)</span> maps names to definitions and nested contexts</p>
+<div style="padding:10px 0px 50px 60px">
+<p><span class="math">\(\definecolor{mc}{RGB}{255,255,102}
+L(C) = {\color{mc}\text{type}}~C(x:\tau) = \overline{m}, L'\)</span></p>
+</div></div><div class="fragment">
+<p>Pivot takes schema and provides a class with context</p>
+<div style="padding:10px 0px 50px 60px">
+<p><span class="math">\(\text{pivot}(F) = C, L\)</span></p>
+</div></div>
+</section>
+<section class="withbackground" data-background="images/science2.jpg">
+<h3><em>Pivot type provider</em></h3>
+<p>Generate class that constructs a query</p>
+<br />
+<div style="padding:0px 0px 0px 0px">
+<img src="images/rules.png" style="background:transparent" />
+</div>
+<br />
+</section>
+<section class="withbackground" data-background="images/science.jpg">
+<h1><em>DEMO</em></h1>
+<h2>Fancy types for the masses</h2>
+</section>
+<section class="withbackground" data-background="images/science2.jpg">
+<p>Row types to track names and types of fields</p>
+<div style="padding:10px 0px 0px 0px;margin-top:-50px;margin-left:-150px;transform:scale(0.8)">
+<p><span class="math">\[\definecolor{cc}{RGB}{255,255,102}
+\frac
+  {\Gamma \vdash e : {\color{cc}[f_1:\tau_1, \ldots, f_n:\tau_n]}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{cc} [f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n]}}\]</span></p>
+</div><div class="fragment">
+<br />
+<p>Embed row types in provided nominal types</p>
+<div style="padding:10px 0px 0px 0px;margin-top:-50px;margin-left:-150px;transform:scale(0.8)">
+<p><span class="math">\[\frac
+  {\Gamma \vdash e : {\color{mc} C_1}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{mc} C_2}}
+\quad{\small \text{where}}\]</span></p>
+<p><span class="math">\[\begin{array}{l}
+{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}\\[-0.25em]
+{fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}
+\end{array}\]</span></p>
+</div></div>
+</section>
+<section class="withbackground" data-background="images/clock.jpg">
+<h1>Unifying programming<br />and  <em>spreadsheets</em></h1>
+</section>
+<section class="withbackground" data-background="images/clock.jpg">
+<img src="images/excel1.gif" style="background:transparent;width:80%" />
+</section>
+<section class="withbackground" data-background="images/clock.jpg">
+<img src="images/excel2.gif" style="background:transparent;width:80%" />
+</section>
+<section class="withbackground" data-background="images/clock.jpg">
+<h1><em>DEMO</em></h1>
+<h2>Programming and spreadsheets</h2>
+</section>
+<section class="withbackground" data-background="images/clock.jpg">
+<img src="images/pl1.png" style="background:transparent;width:100%" />
+<style>.ref p { font-size:18pt; margin:20px 0px 0px 0px; text-align:right; }</style>
+<div class="ref">
+<p>Based on <a href="https://www.youtube.com/watch?v=XBpwysZtkkQ">Transcript: End-user programming of social apps</a><br />
+Jonathan Edwards, YOW 2015</p>
+</div>
+</section>
+<section class="withbackground" data-background="images/budget.jpg">
+<h1>Making data more <em>engaging</em></h1>
+</section>
+<section class="withbackground" data-background="images/budget.jpg">
+<img src="images/obama.png" style="background:transparent;width:800px;" />
+</section>
+<section class="withbackground" data-background="images/budget.jpg">
+<h1><em>DEMO</em></h1>
+<h2>Guess the government expenditure</h2>
+</section>
+<section class="withbackground" data-background="images/budget.jpg">
+<h3>Interactivity for <em>engagement</em></h3>
+<h3>Adapt to be <em>more relevant</em></h3>
+</section>
+<section class="withbackground" data-background="images/rio.jpg">
+<h1>Summary</h1>
+</section>
+<section class="withbackground" data-background="images/trump.jpg">
+<h1>Make <em>facts</em> great again!</h1>
+</section>
+<section class="withbackground" data-background="images/tggh.png">
+<h4>Technology democratized <em>opinions</em></h4>
+<h4>Can it also democratize <em>facts</em>?</h4>
+<br /><br /><br /><br /><br />
+<h4>Tomas Petricek, <a href="tomas@tomasp.net">tomas@tomasp.net</a><br /> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://thegamma.net">thegamma.net</a> | <a href="http://tomasp.net">tomasp.net</a></h4>
+</section>
+<section class="withbackground" data-background="images/trump.jpg">
+<h1>Make <em>facts</em> great again!</h1>
+</section>
+<section class="withbackground" data-background="images/rio.jpg">
+<h1>Summary</h1>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
