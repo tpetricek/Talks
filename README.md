@@ -1,4 +1,4 @@
-Tomas Petricek's talks
+﻿Tomas Petricek's talks
 ======================
 
 This repository hosts various talks that I did in various places.
@@ -12,7 +12,7 @@ Talks and slides
 ### Data Journalism and The Gamma
 
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/cambridge/) (June 2017) - Cambridge Spark Data Science Summit<br />
-   See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017),
+   See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017),<br/>
    [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
  - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
