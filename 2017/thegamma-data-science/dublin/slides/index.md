@@ -124,6 +124,6 @@ Between _spreadsheets_ and _programming_
 _Open-source_ and happy to help!
 
 <img src="images/gh-logo.png" style="background:transparent;height:70px;margin:70px 20px 100px 20px" />
-<img src="images/npm-logo.png" style="background:transparent;height:70px;margin:70px 20px 10  0px 20px" />
+<img src="images/npm-logo.png" style="background:transparent;height:70px;margin:70px 20px 100px 20px" />
 
 #### Tomas Petricek, [tomas@tomasp.net](tomas@tomasp.net)<br /> [@tomaspetricek](http://twitter.com/tomaspetricek) | [@turinginst](http://twitter.com/turinginst) | [thegamma.net](http://thegamma.net)
