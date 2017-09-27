@@ -1,0 +1,131 @@
+@import url(http://fonts.googleapis.com/css?family=Neuton:400,400i,700|Hind:300,400,500,600);
+
+.reveal h1 {
+  text-transform:none;
+  font-size:42pt;
+  font-weight:700;
+  font-family:'Neuton', serif;
+}
+.reveal h2 {
+  text-transform:none;
+  font-size:40pt;
+  font-family:'Neuton', serif;
+  font-weight:700;
+  margin-bottom:65px;
+}
+.reveal h3 {
+  text-transform:none;
+  font-family:'Neuton', serif;
+  font-size:34pt;
+  font-weight:700;
+  margin-bottom:35px;
+}
+.reveal h4 {
+  margin:0px 0px 0px 0px;
+}
+
+.reveal h1 em, .reveal h2 em, .reveal h4 em, .reveal h3 em, .reveal p em, .reveal li em {
+  color:#378BBA;
+  font-style:normal;
+}
+.reveal h1 strong, .reveal h2 strong, .reveal h4 strong, .reveal h3 strong, .reveal p strong, .reveal li strong {
+  color:#B74C37;
+}
+.reveal a, .reveal a:visited {
+  color:#30B9DB;
+}
+.reveal ul {
+  margin:0px;
+}
+.reveal p, .reveal li {
+  font-family:'Hind', sans-serif;
+  font-weight:400;
+  font-size:28pt;
+  margin-bottom:0px;
+}
+.reveal p {
+  margin-bottom:15px;
+  margin-top:40px;
+}
+.reveal hr {
+  border-color:white;
+}
+.reveal blockquote:before {
+  display:none;
+}
+.reveal blockquote  {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+  padding:0px;
+  margin:0px;
+  width:100%;
+}
+.reveal blockquote p {
+  color:black;
+  padding:0px; margin:10px 0px 10px 0px;
+  font-style:italic;
+  font-family:'Neuton', serif;
+  font-weight:400;
+  font-size:26pt;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+}
+.reveal code
+{
+  font-family:consolas;
+  background:transparent;
+  color:#4498AA;
+  margin:0px 5px 0px 5px;
+}
+.reveal h3 .math
+{
+  font-weight:normal;
+}
+.reveal .MathJax_Display {
+  margin-top:15px !important;
+  margin-bottom:30px !important;
+}
+.reveal img
+{
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+  border-style:none !important;
+}
+.reveal pre
+{
+  font-size:13pt;
+}
+.reveal table.pre
+{
+  width:90% !important;
+  margin-left:5%;
+  margin-right:5%;
+}
+.reveal div.tip
+{
+  font:14pt 'Hind', arial, sans-serif;
+  font-weight:300;
+}
+td.lines {
+  display:none;
+}
+
+.grid .cur {
+  background:#d0b840;
+}
+.grid .nb {
+  background:#f0e888;
+}
+.grid td, .grid tr
+{
+  background:white;
+  border:solid 2px black;
+}
+.grid td
+{
+  width:50px;
+  text-align:center !important;
+}
+
+.reference p
+{
+  padding-top:20px;
+  font-size:22pt;
+}

@@ -1,0 +1,615 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Language Challenges of Targeting Multiple Runtimes</title>
+    <meta name="description" content="TBD">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>    
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">val render : canv:&#39;a -&gt; Async&lt;unit&gt;<br /><br />Full name: index.render</div>
+<div class="tip" id="fs2">val canv : &#39;a</div>
+<div class="tip" id="fs3">val async : AsyncBuilder<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.async</div>
+<div class="tip" id="fs4">val ctx : obj</div>
+<div class="tip" id="fs5">val img : obj</div>
+<div class="tip" id="fs6">val x : int</div>
+<div class="tip" id="fs7">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.int<br /><br />--------------------<br />type int = int32<br /><br />Full name: Microsoft.FSharp.Core.int<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; = int<br /><br />Full name: Microsoft.FSharp.Core.int&lt;_&gt;</div>
+<div class="tip" id="fs8">val y : int</div>
+<div class="tip" id="fs9">val x&#39; : float</div>
+<div class="tip" id="fs10">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs11">val snd : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T2<br /><br />Full name: Microsoft.FSharp.Core.Operators.snd</div>
+<div class="tip" id="fs12">val fst : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T1<br /><br />Full name: Microsoft.FSharp.Core.Operators.fst</div>
+<div class="tip" id="fs13">val y&#39; : float</div>
+<div class="tip" id="fs14">val it : obj</div>
+<div class="tip" id="fs15">Multiple items<br />type Async<br />static member AsBeginEnd : computation:(&#39;Arg -&gt; Async&lt;&#39;T&gt;) -&gt; (&#39;Arg * AsyncCallback * obj -&gt; IAsyncResult) * (IAsyncResult -&gt; &#39;T) * (IAsyncResult -&gt; unit)<br />static member AwaitEvent : event:IEvent&lt;&#39;Del,&#39;T&gt; * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt; (requires delegate and &#39;Del :&gt; Delegate)<br />static member AwaitIAsyncResult : iar:IAsyncResult * ?millisecondsTimeout:int -&gt; Async&lt;bool&gt;<br />static member AwaitTask : task:Task -&gt; Async&lt;unit&gt;<br />static member AwaitTask : task:Task&lt;&#39;T&gt; -&gt; Async&lt;&#39;T&gt;<br />static member AwaitWaitHandle : waitHandle:WaitHandle * ?millisecondsTimeout:int -&gt; Async&lt;bool&gt;<br />static member CancelDefaultToken : unit -&gt; unit<br />static member Catch : computation:Async&lt;&#39;T&gt; -&gt; Async&lt;Choice&lt;&#39;T,exn&gt;&gt;<br />static member FromBeginEnd : beginAction:(AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg:&#39;Arg1 * beginAction:(&#39;Arg1 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg1:&#39;Arg1 * arg2:&#39;Arg2 * beginAction:(&#39;Arg1 * &#39;Arg2 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg1:&#39;Arg1 * arg2:&#39;Arg2 * arg3:&#39;Arg3 * beginAction:(&#39;Arg1 * &#39;Arg2 * &#39;Arg3 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromContinuations : callback:((&#39;T -&gt; unit) * (exn -&gt; unit) * (OperationCanceledException -&gt; unit) -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member Ignore : computation:Async&lt;&#39;T&gt; -&gt; Async&lt;unit&gt;<br />static member OnCancel : interruption:(unit -&gt; unit) -&gt; Async&lt;IDisposable&gt;<br />static member Parallel : computations:seq&lt;Async&lt;&#39;T&gt;&gt; -&gt; Async&lt;&#39;T []&gt;<br />static member RunSynchronously : computation:Async&lt;&#39;T&gt; * ?timeout:int * ?cancellationToken:CancellationToken -&gt; &#39;T<br />static member Sleep : millisecondsDueTime:int -&gt; Async&lt;unit&gt;<br />static member Start : computation:Async&lt;unit&gt; * ?cancellationToken:CancellationToken -&gt; unit<br />static member StartAsTask : computation:Async&lt;&#39;T&gt; * ?taskCreationOptions:TaskCreationOptions * ?cancellationToken:CancellationToken -&gt; Task&lt;&#39;T&gt;<br />static member StartChild : computation:Async&lt;&#39;T&gt; * ?millisecondsTimeout:int -&gt; Async&lt;Async&lt;&#39;T&gt;&gt;<br />static member StartChildAsTask : computation:Async&lt;&#39;T&gt; * ?taskCreationOptions:TaskCreationOptions -&gt; Async&lt;Task&lt;&#39;T&gt;&gt;<br />static member StartImmediate : computation:Async&lt;unit&gt; * ?cancellationToken:CancellationToken -&gt; unit<br />static member StartWithContinuations : computation:Async&lt;&#39;T&gt; * continuation:(&#39;T -&gt; unit) * exceptionContinuation:(exn -&gt; unit) * cancellationContinuation:(OperationCanceledException -&gt; unit) * ?cancellationToken:CancellationToken -&gt; unit<br />static member SwitchToContext : syncContext:SynchronizationContext -&gt; Async&lt;unit&gt;<br />static member SwitchToNewThread : unit -&gt; Async&lt;unit&gt;<br />static member SwitchToThreadPool : unit -&gt; Async&lt;unit&gt;<br />static member TryCancelled : computation:Async&lt;&#39;T&gt; * compensation:(OperationCanceledException -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member CancellationToken : Async&lt;CancellationToken&gt;<br />static member DefaultCancellationToken : CancellationToken<br /><br />Full name: Microsoft.FSharp.Control.Async<br /><br />--------------------<br />type Async&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Control.Async&lt;_&gt;</div>
+<div class="tip" id="fs16">static member Async.Sleep : millisecondsDueTime:int -&gt; Async&lt;unit&gt;</div>
+<div class="tip" id="fs17">val unbox : value:obj -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.Operators.unbox</div>
+<div class="tip" id="fs18">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs19">val canv : obj</div>
+<div class="tip" id="fs20">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs21">val enigma : string<br /><br />Full name: index.enigma</div>
+<div class="tip" id="fs22">val whitehouse : string<br /><br />Full name: index.whitehouse</div>
+<div class="tip" id="fs23">val schema : string<br /><br />Full name: index.schema</div>
+<div class="tip" id="fs24">val work : unit -&gt; Async&lt;unit&gt;<br /><br />Full name: index.work</div>
+<div class="tip" id="fs25">val res : obj</div>
+<div class="tip" id="fs26">val people : obj</div>
+<div class="tip" id="fs27">val spec : obj</div>
+<div class="tip" id="fs28">static member Async.StartImmediate : computation:Async&lt;unit&gt; * ?cancellationToken:System.Threading.CancellationToken -&gt; unit</div>
+<div class="tip" id="fs29">type VegaData =<br />&#160;&#160;{values: obj [];}<br /><br />Full name: index.VegaData</div>
+<div class="tip" id="fs30">VegaData.values: obj []</div>
+<div class="tip" id="fs31">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs32">type VegaSpec =<br />&#160;&#160;{$schema: string;<br />&#160;&#160;&#160;width: int option;<br />&#160;&#160;&#160;height: int option;<br />&#160;&#160;&#160;mark: string;<br />&#160;&#160;&#160;data: VegaData;<br />&#160;&#160;&#160;encoding: obj;}<br /><br />Full name: index.VegaSpec</div>
+<div class="tip" id="fs33">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs34">VegaSpec.width: int option</div>
+<div class="tip" id="fs35">type &#39;T option = Option&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.option&lt;_&gt;</div>
+<div class="tip" id="fs36">VegaSpec.height: int option</div>
+<div class="tip" id="fs37">VegaSpec.mark: string</div>
+<div class="tip" id="fs38">VegaSpec.data: VegaData</div>
+<div class="tip" id="fs39">VegaSpec.encoding: obj</div>
+<div class="tip" id="fs40">type Vega =<br />&#160;&#160;interface<br />&#160;&#160;&#160;&#160;abstract member embed : string * VegaSpec -&gt; unit<br />&#160;&#160;end<br /><br />Full name: index.Vega</div>
+<div class="tip" id="fs41">abstract member Vega.embed : string * VegaSpec -&gt; unit<br /><br />Full name: index.Vega.embed</div>
+<div class="tip" id="fs42">type unit = Unit<br /><br />Full name: Microsoft.FSharp.Core.unit</div>
+<div class="tip" id="fs43">val vega : Vega<br /><br />Full name: index.vega</div>
+<div class="tip" id="fs44">val failwith : message:string -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.Operators.failwith</div>
+<div class="tip" id="fs45">val jsonParse : str:string -&gt; &#39;R<br /><br />Full name: index.jsonParse</div>
+<div class="tip" id="fs46">val str : string</div>
+<div class="tip" id="fs47">val chart : &#39;a</div>
+<div class="tip" id="fs48">val x : VegaSpec<br /><br />Full name: index.x</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<section >
+<h1>Language Challenges of <br /> <em>Targeting Multiple Runtimes</em></h1>
+<div style="margin:40px 0px 40px 0px">
+<img src="images/fsharp.png" style="height:200px" />
+</div>
+<p><strong><em>Tomas Petricek</em></strong>, The Alan Turing Institute <br />
+<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</section>
+<section >
+<img src="images/webtools.png" style="width:800px" />
+</section>
+<section >
+<img src="images/fable.png" style="width:800px" />
+</section>
+<section >
+<img src="images/gamma2.png" style="width:800px" />
+</section>
+<section >
+<img src="images/gamma1.png" style="width:800px" />
+</section>
+<section >
+<h3>F# as a multi-runtime language</h3>
+<div class="fragment">
+<p><strong>The multi-runtime reality</strong></p>
+<ul>
+<li>F# was <em>built for .NET</em></li>
+<li>F# <em>compilers to JavaScript</em></li>
+<li>F# subsets <em>runs on GPU</em>, <em>SQL</em>, etc.</li>
+</ul>
+<p><strong>The unrealistic specification</strong><br />
+The specification <em>assumes .NET</em> runtime.</p>
+</div>
+</section>
+<section >
+<table style="width:100%"><tr><td style="width:50%;text-align:center">
+<h3><strong>Deep targetting</strong></h3>
+<ul>
+<li>Keep semantics</li>
+<li>Complicates interop</li>
+<li>Can keep ecosystem</li>
+</ul>
+</td><td style="width:50%;text-align:center">
+<h3><strong>Shallow targetting</strong></h3>
+<ul>
+<li>Relax semantics</li>
+<li>Makes interop easy</li>
+<li>Harder portability</li>
+</ul>
+</td></tr></table>
+</section>
+</section>
+<section >
+<section >
+<h1>Semantic challenges</h1>
+<p>When F# does not match the F# specification</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h1>DEMO<br/> <em>Rendering a fractal using Fable</em></h1>
+</section>
+<section >
+<h2>Rendering a fractal using Fable</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="f">render</span> (<span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">canv</span><span class="o">:</span><span class="i">HTMLCanvasElement</span>) <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">async</span> {
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">ctx</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="i">canv</span><span class="o">.</span><span class="i">getContext_2d</span>()
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">img</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">ctx</span><span class="o">.</span><span class="i">createImageData</span>(<span class="i">U2</span><span class="o">.</span><span class="i">Case1</span> <span class="i">width</span>, <span class="i">height</span>)
+
+  <span class="k">for</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">x</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="f">int</span> <span class="i">width</span> <span class="o">-</span> <span class="n">1</span> <span class="k">do</span>
+    <span class="k">for</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">y</span> <span class="k">in</span> <span class="n">0</span> <span class="o">..</span> <span onmouseout="hideTip(event, 'fs7', 11)" onmouseover="showTip(event, 'fs7', 11)" class="f">int</span> <span class="i">height</span> <span class="o">-</span> <span class="n">1</span> <span class="k">do</span>
+      <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="i">x&#39;</span> <span class="o">=</span> (<span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="f">float</span> <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="i">x</span> <span class="o">/</span> <span class="i">width</span> <span class="o">*</span> (<span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="f">snd</span> <span class="i">w</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="f">fst</span> <span class="i">w</span>)) <span class="o">+</span> <span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="f">fst</span> <span class="i">w</span>
+      <span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="i">y&#39;</span> <span class="o">=</span> (<span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="f">float</span> <span onmouseout="hideTip(event, 'fs8', 20)" onmouseover="showTip(event, 'fs8', 20)" class="i">y</span> <span class="o">/</span> <span class="i">height</span> <span class="o">*</span> (<span onmouseout="hideTip(event, 'fs11', 21)" onmouseover="showTip(event, 'fs11', 21)" class="f">snd</span> <span class="i">h</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs12', 22)" onmouseover="showTip(event, 'fs12', 22)" class="f">fst</span> <span class="i">h</span>)) <span class="o">+</span> <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="f">fst</span> <span class="i">h</span>
+      <span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 24)" onmouseover="showTip(event, 'fs14', 24)" class="i">it</span> <span class="o">=</span> <span class="i">countIterations</span> <span class="i">palette</span><span class="o">.</span><span class="i">Length</span> <span onmouseout="hideTip(event, 'fs9', 25)" onmouseover="showTip(event, 'fs9', 25)" class="i">x&#39;</span> <span onmouseout="hideTip(event, 'fs13', 26)" onmouseover="showTip(event, 'fs13', 26)" class="i">y&#39;</span>
+      <span class="i">setPixel</span> <span onmouseout="hideTip(event, 'fs5', 27)" onmouseover="showTip(event, 'fs5', 27)" class="i">img</span> <span onmouseout="hideTip(event, 'fs6', 28)" onmouseover="showTip(event, 'fs6', 28)" class="i">x</span> <span onmouseout="hideTip(event, 'fs8', 29)" onmouseover="showTip(event, 'fs8', 29)" class="i">y</span> <span class="i">width</span> <span class="i">palette</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs14', 30)" onmouseover="showTip(event, 'fs14', 30)" class="i">it</span>]
+
+    <span class="k">do!</span> <span onmouseout="hideTip(event, 'fs15', 31)" onmouseover="showTip(event, 'fs15', 31)" class="t">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 32)" onmouseover="showTip(event, 'fs16', 32)" class="f">Sleep</span>(<span class="n">1</span>)
+    <span onmouseout="hideTip(event, 'fs4', 33)" onmouseover="showTip(event, 'fs4', 33)" class="i">ctx</span><span class="o">.</span><span class="i">putImageData</span>(<span onmouseout="hideTip(event, 'fs5', 34)" onmouseover="showTip(event, 'fs5', 34)" class="i">img</span>, <span class="n">0.0</span>, <span class="n">0.0</span>) }
+
+<span class="k">match</span> <span onmouseout="hideTip(event, 'fs17', 35)" onmouseover="showTip(event, 'fs17', 35)" class="f">unbox</span> (<span class="i">document</span><span class="o">.</span><span class="i">getElementById</span>(<span class="s">&quot;go&quot;</span>)) <span class="k">with</span> 
+| <span onmouseout="hideTip(event, 'fs18', 36)" onmouseover="showTip(event, 'fs18', 36)" class="p">Some</span> <span onmouseout="hideTip(event, 'fs19', 37)" onmouseover="showTip(event, 'fs19', 37)" class="i">canv</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs1', 38)" onmouseover="showTip(event, 'fs1', 38)" class="f">render</span> <span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="i">canv</span>
+| <span onmouseout="hideTip(event, 'fs20', 40)" onmouseover="showTip(event, 'fs20', 40)" class="p">None</span> <span class="k">-&gt;</span> ()
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h2>Interesting aspects</h2>
+<p><em><strong>Using nice F# features</strong></em></p>
+<ul>
+<li><em>Async</em> for background processing</li>
+<li><em>Option</em> to handle missing element</li>
+<li><em>Integer</em> and <em>float</em> numeric types</li>
+</ul>
+</section>
+<section >
+<h2>Interesting aspects</h2>
+<p><em><strong>They behave in JavaScript way</strong></em></p>
+<ul>
+<li>Async doesn't use <em>background threads</em></li>
+<li>Option types are <em>erased using nulls</em></li>
+<li>Computation uses <em>JavaScript numbers</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section >
+<h1>Semantic challenges</h1>
+<p>When F# does not match the F# specification</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h2>Option types</h2>
+<p><strong>F# on .NET</strong><br />
+An instance of <code>Option&lt;T&gt;</code> class</p>
+<p><strong>F# on JavaScript</strong><br />
+Valid object or <code>null</code> value</p>
+</section>
+<section >
+<h2>Option types</h2>
+<p><strong>Benefits</strong><br />
+Can use pattern matching on JavaScript values!<br /></p>
+<p><strong>Drawbacks</strong><br />
+At runtime <code>None == Some(null)</code></p>
+</section>
+<section >
+<h2>Numerical types</h2>
+<p><strong>F# on .NET</strong><br />
+A range of <code>float</code>, <code>int</code>, <code>uint</code>, etc.</p>
+<p><strong>F# on JavaScript</strong><br />
+JavaScript numerical type</p>
+</section>
+<section >
+<h2>Numerical types</h2>
+<p><strong>Benefits</strong><br />
+Simulating <em>full .NET behavior</em> is hard!<br />
+Fable simulates integer <code>/</code> and <code>%</code></p>
+<p><strong>Drawbacks</strong><br />
+Numerical computations will differ</p>
+</section>
+<section >
+<h2>Asynchronous workflows</h2>
+<p><strong>F# on .NET</strong><br />
+Runs work items using thread pool</p>
+<p><strong>F# on JavaScript</strong><br />
+Cooperative multi-tasking on single thread</p>
+</section>
+<section >
+<h2>Asynchronous workflows</h2>
+<p><strong>Benefits</strong><br />
+Can reuse code using familiar library<br />
+Strictly speaking satisfies the spec</p>
+<p><strong>Drawbacks</strong><br />
+Lack of threads might cause deadlocks<br />
+<code>Async.RunSynchronously</code> unsupported</p>
+</section>
+<section >
+<h2>Unsafe downcasts</h2>
+<p><strong>F# on .NET</strong><br />
+Object type checked at cast point</p>
+<p><strong>F# on JavaScript</strong><br />
+All checks delayed to member access</p>
+</section>
+<section >
+<h2>Unsafe downcasts</h2>
+<p><strong>Benefits</strong><br />
+Keep runtime manageable<br />
+Interop with native JS objects</p>
+<p><strong>Drawbacks</strong><br />
+JavaScript-style error behaviour</p>
+</section>
+<section >
+<h2>Further semantic challenges</h2>
+<div class="fragment">
+<p><strong>Exceptions</strong><br />
+JavaScript can throw anything, .NET cannot</p>
+</div><div class="fragment">
+<p><strong>Tail-calls</strong><br />
+.NET supports them, JavaScript does not</p>
+</div><div class="fragment">
+<p><strong>Arrays</strong><br />
+.NET has fixed length, JS does not</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>Interop challenges</h1>
+<p>Making F# talk to JavaScript</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h1>DEMO<br/> <em>Visualizing Whitehouse salaries</em></h1>
+</section>
+<section >
+<h2>Visualizing Whitehouse salaries</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 41)" onmouseover="showTip(event, 'fs21', 41)" class="i">enigma</span> <span class="o">=</span> <span class="s">&quot;https://api.enigma.io/v2/data/&lt;key&gt;&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 42)" onmouseover="showTip(event, 'fs22', 42)" class="i">whitehouse</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 43)" onmouseover="showTip(event, 'fs21', 43)" class="i">enigma</span> <span class="o">+</span> <span class="s">&quot;/us.gov.whitehouse.salaries.2016&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 44)" onmouseover="showTip(event, 'fs23', 44)" class="i">schema</span> <span class="o">=</span> <span class="s">&quot;https://vega.github.io/schema/vega-lite/v2.0.json&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs24', 45)" onmouseover="showTip(event, 'fs24', 45)" class="f">work</span> () <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 46)" onmouseover="showTip(event, 'fs3', 46)" class="i">async</span> {
+  <span class="k">let!</span> <span onmouseout="hideTip(event, 'fs25', 47)" onmouseover="showTip(event, 'fs25', 47)" class="i">res</span> <span class="o">=</span> <span class="i">Http</span><span class="o">.</span><span class="i">Request</span>(<span class="s">&quot;GET&quot;</span>, <span onmouseout="hideTip(event, 'fs22', 48)" onmouseover="showTip(event, 'fs22', 48)" class="i">whitehouse</span> <span class="o">+</span> <span class="s">&quot;/sort/name+/limit/20&quot;</span>)
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 49)" onmouseover="showTip(event, 'fs26', 49)" class="i">people</span> <span class="o">=</span> <span class="i">jsonParse</span>(<span onmouseout="hideTip(event, 'fs25', 50)" onmouseover="showTip(event, 'fs25', 50)" class="i">res</span>)<span class="o">?</span><span class="i">result</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 51)" onmouseover="showTip(event, 'fs27', 51)" class="i">spec</span> <span class="o">=</span> 
+    { <span class="i">``$schema``</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 52)" onmouseover="showTip(event, 'fs23', 52)" class="i">schema</span>
+      <span class="i">width</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 53)" onmouseover="showTip(event, 'fs18', 53)" class="i">Some</span> <span class="n">800</span>; <span class="i">height</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 54)" onmouseover="showTip(event, 'fs18', 54)" class="i">Some</span> <span class="n">800</span>
+      <span class="i">data</span> <span class="o">=</span> { <span class="i">values</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs17', 55)" onmouseover="showTip(event, 'fs17', 55)" class="i">unbox</span> <span onmouseout="hideTip(event, 'fs26', 56)" onmouseover="showTip(event, 'fs26', 56)" class="i">people</span> }
+      <span class="i">mark</span> <span class="o">=</span> <span class="s">&quot;bar&quot;</span>
+      <span class="i">encoding</span> <span class="o">=</span> 
+        { <span class="i">y</span> <span class="o">=</span> { <span class="i">field</span> <span class="o">=</span> <span class="s">&quot;name&quot;</span>; <span class="i">``type``</span> <span class="o">=</span> <span class="s">&quot;ordinal&quot;</span>}
+          <span class="i">x</span> <span class="o">=</span> { <span class="i">field</span> <span class="o">=</span> <span class="s">&quot;salary&quot;</span>; <span class="i">``type``</span> <span class="o">=</span> <span class="s">&quot;quantitative&quot;</span>} } }
+  <span class="i">vega</span><span class="o">.</span><span class="i">embed</span>(<span class="s">&quot;#chart&quot;</span>, <span onmouseout="hideTip(event, 'fs27', 57)" onmouseover="showTip(event, 'fs27', 57)" class="i">spec</span>, {<span class="i">actions</span> <span class="o">=</span> <span class="k">false</span>}) }
+
+<span onmouseout="hideTip(event, 'fs24', 58)" onmouseover="showTip(event, 'fs24', 58)" class="f">work</span> () <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 59)" onmouseover="showTip(event, 'fs15', 59)" class="t">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 60)" onmouseover="showTip(event, 'fs28', 60)" class="f">StartImmediate</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h2>Interesting aspects</h2>
+<p><em><strong>Using nice F# features</strong></em></p>
+<ul>
+<li>Asynchronous workflows for <em>REST calls</em></li>
+<li><em>F# records</em> and types calling Vega</li>
+<li><em>Dynamic operator</em> for member lookup</li>
+</ul>
+</section>
+<section >
+<h2>Interesting aspects</h2>
+<p><em><strong>They behave in JavaScript way</strong></em></p>
+<ul>
+<li><em>Cannot wait</em> and block an async</li>
+<li>Types serve merely <em>as a façade</em></li>
+<li>Unchecked <em>member lookup can fail</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section >
+<h1>Interop challenges</h1>
+<p>Making F# talk to JavaScript</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h2>Façade F# records and interfaces</h2>
+<p>Importing the Vega library API</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs29', 61)" onmouseover="showTip(event, 'fs29', 61)" class="t">VegaData</span> <span class="o">=</span> 
+  { <span onmouseout="hideTip(event, 'fs30', 62)" onmouseover="showTip(event, 'fs30', 62)" class="i">values</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs31', 63)" onmouseover="showTip(event, 'fs31', 63)" class="t">obj</span>[] }
+
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs32', 64)" onmouseover="showTip(event, 'fs32', 64)" class="t">VegaSpec</span> <span class="o">=</span> 
+  { <span class="i">``$schema``</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs33', 65)" onmouseover="showTip(event, 'fs33', 65)" class="t">string</span>
+    <span onmouseout="hideTip(event, 'fs34', 66)" onmouseover="showTip(event, 'fs34', 66)" class="i">width</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs7', 67)" onmouseover="showTip(event, 'fs7', 67)" class="t">int</span> <span onmouseout="hideTip(event, 'fs35', 68)" onmouseover="showTip(event, 'fs35', 68)" class="t">option</span>
+    <span onmouseout="hideTip(event, 'fs36', 69)" onmouseover="showTip(event, 'fs36', 69)" class="i">height</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs7', 70)" onmouseover="showTip(event, 'fs7', 70)" class="t">int</span> <span onmouseout="hideTip(event, 'fs35', 71)" onmouseover="showTip(event, 'fs35', 71)" class="t">option</span>
+    <span onmouseout="hideTip(event, 'fs37', 72)" onmouseover="showTip(event, 'fs37', 72)" class="i">mark</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs33', 73)" onmouseover="showTip(event, 'fs33', 73)" class="t">string</span>
+    <span onmouseout="hideTip(event, 'fs38', 74)" onmouseover="showTip(event, 'fs38', 74)" class="i">data</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs29', 75)" onmouseover="showTip(event, 'fs29', 75)" class="t">VegaData</span>
+    <span onmouseout="hideTip(event, 'fs39', 76)" onmouseover="showTip(event, 'fs39', 76)" class="i">encoding</span> <span class="o">:</span> <span class="i">VegaEncoding</span> }
+
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs40', 77)" onmouseover="showTip(event, 'fs40', 77)" class="t">Vega</span> <span class="o">=</span>
+  <span class="k">abstract</span> <span onmouseout="hideTip(event, 'fs41', 78)" onmouseover="showTip(event, 'fs41', 78)" class="f">embed</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs33', 79)" onmouseover="showTip(event, 'fs33', 79)" class="t">string</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs32', 80)" onmouseover="showTip(event, 'fs32', 80)" class="t">VegaSpec</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs42', 81)" onmouseover="showTip(event, 'fs42', 81)" class="t">unit</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h2>Façade F# records and interfaces</h2>
+<p><strong>Shallow targetting</strong> <br />
+<em>.NET member calls</em> compile as <em>JS member calls</em></p>
+<p><strong>Deep targetting</strong><br />
+Members could be <em>compiled as lookup table</em></p>
+</section>
+<section >
+<h2>Inline JavaScript annotations</h2>
+<p>Defining global values and functions</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">[&lt;<span class="i">Emit</span>(<span class="s">&quot;vega&quot;</span>)&gt;]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 82)" onmouseover="showTip(event, 'fs43', 82)" class="i">vega</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs40', 83)" onmouseover="showTip(event, 'fs40', 83)" class="t">Vega</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 84)" onmouseover="showTip(event, 'fs44', 84)" class="f">failwith</span> <span class="s">&quot;JS only&quot;</span>
+
+[&lt;<span class="i">Emit</span>(<span class="s">&quot;JSON.parse($0)&quot;</span>)&gt;]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 85)" onmouseover="showTip(event, 'fs45', 85)" class="f">jsonParse</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">R</span><span class="o">&gt;</span> (<span onmouseout="hideTip(event, 'fs46', 86)" onmouseover="showTip(event, 'fs46', 86)" class="i">str</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs33', 87)" onmouseover="showTip(event, 'fs33', 87)" class="t">string</span>) <span class="o">:</span> <span class="o">&#39;</span><span class="i">R</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 88)" onmouseover="showTip(event, 'fs44', 88)" class="f">failwith</span> <span class="s">&quot;JS Only&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h2>Inline JavaScript annotations</h2>
+<p><strong>Shallow targetting</strong> <br />
+<em>Direct mapping</em> to JS functionality</p>
+<p><strong>Deep targetting</strong><br />
+Leads to <em>unportable libraries</em></p>
+</section>
+<section >
+<h2>Dynamic object access and creation</h2>
+<p>Access any member dynamicaly</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">chart</span><span class="o">?</span><span class="i">size</span>(<span class="n">768</span>,<span class="n">480</span>)<span class="o">?</span><span class="i">on</span>(<span class="s">&quot;renderlet&quot;</span>, <span class="k">fun</span> <span onmouseout="hideTip(event, 'fs47', 89)" onmouseover="showTip(event, 'fs47', 89)" class="i">chart</span> <span class="k">-&gt;</span>
+    <span class="c">(* do something *)</span> )
+</code></pre></td>
+</tr>
+</table>
+<p>Create empty object dynamically</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs48', 90)" onmouseover="showTip(event, 'fs48', 90)" class="i">x</span> <span class="o">=</span> <span class="i">createEmpty</span><span class="o">&lt;</span><span class="i">Size</span><span class="o">&gt;</span>
+<span onmouseout="hideTip(event, 'fs48', 91)" onmouseover="showTip(event, 'fs48', 91)" class="i">x</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs34', 92)" onmouseover="showTip(event, 'fs34', 92)" class="i">width</span> <span class="o">&lt;-</span> <span class="n">800</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h2>Dynamic object access and creation</h2>
+<p><strong>Shallow targetting</strong> <br />
+Special handling of <em>dynamic constructs</em></p>
+<p><strong>Deep targetting</strong><br />
+Cannot create <em>empty object</em></p>
+</section>
+</section>
+<section >
+<section >
+<h1>Undefined behaviour</h1>
+<p>What should the F# specification look like?</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h2>Undefined behaviour in C</h2>
+<blockquote>
+<p>Behaviour is left undefined not to allow optimisation, but as
+an inevitable consequence of two things. Firstly, the program
+containing it is an error—the language implementation
+is not required to support it. Secondly, no behaviour for
+detecting or handling the error can be prescribed in all cases.</p>
+<p style="text-align:right;width:100%;margin-top:25px">Stephen Kell (2017)<br />Some Were Meant for C</p>
+</blockquote>
+</section>
+<section >
+<table style="width:100%"><tr><td style="width:50%;text-align:center">
+<h3><strong>Deep targetting</strong></h3>
+<p>Minimize cases with undefined behaviour</p>
+</td><td style="width:50%;text-align:center">
+<h3><strong>Shallow targetting</strong></h3>
+<p>Leave undefined or under-defined for flexibility</p>
+</td></tr></table>
+</section>
+<section >
+<h2>Undefined behaviour</h2>
+<p><em><strong>Leaves room for platform-specific implementation</strong></em></p>
+<ul>
+<li>Fine properties of <em>primitive types</em></li>
+<li>Anything involving <code>null</code> value</li>
+<li><em>"Unsafe" operations</em> like casts</li>
+<li>What <em>erroneous member</em> access does</li>
+</ul>
+</section>
+<section >
+<h2>What is a language?</h2>
+<p><em><strong>F# compiled to JavaScript breaks the spec!</strong></em></p>
+<ul>
+<li>... but not the <em>spirit</em>!</li>
+<li><em>It is safe</em> thanks to JavaScript</li>
+<li><em>Well-behaved core</em> code works</li>
+<li>Useful spec should be <em>runtime-neutral</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section >
+<h1>Summary</h1>
+<p>Multi-runtime programming languages</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<blockquote>
+<p>How can we compile one language to JVM, SQL, .NET, LLVM, <br />
+JavaScript, Squeak, GPUs, Arduino and other IoT platforms?</p>
+</blockquote>
+</section>
+<section >
+<h3><em>Allow some under-defined behavior</em></h3>
+<ul>
+<li>Minimum for portability (<em>"deep"</em>)</li>
+<li>A lot for integration (<em>"shallow"</em>)</li>
+</ul>
+</section>
+<section >
+<h3><em>Escape hatches for good integration</em></h3>
+<ul>
+<li>Explicit encoding of escape hatches (<em>"deep"</em>)</li>
+<li>Dynamic language features (<em>"shallow"</em>)</li>
+<li>Flexible or misusable object model (<em>"shallow"</em>)</li>
+<li>Allow arbitrary unchecked effects (<em>"shallow"</em>)</li>
+</ul>
+</section>
+<section >
+<h1>Discussion! &amp; Questions?</h1>
+<style>.ref p { font-size:85%; margin:10px 0px 10px 0px } 
+.ref { padding:40px 0px 30px 0px !important }</style>
+<div class="ref">
+<h4>References</h4>
+<p>Noble &amp; Biddle (2002). Notes on postmodern programming</p>
+<p>Petricek, Syme &amp; Bray (2014). In the Age of Web:<br />Typed Functional-First Programming Revisited</p>
+<p>Stephen Kell (2017). Some Were Meant for C</p>
+</div>
+<p><strong><em>Tomas Petricek</em></strong>, The Alan Turing Institute <br />
+<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
