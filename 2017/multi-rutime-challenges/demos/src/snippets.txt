@@ -1,0 +1,62 @@
+// ----------------------------------------------------------------------------
+// Hokusai
+// ----------------------------------------------------------------------------
+
+let iterate x y =
+  let rec loop current = seq {
+    yield current
+    yield! loop (ComplexModule.Pow(current, 2.0) + c) }
+  loop (Complex(x, y))
+
+let countIterations max x y =
+  iterate x y
+  |> Seq.take (max - 1)
+  |> Seq.takeWhile (fun v -> Complex.Abs(v) < 2.0)
+  |> Seq.length
+
+let render (canv:HTMLCanvasElement) = async {
+  let ctx = canv.getContext_2d()
+  let img = ctx.createImageData(U2.Case1 width, height)
+
+  for x in 0 .. int width - 1 do
+    for y in 0 .. int height - 1 do
+      let x' = (float x / width * (snd w - fst w)) + fst w
+      let y' = (float y / height * (snd h - fst h)) + fst h
+      let it = countIterations palette.Length x' y'
+      setPixel img x y width palette.[it]
+
+    do! Async.Sleep(1)
+    ctx.putImageData(img, 0.0, 0.0) }
+
+// ----------------------------------------------------------------------------
+// Whitehouse
+// ----------------------------------------------------------------------------
+
+{ ``$schema`` = "https://vega.github.io/schema/vega-lite/v2.0.json"
+  width = Some 400
+  height = Some 400
+  data = { values = ... }
+  mark = "bar"
+  encoding = 
+    { y = { field = "name"; ``type`` = "ordinal"}
+      x = { field = "salary"; ``type`` = "quantitative"} } }
+
+// ----------------------------------------------------------------------------
+
+let work () = async {
+  let! result = Http.Request("GET", data + "/sort/name+/limit/20")
+  let people = jsonParse(result)?result
+  let spec = 
+    { ``$schema`` = "https://vega.github.io/schema/vega-lite/v2.0.json"
+      width = Some 400
+      height = Some 400
+      data = { values = unbox people }
+      mark = "bar"
+      encoding = 
+        { y = { field = "name"; ``type`` = "ordinal"}
+          x = { field = "salary"; ``type`` = "quantitative"} } }
+  vega.embed("#chart", spec, {actions = false}) }
+
+let whitehouse () = 
+  if document.getElementById("chart") <> null then
+    work () |> Async.StartImmediate

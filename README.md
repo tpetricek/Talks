@@ -38,6 +38,10 @@ Talks and slides
    
 ### Philosophy of Science and Research
 
+ - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
+   See also: [Source code for the demos](https://github.com/tpetricek/Talks/tree/master/2017/multi-runtime-challenges/demos) and
+   [In the Age of Web](http://tomasp.net/academic/papers/age-of-web) paper
+ 
  - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2017/living-with-errors/ncrafts) (May 2017) - NCrafts, Paris<br /> 
    See also: [CodeMesh 2016 (London) version](http://tpetricek.github.io/Talks/2016/living-with-errors), [Programming 2017 (Brussels) version](http://tpetricek.github.io/Talks/2017/living-with-errors/programming/) and [HaPoC 2015 (Pisa) version](http://tpetricek.github.io/Talks/2015/living-with-errors/)
 

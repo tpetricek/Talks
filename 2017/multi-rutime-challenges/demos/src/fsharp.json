@@ -1,0 +1,40 @@
+{
+  "Fractals - Rendering": {
+    "prefix": "fractal-render",
+    "body": [
+      "  let ctx = canv.getContext_2d()",
+      "  let img = ctx.createImageData(U2.Case1 width, height)",
+      "",
+      "  for x in 0 .. int width - 1 do",
+      "    for y in 0 .. int height - 1 do",
+      "      // DEMO: calculate x' and y'",
+      "      // TODO: count using palette.Length",
+      "      // TODO: set pixel using palett",
+      "",
+      "    // TODO: Sleep",
+      "    ctx.putImageData(img, 0.0, 0.0) }"    
+    ],
+    "description": "Fractals - Rendering"
+  },
+  "Fractals - X and Y": {
+    "prefix": "fractal-xy",
+    "body": [
+      "let x' = (float x / width * (snd w - fst w)) + fst w",
+      "let y' = (float y / height * (snd h - fst h)) + fst h"  ],
+    "description": "Fractals - X and Y"
+  },
+  "Whitehouse - Vega spec": {
+    "prefix": "whitehouse-spec",
+    "body": [
+      "{ ``$schema`` = \"https://vega.github.io/schema/vega-lite/v2.0.json\"",
+      "  width = Some 400", 
+      "  height = Some 400",
+      "  data = { values = ... }",
+      "  mark = \"bar\"",
+      "  encoding = ",
+      "    { y = { field = \"name\"; ``type`` = \"ordinal\"}",
+      "      x = { field = \"salary\"; ``type`` = \"quantitative\"} } }"
+    ],
+    "description": "Whitehouse - Vega spec"
+  }
+  }
