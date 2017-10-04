@@ -161,8 +161,16 @@ Variations on proofs and refutations
 
 ---------------------------------------------------------------------------------------------------
 
-## Where programming concepts come from
+## Learning from mathematical entities
 
+
+#### _How programming concepts evolve_
+Proofs and refutations (Imre Lakatos)
+
+<hr />
+
+#### **Where programming concepts come from**
+Conceptual metaphors (George Lakoff & Rafael Núñez)
 
 ---------------------------------------------------------------------------------------------------
 
