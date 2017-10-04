@@ -38,6 +38,8 @@ Talks and slides
    
 ### Philosophy of Science and Research
 
+ - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/) (September 2017) - HaPoC 2017, Brno
+ 
  - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
    See also: [Source code for the demos](https://github.com/tpetricek/Talks/tree/master/2017/multi-runtime-challenges/demos) and
    [In the Age of Web](http://tomasp.net/academic/papers/age-of-web) paper
