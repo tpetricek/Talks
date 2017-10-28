@@ -12,7 +12,7 @@ Talks and slides
 ### Data Journalism and The Gamma
 
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/cambridge/) (June 2017) - Cambridge Spark Data Science Summit<br />
-   See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017),<br/>
+   See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017), also presented at Mozfest (October 2017),
    [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
  - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
