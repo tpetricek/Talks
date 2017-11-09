@@ -1,0 +1,467 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Would Aliens Understand Lambda Calculus?</title>
+    <meta name="description" content="Elegant programming constructions and mathematical theories like LISP and lambda 
+calculus often look timeless and universal. They are not invented, but discovered! If there are
+intelligent aliens, they will sooner or later run into formal logics and computation and,
+shortly thereafter, discover lambda calculus and LISP. Or will they?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>    
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1>Would Aliens Understand<br/> <em>Lambda Calculus?</em></h1>
+<br /><br /><br /><br />
+<style>.normalbold strong { font-weight:bold !important; color:black !important; }</style>
+<div class="normalbold">
+<p><strong>Tomas Petricek</strong>, fsharpWorks &amp; Alan Turing Institute<br />
+<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</div>
+</section>
+<section >
+<h3><em>"Are pure functions invented or discovered?"</em></h3>
+<div class="fragment">
+<h3><strong>"I wonder if there is a paper about that?"</strong></h3>
+</div>
+<div class="fragment">
+<h3>There is an entire discipline about that!</h3>
+</div>
+</section>
+<section >
+<section >
+<h1><em>What is mathematics?</em></h1>
+<p>Crash course in philosophy of mathematics</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<img src="images/plato.jpg" style="float:right;margin-top:100px" />
+<div style="margin-right:300px">
+<h1><em>Platonism</em></h1>
+<blockquote>
+<p>The existence of mathematical objects is independent of us, our language, thoughts and practices.</p>
+</blockquote>
+<div class="fragment">
+<h2 style="font-size:30pt;margin:60px 0px 10px 0px"><strong>The sad consequences</strong></h2>
+<blockquote>
+<p>The Romance of Mathematics makes a wonderful story, but it intimidates, it helps
+to maintain an elite, it rewards incomprehensibility.</p>
+<p style="text-align:right;width:100%;margin-top:30px">Lakoff, Núñez (2000)</p>
+</blockquote>
+</div>
+</div>
+</section>
+<section >
+<img src="images/lakatos.jpg" style="width:200px;float:right;margin-top:100px" />
+<div style="margin-right:240px">
+<h1><em>Social mathematics</em></h1>
+<blockquote>
+<p>Mathematics does not grow through increase of the number of established theorems,
+but through improvement by specu- lation and criticism, by the method
+of proofs and refutations.</p>
+<p style="text-align:right;width:100%;margin-top:10px">Lakatos (1976)</p>
+</blockquote>
+<div class="fragment">
+<h2 style="font-size:30pt;margin:60px 0px 10px 0px"><strong>Counter-example causes refinement</strong></h2>
+<blockquote>
+<p>"I turn aside with a shudder of horror from this lamentable plague of functions which have no derivatives."</p></p>
+</blockquote>
+</div>
+</div>
+</section>
+<section >
+<img src="images/hilbert.jpg" style="width:200px;float:right;margin-top:100px" />
+<div style="margin-right:300px">
+<h1><em>Culture &amp; mathematics</em></h1>
+<blockquote>
+<p>Culturally specific ideas often find their way into<br /> the very fabric of mathematics itself.</p>
+<p style="text-align:right;width:100%;margin-top:30px">Lakoff, Núñez (2000)</p>
+</blockquote>
+<div class="fragment">
+<h2 style="font-size:30pt;margin:60px 0px 10px 0px"><strong>Ancient culture in maths</strong></h2>
+<ol>
+<li>The idea of essence</li>
+<li>The idea that human reason is a form of logic</li>
+<li>The idea of foundations for a subject matter</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section >
+<img src="images/lakoff.jpg" style="width:250px;float:right;margin-top:100px" />
+<div style="margin-right:300px">
+<h1><em>Embodied mathematics</em></h1>
+<blockquote>
+<p>The only mathematics we know or can know is<br />
+a brain-and-mind-based mathematics.</p>
+<p style="text-align:right;width:100%;margin-top:30px">Lakoff, Núñez (2000)</p>
+</blockquote>
+<div class="fragment">
+<h2 style="font-size:30pt;margin:60px 0px 10px 0px"><strong>How to study mathematics?</strong></h2>
+<p>It is up to cognitive science to apply the science of mind to human mathematical ideas.</p>
+</div>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1><em>Embodied mathematics</em></h1>
+<p>Cognitive science of mathematics</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h2>Metaphors are central to thought</h2>
+<blockquote>
+<p>Cognitive science [showed that], abstract concepts<br />
+understood, via metaphor, in terms of more concrete concepts.</p>
+<p>Many mathematical ideas are ways of mathematicizing ordinary ideas, <br />
+as when derivatives mathematicize the idea of instantaneous change.</p>
+<p style="text-align:right;width:100%;margin-top:60px">Lakoff, Núñez (2000)</p>
+</blockquote>
+</section>
+<section >
+<h2>Components of the analysis</h2>
+<p><strong><em>Innate arithmetic</em></strong><br />
+Babies have some mathematical capacities</p>
+<p><strong><em>Conceptual metaphors</em></strong><br />
+Links concepts via neural conflations</p>
+<p><strong><em>Layering metaphors</em></strong><br />
+Explain more abstract mathematical concepts</p>
+</section>
+<section >
+<h2>Innate arithmetic experiments</h2>
+<img src="images/mickey.png" style="width:800px" />
+</section>
+<section >
+<img src="images/arith1.png" />
+</section>
+<section >
+<h2>Arithmetic is object collection</h2>
+<p><strong>Linguistic examples</strong><br />
+<em>Add</em> onions and carrots to the soup<br />
+Which is <em>bigger</em>, 5 or 7?</p>
+<p><strong>Equational properties</strong><br />
+Adding A to B gives the same result as<br />
+adding B to A for <em>object collections</em></p>
+<p><strong>Limitations of the metaphor</strong><br />
+Zero in terms of collections?</p>
+</section>
+</section>
+<section >
+<h3><em>"Type theory and the <span class="math">\(\lambda\)</span>-calculus are eternal"</em></h3>
+<div class="fragment">
+<h3><strong>"Libraries are ephemeral compared to maths"</strong></h3>
+</div>
+<div class="fragment">
+<h3>"<span class="math">\(\lambda\)</span>-calculus is discovered, Angular is invented!"</h3>
+</div>
+</section>
+<section >
+<section >
+<h1><em>What is computer science?</em></h1>
+<p>Lambda calculus, category theory and functional programs</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<style>.examples h3 {margin-bottom:10px} .examples td { width:30%; }</style>
+<table class="examples"><tr>
+<td style="padding-right:20px">
+<h4>Programs</h4>
+<ul>
+<li><em>type</em></li>
+<li>function</li>
+<li><strong>tuple</strong></li>
+</ul>
+</td><td class="fragment">
+<h4>Proofs</h4>
+<ul>
+<li><em>formula</em></li>
+<li>implication</li>
+<li><strong>conjunction</strong></li>
+</ul>
+</td><td style="padding-left:20px" class="fragment">
+<h4>Categories</h4>
+<ul>
+<li><em>object</em></li>
+<li>arrow</li>
+<li><strong>product</strong></li>
+</ul>
+</td></tr></table>
+<div class="fragment">
+<br />
+<br />
+<h3><em>Is this a deep truth about the universe?</em></h3>
+</div>
+</section>
+<section >
+<h2><em>Philosopher's answer</em></h2>
+<h4>Category mistakes</h4>
+<ul>
+<li><strong>Program</strong> refers to empirical, a posteriori knowledge</li>
+<li><strong>Proof</strong> refers to non-physical world of logic</li>
+</ul>
+<br/>
+<br/>
+<div class="fragment">
+<h4>Verification controversy</h4>
+<blockquote>
+<p>The idea of program verification is what philosophers call "category mistake".
+Program verification is, literally, a form of nonsense.</p>
+<p style="text-align:right;width:100%;margin-top:30px">Fetzer (1988)</p>
+</blockquote>
+</div>
+</section>
+<section >
+<h2><em>Sociologist's answer, Take 1</em></h2>
+<img src="images/lakatos.jpg" style="width:200px;float:right;margin-top:0px" />
+<div style="margin-right:240px">
+<p>Carefully constructed to fit well via the<br /> method of <em>proofs and refutations</em></p>
+<ul>
+<li><strong>Cartesian closed</strong> category</li>
+<li><strong>Intuitionalistic</strong> logic</li>
+<li><strong>Simply typed</strong> lambda calculus</li>
+</ul>
+</div>
+</section>
+<section >
+<h2><em>Sociologist's answer, Take 2</em></h2>
+<img src="images/hilbert.jpg" style="width:250px;float:right;margin-top:0px" />
+<div style="margin-right:300px">
+<p>All three are product of the same network of mathematicians, solving the same problem.</p>
+<div class="fragment" style="padding-top:20px">
+<p>Searching for <strong>foundations of mathematics</strong>, formalising reasoning based
+on <strong>inference</strong> that could be done mechanically.</p>
+</div></div>
+</section>
+<section >
+<h2><em>Cognitive scientists's answer</em></h2>
+<img src="images/lakoff.jpg" style="width:250px;float:right;margin-top:0px" />
+<div style="margin-right:300px">
+<p>All three are derived from the same <strong>embodied experience</strong>
+using a number of <strong>conceptual</strong> and <strong>layering metaphors</strong>.</p>
+<div class="fragment" style="padding-top:20px">
+<p><em>What is the embodied experience?</em></p>
+</div></div>
+</section>
+</section>
+<section >
+<h3><em>"Would aliens understand <span class="math">\(\lambda\)</span> calculus?"</em></h3>
+<div class="fragment">
+<h3>"Any intelligent species is bound to have logic."</h3>
+</div>
+<div class="fragment">
+<h3><strong>"They'd also run into the program-proof duality."</strong></h3>
+</div>
+</section>
+<section >
+<section >
+<h1><em>Where lambda calculus comes from?</em></h1>
+<p>Cognitive science and lambda calculus</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h1><em>Container schema</em></h1>
+<img src="images/containers.png" style="width:800px"/>
+</section>
+<section >
+<h2><em>Metaphors behind reduction, Part 1</em></h2>
+<img src="images/implication.png" style="width:300px;margin-top:30px;float:right"/>
+<div style="margin-right:320px">
+<p><strong>Modus Ponens</strong> <br />
+Given two Container schemas A and B and an <br />
+object X, if A is in B and X is in A, then X is in B.</p>
+<div class="fragment" style="padding-top:20px">
+<p><strong>Function Application</strong><br />
+Given two types <span class="math">\(A\)</span> and <span class="math">\(B\)</span> and a value <span class="math">\(x\)</span>, <br />
+if <span class="math">\(f : A\rightarrow B\)</span> and <span class="math">\(x:A\)</span> then <span class="math">\(f(x):B\)</span></p>
+</div>
+</div>
+</section>
+<section >
+<h2><em>Metaphors behind reduction, Part 2</em></h2>
+<h4>Evaluation using <span class="math">\(\beta\)</span>-<strong>reduction</strong></h4>
+<div class="fragment">
+<p><strong>reduce</strong>, verb (used with object), reduced, reducing.</p>
+<ol>
+<li>to bring down to a smaller extent, size, amount</li>
+<li>to lower in degree, intensity, etc.</li>
+<li>to bring down to a lower rank, dignity, etc.</li>
+</ol>
+</div>
+<div class="fragment">
+<br />
+<h4><em>Metaphor requires a sense of direction!</em></h4>
+</div>
+</section>
+</section>
+<section >
+<h3><em>"Would E.T. understand lambda calculus?"</em></h3>
+<div class="fragment">
+<h3>"How about the planet in Lem's Solaris?"</h3>
+</div>
+<div class="fragment">
+<h3><strong>"How about aliens from the Arrival movie?"</strong></h3>
+</div>
+</section>
+<section >
+<section >
+<h1><em>Aliens and lambda calculus</em></h1>
+<p>Cognitive science of extra-terrestrial beings</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section data-background="images/solaris.jpg">
+</section>
+<section data-background="images/solaris-w.jpg">
+<h2>Stanislaw Lem's Solaris</h2>
+<h4>The planet itself is a sentient being!</h4>
+<p>There is only <em>one</em> being in the world</p>
+<p>Would it have more numbers than <em>one</em>?</p>
+</section>
+<section data-background="images/arrival.png">
+</section>
+<section data-background="images/arrival-w.jpg">
+<h2>Aliens from the Arrival movie</h2>
+<h4>Circular language and time perception</h4>
+<p>No notion for <em>direction</em></p>
+<p><em>Function application</em> is directional!</p>
+<p>Perhaps only <em>reversible</em> computations?</p>
+</section>
+<section data-background="images/chaos.jpg">
+</section>
+<section data-background="images/chaos-w.jpg">
+<h2>Interstellar dust cloud</h2>
+<h4>Aliens living in chaotic gaseous universe</h4>
+<p>There are no <em>boundaries</em> in chaos!</p>
+<p>There is no <em>inside</em> and <em>outside</em></p>
+<p>No <em>container schema</em> metaphors</p>
+</section>
+</section>
+<section >
+<section >
+<h1><em>Summary</em></h1>
+<p>Would aliens understand lambda calculus?</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h2>Would aliens understand lambda calculus?</h2>
+<p><em>Is lambda calculus discovered or invented?</em><br />
+Platonism is just one religious belief</p>
+<p><strong>Philosophy of mathematics and computer science</strong><br/>
+Social, cultural enterprise, product of embodied mind</p>
+<p><em>So, would aliens understand lambda calculus?</em><br />
+Stretch your imagination! Boring aliens might...</p>
+<br />
+<p><a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<h2><strong>Movies to watch &amp; stories to read</strong></h2>
+<h4><em>Arrival (2016)</em> or Chiang's Story of your life</h4>
+<p>Aliens with circular language and time</p>
+<br />
+<h4><em>Solaris (2002)</em> or Stanislaw's Lem Solaris</h4>
+<p>Not your grandma's sentient being</p>
+</section>
+<section >
+<h2><strong>Philosophy books to read</strong></h2>
+<h4>Imre Lakatos, <em>Proofs and refutations</em><br /></h4>
+<p>How mathematics actually works</p>
+<br />
+<h4>Lakoff &amp; Núñez, <em>Where mathematics comes from</em><br /></h4>
+<p>Cognitive account of mathematics via metaphors</p>
+<br />
+<h4>Donald MacKenzie, <em>Mechanizing proof</em><br /></h4>
+<p>Category mistakes and dissenting voices in the community</p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
