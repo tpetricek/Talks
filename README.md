@@ -38,6 +38,8 @@ Talks and slides
    
 ### Philosophy of Science and Research
 
+ - [**Would aliens understand lambda calculus?**](http://tpetricek.github.io/Talks/2017/aliens-lambda-calculus/codemesh/) (November 2017) - CodeMesh, London
+
  - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/) (September 2017) - HaPoC 2017, Brno
  
  - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
