@@ -9,7 +9,7 @@ and other talks, check out [my other repository](http://github.com/tpetricek/Doc
 Talks and slides
 ----------------
 
-### Data Journalism and The Gamma
+### Data Journalism Research
 
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/cambridge/) (June 2017) - Cambridge Spark Data Science Summit<br />
    See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017), also presented at Mozfest (October 2017),
@@ -18,23 +18,29 @@ Talks and slides
  - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
    See also: [short ECOOP 2017 version](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/), homepage at [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
- - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
-   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
-
  - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University<br />
    See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
  
  - [**The Gamma: Towards open and transparent data-driven storytelling**](http://tpetricek.github.io/Talks/2016/open-storytelling/) (November 2016) - Alan Turing Institute<br />
    See also: [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/) using The Gamma
 
- - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup<br />
-   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
-
  - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September 2015) - Future Programming Workshop<br />
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
+### Behind The Gamma - F# and Fable
+
+ - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/milan/) (November 2017) - CodeMotion Milan<br />
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/thegamma-data-science/milan/code), [thegamma.net](https://www.thegamma.net) and [UK Government Expenditure](http://gamma.turing.ac.uk/expenditure)
+
+ - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists   visualizations](http://rio2016.thegamma.net/)
+ 
+ - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
+ 
  - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow<br />
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
+   
    
 ### Philosophy of Science and Research
 
