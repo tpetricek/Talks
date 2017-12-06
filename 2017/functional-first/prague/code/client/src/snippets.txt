@@ -1,0 +1,10 @@
+  | Remove of int
+  | Add 
+
+
+  | Remove id -> 
+      let items = state.Items |> List.filter (fun it -> it.Id <> id)
+      { state with Items = items }
+  | Add ->
+      { Input = ""; Counter = state.Counter + 1; 
+        Items = state.Items @ [ { Id = state.Counter; Item = state.Input } ] }

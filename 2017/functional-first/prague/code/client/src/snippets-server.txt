@@ -1,0 +1,88 @@
+module Drawing
+
+open Fable.Core
+open Fable.Import
+open Fable.Import.Browser
+open Http
+open Elmish
+
+// ------------------------------------------------------------------------------------------------
+// Domain model
+// ------------------------------------------------------------------------------------------------
+
+type Item = 
+  { Id : int
+    Item : string }
+
+type Update =
+  | Update of Item list
+  | Input of string
+  | Remove of int
+  | Add 
+
+type Model =
+  { Counter : int
+    Input : string 
+    Items : Item list }
+
+// ------------------------------------------------------------------------------------------------
+// Update function
+// ------------------------------------------------------------------------------------------------
+
+let update trigger state = function
+  | Update items ->
+      { state with Items = items }
+  | Input s -> 
+      { state with Input = s }
+  | Remove id -> 
+      let items = state.Items |> List.filter (fun it -> it.Id <> id)
+      { state with Items = items }
+  | Add ->
+      { Input = ""; Counter = state.Counter + 1; 
+        Items = state.Items @ [ { Id = state.Counter; Item = state.Input } ] }
+
+let updateBoth trigger state event = 
+  let state = update trigger state event
+  match event with 
+  | Remove id ->
+      Http.Request("DELETE", sprintf "http://localhost:8086/%d" id) 
+      |> Async.Ignore |> Async.StartImmediate
+  | Add -> 
+      Http.Request("POST", "http://localhost:8086/", jsonStringify(List.last state.Items)) 
+      |> Async.Ignore |> Async.StartImmediate
+  | Update _ ->
+      Async.StartImmediate <| async { 
+        do! Async.Sleep(1000)
+        let! json = Http.Request("GET", "http://localhost:8086/")      
+        trigger(Update(jsonParse json)) }
+  | _ -> ()
+  state
+
+// ------------------------------------------------------------------------------------------------
+// Render function
+// ------------------------------------------------------------------------------------------------
+
+let render trigger state =
+  h?div [] [
+    h?ul [] [
+      for item in state.Items ->
+        h?li [] [
+          text item.Item
+          h?a ["href" => "#"; "onclick" =!> fun _ -> trigger(Remove item.Id) ] [ h?span [] [ text "X" ] ]
+        ]
+    ]
+    h?input [
+      "value" => state.Input
+      "oninput" =!> fun d -> trigger (Input(unbox d?target?value)) ] []
+    h?button
+      [ "onclick" =!> fun _ -> trigger Add ]
+      [ text "Add" ]
+  ]
+
+// ------------------------------------------------------------------------------------------------
+// Start the application with initial state
+// ------------------------------------------------------------------------------------------------
+
+let initial = { Input = ""; Items = []; Counter = 0 }
+let trigger = app "todo" initial render updateBoth
+trigger (Update [])

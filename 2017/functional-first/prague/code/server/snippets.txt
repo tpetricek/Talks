@@ -1,0 +1,59 @@
+    GET >=> path "/" >=> request (fun _ ->
+      let items = agent.PostAndReply(GetItems)
+      let json = JsonValue.Array [| for r in items -> r.JsonValue |]
+      Successful.OK(json.ToString()) )
+
+    DELETE >=> pathScan "/%d" (fun id ->
+      agent.Post(DropItem id)
+      Successful.OK "removed")
+
+    POST >=> path "/" >=> request (fun r ->
+      agent.Post(AddItem(Todo.Parse(Encoding.UTF8.GetString(r.rawForm))))
+      Successful.OK "added")
+
+    OPTIONS >=> 
+      Successful.OK "CORS approved"
+    
+// ------------------------------------------------------------------------------------
+
+let noCache =
+  setHeader "Cache-Control" "no-cache, no-store, must-revalidate"
+  >=> setHeader "Pragma" "no-cache"
+  >=> setHeader "Expires" "0"
+
+let cors = 
+  setHeader  "Access-Control-Allow-Origin" "*"
+  >=> setHeader  "Access-Control-Allow-Methods" "GET,POST,OPTIONS,DELETE"
+  >=> setHeader "Access-Control-Allow-Headers" "content-type"
+
+// -----------------------------------------------------------------------------------
+
+let noCache =
+  setHeader "Cache-Control" "no-cache, no-store, must-revalidate"
+  >=> setHeader "Pragma" "no-cache"
+  >=> setHeader "Expires" "0"
+
+let cors = 
+  setHeader  "Access-Control-Allow-Origin" "*"
+  >=> setHeader  "Access-Control-Allow-Methods" "GET,POST,OPTIONS,DELETE"
+  >=> setHeader "Access-Control-Allow-Headers" "content-type"
+
+let app =
+  noCache >=> cors >=> 
+    choose [
+      OPTIONS >=> 
+        Successful.OK "CORS approved"
+      
+      GET >=> path "/" >=> request (fun _ ->
+        let items = agent.PostAndReply(GetItems)
+        let json = JsonValue.Array [| for r in items -> r.JsonValue |]
+        Successful.OK(json.ToString()) )
+
+      POST >=> path "/" >=> request (fun r ->
+        agent.Post(AddItem(Todo.Parse(Encoding.UTF8.GetString(r.rawForm))))
+        Successful.OK "added")
+
+      DELETE >=> pathScan "/%d" (fun id ->
+        agent.Post(DropItem id)
+        Successful.OK "removed")
+    ]

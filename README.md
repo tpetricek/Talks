@@ -112,6 +112,9 @@ Talks and slides
 
 ### F# and Functional Programming
 
+ - [**Functional-First Programming with F#**](http://tpetricek.github.io/Talks/2017/functional-first/prague) (December 2017) - LambdUp, Prague<br />
+   See also: [source code from demos](https://github.com/tpetricek/Talks/tree/master/2017/functional-first/prague/code)
+  
  - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January 2016) - NDC London<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/taking-your-craft-seriously/code-done) and [slide with library list](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously/#/4)
 

@@ -1,0 +1,12 @@
+wb.Countries.``Czech Republic``.Indicators
+  .``Population in largest city``
+|> Chart.Line
+
+
+
+
+type Weather = JsonProvider<"http://api.openweathermap.org/data/2.5/forecast/daily?q=Prague&mode=json&units=metric&cnt=10&APPID=cb63a1cf33894de710a1e3a64f036a27">
+let w = Weather.GetSample()
+
+[ for t in w.List -> t.Temp.Min ]
+|> Chart.Line
