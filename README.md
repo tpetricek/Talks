@@ -6,6 +6,17 @@ The talks in this repository are from 2015 and later and are generally
 created using [FsReveal](http://github.com/fsprojects/FsReveal). For older
 and other talks, check out [my other repository](http://github.com/tpetricek/Documents/).
 
+Talks by category
+-----------------
+
+ - [Data Journalism Research](#data-journalism-research)
+ - [F# and Fable talks on TheGamma](#f-and-fable-talks-on-thegamma)
+ - [Programming Languages Research](#programming-languages-research)
+ - [Philosophy of Science](#philosophy-of-science)
+ - [FsLab and Data Science](#fslab-and-data-science)
+ - [Web and Reactive programming](#web-and-reactive-programming)
+ - [F# and Functional Programming](#f-and-functional-programming)
+ 
 Talks and slides
 ----------------
 
@@ -16,7 +27,7 @@ Talks and slides
    [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
  - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
-   See also: [short ECOOP 2017 version](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/), homepage at [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
+   See also homepage at [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
 
  - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University<br />
    See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
@@ -27,7 +38,7 @@ Talks and slides
  - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September 2015) - Future Programming Workshop<br />
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
-### Behind The Gamma - F# and Fable
+### F# and Fable talks on TheGamma
 
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/milan/) (November 2017) - CodeMotion Milan<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/thegamma-data-science/milan/code), [thegamma.net](https://www.thegamma.net) and [UK Government Expenditure](http://gamma.turing.ac.uk/expenditure)
@@ -40,17 +51,28 @@ Talks and slides
  
  - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow<br />
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
+
+### Programming Languages Research
    
+ - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
+   See also: [Source code for the demos](https://github.com/tpetricek/Talks/tree/master/2017/multi-runtime-challenges/demos) and
+   [In the Age of Web](http://tomasp.net/academic/papers/age-of-web) paper
+  
+ - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/) (June 2017) - ECOOP, Barcelona<br />
+   See also: [Sample interactive articles on UK open data](http://gamma.turing.ac.uk/) and [the ECOOP paper](http://tomasp.net/academic/papers/pivot/)
+
+ - [**Types from data: Making structured data first-class citizens in F#**](http://tpetricek.github.io/Talks/2016/fsharp-data-pldi/) (June 2016) - PLDI, Santa Barbara<br />
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2016/fsharp-data-pldi/code) and [F# Data library documentation](http://fsharp.github.io/FSharp.Data)
    
-### Philosophy of Science and Research
+ - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June 2015) - STTI MFF
+
+ - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague<br />
+
+### Philosophy of Science 
 
  - [**Would aliens understand lambda calculus?**](http://tpetricek.github.io/Talks/2017/aliens-lambda-calculus/codemesh/) (November 2017) - CodeMesh, London
 
  - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/) (September 2017) - HaPoC 2017, Brno
- 
- - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
-   See also: [Source code for the demos](https://github.com/tpetricek/Talks/tree/master/2017/multi-runtime-challenges/demos) and
-   [In the Age of Web](http://tomasp.net/academic/papers/age-of-web) paper
  
  - [**Where Mathematics Comes From by Lakoff & Núñez**](http://tpetricek.github.io/Talks/2017/pwl-where-mathematics-comes-from) (August 2017) - Papers We Love, London
    
@@ -64,19 +86,12 @@ Talks and slides
 
  - [**Thinking the Unthinkable**](http://tpetricek.github.io/Talks/2016/unthinkable/ppig/) (September 2016) - PPIG, Cambridge
 
- - [**Types from data: Making structured data first-class citizens in F#**](http://tpetricek.github.io/Talks/2016/fsharp-data-pldi/) (June 2016) - PLDI, Santa Barbara<br />
-   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2016/fsharp-data-pldi/code) and [F# Data library documentation](http://fsharp.github.io/FSharp.Data)
-
  - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2016/philosophy-of-types) (February 2016) - LambdaDays Krakow<br />
    See also: [Philosophy books every computer scientist should read](http://tomasp.net/blog/2015/reading-list/)
    and [older version of the talk](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
 
  - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC 
    
- - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June 2015) - STTI MFF
-
- - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague<br />
-
 ### FsLab and Data Science
 
  - [**Analyzing big time-series data in the cloud**](http://tpetricek.github.io/Talks/2016/big-data-analytics/ndc-oslo) (June 2016) - NDC Oslo<br />
