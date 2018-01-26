@@ -1,0 +1,90 @@
+{
+    "created_at": "Tue Oct 30 12:15:16 +0000 2012",
+    "id": 263269086455275520,
+    "id_str": "263269086455275520",
+    "text": "Cool video of the 1938 category 3 storm that hit New England: http://t.co/IaF1u3Kv",
+    "source": "<a href=\"http://www.tweetdeck.com\" rel=\"nofollow\">TweetDeck</a>",
+    "truncated": false,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "in_reply_to_screen_name": null,
+    "user": {
+        "id": 263269086455275520,
+        "id_str": "263269086455275520",
+        "name": "Rachel Reese",
+        "screen_name": "rachelreese",
+        "description": "I like: math, physics, linguistics, organizing weird things, F#, C#, and Oxford commas. I am: ASPInsider, Software Dev for @mywebgrocer, an @therachii.",
+        "url": "http://rachelree.se",
+        "entities": {
+            "url": {
+                "urls": [
+                    {
+                        "url": "http://rachelree.se",
+                        "expanded_url": null,
+                        "indices": [
+                            0,
+                            19
+                        ]
+                    }
+                ]
+            },
+            "description": {
+                "urls": []
+            }
+        },
+        "protected": false,
+        "followers_count": 2251,
+        "friends_count": 286,
+        "listed_count": 192,
+        "created_at": "Thu Nov 08 17:20:54 +0000 2007",
+        "favourites_count": 6460,
+        "time_zone": "Pacific Time (US & Canada)",
+        "geo_enabled": true,
+        "verified": false,
+        "statuses_count": 12157,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "profile_background_color": "87BC44",
+        "profile_background_image_url": "http://a0.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://si0.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://a0.twimg.com/profile_images/2316766323/obsm3vr83jz7vhwneta1_normal.jpeg",
+        "profile_image_url_https": "https://si0.twimg.com/profile_images/2316766323/obsm3vr83jz7vhwneta1_normal.jpeg",
+        "profile_link_color": "4A7119",
+        "profile_sidebar_border_color": "240D44",
+        "profile_sidebar_fill_color": "C9F099",
+        "profile_text_color": "240D44",
+        "profile_use_background_image": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": true,
+        "follow_request_sent": null,
+        "notifications": null
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "retweet_count": 0,
+    "entities": {
+        "hashtags": [],
+        "urls": [
+            {
+                "url": "http://t.co/IaF1u3Kv",
+                "expanded_url": "http://bit.ly/Srm1VL",
+                "display_url": "bit.ly/Srm1VL",
+                "indices": [
+                    62,
+                    82
+                ]
+            }
+        ],
+        "user_mentions": []
+    },
+    "favorited": false,
+    "retweeted": false,
+    "possibly_sensitive": false
+}
