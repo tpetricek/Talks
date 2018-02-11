@@ -1,0 +1,91 @@
+\documentclass[a4paper,UKenglish]{lipics-v2016}
+\usepackage{microtype}
+\usepackage{pifont}
+\usepackage{fp}
+\usepackage{graphicx}
+\usepackage{semantic}
+\usepackage{lipsum}
+
+\bibliographystyle{plainurl}
+
+% ==================================================================================================
+
+\title{Equations}
+
+\author[1]{Tomas Petricek}
+\affil[1]{The Alan Turing Institute, London, UK\\
+ and Microsoft Research, Cambridge, UK\\
+  \texttt{tomas@tomasp.net}}
+\authorrunning{T. Petricek}
+\Copyright{Tomas Petricek}
+\subjclass{D.3.2 Very high-level languages}
+\keywords{Data science, type providers, pivot tables, aggregation}
+
+% ==================================================================================================
+
+\theoremstyle{plain}
+\theoremstyle{definition}
+\newtheorem{rmrk}{Remark}
+
+% Formatting for source code & types
+\definecolor{cmtclr}{rgb}{0.0,0.6,0.0}
+\definecolor{kvdclr}{rgb}{0.0,0.0,0.6}
+\definecolor{numclr}{rgb}{0.0,0.4,0.0}
+\definecolor{strclr}{rgb}{0.4,0.3,0.0}
+\definecolor{prepclr}{rgb}{0.6,0.0,0.2}
+
+\newcommand{\vect}[1]{\langl #1 \rangl}
+\newcommand{\langl}{\begin{picture}(4.5,7)
+\put(1.1,2.5){\rotatebox{60}{\line(1,0){5.5}}}
+\put(1.1,2.5){\rotatebox{300}{\line(1,0){5.5}}}
+\end{picture}}
+\newcommand{\rangl}{\begin{picture}(4.5,7)
+\put(.9,2.5){\rotatebox{120}{\line(1,0){5.5}}}
+\put(.9,2.5){\rotatebox{240}{\line(1,0){5.5}}}
+\end{picture}}
+
+\newcommand{\ball}[1]{\FPeval{\result}{clip(201+#1)}\textnormal{\ding{\result}}}
+
+\newcommand{\lsep}{~\,|\,~}
+\newcommand{\num}[1]{\textcolor{numclr}{#1}}
+\newcommand{\str}[1]{\textnormal{\textcolor{strclr}{\sffamily "#1"}}}
+\newcommand{\kvd}[1]{\textnormal{\textcolor{kvdclr}{\sffamily #1}}}
+\newcommand{\ident}[1]{\textnormal{\sffamily #1}}
+\newcommand{\qident}[1]{\textnormal{\sffamily \guillemotleft #1\guillemotright}}
+% \newcommand{\qident}[1]{\textnormal{\sffamily ‹#1›}}
+
+\newcommand{\dom}{\ident{dom}}
+
+% ==================================================================================================
+
+\begin{document}
+
+\begin{figure}
+\begin{equation*}
+\begin{array}{ll}
+\ident{drop}(F) = C, \{ C \mapsto (l, L' \cup \bigcup L_f) \}\\[0.5em]
+~ l = \kvd{type}~C(x:\ident{Query}) =\\
+\quad \qquad \kvd{member}~\qident{drop $f$} : C_f = C_f(\Pi_{\ident{dom}(F')}(x))\\
+\quad \qquad \kvd{member}~\ident{then} : C' = C'(x)
+\\[0.5em]
+\qquad \forall f \in \dom(F)~\textnormal{where}~C_f, L_f = \ident{drop}(F')\\
+\qquad \quad\textnormal{and}~ F' = \{ f'\mapsto\tau'\in F, f' \neq f\}\\
+\qquad \textnormal{where}~C', L' = \ident{pivot}(F)
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{l}
+ \ident{provide}(\{ \nu_1 : \sigma_1, \ldots, \nu_n : \sigma_n \}\,}) =\\
+ \qquad C, \{ C \mapsto (l, L_1\cup\ldots\cup L_n\cup) \} \\[0.5em]
+ ~ l = \kvd{type}~C(x_1\!:\!\ident{Data})=\\
+\quad \qquad \kvd{member}~\nu_1:C_1=\ident{convField}(\nu, \nu_1, x_1, C_1) \quad (\ldots)\\
+\quad \qquad \kvd{member}~\nu_n:C_n=\ident{convField}(\nu, \nu_n, x_n, C_n)
+\\[0.5em]
+\qquad \textnormal{where}~C_i, L_i = \ident{provide}(\sigma_i)
+\end{array}
+\end{equation*}
+
+\end{figure}
+
+\end{document}

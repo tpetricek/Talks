@@ -2,6 +2,9 @@
 #r "packages/FSharp.Data/lib/net40/FSharp.Data.dll"
 open FSharp.Data
 
+// http://feeds.bbci.co.uk/news/politics/rss.xml
+// http://feeds.bbci.co.uk/news/world/rss.xml
+
 type Rss = XmlProvider<"http://feeds.bbci.co.uk/news/world/rss.xml">
 let rss = Rss.GetSample()
 

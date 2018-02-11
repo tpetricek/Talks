@@ -287,7 +287,11 @@ $$$
 \quad{\small \text{where}}
 
 $$$
+\begin{array}{l}
+\\[-0.5em]
+{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}\\
 {fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}
+\end{array}
 
 </div></div>
 
@@ -372,7 +376,7 @@ _Well typed programs do not go wrong._
 
 <div class="fragment">
 
-_(As long as the world is well-behaved.)_
+<p><em style="color:#a00020">(As long as the world is well-behaved.)</em></p>
 
 </div>
 
@@ -380,7 +384,8 @@ _(As long as the world is well-behaved.)_
 
 ### F# Data and safety
 
-<div style="margin-top:70px">
+<style>.reveal .math p em { font-style:italic; }</style>
+<div style="margin-top:70px" class="math">
 
 Given _representative samples_ and _an input_ value
 
@@ -388,7 +393,7 @@ $S(d)\sqsubset S(d_1, \ldots, d_n)$
 
 </div><div class="fragment" style="margin-top:70px">
 
-Any _program_ written user _type provider_ reduces
+Any _program_ written using a _type provider_ reduces
 
 $e_{user}[x\leftarrow {\color{mc}\text{new}}~C(d)] \rightsquigarrow^* v$
 
@@ -449,7 +454,7 @@ _Making programming with data easier_
 <style type="text/css">.final strong { width:234px; display:inline-block; } .final p { margin:0px 0px 5px 0px; }</style>
 <div class="final">
 
-**Dot-driven** _Can express more than you'd think!_
+**Dot-driven** _Towards minimal calculus of interactions_
 
 **Fancy types** _Encoding row types via type providers_
 
@@ -459,9 +464,10 @@ _Making programming with data easier_
 </div> 
 <br /><br />
 
-Tomas Petricek<br />
-_Questions and suggestions: [tomas@tomasp.net](mailto:tomas@tomasp.net) | [@tomaspetricek](http://twitter.com/tomaspetricek) 
-Code and papers: [thegamma.net](http://thegamma.net) | [fslab.org](http://fslab.org) | [tomasp.net/academic](http://tomasp.net)_
+Tomas Petricek
+
+_<i class="fa fa-envelope"></i> [tomas@tomasp.net](mailto:tomas@tomasp.net) | [@tomaspetricek](http://twitter.com/tomaspetricek) | [tomasp.net/academic](http://tomasp.net)<br/>
+<i class="fa fa-globe"></i> [thegamma.net](http://thegamma.net) | [fslab.org](http://fslab.org) | [gamma.turing.ac.uk](gamma.turing.ac.uk)_
 
 ---------------------------------------------------------------------------------------------------
 
