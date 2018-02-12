@@ -73,10 +73,11 @@ Talks and slides
 
 ### Philosophy of Science 
 
+ - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2018/programming-entities/index.html#/) (February 2018) - PROGRAMme meeting, Lille<br />
+   See also: [HaPoC 2017 (Brno) version](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/)<br />
+
  - [**Would aliens understand lambda calculus?**](http://tpetricek.github.io/Talks/2017/aliens-lambda-calculus/codemesh/) (November 2017) - CodeMesh, London
 
- - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/) (September 2017) - HaPoC 2017, Brno
- 
  - [**Where Mathematics Comes From by Lakoff & Núñez**](http://tpetricek.github.io/Talks/2017/pwl-where-mathematics-comes-from) (August 2017) - Papers We Love, London
    
  - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2017/living-with-errors/ncrafts) (May 2017) - NCrafts, Paris<br /> 
