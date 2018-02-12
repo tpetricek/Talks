@@ -2,24 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>The inner life of programming concepts</title>
-    <meta name="description" content="Mathematical and scientific entities such as
-polyhedra and electrons are well studied by philosophers.
-In theoretical programming language research and practical
-software development, a similarly fundamental role is
-played by programming concepts such as monads, types
-and processes, which are much less well-explored.
-Like computer programs, programming concepts
-have a dual nature and exist as an abstract form and as a
-physical form. In this paper, we explore the rich structure,
-or inner life, of the abstract form of programming concepts
-that is used when reasoning about programs, constructing
-programs and proving program properties.
-Programming concepts exist at a number of levels:
-an intuitive metaphorical level, a mathematical level used
-for formal reasoning and an implementation level. In this
-paper, we contrast each level with a different approach to
-thinking about mathematical and scientific entities.">
+    <title>Data exploration through dot-driven development</title>
+    <meta name="description" content="">
     <meta name="author" content="Tomas Petricek">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -29,17 +13,18 @@ thinking about mathematical and scientific entities.">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
-          TeX: { extensions: ["color.js"] },
+          TeX: { extensions: ["color.js","http://localhost:8083/images/xypic.js"] },
           jax: ["input/TeX","output/HTML-CSS"]
       });
-    </script>    
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/white.css" id="theme">
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
     <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -60,7 +45,7 @@ thinking about mathematical and scientific entities.">
     <script language="javascript" type="text/javascript">
         function init()
         {
-            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket = new WebSocket("ws://localhost:8083/websocket");
             websocket.onmessage = function(evt) { location.reload(); };
         }
         window.addEventListener("load", init, false);
@@ -72,306 +57,365 @@ thinking about mathematical and scientific entities.">
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
-<h1>The inner life of programming concepts</h1>
-<div style="margin:80px 0px 80px 0px">
-<img src="images/engine.jpg" style="height:250px" />
-</div>
-<p><strong>Tomas Petricek</strong>, The Alan Turing Institute <br />
-<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+<h1>Teaching old type systems<br/> new tricks with type providers</h1>
+<br /><br /><br /><br /><br />
+<h4>Tomas Petricek</h4>
+<p><em>The Alan Turing Institute, London<br />
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a> |
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> |
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
 </section>
 <section >
 <section >
-<h1>Motivation</h1>
-<p>What is this talk about?</p>
-<br />
-<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
-</section>
-<section >
-<h2><strong class="fragment">»type«</strong></h2>
-<h2><em class="fragment">»object«</em> <span style="margin-right:150px"></span>  <em class="fragment">»function«</em></h2>
-<h2><strong class="fragment">»monad«</strong></h2>
-</section>
-<section >
-<h1>Programming concepts</h1>
-<ul>
-<li>Where do they <em>come from</em>?</li>
-<li>How do <strong>they evolve</strong>?</li>
-<li>How are they <em>used in practice</em>?</li>
-<li>What is <strong>their nature</strong>?</li>
-</ul>
-</section>
-</section>
-<section >
-<section >
-<h1>Programming concepts</h1>
-<p>Multi-level nature of programming concepts</p>
-<br />
-<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
-</section>
-<section >
-<h3><em>1. Metaphorical common sense</em></h3>
-<h3>2. Formal models</h3>
-<h3><strong>3. Computer implementation</strong></h3>
-</section>
-<section >
-<style>.examples h3 {margin-bottom:10px}</style>
-<table class="examples"><tr>
-<td style="padding-right:20px">
-<h3>Types</h3>
-<ul>
-<li><em>category or kind</em></li>
-<li>sets or relations</li>
-<li><strong>ML or Java types</strong></li>
-</ul>
-</td><td class="fragment">
-<h3>Monads</h3>
-<ul>
-<li><em>box or sequencing</em></li>
-<li>category theory</li>
-<li><strong>Haskell or LINQ</strong></li>
-</ul>
-</td><td style="padding-left:20px" class="fragment">
-<h3>Functions</h3>
-<ul>
-<li><em>reusable block</em></li>
-<li>math function</li>
-<li><strong>FORTRAN or ML</strong></li>
-</ul>
-</td></tr></table>
-</section>
-<section >
-<h2>Multi-level nature of concepts</h2>
-<h4><strong>All have three levels</strong></h4>
-<p>We always think, prove and implement!</p>
-<hr />
-<h4><em>One level sometimes dominates</em></h4>
-<p>Common sense types, formal monads, implementation functions</p>
-</section>
-</section>
-<section >
-<section >
-<h1>Programming concepts as entities</h1>
-<p>Learning from mathematical and scientific entities</p>
-<br />
-<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
-</section>
-<section >
-<h2>Realism and anti-realism debate</h2>
-<h4><strong>More flexible than electrons</strong></h4>
-<p>Paper on gravity does not change how apples fall</p>
-<hr />
-<h4><em>Not just abstraction</em></h4>
-<p>Types across languages don't share the abstract</p>
-</section>
-<section >
-<h2>Experimentalist view</h2>
-<h4><em>Causing effects</em></h4>
-<p>Types are used to provide auto-complete</p>
-<hr />
-<h4><strong>Scientific progress</strong></h4>
-<p>We accumulate what we can implement</p>
-</section>
-<section >
-<h2>Learning from mathematical entities</h2>
-<h4><em>How programming concepts evolve</em></h4>
-<p>Proofs and refutations (Imre Lakatos)</p>
-<hr />
-<h4><strong>Where programming concepts come from</strong></h4>
-<p>Conceptual metaphors (George Lakoff &amp; Rafael Núñez)</p>
-</section>
-</section>
-<section >
-<section >
-<h1>Monads as mathematical entities</h1>
-<p>Variations on proofs and refutations</p>
-<br />
-<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
-</section>
-<section >
-<h4><em>Mathematical layer</em></h4>
-<p>Monad is a monoid in the category of endofunctors</p>
-<hr />
-<div class="fragment">
-<h4><strong>Implementation layer</strong></h4>
-<p>Data type <code>M a</code> satisfying monad laws with operations:</p>
-<ul>
-<li><code>return</code> of type <code>a -&gt; M a</code></li>
-<li><code>&gt;&gt;=</code> of type <code>(a -&gt; M b) -&gt; (M a -&gt; M b)</code></li>
-</ul>
+<div class="sec">
+<h1>DATA SCIENCE</h1>
 </div>
 </section>
 <section >
-<h3><strong>Metaphorical layer:</strong> Monads as boxes</h3>
-<div class="fragment">
-<p><code>return</code> wraps thing in a <em>box</em></p>
-<img src="images/return.png" />
+<img src="images/nyt.png" />
+</section>
+<section >
+<h1>DEMO<br /><em>Open, reproducible data visualizations</em></h1>
+</section>
+<section >
+<h3>Tooling for data science</h3>
+<p><em>The gap between spreadsheets and programming</em></p>
+<img src="images/pl1.png" />
+</section>
+<section >
+<h3>Tooling for data science</h3>
+<p><em>Making programming languages a bit easier</em></p>
+<img src="images/pl2b.png" />
+</section>
+<section >
+<h3>Tooling for data science</h3>
+<p><em>Learning from spreadsheet interaction model</em></p>
+<img src="images/pl2a.png" />
+</section>
+<section >
+<h3>Reading data</h3>
+<p><em>Unsafe dynamic access in a typed language</em></p>
+<div style="padding-top:20px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://dvd.netflix.com/Top100RSS"</span>;
+<span class="k">var</span> rss <span class="o">=</span> XDocument.Load(topRssFeed);
+<span class="k">var</span> channel <span class="o">=</span> rss.Element(<span class="s">"rss"</span>).Element(<span class="s">"channel"</span>);
+
+<span class="k">foreach</span>(<span class="k">var</span> item <span class="k">in</span> channel.Elements(<span class="s">"item"</span>)) {    
+  Console.WriteLine(item.Element(<span class="s">"text"</span>).Value);
+}
+</code></pre></td></tr></table>
 </div>
 <div class="fragment">
-<p><code>&gt;&gt;=</code> applies operation on all things in a box</p>
-<img src="images/bind1.png" class="fragment" style="margin-right:15px;" />
-<img src="images/bind2.png" class="fragment" style="margin-left:15px;" />
+  <div class="tipbox" style="left:512px;top:-100px;width:84px;height:25px"></div>
+  <div class="tiplbl" style="left:550px;top:-85px">Not found!</div>
 </div>
 </section>
 <section >
-<h3><strong>Metaphorical layer:</strong> Monads as computations</h3>
-<p>Plumbing for composing computations with <em>side-effects</em></p>
-<img src="images/compose1.png" style="width:30%;opacity:0" />
-<img src="images/compose2.png" style="width:30%;opacity:0" />
-<img src="images/compose3.png" style="width:30%;opacity:0" />
+<h3>Reading data</h3>
+<p><em>Unsafe dynamic access in a typed language</em></p>
+<div style="padding-top:20px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://dvd.netflix.com/Top100RSS"</span>;
+<span class="k">var</span> rss <span class="o">=</span> XDocument.Load(topRssFeed);
+<span class="k">var</span> channel <span class="o">=</span> rss.Element(<span class="s">"rss"</span>).Element(<span class="s">"channel"</span>);
+
+<span class="k">foreach</span>(<span class="k">var</span> item <span class="k">in</span> channel.Elements(<span class="s">"item"</span>)) {    
+  Console.WriteLine(item.Element(<span class="s">"title"</span>).Value);
+}
+</code></pre></td></tr></table>
+</div>
+<div>
+  <div class="tipbox" style="left:512px;top:-100px;width:98px;height:25px"></div>
+  <br />
+</div>
 </section>
 <section >
-<h3><strong>Metaphorical layer:</strong> Monads as computations</h3>
-<p>Plumbing for composing computations with <em>side-effects</em></p>
-<img src="images/compose1.png" style="width:30%;opacity:1" />
-<img src="images/compose2.png" style="width:30%;opacity:0" />
-<img src="images/compose3.png" style="width:30%;opacity:0" />
+<h3>Reading data</h3>
+<p><em>Accessing data from external data sources</em></p>
+<div class="fragment narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-file-excel-o"></i> <em>Languages do not understand data</em></p>
+<p><i class="fa fa-tags"></i> <em>There is rarely explicit schema</em></p>
+<p><i class="fa fa-code"></i> <em>Manually define types to caputre it</em></p>
+<p><i class="fa fa-wrench"></i> <em>Easier in dynamic languages</em></p>
+</div>
 </section>
 <section >
-<h3><strong>Metaphorical layer:</strong> Monads as computations</h3>
-<p>Plumbing for composing computations with <em>side-effects</em></p>
-<img src="images/compose1.png" style="width:30%;opacity:0.3" />
-<img src="images/compose2.png" style="width:30%;opacity:1" />
-<img src="images/compose3.png" style="width:30%;opacity:0" />
+<h3>Aggregating data</h3>
+<p><em>Athletes by number of gold medals from Rio 2016</em></p>
+<div style="padding:40px 0px 60px 0px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">olympics</span> <span class="o">=</span> <span class="i">pd</span><span class="o">.</span><span class="i">read_csv</span>(<span class="s">&quot;olympics.csv&quot;</span>)
+<span class="i">olympics</span>[<span class="i">olympics</span>[<span class="s">&quot;Games&quot;</span>] <span class="o">==</span> <span class="s">&quot;Rio (2016)&quot;</span>]
+  <span class="o">.</span><span class="i">groupby</span>(<span class="s">&quot;Athlete&quot;</span>)
+  <span class="o">.</span><span class="i">agg</span>({<span class="s">&quot;Gold&quot;</span><span class="o">:</span> <span class="i">sum</span>})
+  <span class="o">.</span><span class="i">sort_values</span>(<span class="i">by</span><span class="o">=</span><span class="s">&quot;Gold&quot;</span>, <span class="i">ascending</span><span class="o">=</span><span class="i">False</span>)
+  <span class="o">.</span><span class="i">head</span>(<span class="n">8</span>)
+</code></pre></td>
+</tr>
+</table>
+</div>
+<div class="fragment">
+  <div class="tipbox" style="left:365px;top:-289px;width:200px;height:25px"></div>
+  <div class="tiplbl" style="left:460px;top:-380px">Unknown file</div>
+  <div class="tipbox" style="left:296px;top:-246px;width:90px;height:25px"></div>
+  <div class="tiplbl" style="left:320px;top:-240px">Column name</div>
+</div>
 </section>
 <section >
-<h3><strong>Metaphorical layer:</strong> Monads as computations</h3>
-<p>Plumbing for composing computations with <em>side-effects</em></p>
-<img src="images/compose1.png" style="width:30%;opacity:0.3" />
-<img src="images/compose2.png" style="width:30%;opacity:0.3" />
-<img src="images/compose3.png" style="width:30%;opacity:1" />
-</section>
-<section >
-<h2>Monad at multiple levels</h2>
-<h4><em>Formal level</em></h4>
-<p>Pre-sheaves in category theory</p>
-<h4><strong>Metaphorical layer</strong></h4>
-<p>Containers like lists and sequencing of effects</p>
-<h4><em>Implementation layer</em></h4>
-<p>Artifacts such as do notation and LINQ</p>
-</section>
-<section >
-<h2>Shifts and adaptations</h2>
-<p><strong>Motivation at formal level</strong><br />
-Monads are logic for <em>reasoning about effects</em></p>
-<p><strong>Used differently for implementation</strong><br />
-Language abstraction for <em>encoding effects</em></p>
-<p><strong>Shift at implementation level</strong><br />
-Abstraction and <em>notation</em> for effects</p>
-<p><strong>Causes adaptation at formal level</strong><br />
-Algebraic <em>reasoning about syntactic</em> structures</p>
+<h3>Aggregating data</h3>
+<p><em>Language and data source features you need to know</em></p>
+<div class="fragment narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-book"></i> <em>Python dictionaries <code>{"key": value}</code></em></p>
+<p><i class="fa fa-eye"></i> <em>Generalised indexers <code>.[ condition ]</code></em></p>
+<p><i class="fa fa-university"></i> <em>Operation names <code>sort_values</code></em></p>
+<p><i class="fa fa-database"></i> <em>Data column names <code>"Athlete"</code></em></p>
+</div>
 </section>
 </section>
 <section >
 <section >
-<h1>Types, functions and more</h1>
-<p>Variations on proofs and refutations</p>
+<div class="sec">
+<h1>TYPE PROVIDERS</h1>
+</div>
+</section>
+<section >
+<div class="bigeq">
+<p><span class="math">\(\emptyset \vdash e : \tau\)</span></p>
+</div>
+</section>
+<section >
+<div class="bigeq bigeq2">
+<p><span class="math">\(\pi(~~~~~~~) \vdash e : \tau\)</span></p>
+<img src="images/globe.png" style="position:absolute;left:305px;top:65px;width:160px" />
+</div>
+</section>
+<section >
+<h1>DEMO<br /><em>Reading data from an RSS feed</em></h1>
+</section>
+<section >
+<h3>F# Data library</h3>
+<p><em>Type providers for structured data</em></p>
+<div class="fragment narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-adjust"></i> <em>Structural shape inference</em></p>
+<p><i class="fa fa-sitemap"></i> <em>Language integration via type providers</em></p>
+<p><i class="fa fa-bomb"></i> <em>Relative type safety</em></p>
+</div>
+</section>
+<section >
+<div class="diagram1">
+<p>
+  <span>{title&nbsp;:&nbsp;string,&nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;int}}</span>
+  <span style="margin-left:50px">{author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}}</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:55px;left:72px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;top:30px;left:40px">{&nbsp;title&nbsp;:&nbsp;option&lt;string&gt;,
+    &nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}&nbsp;}</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<div class="diagram2">
+<p>
+  <span>{&nbsp;coordinates&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}</span>
+  <span style="margin-left:50px">string</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:55px;left:200px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;left:70px;top:30px">
+  {&nbsp;coordinates&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}&nbsp;+&nbsp;string&nbsp;</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<h3>Shape inference</h3>
+<p><em>Pragmatic design choices for usability</em></p>
+<div class="fragment narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-wrench"></i> <em>Prefers records for tooling</em></p>
+<p><i class="fa fa-clock-o"></i> <em>Predictable and stable</em></p>
+<p><i class="fa fa-globe"></i> <em>Open world assumption about sums</em></p>
+</div>
+</section>
+<section >
+<h1>DEMO<br /><em>Aggregating Olympic medalists</em></h1>
+</section>
+<section >
+<h3>Dot-driven development</h3>
+<p><em>Encoding complex logic via simple member access</em></p>
+<div class="fragment narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-cog"></i> <em>Type providers for member generation</em></p>
+<p><i class="fa fa-pagelines"></i> <em>Laziness for scaling to large hierarchies</em></p>
+<p><i class="fa fa-rocket"></i> <em>Fancy types for the masses!</em></p>
+</div>
+</section>
+<section >
+<h3><em>Row types and phantom types</em></h3>
+<br /><div>
+<p><strong>Row types to track names and types of fields</strong></p>
+<div style="padding:10px 0px 30px 0px;position:relative;left:-90px;transform:scale(0.8)">
+<p><span class="math">\[\definecolor{cc}{RGB}{204,82,34}
+\definecolor{mc}{RGB}{0,0,153}
+\frac
+  {\Gamma \vdash e : {\color{cc}[f_1:\tau_1, \ldots, f_n:\tau_n]}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{cc} [f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n]}}\]</span></p>
+</div></div><div class="fragment">
+<p><strong>Embed row types in provided nominal types</strong></p>
+<div style="padding:0px 0px 30px 0px;position:relative;left:-90px;transform:scale(0.8)">
+<p><span class="math">\[\frac
+  {\Gamma \vdash e : {\color{mc} C_1}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{mc} C_2}}
+\quad{\small \text{where}}\]</span></p>
+<p><span class="math">\[\begin{array}{l}
+\\[-0.5em]
+{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}\\
+{fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}
+\end{array}\]</span></p>
+</div></div>
+</section>
+<section >
+<h3>Fancy types for the masses!</h3>
+<p><em>Powerful idea that works in other contexts</em></p>
+<div class="fragment narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-table"></i> <em>Row types and phantom types</em></p>
+<p><i class="fa fa-phone"></i> <em>Session types for communication</em></p>
+<p><i class="fa fa-question"></i> <em>Add your own fancy type here!</em></p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<div class="sec">
+<h1>BEHIND THE SCENES</h1>
+</div>
+</section>
+<section >
+<h3>Structure of a type provider</h3>
+<br /><div class="fragment">
+<p><em>Context <span class="math">\(L\)</span> maps names to definitions and nested contexts</em></p>
+<div style="padding:10px 0px 50px 60px">
+<p><span class="math">\(L(C) = {\color{mc}\text{type}}~C(x:\tau) = \overline{m}, L'\)</span></p>
+</div></div><div class="fragment">
+<p><em>Pivot provider takes schema and provides a class with context</em></p>
+<div style="padding:10px 0px 50px 60px">
+<p><span class="math">\(\text{pivot}(F) = C, L\)</span></p>
+</div></div>
+</section>
+<section >
+<h1>DEMO<br /><em>Fancy types in action</em></h1>
+</section>
+<section >
+<h3>Pivot type provider</h3>
+<p><em>Generate classes that drop individual columns</em></p>
+<div style="padding:0px 0px 0px 0px">
+<img src="images/eq1.png" style="width:650px;margin-left:50px"/>
+</div>
+</section>
+<section >
+<h3>JSON type provider</h3>
+<p><em>Generate class corresponding to a record shape</em></p>
+<div style="padding:0px 0px 0px 0px">
+<img src="images/eq2.png" style="width:650px;margin-left:50px"/>
+</div>
+</section>
+<section >
+<h3>Relative type safety</h3>
 <br />
-<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+<p><em>Well typed programs do not go wrong.</em></p>
+<div class="fragment">
+<p><em style="color:#a00020">(As long as the world is well-behaved.)</em></p>
+</div>
 </section>
 <section >
-<h2>Types in programming languages</h2>
-<h4><em>Formal layer</em></h4>
-<p>Types as sets, types as relations, types as proofs</p>
-<h4><strong>Implementation layer</strong></h4>
-<p>Types for error checking, assisting developers</p>
-<h4><em>Metaphorical layer</em></h4>
-<p>Category of a value, property specification</p>
+<h3>F# Data and safety</h3>
+<style>.reveal .math p em { font-style:italic; }</style>
+<div style="margin-top:70px" class="math">
+<p>Given <em>representative samples</em> and <em>an input</em> value</p>
+<p><span class="math">\(S(d)\sqsubset S(d_1, \ldots, d_n)\)</span></p>
+</div><div class="fragment" style="margin-top:70px">
+<p>Any <em>program</em> written using a <em>type provider</em> reduces</p>
+<p><span class="math">\(e_{user}[x\leftarrow {\color{mc}\text{new}}~C(d)] \rightsquigarrow^* v\)</span></p>
+</div>
 </section>
 <section >
-<h2>How the concept of a type evolves</h2>
-<p><strong>Rebirth at the implementation layer</strong><br/>
-No clue that "type" from logic had role in early Algol</p>
-<p><em>Modelled at the formal layer</em><br />
-Type as a set of things (except for pointers)</p>
-<p><strong>Shifts at the application layer</strong><br />
-Types used for effect tracking, tooling, proving</p>
-<p><em>Adaptation at the formal layer</em><br />
-Types as relations, types as proofs</p>
+<h1>DEMO<br /><em>Handling schema change and errors</em></h1>
 </section>
 <section >
-<h2>Functions in programming languages</h2>
-<h4><strong>Implementation layer</strong></h4>
-<p>Gluing tapes, compiling sub-routines</p>
-<h4><em>Formal layer</em></h4>
-<p>Mapping from inputs to outputs</p>
-<h4><strong>Metaphorical layer</strong></h4>
-<p>Mathematical lookup tables, math functions</p>
-</section>
-<section >
-<h2>How the concept of a function evolves</h2>
-<p><strong>Formal and implementation appearance</strong><br/>
-Mathematics vs. gluing sequences of instructions</p>
-<p><em>Getting closer at implementation layer</em><br />
-Functions and procedures in Pascal</p>
-<p><strong>Implementation and metaphorical shifts</strong><br />
-Sending a message to an object in Smalltalk</p>
-<p><em>Adaptation at the formal layer</em><br />
-Unit-returning function with side-effects</p>
-</section>
-</section>
-<section >
-<section >
-<h1>Summary</h1>
-<p>Why understanding programming concepts matters</p>
+<h3>F# Data and schema change</h3>
+<p><em>Provided type can change only in limited ways</em></p>
 <br />
-<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
-</section>
-<section >
-<h2>Computer science method questions</h2>
-<ul>
-<li>Metaphors appears <em>only in textbooks</em></li>
-<li>How to discuss <strong>conceptual metaphors</strong></li>
-<li>What to study about <em>implementation level</em></li>
-</ul>
-</section>
-<section >
-<h2>History and philosophy questions</h2>
-<ul>
-<li>Origins of <em>programming concepts</em></li>
-<li>Link between <strong>formal and implementation</strong></li>
-<li><em>Proofs and refutations</em> like developments</li>
-</ul>
-</section>
-<section >
-<h2>Shifts and adaptations?</h2>
-<ul>
-<li><em>Shift</em> at one layer, followed by <em>adaptation</em> at another</li>
-<li><strong>Joining</strong> two concepts, <strong>splitting</strong> one concept</li>
-<li><em>Reversal</em> of a shift caused by another layer</li>
-</ul>
-</section>
-<section >
-<h2>The inner life of programming concepts</h2>
-<p><em>Multi-level nature</em><br />
-Conceptual, formal, implementation</p>
-<p><strong>Useful philosophy of science perspective</strong><br/>
-Where programs come from, scientific progress</p>
-<p><em>Variations on proofs and refutations</em><br />
-Evolve across all three levels</p>
+<div class="fragment">
+<p><span class="math">\(C[e] \rightarrow C[e.M]\)</span></p>
+<p><span class="math">\(C[e] \rightarrow C[{\sf match}~e~{\sf with}~\ldots]\)</span></p>
+<p><span class="math">\(C[e] \rightarrow C[int(e)]\)</span></p>
+</div>
 <br />
-<p><a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
 </section>
 </section>
 <section >
 <section >
-<h4>BACKUP SLIDES</h4>
+<div class="sec">
+<h1>SUMMARY</h1>
+</div>
 </section>
 <section >
-<h2>Concepts as technical artifacts</h2>
-<h4>Dual nature of technical artifacts</h4>
-<p><strong>Function or specification</strong> vs. <em>physical implementation</em></p>
-<hr />
-<h4>Function of programming concepts</h4>
-<p><em>Changes and evolves</em>  and <strong>stretched by implementations</strong></p>
+<h3>Future work</h3>
+<p><em>Making programming with data easier</em></p>
+<div class="fragment narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-table"></i> <em>Learning from spreadsheets</em></p>
+<p><i class="fa fa-user"></i> <em>Understanding programmer interactions</em></p>
+<p><i class="fa fa-cogs"></i> <em>Handling joins and data cleaning</em></p>
+<p><i class="fa fa-pie-chart"></i> <em>Read, analyse and visualize!</em></p>
+</div>
 </section>
 <section >
-<h2>Physical reality</h2>
-<p><strong>Hard to cover all philosophy of science positions!</strong></p>
-<hr />
-<p><em>Scientific entities</em><br />
-There is some independent physical reality</p>
-<p><em>Programming concepts</em><br />
-The physical is interlinked with the theoretical</p>
+<h1>DEMO<br /><em>Learning from spreadhseets</em></h1>
+</section>
+<section >
+<h1>Thank you!</h1>
+<h2 style="font-size:28pt"><em>Teaching old type systems new tricks with type providers</em></h2>
+<style type="text/css">.final strong { width:234px; display:inline-block; } .final p { margin:0px 0px 5px 0px; }</style>
+<div class="final">
+<p><strong>Dot-driven</strong> <em>Towards minimal calculus of interactions</em></p>
+<p><strong>Fancy types</strong> <em>Encoding row types via type providers</em></p>
+<p><strong>Relative safety</strong> <em>Necessity when working with data</em></p>
+</div> 
+<br /><br />
+<p>Tomas Petricek</p>
+<p><em><i class="fa fa-envelope"></i> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> | <a href="http://tomasp.net">tomasp.net/academic</a><br/>
+<i class="fa fa-globe"></i> <a href="http://thegamma.net">thegamma.net</a> | <a href="http://fslab.org">fslab.org</a> | <a href="gamma.turing.ac.uk">gamma.turing.ac.uk</a></em></p>
+</section>
+<section >
+<h2>References</h2>
+<p><em>Don Syme, Keith Battocchi, Kenji Takeda, Donna Malayeri and Tomas Petricek.
+<strong>Themes in Information-Rich Functional Programming for Internet-Scale Data Sources</strong>. In proceedings of DDFP 2013</em></p>
+<p><em>Tomas Petricek, Gustavo Guerra and Don Syme.
+<strong>Types from data: Making structured data first-class citizens in F#</strong>.  PLDI 2016</em></p>
+<p><em>Tomas Petricek. <strong>Data exploration through dot-driven development</strong>. In proceedings of ECOOP 2017</em></p>
 </section>
 </section>
 
