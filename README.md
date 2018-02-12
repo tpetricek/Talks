@@ -54,7 +54,7 @@ Talks and slides
 
 ### Programming Languages Research
 
- - [**xx**](http://tpetricek.github.io/Talks/2018/type-provider-tricks/bham/) (January 2018) - University of Birmingham<br />
+ - [**Teaching old type systems new tricks with type providers**](http://tpetricek.github.io/Talks/2018/type-provider-tricks/bham/) (January 2018) - University of Birmingham<br />
    See also: [F# Data paper](http://tomasp.net/academic/papers/fsharp-data/) (PLDI 2016) and [Dot-driven development paper](http://tomasp.net/academic/papers/pivot/) (ECOOP 2017)
    
  - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
