@@ -9,3 +9,5 @@ TestResult.xml
 *.publishsettings
 credentials.fsx
 .fake
+node_modules
+obj
