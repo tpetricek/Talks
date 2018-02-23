@@ -20,26 +20,20 @@ let rec evaluateExpr vars = function
       | '-' -> box (unbox le - unbox re) 
       | _ -> failwith "Unsupported operator"
 
-  // TODO: Implement member access
+  // TODO: Implement member access (getProperty)
   | Member(obj, { Node = Variable name }) -> 
-      let obj = evaluateExpr vars obj.Node
-      Log.trace("evaluator", "Member access: %s", name.Node)
-      getProperty obj name.Node
-
+      null
   // DEMO: Implement let binding
   | Let(var, assign, body) ->
-      let assign = evaluateExpr vars assign.Node
-      evaluateExpr (Map.add var.Node assign vars) body.Node
-
+      null
   // DEMO: Show implementation of call
-  | Call({ Node = Member(obj, {Node = Variable name }) }, args) -> 
-      let obj = evaluateExpr vars obj.Node
-      let args = [| for a in args.Node -> evaluateExpr vars a.Node |]
-      Log.trace("evaluator", "Method call: %s", name.Node)
-      apply (getProperty obj name.Node) obj args
+  | Call _ -> 
+      null     
   
   | Member _ -> failwith "Unsupported member access" 
   | Call _ -> failwith "Unsupported call structure" 
+
+
 
 
 let rec evaluateEntityKind = function
@@ -55,22 +49,15 @@ let rec evaluateEntityKind = function
       | _ -> failwith "Unsupported operator"
 
   // DEMO: Add member access and method call
-  | MemberAccess(obj, { Kind = Name name }) -> 
-      let obj = evaluateEntity obj
-      Log.trace("evaluator", "Member access: %s", name)
-      getProperty obj name
-
-  | MethodCall({ Kind = MemberAccess(obj, {Kind = Name name }) }, { Kind = ArgumentList args }) -> 
-      let obj = evaluateEntity obj
-      let args = [| for a in args -> evaluateEntity a |]
-      Log.trace("evaluator", "Method call: %s", name)
-      apply (getProperty obj name) obj args
+  | MemberAccess _ 
+  | MethodCall _ -> 
+      null
 
   // TODO: Binding and reference
   | Binding(_, _, body) ->
-      evaluateEntity body
+      null
   | Reference(_, value) ->
-      evaluateEntity value  
+      null
 
   | MethodCall _ -> failwith "Unexpected method call structure"
   | MemberAccess _ -> failwith "Unexpected member access structure"
@@ -79,6 +66,4 @@ let rec evaluateEntityKind = function
 
 and evaluateEntity ent = 
   // TODO: Modify this function to cache values
-  if ent.Value = None then
-    ent.Value <- Some(evaluateEntityKind ent.Kind)
-  ent.Value.Value
+  evaluateEntityKind ent.Kind

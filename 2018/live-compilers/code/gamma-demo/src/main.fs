@@ -70,9 +70,10 @@ let update state (UpdateSource newSource) = async {
         | res -> 
             let t3 = performance.now()
             return state.Success(newSource, prog, res, (t0,t1,t2,t3))
-      with e -> 
-        return state.Failed(newSource, sprintf "Evaluator failed: %s" e.Message, prog) 
-  | None ->return state.Failed(newSource, "Parser failed") }
+      with e -> return state.Failed(newSource, sprintf "Evaluator failed: %s" e.Message, prog) 
+  | None -> return state.Failed(newSource, "Parser failed") }
+
+
 
 let img = box (GammaImageConstructor())
 let vars = Map.ofList [ "image", img ]
