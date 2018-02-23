@@ -61,7 +61,7 @@ let update state (UpdateSource newSource) = async {
       try
         let t2 = performance.now()
         // TODO: Switch to Evaluator.evaluateEntity ent
-        match Evaluator.evaluateExpr state.Variables prog.Node with
+        match Evaluator.evaluateEntity ent with
         | :? GammaImage as img -> 
             let mutable times = None
             let! a = img.render()

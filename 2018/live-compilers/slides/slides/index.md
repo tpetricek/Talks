@@ -192,7 +192,7 @@ F# to JavaScript compiler for the 21st century
 
 ***************************************************************************************************
 
-### Now you know how to write<br />your own live coding environment!
+### _Now you know how to write<br />your own live coding environment!_
 
 <br />
 <br />

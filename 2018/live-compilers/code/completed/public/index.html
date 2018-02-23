@@ -18,6 +18,20 @@
 <body>
   <div id="vl">
     <div id="editor"></div>
+    <div class="info">
+      <h2>Getting started</h2>
+      <p>Try typing <code>(1+2)*3</code> (parentheses are required). Open the 
+        developer console to see node binding details. Next, try typing
+        and modifying the following example (the langauge has let bindings, 
+        method calls, strings and numbers; <code>shadow.png</code> and
+        <code>pope.png</code> are the only two available images):
+      </p>
+      <pre>
+  let s = image.load("shadow.png").greyScale()
+  let p = image.load("pope.png")
+  s.blur(5).combine(p,50)        
+      </pre>
+    </div>
   </div>
   <div id="vr">
     <canvas id="canv"></canvas>

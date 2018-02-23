@@ -40,11 +40,14 @@ Talks and slides
 
 ### F# and Fable talks on TheGamma
 
+ - [**Rethinking compilers with live coding**](http://tpetricek.github.io/Talks/2018/live-compilers/) (February 2018) - LambdaDays, Krakow<br />
+   See: [live language demo](http://tpetricek.github.io/Talks/2018/live-compilers/demo/), [source code](https://github.com/tpetricek/Talks/tree/master/2018/live-compilers/code/completed), [thegamma.net](https://www.thegamma.net)
+   
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/milan/) (November 2017) - CodeMotion Milan<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/thegamma-data-science/milan/code), [thegamma.net](https://www.thegamma.net) and [UK Government Expenditure](http://gamma.turing.ac.uk/expenditure)
 
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
-   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists   visualizations](http://rio2016.thegamma.net/)
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
  
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup<br />
    See also: [source code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
