@@ -57,6 +57,9 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - University of Kent<br />
+   See also: [Azure notebooks](https://notebooks.azure.com/tomasp/libraries/interview-demo), [TheGamma playground](http://gamma.turing.ac.uk) and [Fun3D project](http://fun3d.net/)
+
  - [**Teaching old type systems new tricks with type providers**](http://tpetricek.github.io/Talks/2018/type-provider-tricks/kent/) (February 2018) - University of Kent<br />
    See also: [Birmingham version](http://tpetricek.github.io/Talks/2018/type-provider-tricks/bham/), [F# Data paper](http://tomasp.net/academic/papers/fsharp-data/) (PLDI 2016) and [Dot-driven development paper](http://tomasp.net/academic/papers/pivot/) (ECOOP 2017)
    
