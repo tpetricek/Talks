@@ -122,15 +122,15 @@ div.tiplbl { position:relative; background:#F26722; color:white; font-size:16pt;
 }
 .reveal h2 {
   text-transform:none;
-  font-size:32pt;
+  font-size:36pt;
   font-family: Roboto,'Times New Roman', Times, serif;
   font-weight:500;
-  margin:0px 0px 60px 0px;
+  margin:0px 0px 40px 0px;
 }
 .reveal h3 {
   text-transform:none;
   font-family:Roboto,'Times New Roman', Times, serif;
-  font-size:32pt;
+  font-size:36pt;
   font-weight:500;
   margin:0px 0px 10px 0px;
 }
@@ -143,7 +143,7 @@ div.tiplbl { position:relative; background:#F26722; color:white; font-size:16pt;
 }
 .reveal p, .reveal li {
   font-family:Roboto,'Trebuchet MS', sans-serif;
-  font-size:24pt;
+  font-size:28pt;
 }
 .reveal section img
 {
@@ -182,7 +182,7 @@ div.tiplbl { position:relative; background:#F26722; color:white; font-size:16pt;
   color:#303030;
 }
 .reveal code {
-  font:18pt 'Roboto Mono' !important;
+  font:22pt 'Roboto Mono' !important;
 }
 .reveal pre .i {
   color:#202020;
