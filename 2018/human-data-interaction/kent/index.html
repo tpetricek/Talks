@@ -1,0 +1,516 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Data exploration through dot-driven development</title>
+    <meta name="description" content="">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">type Shape =<br />&#160;&#160;| Cube<br />&#160;&#160;| Sphere<br />&#160;&#160;| Move of Shape * float * float * float<br />&#160;&#160;| Combine of Shape * Shape<br /><br />Full name: index.Shape</div>
+<div class="tip" id="fs2">union case Shape.Cube: Shape</div>
+<div class="tip" id="fs3">union case Shape.Sphere: Shape</div>
+<div class="tip" id="fs4">union case Shape.Move: Shape * float * float * float -&gt; Shape</div>
+<div class="tip" id="fs5">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs6">union case Shape.Combine: Shape * Shape -&gt; Shape</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em>Programming</em><br/><em>as</em> Human Data Interaction</h1>
+<h4 style="margin-bottom:0px;margin-top:300px">Dr Tomas Petricek</h4>
+<p><em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+<blockquote>
+<p>Good morning! This talk combines two lines of thinking - it takes some ideas from a more
+theoretical programming language research that I've done in my PhD with and it combines them
+with more applied work on programming tools for data science that I've been doing recently.</p>
+</blockquote>
+</section>
+<section >
+<section >
+<h1>Motivation</h1>
+<p><em>Easy, trustworthy and accessible data science</em></p>
+<br />
+<h1>Vision</h1>
+<p><em>The essence of programming process</em></p>
+<blockquote>
+<p>The more immediate applied part of the research is making it easier to use data - and I see making
+facts more accessible and trustworthy as a way in which a computer scientist can fight with
+dangerous trends in the society today.</p>
+<p>The way data scientists program is very interesting from the programming language perspective,
+because it breaks some of the usual assumptions about programming.</p>
+</blockquote>
+</section>
+<section >
+<img src="images/inequality.png" style="height:700px;margin-left:150px;margin-top:-20px" />
+<blockquote>
+<p>The data science I have in mind is often quite simple and it is done for example by journalists.
+For example, this Guardian article is using data to illustrate inequality in the world. Do
+we trust the data? Yes, we do, because we are academics and we trust The Guardian!</p>
+<p>But what if we wanted to verify this? That is quite hard - The Guardian says the source is
+the WorldBank, but how do we check that? The problem is that there is no source code!</p>
+</blockquote>
+</section>
+<section >
+<div style="background:black;position:absolute;width:200%;right:51%;height:400%;top:-100%;z-index:-1000;"></div>
+<table style="margin-top:140px"><tr><td style="width:45%;color:white" class="fragment">
+<h3 style="color:white;">Spreadsheets</h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-birthday-cake"></i> <em>Easy to use</em></p>
+<p><i class="fa fa-table"></i> <em>Simple problems only</em></p>
+<p><i class="fa fa-redo-alt"></i> <em>Not reproducible</em></p>
+</div>
+</td><td style="width:45%" class="fragment">
+<h3>Programming</h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-university"></i> <em>Requires expert skills</em></p>
+<p><i class="fa fa-globe"></i> <em>Internet-scale</em></p>
+<p><i class="fa fa-code"></i> <em>Reproducible &amp; open</em></p>
+</div>
+</td></tr></table>
+<blockquote>
+<p>If you're doing data science, you can turn to the dark side and use spreadsheets. They are
+very easy to use, but you can only deal with small tabular data and the results are not
+reproducible.</p>
+<p>If you want reproducibility and transparency, you can write a program. This gives you
+unlimited power, but it requires expert skills.</p>
+</blockquote>
+</section>
+<section >
+<h2><em>What makes spreadsheets successful?</em></h2>
+<h2><em>How can programming tools learn?</em></h2>
+<div class="fragment">
+<h2>Think of programming as interaction!</h2>
+</div>
+<blockquote>
+<p>The interesting question for a programming language person is - what makes spreadsheets so
+successful? And more importantly, how can programming tools learn from spreadsheets?
+My key point is that we need to think about the process of programming. In spreadsheets,
+you work with data directly, which is quite different from how most programming systems work.</p>
+</blockquote>
+</section>
+<section >
+<blockquote>
+<p>To illustrate, I'll show you how to get the inequality data from the WorldBank using
+an F# script. This is using Jupyter notebook, hosted on Microsoft which comes with the
+F# Data library that I created in Microsoft Research.</p>
+<p>I wrote a PLDI paper about the theory behind this, which won a best paper award, but
+let's focus on the interactions - how I actually write the code.</p>
+</blockquote>
+<h2><a href="https://notebooks.azure.com/tomasp/libraries/interview-demo"><span style="color:black">DEMO</span></a></h2>
+<p><em>Inequality index using F# Data <span class="ref"><span>PLDI 2016</span></span></em><br />
+<a href="https://notebooks.azure.com/tomasp/libraries/interview-demo"><em><a href="https://notebooks.azure.com/tomasp">https://notebooks.azure.com/tomasp</a></em></a></p>
+</section>
+<section >
+<h2>Programming for data science</h2>
+<p><em><span class="circ"><span>1</span></span> Data analytics is an interactive process</em></p>
+<p><em><span class="circ"><span>2</span></span> Program against data, not abstract symbols</em></p>
+<blockquote>
+<p>As you can see in the demo, programming with data is a very interactive process.
+You write some code using autocomplete, run it, look at the results, then modify
+your code. This interactivity is super important. Also, you typically work with
+real or sample data directly. Your variables actually have values that you could
+use to help the programmer.</p>
+</blockquote>
+</section>
+</section>
+<section >
+<section >
+<h1>Research vision</h1>
+<p><em>Programming as human data interaction</em></p>
+<blockquote>
+<p>My key research idea is that we need to focus on programming and see it as an interactive
+process of working with data - I'll focus on data, but the same applies to interactive
+theorem proving where you interact with your theorems.</p>
+</blockquote>
+</section>
+<section >
+<h3>The essence of human data interaction</h3>
+<p><em>Lambda calculus, but for programming interactions</em></p>
+<br />
+<p><em><i class="fa fa-pencil-alt"></i> <em>Formal mathematical perspective</em></em></p>
+<p><em><i class="fa fa-user"></i> <em>Human centric perspective</em></em></p>
+<p><em><i class="fa fa-wrench"></i> <em>Enables new tools and methods</em></em></p>
+<blockquote>
+<p>To understand programming properly, we need to find some small tractable model of it.
+In functional programming, we use lambda calculus to understand what is going on, so we
+need a similar essence of programming interactions. Then we can analyze it formally,
+use it to understand the human side of programming and use it as a basis for new
+tools and verification methods - and find new ways of working with data.</p>
+</blockquote>
+</section>
+<section >
+<h2>Formal mathematical perspective</h2>
+<p><em><span class="circ"><span>1</span></span> Relative type safety</em></p>
+<p><em><span class="circ"><span>2</span></span> Provenance of interactions<span style="font-size:75%"><span class="ref"><span>ICFP 2014</span></span> <span class="ref"><span>ICALP 2013</span></span></span></em></p>
+<p><em><span class="circ"><span>3</span></span> Properties of program construction</em></p>
+<blockquote>
+<p>What can we say about interactions formally? There are standard ideas like type safety
+which gain a new meaning - because they might depend on data. We can also track provenance
+throughout the interaction. For example, if you make "copy and paste" a primitive, you can
+track provenance in ways that were previously impossible. I'm very interested in this,
+because my PhD research on coeffects can help with this. Finally, there are also new properties
+that are related to how programs can be constructed interactively.</p>
+</blockquote>
+</section>
+<section >
+<h2>Human centric perspective</h2>
+<p><em><span class="circ"><span>1</span></span> Cognitive cost of interactions</em></p>
+<p><em><span class="circ"><span>2</span></span> Programming by direct manipulation</em></p>
+<blockquote>
+<p>From the human centric perspective, we can look at cognitive cost of individual interactions.
+For example, selecting an option from an autocomplete - as you can do in F# Data - is easier
+than if you have to type a column name from scratch. Can we solve more complex problems
+with such simpler modes of interaction?</p>
+<p>Second, we can also find ways to do some of programming not by writing code, but by
+manipulating with the data directly like in spreadsheets.</p>
+</blockquote>
+</section>
+</section>
+<section >
+<section >
+<h1>Research plan</h1>
+<p><em>Current and future research projects</em></p>
+<blockquote>
+<p>I want to wrap up with a quick demo of my current work and a few of my short-term plans.</p>
+</blockquote>
+</section>
+<section >
+<h2><a href="http://gamma.turing.ac.uk/playground/"><span style="color:black">DEMO</span></a></h2>
+<p><em>Data exploration via dot-driven development <span class="ref"><span>ECOOP 2017</span></span></em><br />
+<a href="http://gamma.turing.ac.uk/playground/"><em><a href="http://gamma.turing.ac.uk">http://gamma.turing.ac.uk</a></em></a></p>
+<blockquote>
+<p>This is a project I've been working on in the last year that makes simple data aggregations
+accessible to people like data journalists. I wrote an ECOOP paper about some of the
+theory behind this, but I'll show you a new more interactive version. This is all available
+online and you can play with this, but please after my demo :-).</p>
+</blockquote>
+</section>
+<section >
+<h2>Programming as human data interaction</h2>
+<p><em><span class="circ"><span>1</span></span> Study programming, not programs</em></p>
+<p><em><span class="circ"><span>2</span></span> The essence of interactions</em></p>
+<p><em><span class="circ"><span>3</span></span> Easy, trustworthy data science and more</em></p>
+<blockquote>
+<p>To summarize, I think a lot of the foundational programming language work has been
+focusing on languages and programs - and I want to extend that to cover programming
+as an interactive process. The way to do this is to think about the essence - or a
+minimal calculus - which then allows us to build new tools for easy trustworthy
+data science - and I think applications like data journalism make this an important
+research for our society.</p>
+</blockquote>
+</section>
+<section >
+<h2>My next three papers</h2>
+<p>Implementing live programming environments<br />
+<em><span class="sp"></span> Type checker and interpreter in TheGamma</em></p>
+<p>Interactive AI assistants for data wrangling<br />
+<em><span class="sp"></span> Alan Turing Institute collaboration</em></p>
+<p>History and philosophy of programming errors<br />
+<em><span class="sp"></span> Revised paper for ACM HOPL IV</em></p>
+<br />
+<p><em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+<blockquote>
+<p>To wrap up, I'll end with a slide that lists the three next papers that I plan to write.
+The first one is about implementing live programming environments, which is surprisingly
+tricky and the second one is extending the data aggregation work to cover data cleaning with
+AI assistants. Finally, I talked about one of the things that I'm interested in, but I also
+work on philosophy and history of programming and I got invited to submit a paper to an
+ACM HOPL conference, so that's my third. I have ideas about coeffects too, but I only wanted
+to list three.</p>
+</blockquote>
+</section>
+</section>
+<section >
+<p><em>(slide intentionally left blank)</em></p>
+</section>
+<section >
+<h1 style="font-size:38pt">Domain specific languages</h1>
+<h2 style="font-size:30pt"><em>Software engineering (Year 2)</em><h2>
+<h4 style="margin-bottom:0px;margin-top:300px">Dr Tomas Petricek</h4>
+<p><em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+<blockquote>
+<p>For the teaching part of the presentation, I will talk about domain specific languages.
+I'm happy to teach theoretical lectures, but I picked this because I do a lot of talks at
+industry conferences and this is based on one such talk. It is a topic that would fit well
+as a more advanced topic at the end of the software engineering course and I like it because
+it is a nice way to relate some object-oriented and functional programming ideas.</p>
+</blockquote>
+</section>
+<section >
+<section >
+<img src="images/dsls.png" style="width:700px;margin-left:100px" />
+<blockquote>
+<p>Domain specific languages is an engineering idea that has become very popular in the last
+few years. It is equally popular in object-oriented languages like Java, but also in
+functional languages like Scala (for the JVM) and Haskell or F#.</p>
+</blockquote>
+</section>
+<section >
+<h2>Engineering problem</h2>
+<div class="fragment">
+<p><em><span class="circ"><span>1</span></span> Repeated problem with numerous variations</em></p>
+</div><div class="fragment">
+<p><em><span class="circ"><span>2</span></span> Think tests, reports, contracts...</em></p>
+</div><div class="fragment">
+<p><em><span class="circ"><span>3</span></span> Accessible to non-programmers</em></p>
+</div>
+<blockquote>
+<p>When do you need domain specific languages? The typical case is when you have a large
+number of problems of a similar kind. Your management keeps coming with new reports
+or financial contracts to model. They are all very similar, but not quite the same.
+Ideally, you'd like to let your domain experts do most of the work on their own.</p>
+</blockquote>
+</section>
+<section >
+<h1><em>Build a</em> language <em>for a given</em> domain!</h1>
+<blockquote>
+<p>The key idea is to build a small language for the given domain. Domain experts can then
+use it to define new tests, reports or whatever they need.</p>
+</blockquote>
+</section>
+<section >
+<h2>Domain specific languages</h2>
+<p><em><span class="circ"><span>1</span></span></em> <strong>External</strong> – <em>New language with custom syntax</em></p>
+<p><em><span class="circ"><span>2</span></span></em> <strong>Internal</strong> – <em>Library in an existing language</em></p>
+<blockquote>
+<p>There are two basic ways of doing this. You can create a new language - a good example
+is SQL which is a domain specific language for writing queries. Or you can write a library
+that looks almost like a language in an existing language. I'll focus on the second style.</p>
+</blockquote>
+</section>
+<section >
+<h2><a href="http://fun3d.net"><span style="color:black">DEMO</span></a></h2>
+<p><em>Language for composing 3D objects</em><br />
+<a href="http://www.fun3d.net"><em><a href="http://www.fun3d.net">http://www.fun3d.net</a></em></a></p>
+<blockquote>
+<p>To give you an example, I'll show you a small domain specific language for composing
+3D objects. This is a toy example, but it is not too far from reality.</p>
+</blockquote>
+</section>
+<section >
+<img src="images/louvre.jpg" />
+<blockquote>
+<p>This is a photo of the Louvre Museum in Abu Dhabi and the ceiling of the building was
+actually designed with F# - and you could nicely do that using a small domain specific language.</p>
+</blockquote>
+</section>
+<section >
+<h1><em>DSL =</em> SYNTAX <em>+ MODEL</em></h1>
+<blockquote>
+<p>So, how do you build a domain specific language? There are two parts to this. First,
+you need to think about the model - what does the language describe. Then, you need to
+think about a nice syntax that will make it readable. I'll start with the syntax.</p>
+</blockquote>
+</section>
+<section >
+<h3>Functional languages</h3>
+<p><em>Custom operators and function composition</em></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">(<span class="i">Fun</span><span class="o">.</span><span class="i">cone</span> <span class="o">|&gt;</span> <span class="i">Fun</span><span class="o">.</span><span class="i">color</span> <span class="i">Color</span><span class="o">.</span><span class="i">red</span>) <span class="o">$</span>
+(<span class="i">Fun</span><span class="o">.</span><span class="i">cylinder</span> <span class="o">|&gt;</span> <span class="i">Fun</span><span class="o">.</span><span class="i">move</span> (<span class="n">0</span>, <span class="o">-</span><span class="n">1</span>, <span class="n">0</span>))
+</code></pre></td>
+</tr>
+</table>
+<div class="fragment" style="margin-top:50px">
+<h3>Object-oriented languages</h3>
+<p><em>Fluent interfaces and the builder pattern</em></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">fun.cone().withColor(color.red)<span class="o">.</span>
+  combineWith(fun.cylinder().moveBy(<span class="n">0</span>, <span class="n">-1</span>, <span class="n">0</span>))
+</code></pre></td></tr></table>
+</div>
+<blockquote>
+<p>In functional languages, you can often define a nice syntax by having a couple of
+operators and composing functions. Here, we have primitives like cone and cylinder,
+transformations using pipe and composition using dollar.</p>
+<p>In object oriented languages, you can achieve very similar thing using "fluent interfaces"
+and dot. If you read the code, it is fairly readable and you can explain this to
+non-programmers.</p>
+</blockquote>
+</section>
+<section >
+<h1><em>DSL = SYNTAX +</em> MODEL</h1>
+<blockquote>
+<p>The more important part of a domain specific language is the model. Here, you really
+need to think about what I want to describe in the language. This is the important part
+that you need to design carefully.</p>
+</blockquote>
+</section>
+<section >
+<h3>Object-oriented languages</h3>
+<p><em>Modelling using class hierarchies</em></p>
+<img class="fragment" src="images/hierarchy.png" style="width:600px;margin:60px 0px 0px 100px" />
+<blockquote>
+<p>In object oriented languages, you can model the domain as a class hierarchy. Using our
+shapes example, we will have an abstract base class for a shape and a couple of concrete
+shapes. Here, cube and sphere are primitives and move with combine are composed and contain
+other shapes.</p>
+</blockquote>
+</section>
+<section >
+<h3>Functional languages</h3>
+<p><em>Modelling using algebraic data types</em></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="t">Shape</span> <span class="o">=</span> 
+  | <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="p">Cube</span> 
+  | <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="p">Sphere</span>
+  | <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="p">Move</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="t">Shape</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="t">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="t">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="t">float</span>
+  | <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="p">Combine</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs1', 10)" onmouseover="showTip(event, 'fs1', 10)" class="t">Shape</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs1', 11)" onmouseover="showTip(event, 'fs1', 11)" class="t">Shape</span>
+</code></pre></td>
+</tr>
+</table>
+<blockquote>
+<p>The object oriented model directly maps to a functional model. In functional languages, you
+will model the same thing using algebraic data types. Here, I say that a shape is either
+a primitive (cube or sphere) or a more complex case - move contains another shape and an
+offset and combine combines two other shapes.</p>
+</blockquote>
+</section>
+<section >
+<table><tr><td style="width:45%">
+<h3>Object-oriented</h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p><em>One class per shape</em></p>
+<p><em>Operations as methods</em></p>
+<p><em>Easy to add cases</em></p>
+</div>
+</td><td style="width:45%" class="fragment">
+<h3>Functional</h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p><em>One case per shape</em></p>
+<p><em>Operations separate</em></p>
+<p><em>Easy to add operations</em></p>
+</div>
+</td></tr></table>
+<div class="fragment" style="padding:0px 0px 0px 30px">
+<p><em><i class="fa fa-lightbulb"></i></em> Add both cases and operations?<br />
+<em><span class="sp"></span> The expression problem!</em></p>
+</div>
+<blockquote>
+<p>How do these two styles compare? In the object-oriented style, you will have one
+class per shape. Operations like rendering will be written as abstract methods.
+This means that it is easy to add new cases - you just define a new class, but
+it is harder to add new methods, because you need to modify all classes.</p>
+<p>In functional style, you define one case per shape and operations will be just functions
+that use pattern matching to handle all cases. This means that it is easy to add new
+operations, but if you add a new case, you need to modify all operations.</p>
+<p>This is why it is nice to know both object oriented and functional programming!
+An interesting problem is if you wanted to add both cases and operations - I don't
+have the time for this, but if you are interested, search for "the expression problem"
+and you'll see there are some interesting solutions to this!</p>
+</blockquote>
+</section>
+</section>
+<section >
+<h3>Domain specific languages</h3>
+<div style="margin:60px 0px 100px 0px" class="narrow">
+<p><strong>When?</strong> <em>Repeated problem with variations</em></p>
+<p><strong>What?</strong> <em>Financial contracts, queries, tests, etc.</em></p>
+<p><strong>How?</strong> <em>Define model, provide readable syntax</em></p>
+</div>
+<p><em>Contacts for follow-up questions</em><br />
+<em><a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+<blockquote>
+<p>What should you remember from this lecture? Domain specific languages are useful if you
+have repeated problem with small variations. This includes things like financial and insurance
+contracts, but also queries for reports and tests. Domain specific languages make this
+easier, because you define a model with a nice syntax and you can then use the domain
+specific language to easily solve new instances of the problem.</p>
+</blockquote>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
