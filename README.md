@@ -79,6 +79,13 @@ Talks and slides
 
 ### Philosophy of Science 
 
+ - [**What we talk about when we talk about monads**](http://tpetricek.github.io/Talks/2018/monads-what-we-talk-about/nice/index.html) (April 2018) - Programming 2018<br />
+   Earlier version: [Monads are not what they seem](http://tpetricek.github.io/Talks/2017/monads-are-not-what-they-seem/paris/), February 2017 (CNRS Paris)
+
+ - **Salon des Refusés**: [Welcome to Salon des Refusés](http://tpetricek.github.io/Talks/2018/salon-des-refuses/welcome/index.html), Nice 2018<br />
+   [Critique of An anatomy of interaction: Co-occurrences and
+   entanglements](http://tpetricek.github.io/Talks/2018/salon-des-refuses/interaction/index.html) 
+
  - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2018/programming-entities/index.html#/) (February 2018) - PROGRAMme meeting, Lille<br />
    See also: [HaPoC 2017 (Brno) version](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/)<br />
 
@@ -92,8 +99,6 @@ Talks and slides
  - **Salon des Refusés**: [Welcome to Salon des Refusés](http://tpetricek.github.io/Talks/2017/salon-des-refuses/welcome), Brussels 2017<br />
    [Critical commentary for Programming is Writing is Programming](http://tpetricek.github.io/Talks/2017/salon-des-refuses/programming-is-writing-review) 
  
- - [**Monads are not what they seem**](http://tpetricek.github.io/Talks/2017/monads-are-not-what-they-seem/paris/) (February 2017) - CNRS, Paris
-
  - [**Thinking the Unthinkable**](http://tpetricek.github.io/Talks/2016/unthinkable/ppig/) (September 2016) - PPIG, Cambridge
 
  - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2016/philosophy-of-types) (February 2016) - LambdaDays Krakow<br />

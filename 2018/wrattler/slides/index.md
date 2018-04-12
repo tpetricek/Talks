@@ -6,19 +6,6 @@
 
 ****************************************************************************************************
 
-# Feedback
-
-* nowhere tell us what the origin of Wrattler is
-* "What makes data science hard" - Link to what Charles says
-* DEMO - clarify: things we've done, things we know how to do, things that are visionary
-  there is too much: principles of wrattler, implementation, broadband data set
-* Traditional notebook - show some cells in the slide?
-* Number buzzwords (1 interactive, 2 smart, 3 polyglot)
-* DEMO - do all in one?
-* GLM problem - sell better or replace with something better
-
-****************************************************************************************************
-
 # Wrattler: _Interactive, smart<br /> and polyglot notebooks_
 
 <h4 style="margin-bottom:0px;margin-top:300px">Tomas Petricek, <em>The Alan Turing Institute</em></h4>
@@ -27,20 +14,53 @@ _[http://tomasp.net](http://tomasp.net/academic) <span style="margin:0px 6px 0px
 [tomas@tomasp.net](mailto:tomas@tomasp.net) <span style="margin:0px 6px 0px 6px">|</span>
 [@tomaspetricek](http://twitter.com/tomaspetricek)_
 
+----------------------------------------------------------------------------------------------------
+
+<div style="padding-left:100px">
+
+**<span style="display:inline-block;width:60px">W</span>**  
+**<span style="display:inline-block;width:60px">R</span>**  
+**<span style="display:inline-block;width:60px">A</span>**  
+**<span style="display:inline-block;width:60px">T</span>**  
+**<span style="display:inline-block;width:60px">T</span>**  
+**<span style="display:inline-block;width:60px">L</span>**  
+**<span style="display:inline-block;width:60px">E</span>**  
+**<span style="display:inline-block;width:60px">R</span>**  
+
+</div>
+
+----------------------------------------------------------------------------------------------------
+
+<div style="padding-left:100px">
+
+**<span style="display:inline-block;width:60px">W</span>** _Wrangle_  
+**<span style="display:inline-block;width:60px">R</span>** _Reproduce_  
+**<span style="display:inline-block;width:60px">A</span>** _Analyse_  
+**<span style="display:inline-block;width:60px">T</span>** _Transform_  
+**<span style="display:inline-block;width:60px">T</span>** _Troubleshoot_  
+**<span style="display:inline-block;width:60px">L</span>** _Learn_  
+**<span style="display:inline-block;width:60px">E</span>** _Explore_  
+**<span style="display:inline-block;width:60px">R</span>** _Revise_  
+
+</div>
+
 ****************************************************************************************************
 
-### Data science 
-_What makes data science so hard?_
+### What makes data science hard?
 
 <br />
 
-_<i class="fa fa-hand-spock"></i> Hard-to-find special cases_
+_<i class="fa fa-hand-spock"></i>_ Big data is big  
+<span style="margin-right:60px"></span> _Hard-to-find special cases_
 
-_<i class="fa fa-calendar-alt"></i> Every data set is different_
+_<i class="fa fa-calendar-alt"></i>_ The Double Anna Karenina principle  
+<span style="margin-right:60px"></span> _Every data set is different_
 
-_<i class="fa fa-sync-alt"></i> Can't say what works until we've done it_
+_<i class="fa fa-sync-alt"></i>_ Feedback loops everywhere  
+<span style="margin-right:60px"></span> _Can't say what works until we've done it_
 
-_<i class="fa fa-align-justify"></i> Many tasks are repetitive_
+_<i class="fa fa-align-justify"></i>_ Death by a thousand cuts  
+<span style="margin-right:60px"></span> _Many tasks are repetitive_
 
 ----------------------------------------------------------------------------------------------------
 
@@ -94,17 +114,14 @@ _<span class="circ"><span>4</span></span> Polyglot programming_
 
 ****************************************************************************************************
 
-# Wrattler
-_Interactive, smart and polyglot notebooks_
+# Wrattler 
+_Noteboks that are_ <span class="circ"><span>1</span></span> interactive 
+<span class="circ"><span>2</span></span> smart _and_ 
+<span class="circ"><span>3</span></span> polyglot
 
 ----------------------------------------------------------------------------------------------------
 
-# DEMO
-Interactive – _Exploring data in the browser_
-
-----------------------------------------------------------------------------------------------------
-
-### Interactive
+### <span class="circ"><span>1</span></span> Interactive
 _Tighter interaction feedback loop_
 
 <br />
@@ -117,39 +134,35 @@ _<i class="fa fa-arrow-up"></i> Using dependency graph_
 
 ----------------------------------------------------------------------------------------------------
 
-<img src="images/notebook.png" style="width:80%" />
+<img src="images/graph-simple.png" style="width:70%;margin-left:15%" />
 
 ----------------------------------------------------------------------------------------------------
 
-<img src="images/graph.png" style="width:80%" />
+# <span class="circ"><span>1</span></span> DEMO
+Interactive – _Exploring data in the browser_
 
 ----------------------------------------------------------------------------------------------------
 
-# DEMO
-Smart – _Cleaning data with the datadiff assistant_
-
-----------------------------------------------------------------------------------------------------
-
-
-### Smart
+### <span class="circ"><span>2</span></span> Smart
 _Simplifying process with AI assistants_
 
 <br />
 
 _<i class="fa fa-database"></i> Full access to data store_
 
-_<i class="fa fa-archive"></i> No black box magic_
-
 _<i class="fa fa-language"></i> Domain specific languages_
 
-----------------------------------------------------------------------------------------------------
-
-# DEMO
-Polyglot – _Sharing data between R and JavaScript_
+_<i class="fa fa-archive"></i> No black box magic_
 
 ----------------------------------------------------------------------------------------------------
 
-### Polyglot
+# <span class="circ"><span>2</span></span> DEMO
+Smart – _Cleaning data with the datadiff assistant_
+
+
+----------------------------------------------------------------------------------------------------
+
+### <span class="circ"><span>3</span></span> Polyglot
 _Enabling platform for data science_
 
 <br />
@@ -159,6 +172,11 @@ _<i class="fa fa-table"></i> Share data via data frames_
 _<i class="fa fa-archive"></i> Computation graph for provenance_
 
 _<i class="fa fa-comment-alt"></i> Semantic annotations_
+
+----------------------------------------------------------------------------------------------------
+
+# <span class="circ"><span>3</span></span> DEMO
+Polyglot – _Sharing data between R and JavaScript_
 
 ****************************************************************************************************
 
@@ -177,6 +195,22 @@ _<i class="fa fa-database"></i> Separate state and language runtimes_
 _<i class="fa fa-globe"></i> Dependency graph in the browser_
 
 _<i class="fa fa-magic"></i> Platform for AI assisted data science_
+
+----------------------------------------------------------------------------------------------------
+
+### Project status
+_Wrattler prototype: [github.com/wrattler](http://github.com/wrattler)_
+
+<br />
+
+_<i class="fa fa-check-square"></i>_ Done – _Prototype with dependency graph running  
+<span style="margin-right:60px"></span>R, JavaScript languages and datadiff assistant_
+
+_<i class="fa fa-cog"></i>_ Progress – _Deployment as part of JupyterLab  
+<span style="margin-right:60px"></span>Data store annotations and graph versioning_
+
+_<i class="fa fa-eye"></i>_ Visionary – _Integration of further AI assistants  
+<span style="margin-right:60px"></span>Provenance tracking, modes of interaction_
 
 ----------------------------------------------------------------------------------------------------
 
