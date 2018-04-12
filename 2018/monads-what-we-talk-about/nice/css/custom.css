@@ -1,0 +1,178 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Mono|Neuton:400,400i,700|Hind:300,400,500,600);
+
+.reveal h1 {
+  text-transform:none;
+  font-size:42pt;
+  font-weight:700;
+  font-family:'Neuton', serif;
+}
+.reveal h2 {
+  text-transform:none;
+  font-size:40pt;
+  font-family:'Neuton', serif;
+  font-weight:700;
+  margin-bottom:65px;
+}
+.reveal h3 {
+  text-transform:none;
+  font-family:'Neuton', serif;
+  font-size:34pt;
+  font-weight:700;
+  margin-bottom:65px;
+}
+.reveal h4 {
+  margin:0px 0px 0px 0px;
+}
+
+.reveal h1 em, .reveal h2 em, .reveal h4 em, .reveal h3 em, .reveal p em, .reveal li em {
+  color:#C45C89;
+  font-style:inherit;
+}
+.reveal h1 strong, .reveal h2 strong, .reveal h4 strong, .reveal h3 strong, .reveal p strong, .reveal li strong {
+  color:#5BC174;
+  font-style:inherit;
+  font-weight:inherit;
+}
+
+.reveal ul {
+  margin-top:20px;
+}
+.reveal p, .reveal li {
+  font-family:'Hind', sans-serif;
+  font-weight:400;
+  font-size:24pt;
+}
+.reveal hr {
+  border-color:white;
+}
+.reveal blockquote:before {
+  display:none;
+}
+.reveal blockquote  {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+  padding:0px;
+  margin:0px;
+  width:100%;
+}
+.reveal blockquote li,
+.reveal blockquote p {
+  color:black;
+  padding:0px; margin:10px 0px 10px 0px;
+  font-style:italic;
+  font-family:'Neuton', serif;
+  font-weight:400;
+  font-size:28pt;
+  text-align:left;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+}
+.reveal blockquote p {
+  display:inline-block;
+}
+.reveal blockquote li {
+   margin:5px 0px 0px 0px;
+}
+.reveal .lispace li {
+  margin:10px 0px 10px 0px;
+}
+.reveal code
+{
+  font-family:consolas;
+  background:transparent;
+  color:#4498AA;
+  margin:0px 5px 0px 5px;
+}
+.reveal h3 .math
+{
+  font-weight:normal;
+}
+.reveal .MathJax_Display {
+  margin-top:15px !important;
+  margin-bottom:30px !important;
+}
+.reveal img
+{
+  box-shadow: 0 0 0px rgba(0, 0, 0, 1) !important;
+  border-style:none !important;
+}
+
+.reveal .pre {
+  background:transparent;
+  border-style:none;
+}
+.reveal td.snippet {
+  padding:10px;
+}
+.reveal pre {
+  background:transparent;
+  color:#303030;
+}
+.reveal code {
+  font:16pt 'Roboto Mono' !important;
+}
+.reveal pre code {
+  font:22pt 'Roboto Mono' !important;
+}
+.reveal pre .i {
+  color:#202020;
+}
+.reveal pre .f {
+  color:#202020;
+}
+.reveal pre .o {
+  color:#7A2D99;
+}
+.reveal pre .s {
+  color:#99880C;
+}
+.reveal pre .n {
+  color:#0F990A;
+}
+.reveal pre .k {
+  color:#0A0F99;
+}
+.reveal .pre td.lines {
+  display:none; 
+}
+
+.reveal div.tip
+{
+  font:14pt 'Hind', arial, sans-serif;
+  font-weight:300;
+}
+td.lines {
+  display:none;
+}
+
+.grid .cur {
+  background:#d0b840;
+}
+.grid .nb {
+  background:#f0e888;
+}
+.grid td, .grid tr
+{
+  background:white;
+  border:solid 2px black;
+}
+.grid td
+{
+  width:50px;
+  text-align:center !important;
+}
+
+table.pre pre {
+  width: auto;
+  display:inline-block;
+}
+table.pre, pre.fssnip, pre {
+  width:auto;
+}
+table.pre {
+  margin:0px auto 0px auto;
+}
+
+.reference p
+{
+  padding-top:20px;
+  font-size:22pt;
+}

@@ -1,0 +1,552 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Monads are not what they seem</title>
+    <meta name="description" content="The notion of monad (in the mathematical sense) and its use in functional 
+programming has popularized category theory (a branch of abstract algebra) in programming
+community. Many programmers believe that they now need to understand category theory in order
+to become better functional programmers. But how do computer scientists and programmers
+actually use the monad structure in their research narratives and in practice?
+In this talk, I will briefly introduce monads and then discuss the different metaphors
+that programmers use when explaining monads. I will look at the kinds of questions that
+researchers attempt to answer with monads, but also what questions become valid (and
+ill-formed) once we start looking at programming through the perspective of category theory.
+Monads are an interesting topic not just because of their popularity, but because they serve
+as a prime example of abstraction in programming - and can illustrate the strengths and
+weaknesses of the theoretical programming language research paradigm.">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>    
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">val getLength : url:&#39;a -&gt; Async&lt;int&gt;<br /><br />Full name: index.getLength</div>
+<div class="tip" id="fs2">val url : &#39;a</div>
+<div class="tip" id="fs3">val async : AsyncBuilder<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.async</div>
+<div class="tip" id="fs4">val html : obj</div>
+<div class="tip" id="fs5">val e : exn</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<section >
+<h1>What we talk about<br />when we talk about monads</h1>
+<div style="margin:0px 0px 0px 0px">
+<img src="images/monads.jpg" style="height:350px" />
+</div>
+<p><span style="font-weight:bold">Tomas Petricek</span>, The Alan Turing Institute <br />
+<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+<p><span class="math">\[\definecolor{mc}{RGB}{137,64,96}
+\newcommand{\mbnd}{&gt;\!\hspace{-0.25em}&gt;\!\hspace{-0.27em}=}\]</span></p>
+</section>
+<section >
+<blockquote>
+<p>A monad is just a monoid in the category<br />
+of endofunctors. What is the problem?</p>
+</blockquote>
+</section>
+<section >
+<h3>What is a monad?</h3>
+<div class="fragment" style="margin-top:-50px">
+<h3><em>I will not give you an answer!</em></h3>
+</div>
+</section>
+<section >
+<h3>What do we say when we talk about monads?</h3>
+<div class="fragment" style="margin-top:-50px">
+<h3><strong>I will add philosophical and cognitive context!</strong></h3>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>Internal history of monads</h1>
+<p>From category theory to programming</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h3>Monads in category theory</h3>
+<blockquote>
+<p>A <em>monad</em> over a category <span class="math">\(\mathcal{C}\)</span> is a triple <strong><span class="math">\((T, \eta, \mu)\)</span></strong>
+where<br /> <strong><span class="math">\(T : \mathcal{C} \rightarrow \mathcal{C}~\)</span></strong> is a functor, <strong><span class="math">\(\eta : {Id}_{\mathcal{C}} \rightarrow T\)</span></strong> and<br />
+<strong><span class="math">\(\mu : T^2 \rightarrow T\)</span></strong> are natural transformations such that:</p>
+<p><span class="math">\[\begin{array}{l}
+\mu_{A} \circ T \mu_A = \mu_{A} \circ \mu_{T A} \\
+\mu_{A} \circ \eta_{T A} = \mathit{id}_{T A} = \mu_{A} \circ T \eta_{A}
+\end{array}\]</span></p>
+</blockquote>
+</section>
+<section >
+<h3 style="margin-bottom:10px"> Monads in programming</h3>
+<blockquote>
+<p>A <em>monad</em> is a triple <strong><span class="math">\((M, \mathit{unit}, \mbnd)\)</span></strong> consisting of a type<br />
+constructor <strong><span class="math">\(M\)</span></strong> and two operations of the following types:</p>
+<p><span class="math">\[\begin{array}{lcl}
+\mbnd &amp;::&amp; M x \rightarrow (x\rightarrow M y) \rightarrow M y\\ 
+\mathit{unit} &amp;::&amp; x\rightarrow M x\\
+\end{array}\]</span></p>
+<p>These operations must satisfy the following laws:<br /></p>
+<p><span class="math">\[\begin{array}{l}
+\mathit{unit}~a~\mbnd~f ~=~ f a\\
+m~\mbnd~\mathit{unit} ~=~ m\\
+(m~\mbnd~f)~\mbnd~g ~=~ m~\mbnd~(\lambda x.f x~\mbnd~g)
+\end{array}\]</span></p>
+</blockquote>
+</section>
+<section >
+<h2>What has changed?</h2>
+<div class="fragment">
+<h4><strong>Purpose of monads</strong></h4>
+<p>Reasoning about effects <em>vs.</em> Introducing effects</p>
+</div><div class="fragment">
+<br />
+<h4><strong>Kind of entity</strong></h4>
+<p>A priori knowledge <em>vs.</em> A posteriori knowledge</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>Explaining monads</h1>
+<p>Understanding monads using metaphors</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h1>Monads as a formal entity</h1>
+<h4><em>Monad is a data type</em></h4>
+<div class="fragment">
+<br />
+<blockquote>
+<p>Data type <code>M a</code> with the two operations satisfying <strong>monad laws</strong>:</p>
+<p>Operation <code>return</code> has a type <code>a -&gt; M a</code><br />
+Operation <code>&gt;&gt;=</code> has a type <code>(a -&gt; M b) -&gt; (M a -&gt; M b)</code></p>
+</blockquote>
+<br />
+<br />
+<br />
+</div>
+</section>
+<section >
+<h1>Monads as containers</h1>
+<h4><em>Monad is like a box of things</em></h4>
+<img src="images/box-1.png" style="width:90%;margin:0px;margin-top:20px" class="fragment"/>
+<img src="images/box-2.png" style="width:90%;margin:0px" class="fragment"/>
+<img src="images/box-3.png" style="width:90%;margin:0px" class="fragment"/>
+<img src="images/box-4.png" style="width:90%;margin:0px" class="fragment"/>
+</section>
+<section >
+<h1>Monads as computations</h1>
+<h4><em>Monad is like a railway track</em></h4>
+<img src="images/rail-0.png" style="width:90%;margin:0px;margin-top:50px" class="fragment"/>
+<br />
+<br />
+</section>
+<section >
+<h1>Monads as computations</h1>
+<h4><em>Monad is like a railway track</em></h4>
+<img src="images/rail-1.png" style="width:90%;margin:0px;margin-top:50px" />
+<br />
+<br />
+</section>
+<section >
+<h1>Monads as computations</h1>
+<h4><em>Monad is like a railway track</em></h4>
+<img src="images/rail-2.png" style="width:90%;margin:0px;margin-top:50px" />
+<br />
+<br />
+</section>
+<section >
+<h1>Monads as computations</h1>
+<h4><em>Monad is like a railway track</em></h4>
+<img src="images/rail-3.png" style="width:90%;margin:0px;margin-top:50px" />
+<br />
+<br />
+</section>
+<section >
+<h2>Why metaphors matter</h2>
+<div class="fragment">
+<blockquote>
+<p>One of the principal results in cognitive science is that abstract concepts are typically
+understood, via metaphor, in terms of more concrete concepts.</p>
+<p style="float:right">(Lakoff & Núñez, 2000)</p>
+</blockquote>
+</div>
+</section>
+<section >
+<h2>Embodied cognition</h2>
+<p>Metaphors link <em>abstract concepts</em> with <em>bodily experience</em></p>
+<ul>
+<li><strong>Movement</strong> formal symbol manipulation</li>
+<li><strong>Inside vs. outside</strong> for containers and boxes</li>
+<li><strong>Movement</strong> for composing railway tracks</li>
+</ul>
+</section>
+</section>
+<section >
+<section >
+<h1>Monads in research</h1>
+<p>Reasoning about programs with monads</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<blockquote>
+<p>This paper is about logics for reasoning about programs,<br />
+in particular for proving equivalence of programs.</p>
+<p style="text-align:right;width:100%">Moggi (1991)</p>
+</blockquote>
+</section>
+<section >
+<h1>Origins of algebraic program laws</h1>
+<h4><strong>Intuition about programming constructs</strong></h4>
+<br />
+<p><span class="math">\({\color{mc} \mathit{if}}~\,b~{\color{mc} \mathit{then}}~\,p~{\color{mc} \mathit{else}}~p = p\)</span></p>
+</section>
+<section >
+<h1>Origins of monad laws</h1>
+<h4><strong>Composition of morphisms in category theory</strong></h4>
+<br />
+<p><span class="math">\((f^\ast \circ g^\ast) \circ h = f^\ast \circ (g^\ast \circ h)\)</span></p>
+<p><span class="math">\(\mathit{unit}^\ast \circ f = f = f^\ast \circ \mathit{unit}\)</span></p>
+</section>
+<section >
+<h2>Reasoning about programs with monads</h2>
+<ul>
+<li>Monadic query comprehensions <em>(Grust, 2004)</em></li>
+<li>Monad laws + concrete monads <em>(Gibbons, Hinze, 2011)</em></li>
+<li>Refactoring using monad laws <em>(To appear... never?)</em></li>
+</ul>
+</section>
+<section >
+<h2>Algol research paradigm</h2>
+<blockquote>
+<p>One of the goals of the Algol programme was to utilize the resources of
+logic to increase the confidence (...) in the correctness of a program.</p>
+<p style="float:right">(Priestley, 2011)</p>
+</blockquote>
+</section>
+</section>
+<section >
+<section >
+<h1>Monads in programming</h1>
+<p>From abstractions to syntactic sugar</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h3>Code reuse via monadic abstraction</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">mapM <span class="prep">::</span> Monad m <span class="prep">=</span><span class="prep">&gt;</span> (a <span class="prep">-</span><span class="prep">&gt;</span> m b) <span class="prep">-</span><span class="prep">&gt;</span> [a] <span class="prep">-</span><span class="prep">&gt;</span> m [b]        
+</code></pre></td></tr></table>
+<div style="margin-top:-20px"></div>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">mapM f x <span class="prep">=</span> loop x []
+  <span class="k">where</span> loop [] acc <span class="prep">=</span> return (reverse acc)
+        loop (x:xs) acc <span class="prep">=</span> f x <span class="prep">&gt;</span><span class="prep">&gt;</span><span class="prep">=</span> \y. loop xs (y:acc)
+</code></pre></td></tr></table>
+<br /><br />
+</section>
+<section >
+<h3>Sequencing of effects with monads</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">main <span class="prep">::</span> IO ()                
+</code></pre></td></tr></table>
+<div style="margin-top:-20px"></div>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">main <span class="prep">=</span> <span class="k">do</span>
+  putStr <span class="s">"What is your name?"</span>
+  n <span class="prep">&lt;</span><span class="prep">-</span> readLn
+  putStr (<span class="s">"Hello "</span> <span class="prep">+</span><span class="prep">+</span> n)
+</code></pre></td></tr></table>
+<br /><br />
+</section>
+<section >
+<h3>Non-standard computations</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="f">getLength</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">url</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">async</span> {
+  <span class="k">try</span>
+    <span class="k">let!</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">html</span> <span class="o">=</span> <span class="i">downloadAsync</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="i">url</span>
+    <span class="k">return</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="i">html</span><span class="o">.</span><span class="i">Length</span>
+  <span class="k">with</span> <span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="i">e</span> <span class="k">-&gt;</span>
+    <span class="k">return</span> <span class="n">0</span> }
+</code></pre></td>
+</tr>
+</table>
+<br /><br />
+</section>
+<section >
+<h3>Useful syntactic sugar</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">sayHello <span class="prep">::</span> String <span class="prep">-</span><span class="prep">&gt;</span> Html 
+</code></pre></td></tr></table>
+<div style="margin-top:-20px"></div>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">sayHello name <span class="prep">=</span> H.body <span class="prep">$</span> <span class="k">do</span>
+  H.header <span class="s">"Welcome"</span>
+  H.p (<span class="s">"Hello "</span> <span class="prep">+</span><span class="prep">+</span> name)
+</code></pre></td></tr></table>
+<br /><br />
+</section>
+<section >
+<h2>How programming concepts evolve</h2>
+<div class="fragment">
+<blockquote>
+<p>Mathematics does not grow through <strong>increase of the number of established theorems</strong>,
+but through <em>improvement</em> by speculation and criticism, by the method of <em>proofs and
+refutations</em>.</p>
+<p style="text-align:right;width:100%">Lakatos (1979)</p>
+</blockquote>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>How monads evolve</h1>
+<p>The nature of programming entities</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h2>The nature of programming entities</h2>
+<h4><em>Metaphorical level</em></h4>
+<div style="margin:-15px 0px 20px 0px">
+<p><strong>Intuitively understanding</strong> concepts</p>
+</div>
+<h4><em>Technical level</em></h4>
+<div style="margin:-15px 0px 20px 0px">
+<p><strong>Implementing things</strong> in programs</p>
+</div>
+<h4><em>Formal level</em></h4>
+<div style="margin:-15px 0px 20px 0px">
+<p><strong>Reasoning and proving</strong> about programs</p>
+</div>
+</section>
+<section >
+<h2>Shifts and adaptations</h2>
+<p><strong>Motivation at formal level</strong><br />
+Monads are logic for <em>reasoning about effects</em></p>
+<p><strong>Used differently for implementation</strong><br />
+Language abstraction for <em>encoding effects</em></p>
+<p><strong>Shift at implementation level</strong><br />
+Abstraction and <em>notation</em> for effects</p>
+<p><strong>Causes adaptation at metaphorical level</strong><br />
+Think of monads as <em>railway tracks</em></p>
+</section>
+</section>
+<section >
+<section >
+<h1>Sociology of monads</h1>
+<p>Monads as religious objects</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<img src="images/shirt.jpg" style="width:60%" />
+</section>
+</section>
+<section >
+<section >
+<h1>Uses of monads</h1>
+<p>A case for wider understanding</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h3>When monads are not the right tool</h3>
+<p>Monad is a <em>resource of logic</em></p>
+<div class="fragment">
+<p>Monads are <em>cool and exciting</em></p>
+</div><div class="fragment">
+<p>Monads are <em>discovered, not invented!</em></p>
+</div>
+</section>
+<section >
+<h3><em>Monad</em> can be the uninteresting part</h3>
+<p>The <code>Par</code> monad for modelling parallel computations</p>
+<div class="fragment lispace">
+<ul>
+<li>Spawn a new process<br /><code>spawn : Par a -&gt; Par (IVar a)</code></li>
+<li>Read and write shared variables<br /><code>get : IVar a -&gt; Par a</code> and <code>put : IVar a -&gt; a -&gt; Par ()</code></li>
+</ul>
+</div><div class="fragment" style="padding-top:30px">
+<p>Also supports monadic <code>return : a -&gt; Par a</code><br />
+and <code>&gt;&gt;= : (a -&gt; Par b) -&gt; (Par a -&gt; Par b)</code></p>
+</div>
+</section>
+<section >
+<h3><em>Monad</em> can be the uninteresting part</h3>
+<img src="images/par.png" style="width:80%;margin-top:-60px"/>
+</section>
+<section >
+<h3><em>Monad</em> as tempting harmful abstraction</h3>
+<p><code>Parser a</code> reads input string and produces value <code>a</code></p>
+<div class="fragment">
+<ul>
+<li>
+<p>Parse one thing and then another thing<br />
+<code>Parser a -&gt; Parser b -&gt; Parser (a * b)</code></p>
+</li>
+<li>
+<p>Try parsing in two ways, use the first success<br />
+<code>Parser a -&gt; Parser a -&gt; Parser a</code></p>
+</li>
+</ul>
+</div><div class="fragment" style="padding-top:30px">
+<p>Parsers can be extended to support monadic <code>&gt;&gt;=</code> and <code>return</code>.</p>
+</div>
+</section>
+<section >
+<h3><em>Monad</em> as tempting harmful abstraction</h3>
+<blockquote>
+<p>The normal disadvantages of conventional [monadic] parsers, <br />such as
+their lack of speed and their poor error reporting are remedied.</p>
+<p>The techniques [do not] extend to monadic parsers. [T]he monadic
+formu-lation [causes] the evaluation of the parser construction over and over (...).</p>
+<p style="text-align:right;width:100%;margin-top:60px">Swierstra & Duponcheel (1996)</p>
+</blockquote>
+</section>
+<section >
+<h3><em>Monad</em> as the wrong structure</h3>
+<blockquote>
+<p>Wadge proposed that the semantics of the dataflow language Lucid (...), could be structured
+by a monad.</p>
+<p>Ten years later, Uustalu and Vene gave a semantics for Lucid in
+terms of a comonad, and stated that "dataflow cannot be structured with
+monads".</p>
+<p style="text-align:right;width:100%;margin-top:60px">Orchard (2012)</p>
+</blockquote>
+</section>
+<section >
+<h3><em>Monad</em> as the wrong structure</h3>
+<ul>
+<li>Has the <strong>right type</strong> of join operation</li>
+<li>Does not <strong>provide plumbing</strong></li>
+</ul>
+<br/><br/>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="haskell">latest : Stream (Stream a) <span class="prep">-</span><span class="prep">&gt;</span> Stream a
+</code></pre></td></tr></table>
+</section>
+</section>
+<section >
+<section >
+<h1>Conclusions</h1>
+<p>What we talk about when we talk about monads</p>
+<br />
+<img src="images/literate.png" style="width:200px;border-style:none;background:transparent;" />
+</section>
+<section >
+<h3>What we talk about when we talk about monads</h3>
+<p>Strong roots in the <em>Algol paradigm</em></p>
+<p><strong>Meaning evolves</strong> at three levels</p>
+<p><em>Metaphors</em> are a fundamental part</p>
+<br />
+<br />
+<br />
+<p>Tomas Petricek, The Alan Turing Institute<br />
+<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
