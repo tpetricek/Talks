@@ -142,6 +142,10 @@ Talks and slides
 
 ### F# and Functional Programming
 
+ - [**Functionalist programming language design**](http://tpetricek.github.io/Talks/2018/functionalist-pl-design/) (May 2018) - ScalaDays, Berlin<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2018/functionalist-pl-design/code),
+   [fun3d.net](http://fun3d.net), [thegamma.net](http://thegamma.net) and [gamma playground](http://gamma.turing.ac.uk/playground).
+
  - [**Functional-First Programming with F#**](http://tpetricek.github.io/Talks/2017/functional-first/prague) (December 2017) - LambdUp, Prague<br />
    See also: [source code from demos](https://github.com/tpetricek/Talks/tree/master/2017/functional-first/prague/code)
   
