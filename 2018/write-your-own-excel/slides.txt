@@ -1,0 +1,170 @@
+
+
+=================================================
+
+  BUILD YOUR OWN EXCEL 365 IN AN HOUR WITH F#
+
+
+
+
+Tomas Petricek, University of Kent & fsharpWorks
+      tomas@tomasp.net | @tomaspetricek
+
+=================================================
+
+
+
+
+
+
+
+
+=================================================
+
+    ELM-STYLE FUNCTIONAL USER INTERFACES
+
+type State = { ... }
+type Event = .. | .. | ..
+
+val initial : State
+val render  : (unit -> Event) -> State -> Html
+val update  : State -> Event -> State
+
+=================================================
+
+
+
+
+
+
+
+
+=================================================
+
+       COMPOSING PARSERS WITH COMBINATORS
+
+
+type Parser<'T> = 
+  char list -> ('T * char list) option
+
+<|> : Parser<'T> -> Parser<'T> -> Parser<'T>
+<*> : Parser<'T> -> Parser<'S> -> Parser<'T * 'S>
+
+=================================================
+
+
+
+
+
+
+
+
+=================================================
+
+    DISCRIMINATED UNIONS FOR DOMAIN MODELLING
+
+type Expr = 
+  | Number of int
+  | Binary of Expr * char * Expr
+  | Reference of Position
+
+
+=================================================
+
+
+
+
+
+
+
+=================================================
+
+         RAILWAY-ORIENTED PROGRAMMING
+
+type Option<'T> = None | Some of 'T
+
+Option.map :
+  ('T -> 'R) -> 'T option -> 'R option
+Option.bind :
+  ('T -> 'R option) -> 'T option -> 'R option
+
+=================================================
+
+
+
+
+
+
+
+=================================================
+
+         REACTIVE DEPENDENCY GRAPHS
+    
+        +--------+        +--------+
+        | A1 = 5 |        | C1 = 2 |
+        +--------+        +--------+
+                \          /
+               +------------+
+               | B3 = A1*C1 |
+               +------------+
+
+=================================================
+    
+
+
+
+
+
+
+=================================================
+
+        REACTIVE DEPENDENCY GRAPHS
+
+
+type Cell =
+  abstract Value : int
+  abstract Changed : IObservable<unit>
+
+
+=================================================
+
+
+
+
+
+
+
+
+=================================================
+ 
+
+          BUT IS THIS THE REAL THING?
+
+   It's nice you can do all this in one hour,
+    but is this really what F# programming 
+          looks like in the real world?
+ 
+ 
+=================================================
+
+
+
+
+
+
+
+
+=================================================
+
+  BUILD YOUR OWN EXCEL 365 IN AN HOUR WITH F#
+
+
+   * Elm-style user interfaces with Fable
+   * Compositional functional programming
+   * Types for domain modelling and errors
+
+
+Tomas Petricek, tomas@tomasp.net | @tomaspetricek
+
+=================================================
+

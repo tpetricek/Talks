@@ -1,0 +1,40 @@
+{
+	"Excel - #1 Initial state": {
+	"prefix":"excel-1-state",
+	"description": "Excel - #1 Initial state",
+	"body": [
+    "let initial = ", 
+    "  { Rows = [ 1 .. 15 ]", 
+    "    Cols = [ 'A' .. 'K' ]", 
+    "    Active = None", 
+    "    Cells = Map.empty }" ]
+	},
+"Excel - #2 Rendering": {
+	"prefix":"excel-2-render",
+	"description": "Excel - #2 Rendering",
+	"body": [
+    "let renderEditor trigger pos value =", 
+    "  h?td [\"class\" => \"selected\"] [ ", 
+    "    h?input [", 
+    "      \"id\" => \"celled\"; \"focused\" => \"true\"", 
+    "      \"value\" => value ] []", 
+    "  ]", 
+    "", 
+    "let renderView trigger pos value = ", 
+    "  h?td [] [ text value ]" ]
+},
+"Excel - #3 Parsing": {
+	"prefix":"excel-3-parsing",
+	"description": "Excel - #3 Parsing",
+	"body": [
+    "let exprSetter, expr = slot ()", 
+    "let brack = char '(' <*>> anySpace <*>> expr <<*> anySpace <<*> char ')'", 
+    "let term = number <|> brack ", 
+    "let binary = term <<*> anySpace <*> operator <<*> anySpace <*> term |> map (fun ((l,op), r) -> Binary(l, op, r))", 
+    "let exprAux = binary <|> term", 
+    "exprSetter.Set exprAux", 
+    "", 
+    "let formula = char '=' <*>> anySpace <*>> expr", 
+    "let equation = anySpace <*>> (formula <|> number) <<*> anySpace " ]
+}
+}
