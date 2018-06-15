@@ -22,6 +22,9 @@ Talks and slides
 
 ### Data Journalism Research
 
+ - [**The Gamma: Towards open and reproducible data-driven storytelling**](http://tpetricek.github.io/Talks/2018/thegamma/cogx/) (June 2018) - CogX London<br />
+  See also: [thegamma.net](https://www.thegamma.net) and [The Alan Turing Institute demos](http://gamma.turing.ac.uk/)
+
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/cambridge/) (June 2017) - Cambridge Spark Data Science Summit<br />
    See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017), also presented at Mozfest (October 2017),
    [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
@@ -141,6 +144,10 @@ Talks and slides
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
 ### F# and Functional Programming
+
+ - [**Build Your Own Excel 365 in an Hour with F#**](https://github.com/tpetricek/Talks/tree/master/2018/write-your-own-excel/) (June 2018) - NDC Oslo<br />
+   See: [text file with slides](https://github.com/tpetricek/Talks/blob/master/2018/write-your-own-excel/slides.txt),
+   download all code as a [single zip file](https://github.com/tpetricek/Talks/blob/master/2018/write-your-own-excel/write-your-own-excel.zip).
 
  - [**Functionalist programming language design**](http://tpetricek.github.io/Talks/2018/functionalist-pl-design/) (May 2018) - ScalaDays, Berlin<br />
    See also: [source code](https://github.com/tpetricek/Talks/tree/master/2018/functionalist-pl-design/code),
