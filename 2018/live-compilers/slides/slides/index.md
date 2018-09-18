@@ -18,7 +18,7 @@
 <br />
 <br />
 
-#### _Tomas Petricek_, Alan Turing Institute + fsharpWorks <br /> [@tomaspetricek](http://twitter.com/tomaspetricek) | [tomasp.net](http://tomasp.net) | [fsharpworks.com](http://fsharpworks.com)
+#### _Tomas Petricek_, University of Kent + fsharpWorks <br /> [@tomaspetricek](http://twitter.com/tomaspetricek) | [tomasp.net](http://tomasp.net) | [fsharpworks.com](http://fsharpworks.com)
 
 
 ***************************************************************************************************
@@ -156,30 +156,6 @@ And help make facts great again!
 
 ***************************************************************************************************
 
-<table><tr><td style="text-align:center">
-
-## _F# language_
-
-[www.fsharp.org](http://www.fsharp.org)
-
-<br />
-
-Pragmatic functional-first programming 
-
-</td><td style="text-align:center">
-
-## _Fable compiler_
-
-[www.fable.io](http://www.fable.io)
-
-<br />
-
-F# to JavaScript compiler for the 21st century
-
-</td></tr></table>
-
-***************************************************************************************************
-
 ### _Dependency graphs_ over syntax trees
 
 ### _Reusing nodes_ enables caching
@@ -202,4 +178,4 @@ F# to JavaScript compiler for the 21st century
 <br />
 <br />
 
-#### _Tomas Petricek_, Alan Turing Institute + fsharpWorks <br /> [@tomaspetricek](http://twitter.com/tomaspetricek) | [tomasp.net](http://tomasp.net) | [fsharpworks.com](http://fsharpworks.com)
+#### _Tomas Petricek_, University of Kent + fsharpWorks <br /> [@tomaspetricek](http://twitter.com/tomaspetricek) | [tomasp.net](http://tomasp.net) | [fsharpworks.com](http://fsharpworks.com)

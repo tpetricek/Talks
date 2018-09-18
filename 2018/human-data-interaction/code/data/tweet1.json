@@ -1,0 +1,118 @@
+{
+    "created_at": "Tue Oct 30 12:16:40 +0000 2012",
+    "id": 263269086455275520,
+    "id_str": "263269086455275520",
+    "text": "Building Better #web Apps with #fsharp (and @dmohl) today in 5.75 hours! http://t.co/ZDd5k3ts",
+    "source": "<a href=\"http://www.twitter.com\" rel=\"nofollow\">Twitter for Windows Phone</a>",
+    "truncated": false,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "in_reply_to_screen_name": null,
+    "user": {
+        "id": 263269086455275520,
+        "id_str": "263269086455275520",
+        "name": "Community for F#",
+        "screen_name": "c4fsharp",
+        "location": "Virtually everywhere.",
+        "description": "Community for F# is a virtual user group for F# enthusiasts!",
+        "url": "http://www.communityforfsharp.net/",
+        "entities": {
+            "url": {
+                "urls": [
+                    {
+                        "url": "http://www.communityforfsharp.net/",
+                        "expanded_url": null,
+                        "indices": [
+                            0,
+                            34
+                        ]
+                    }
+                ]
+            },
+            "description": {
+                "urls": []
+            }
+        },
+        "protected": false,
+        "followers_count": 548,
+        "friends_count": 123,
+        "listed_count": 30,
+        "created_at": "Wed Dec 02 18:22:47 +0000 2009",
+        "favourites_count": 115,
+        "utc_offset": -28800,
+        "time_zone": "Pacific Time (US & Canada)",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 1658,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "profile_background_color": "131516",
+        "profile_background_image_url": "http://a0.twimg.com/images/themes/theme14/bg.gif",
+        "profile_background_image_url_https": "https://si0.twimg.com/images/themes/theme14/bg.gif",
+        "profile_background_tile": true,
+        "profile_image_url": "http://a0.twimg.com/profile_images/700533439/fsharp-1_normal.png",
+        "profile_image_url_https": "https://si0.twimg.com/profile_images/700533439/fsharp-1_normal.png",
+        "profile_link_color": "009999",
+        "profile_sidebar_border_color": "EEEEEE",
+        "profile_sidebar_fill_color": "EFEFEF",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": true,
+        "follow_request_sent": null,
+        "notifications": null
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "retweet_count": 2,
+    "entities": {
+        "hashtags": [
+            {
+                "text": "web",
+                "indices": [
+                    16,
+                    20
+                ]
+            },
+            {
+                "text": "fsharp",
+                "indices": [
+                    31,
+                    38
+                ]
+            }
+        ],
+        "urls": [
+            {
+                "url": "http://t.co/ZDd5k3ts",
+                "expanded_url": "http://fpish.net/course/321",
+                "display_url": "fpish.net/course/321",
+                "indices": [
+                    73,
+                    93
+                ]
+            }
+        ],
+        "user_mentions": [
+            {
+                "screen_name": "dmohl",
+                "name": "Daniel Mohl",
+                "id": 263269086455275520,
+                "id_str": "263269086455275520",
+                "indices": [
+                    44,
+                    50
+                ]
+            }
+        ]
+    },
+    "favorited": false,
+    "retweeted": false,
+    "possibly_sensitive": false
+}

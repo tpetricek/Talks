@@ -60,6 +60,9 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/edinburgh/index.html#/) (August 2018) - University of Edinburgh<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2018/human-data-interaction/code), [TheGamma playground](http://gamma.turing.ac.uk) and shorter version below.
+
  - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - University of Kent<br />
    See also: [Azure notebooks](https://notebooks.azure.com/tomasp/libraries/interview-demo), [TheGamma playground](http://gamma.turing.ac.uk) and [Fun3D project](http://fun3d.net/)
 
