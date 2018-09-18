@@ -45,8 +45,9 @@ Talks and slides
 
 ### F# and Fable talks on TheGamma
 
- - [**Rethinking compilers with live coding**](http://tpetricek.github.io/Talks/2018/live-compilers/) (February 2018) - LambdaDays, Krakow<br />
-   See: [live language demo](http://tpetricek.github.io/Talks/2018/live-compilers/demo/), [source code](https://github.com/tpetricek/Talks/tree/master/2018/live-compilers/code/completed), [thegamma.net](https://www.thegamma.net)
+ - [**Rethinking compilers with live coding**](http://tpetricek.github.io/Talks/2018/live-compilers/) (September 2018) - LambdaWorld, Seattle<br />
+   See: [live language demo](http://tpetricek.github.io/Talks/2018/live-compilers/demo/), [source code](https://github.com/tpetricek/Talks/tree/master/2018/live-compilers/code/completed), [thegamma.net](https://www.thegamma.net), <br />
+   Previously presented at LambdaDays, Krakow (February 2018)
    
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/milan/) (November 2017) - CodeMotion Milan<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/thegamma-data-science/milan/code), [thegamma.net](https://www.thegamma.net) and [UK Government Expenditure](http://gamma.turing.ac.uk/expenditure)
