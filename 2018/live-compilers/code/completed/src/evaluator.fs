@@ -20,16 +20,15 @@ let rec evaluateExpr vars = function
       | '-' -> box (unbox le - unbox re) 
       | _ -> failwith "Unsupported operator"
 
-  // TODO: Implement member access
+  // TODO: Implement member access (getProperty)
   | Member(obj, { Node = Variable name }) -> 
-      let obj = evaluateExpr vars obj.Node
-      Log.trace("evaluator", "Member access: %s", name.Node)
-      getProperty obj name.Node
+      let inst = evaluateExpr vars obj.Node
+      getProperty inst name.Node
 
   // DEMO: Implement let binding
   | Let(var, assign, body) ->
-      let assign = evaluateExpr vars assign.Node
-      evaluateExpr (Map.add var.Node assign vars) body.Node
+      let value = evaluateExpr vars assign.Node
+      evaluateExpr (Map.add var.Node value vars) body.Node
 
   // DEMO: Show implementation of call
   | Call({ Node = Member(obj, {Node = Variable name }) }, args) -> 
@@ -37,9 +36,11 @@ let rec evaluateExpr vars = function
       let args = [| for a in args.Node -> evaluateExpr vars a.Node |]
       Log.trace("evaluator", "Method call: %s", name.Node)
       apply (getProperty obj name.Node) obj args
-  
+
   | Member _ -> failwith "Unsupported member access" 
   | Call _ -> failwith "Unsupported call structure" 
+
+
 
 
 let rec evaluateEntityKind = function
@@ -56,21 +57,22 @@ let rec evaluateEntityKind = function
 
   // DEMO: Add member access and method call
   | MemberAccess(obj, { Kind = Name name }) -> 
-      let obj = evaluateEntity obj
-      Log.trace("evaluator", "Member access: %s", name)
-      getProperty obj name
+     let obj = evaluateEntity obj
+     Log.trace("evaluator", "Member access: %s", name)
+     getProperty obj name
 
   | MethodCall({ Kind = MemberAccess(obj, {Kind = Name name }) }, { Kind = ArgumentList args }) -> 
-      let obj = evaluateEntity obj
-      let args = [| for a in args -> evaluateEntity a |]
-      Log.trace("evaluator", "Method call: %s", name)
-      apply (getProperty obj name) obj args
+     let obj = evaluateEntity obj
+     let args = [| for a in args -> evaluateEntity a |]
+     Log.trace("evaluator", "Method call: %s", name)
+     apply (getProperty obj name) obj args     
+
 
   // TODO: Binding and reference
   | Binding(_, _, body) ->
       evaluateEntity body
   | Reference(_, value) ->
-      evaluateEntity value  
+      evaluateEntity value
 
   | MethodCall _ -> failwith "Unexpected method call structure"
   | MemberAccess _ -> failwith "Unexpected member access structure"
@@ -79,6 +81,6 @@ let rec evaluateEntityKind = function
 
 and evaluateEntity ent = 
   // TODO: Modify this function to cache values
-  if ent.Value = None then
+  if ent.Value = None then 
     ent.Value <- Some(evaluateEntityKind ent.Kind)
   ent.Value.Value

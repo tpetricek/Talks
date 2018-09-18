@@ -1,0 +1,62 @@
+{
+"Expression - #1 Member access": {
+	"prefix":"expr-1-member",
+	"description": "Expression - #1 Member access",
+	"body": [
+		"| Member(obj, { Node = Variable name }) -> ",
+		"    let obj = evaluateExpr vars obj.Node",
+		"    Log.trace(\"evaluator\", \"Member access: %s\", name.Node)",
+		"    getProperty obj name.Node"]
+	},	
+"Expression - #3 Call": {
+	"prefix":"expr-3-call",
+	"description": "Expression - #3 Call",
+	"body": [	
+		"| Call({ Node = Member(obj, {Node = Variable name }) }, args) -> ",
+		"    let obj = evaluateExpr vars obj.Node",
+		"    let args = [| for a in args.Node -> evaluateExpr vars a.Node |]",
+		"    Log.trace(\"evaluator\", \"Method call: %s\", name.Node)",
+		"    apply (getProperty obj name.Node) obj args"]
+	},
+"Expression - #2 Let binding": {
+	"prefix":"expr-2-let",
+	"description": "Expression - #2 Let binding",
+	"body": [
+		"| Let(var, assign, body) ->",
+		"    let assign = evaluateExpr vars assign.Node",
+		"    evaluateExpr (Map.add var.Node assign vars) body.Node"]
+	},
+"Entity - #1 Member and call": {
+	"prefix":"ent-1-mem-call",
+	"description": "Entity - #1 Member and call",
+	"body": [
+		"| MemberAccess(obj, { Kind = Name name }) -> ",
+		"   let obj = evaluateEntity obj",
+		"   Log.trace(\"evaluator\", \"Member access: %s\", name)",
+		"   getProperty obj name",
+		" ",
+		"| MethodCall({ Kind = MemberAccess(obj, {Kind = Name name }) }, { Kind = ArgumentList args }) -> ",
+		"   let obj = evaluateEntity obj",
+		"   let args = [| for a in args -> evaluateEntity a |]",
+		"   Log.trace(\"evaluator\", \"Method call: %s\", name)",
+		"   apply (getProperty obj name) obj args" ]
+	},
+"Entity - #2 Binding and reference": {
+	"prefix":"ent-2-binding-ref",
+	"description": "Entity - #2 Binding and reference",
+	"body": [
+		"| Binding(_, _, body) ->",
+		"    evaluateEntity body",
+		"| Reference(_, value) ->",
+		"    evaluateEntity value  " ]
+	},
+"Entity - #3 Cache evaluation": {
+	"prefix":"ent-3-cache",
+	"description": "Entity - #3 Cache evaluation",
+	"body": [		
+		"and evaluateEntity ent = ",
+		"  if ent.Value = None then",
+		"    ent.Value <- Some(evaluateEntityKind ent.Kind)",
+		"  ent.Value.Value" ]
+  }
+}

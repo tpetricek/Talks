@@ -23,13 +23,15 @@ let rec evaluateExpr vars = function
   // TODO: Implement member access (getProperty)
   | Member(obj, { Node = Variable name }) -> 
       null
+
   // DEMO: Implement let binding
   | Let(var, assign, body) ->
       null
+
   // DEMO: Show implementation of call
-  | Call _ -> 
-      null     
-  
+  | Call _  -> 
+      null
+
   | Member _ -> failwith "Unsupported member access" 
   | Call _ -> failwith "Unsupported call structure" 
 
@@ -49,16 +51,17 @@ let rec evaluateEntityKind = function
       | _ -> failwith "Unsupported operator"
 
   // DEMO: Add member access and method call
-  | MemberAccess _ 
+  | MemberAccess _ -> 
+     null
   | MethodCall _ -> 
-      null
+     null
 
   // TODO: Binding and reference
-  | Binding(_, _, body) ->
+  | Binding(_, _, body) -> 
       null
-  | Reference(_, value) ->
+  | Reference(_, value) -> 
       null
-
+     
   | MethodCall _ -> failwith "Unexpected method call structure"
   | MemberAccess _ -> failwith "Unexpected member access structure"
   | Name _ -> failwith "Cannot evaluate name"
