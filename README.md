@@ -20,8 +20,10 @@ Talks by category
 Talks and slides
 ----------------
 
-### Data Journalism Research
+### Data journalism and data science
 
+ - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2018/wrattler/) (July 2018) - TaPP London
+ 
  - [**The Gamma: Towards open and reproducible data-driven storytelling**](http://tpetricek.github.io/Talks/2018/thegamma/cogx/) (June 2018) - CogX London<br />
   See also: [thegamma.net](https://www.thegamma.net) and [The Alan Turing Institute demos](http://gamma.turing.ac.uk/)
 
