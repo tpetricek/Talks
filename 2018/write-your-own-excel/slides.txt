@@ -27,7 +27,7 @@ type State = { ... }
 type Event = .. | .. | ..
 
 val initial : State
-val render  : (unit -> Event) -> State -> Html
+val render  : (Event -> unit) -> State -> Html
 val update  : State -> Event -> State
 
 =================================================

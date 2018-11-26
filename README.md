@@ -151,6 +151,9 @@ Talks and slides
 
 ### F# and Functional Programming
 
+ - [**F# for data science**](http://tpetricek.github.io/Talks/2018/fsharp-data-science/) (November 2018) - Royal Mail<br />
+   See: [source code](https://github.com/tpetricek/Talks/tree/master/2018/fsharp-data-science/code).
+
  - [**Build Your Own Excel 365 in an Hour with F#**](https://github.com/tpetricek/Talks/tree/master/2018/write-your-own-excel/) (June 2018) - NDC Oslo<br />
    See: [text file with slides](https://github.com/tpetricek/Talks/blob/master/2018/write-your-own-excel/slides.txt),
    download all code as a [single zip file](https://github.com/tpetricek/Talks/blob/master/2018/write-your-own-excel/write-your-own-excel.zip).
