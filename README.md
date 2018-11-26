@@ -118,6 +118,9 @@ Talks and slides
    
 ### FsLab and Data Science
 
+ - [**F# for data science**](http://tpetricek.github.io/Talks/2018/fsharp-data-science/) (November 2018) - Royal Mail<br />
+   See: [source code](https://github.com/tpetricek/Talks/tree/master/2018/fsharp-data-science/code).
+
  - [**Analyzing big time-series data in the cloud**](http://tpetricek.github.io/Talks/2016/big-data-analytics/ndc-oslo) (June 2016) - NDC Oslo<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/big-data-analytics) and sample [Big Deedle data providers](https://github.com/BlueMountainCapital/Deedle.BigDemo)
    
@@ -150,9 +153,6 @@ Talks and slides
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
 ### F# and Functional Programming
-
- - [**F# for data science**](http://tpetricek.github.io/Talks/2018/fsharp-data-science/) (November 2018) - Royal Mail<br />
-   See: [source code](https://github.com/tpetricek/Talks/tree/master/2018/fsharp-data-science/code).
 
  - [**Build Your Own Excel 365 in an Hour with F#**](https://github.com/tpetricek/Talks/tree/master/2018/write-your-own-excel/) (June 2018) - NDC Oslo<br />
    See: [text file with slides](https://github.com/tpetricek/Talks/blob/master/2018/write-your-own-excel/slides.txt),
