@@ -1,0 +1,364 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Software Engineering</title>
+    <meta name="description" content="Software Engineering">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><strong>Choosing the first programming language</strong></h1>
+<br /><br /><br /><br />
+<br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>email: <a href="mailto:t.petricek@kent.ac.uk">t.petricek@kent.ac.uk</a><br />
+twitter: <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a><br /></p>
+</section>
+<section >
+<section class="part">
+<h1><strong>Background</strong></h1>
+</section>
+<section >
+<h1>Methodology</h1>
+<img src="images/newton.png" style="float:right;max-width:300px;margin-top:-10px;margin-left:20px" />
+<p><strong>In this presentation</strong></p>
+<ul>
+<li><em>Papers describing particular choices</em></li>
+<li><em>What reasoning they use</em></li>
+<li><em>Focuses on</em> interesting <em>choices</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Planned for final report</strong></p>
+<ul>
+<li><em>Review common choices at UK universities</em></li>
+<li><em>Evaluation of the</em> non-interesting <em>choices</em></li>
+<li><em>Perception in online discussions</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1>Choosing the first programming language</h1>
+<h3>Why does first language matter?</h3>
+<p><em><i class="fa fa-heart"></i> Programmers are emotional about their favorites</em></p>
+<p><em><i class="fa fa-search"></i> Provides lens for further learning</em></p>
+<p><em><i class="fa fa-industry"></i> Immediately useful skills for students</em></p>
+<p><em><i class="fa fa-gavel"></i> Language determines many other tools</em></p>
+</section>
+<section >
+<img src="images/sicp.jpg" style="max-width:500px;float:left;margin-right:50px" />
+<p><strong>Legendary programming textbook for computer scientists</strong></p>
+<p><em>Taught to MIT undergrads between 1980s-2010s</em></p>
+<p><em>Regarded as beautiful but quite hard and impractical</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><strong>Argumentation</strong></h1>
+</section>
+<section >
+<h1>Choosing a language</h1>
+<h3>What properties of language get mentioned</h3>
+<p><em><i class="fa fa-object-group"></i></em> Orientation - <em>object-oriented, functional, procedural</em></p>
+<p><em><i class="fa fa-code"></i></em> Syntax - <em>ease of learning and simplicity</em></p>
+<p><em><i class="fa fa-industry"></i></em> Industry - <em>is this what practitioners use?</em></p>
+<p><em><i class="fa fa-gavel"></i></em> Tooling - <em>does it encourage good practices?</em></p>
+<p><em><i class="fa fa-robot"></i></em> Microworlds - <em>what tasks will students be solving</em></p>
+</section>
+<section >
+<h1>Choosing a language</h1>
+<h3>What aspects never get mentioned</h3>
+<p><em><i class="fa fa-image"></i></em> Aesthetics <em>- is it beautiful computer science idea?</em></p>
+<p><em><i class="fa fa-university"></i></em> Culture  <em>- what image does an institution maintain</em></p>
+<p><em><i class="fa fa-user-friends"></i></em> Politics <em>- who is in charge and what's their preference</em></p>
+</section>
+<section >
+<img src="images/poking.png" style="max-width:400px;float:left;margin:40px 40px 100px 0px" />
+<p><em>In the 80s and 90s, engineers built complex systems by combining simple
+and well-understood parts.</em></p>
+<p><em>This is no longer the case. Engineers now routinely write code
+that they don't fully understand.</em></p>
+<p>Nowadays, we do programming by poking.</p>
+</section>
+<section >
+<img src="images/haskell.png" style="max-width:400px;float:left;margin:10px 40px 100px 0px" />
+<p><em>Technical advantages of functional languages are obvious.</em></p>
+<p>We should not teach purely functional programming.<br />
+We should teach essential programming concepts.</p>
+<p><em>Haskell works as an equaliser between students who know some programming and those who don't.</em></p>
+</section>
+<section >
+<img src="images/calculating.png" style="max-width:400px;float:left;margin:10px 40px 100px 0px" />
+<p><strong>Kent Recursive Calculator<br />
+and Miranda</strong></p>
+<p><em>Having program and data in the same form leads to many confusions in Lisp that do not occur in KRC or Miranda.</em></p>
+<p>Miranda makes it easier to prove equations</p>
+</section>
+<section >
+<img src="images/htdp.png" style="max-width:400px;float:left;margin:10px 40px 100px 0px" />
+<p><em>Our experience suggests that undergraduate computer science courses should emphasize
+basic notions of modularity, specification, and data abstraction, and should not let
+these be displaced by more advanced topics.</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><strong>Discussion</strong></h1>
+</section>
+<section >
+<h1>Choosing a programming language</h1>
+<img src="images/karel.gif" style="float:right;max-width:280px;margin-top:-10px;margin-left:20px" />
+<p><strong>It's more than a language</strong></p>
+<ul>
+<li><em>Python and poking approach</em></li>
+<li><em>Racket with language levels</em></li>
+<li><em>Haskell with focus on microworlds</em></li>
+</ul>
+<div class="fragment">
+<p><strong>What do we optimize for</strong></p>
+<ul>
+<li><em>Teaching concepts we find important</em></li>
+<li><em>Teaching thinking we find important</em></li>
+<li><em>Transition from elegant to industrial</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1>Limitations of reviewed literature</h1>
+<img src="images/wicked.png"   style="float:right;max-width:280px;margin-top:-10px;margin-left:20px" />
+<p><strong>Bias in empirical studies</strong></p>
+<ul>
+<li><em>Only focuses on interesting choices</em></li>
+<li><em>Led by enthusiastic teachers</em></li>
+<li><em>What is a good learning experience?</em></li>
+</ul>
+<p><strong>Wicked problem</strong></p>
+<ul>
+<li><em>Defining criteria determines the solution</em></li>
+<li><em>Interconnected with other problems</em></li>
+<li><em>Large economic for change</em></li>
+</ul>
+</section>
+<section >
+<h1>Choosing the first programming language</h1>
+<p><strong>Tentative conclusions based on literature review</strong></p>
+<ul>
+<li><em>Choosing a language is a</em> wicked problem?</li>
+<li><em>Good reasoning can support</em> any choice?</li>
+<li>Culture and politics <em>determines what we optimize for?</em></li>
+</ul>
+<br />
+<br />
+<p>Tomas Petricek<br />
+<em><a href="mailto:t.petricek@kent.ac.uk">t.petricek@kent.ac.uk</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+</section>
+</section>
+<section >
+<section >
+<p>Notes</p>
+</section>
+<section >
+<p>Programming by poking: why MIT stopped teaching SICP</p>
+<ul>
+<li>
+<p>"The SICP curriculum no longer prepared engineers for what engineering is like today.
+Sussman said that in the 80s and 90s, engineers built complex systems by combining simple
+and well-understood parts. The goal of SICP was to provide the abstraction language for
+reasoning about such systems.</p>
+</li>
+<li>
+<p>"Today, this is no longer the case. Sussman pointed out that engineers now routinely write
+code for complicated hardware that they don’t fully understand. The same is true at the
+software level, since programming environments consist of gigantic libraries with enormous
+functionality. According to Sussman, his students spend most of their time reading manuals
+for these libraries to figure out how to stitch them together to get a job done. He said that
+programming today is “More like science. You grab this piece of library and you poke at it.
+You write programs that poke it and see what it does. And you say, ‘Can I tweak it to do the
+thing I want?'”. The “analysis-by-synthesis” view of SICP — where you build a larger system
+out of smaller, simple parts — became irrelevant. Nowadays, we do programming by poking.</p>
+</li>
+<li>
+<p>comment: "Programing by synthesis of well understood parts is graceful and beautiful and fun.
+Programming by trying to get never-well-documented libraries to barely do something is f<em></em>*ing torture."</p>
+</li>
+</ul>
+</section>
+<section >
+<p>The risks and benefits of teaching purely functional programming in first year
+- Haskell
+- "we should not teach purely functional programming" -
+but we should teach essential programming concepts
+- problems with I/O and "hello world"</p>
+<p>AIMS
+- convey elementery techniques of programming
+- introduce essential computing concepts
+- develop analytic thinking and problem solving</p>
+<p>NOTES
+- technical advantages of functional languages are obvious
+- Haskell works as an equaliser between students who know some programming and those who don't
+-&gt; female students coming from mathematics background
+-&gt; also the case for SICP</p>
+</section>
+<section >
+<p>Why calculating is better than scheming
+- KRC (Kent Recursive Calculator) / Miranda
+- SICP is too tightly linked to Scheme
+- lacks: pattern matching, syntax close to mathematical notation, lazy evaluation, static types
+- based on experience teaching both
+- Miranda makes it easier to prove equations (syntactically)
+- one exercise ("mobiles") and learning from that
+-&gt; types help
+-&gt; can define abstract data type
+- confusion about 'program is data' (vs. revelation that 'program is data')
+- you can still treat programs as data:
+-&gt; "simple interpreter" example - showing what kinds of examples we care about</p>
+</section>
+<section >
+<p>The structure and interpretation of computer science curriculum<br />
+- SICP focused on CS concepts like abstraction
+- 2000 critique of SICP by Jackson &amp; Chapin
+"our experience suggests that undergraduate computer science courses should emphasize
+basic notions of modularity, specification, and data abstraction, and should not let
+these be displaced by more advanced topics, such as design patterns, object-oriented
+methods, concurrency, functional languages, and so on"
+- series of teaching languages based on Scheme with increasing language complexity</p>
+<p>WANTS
+- whatever is needed in upstream courses
+- latest industry trends that they've read about in the news
+- students have different things they want to learn/do - will disappoint some
+- it's important to "explain our choice" well</p>
+<p>"Clearly, a computer science curriculum must not, and doesn’t have to,
+become a vocational training ground for the latest industrial programming
+language and programming tools."</p>
+<p>SCHEME
+- don't have to spend time explaining types
+- syntax is simple
+- SICP relies on complex CS domain knowledge - interesting for MIT students</p>
+</section>
+<section >
+<p>From Principles to Practice with Class in the First Year
+- WANT TO teach industrial object-oriented language by the end of the first year
+- transition from teaching language (scheme, etc.) to object-oriented "professional"
+language through a series of small educational languages that add concepts
+- first semester with HTDP, second semester with Java?</p>
+</section>
+<section >
+<p>Teaching Java with the BlueJ environment
+- BlueJ is educational Java environment that "allows students to concentrate on solving
+programming problems without becoming distracted by the mechanics of compiling and
+executing Java programs"
+-&gt; Maybe that's what we should teach though :-)
+- problem with translating concepts from simple educational environment to the real one
+(K\"oling and Rosenberg, 1996)</p>
+</section>
+<section >
+<p>Teaching Java First: Experiments with a Pigs - Early Pedagogy<br />
+- object-oriented concepts first
+- The Joint Task Force on Computing Curricula (2001) notes that Java and C++ are significantly
+more complex than classical languages. Unless instructors take special care to introduce the
+material in a way that limits this complexity, such details can easily overwhelm introductory
+students.
+- "Karel the Robot" approach - microworld
+- uses BlueJ</p>
+</section>
+<section >
+<p>On Teaching How to Design Programs
+- HTPD includes things like "testing" and "refactoring"
+- "Findler et al. (2002) argue that the type systems of  Haskell  and  ML  are  too  sophisticated
+for  beginning  students,but that a first-order, monomorphic type system might be helpful for
+beginning students. Felleisen et al. (2004a) argue that dynamic typing is a benefit because
+students and teachers need not spend energy finding and explaining static type errors. (And when
+a type error occurs dynamically, it comes with an example!)"</p>
+</section>
+<section >
+<p>Java as a teaching language - opportunities, pitfalls and solutions
+- How to introduce good object-oriented practices from the beginning
+- goodbye "hello world", introducing "micro worlds" of boxes</p>
+</section>
+<section >
+<p>Helium, for learning Haskell
+- Haskell compiler with better error reporting</p>
+<p>xx</p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
