@@ -1,0 +1,768 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Software Engineering</title>
+    <meta name="description" content="Software Engineering">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">val printAllPrices : files:seq&lt;&#39;a&gt; -&gt; unit<br /><br />Full name: index.printAllPrices</div>
+<div class="tip" id="fs2">val files : seq&lt;&#39;a&gt;</div>
+<div class="tip" id="fs3">val url : &#39;a</div>
+<div class="tip" id="fs4">val data : obj</div>
+<div class="tip" id="fs5">val row : obj</div>
+<div class="tip" id="fs6">val printAllPrices : files:seq&lt;&#39;a&gt; -&gt; Async&lt;unit&gt;<br /><br />Full name: index.printAllPrices</div>
+<div class="tip" id="fs7">val async : AsyncBuilder<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.async</div>
+<div class="tip" id="fs8">val printAllPrices : files:&#39;a -&gt; &#39;b<br /><br />Full name: index.printAllPrices</div>
+<div class="tip" id="fs9">val files : &#39;a</div>
+<div class="tip" id="fs10">val putString : obj<br /><br />Full name: index.putString</div>
+<div class="tip" id="fs11">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs12">val putInt : obj<br /><br />Full name: index.putInt</div>
+<div class="tip" id="fs13">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.int<br /><br />--------------------<br />type int = int32<br /><br />Full name: Microsoft.FSharp.Core.int<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; = int<br /><br />Full name: Microsoft.FSharp.Core.int&lt;_&gt;</div>
+<div class="tip" id="fs14">val getString : obj<br /><br />Full name: index.getString</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em>Changing how we <br /> <strong>think</strong> about <strong>programming</strong></em></h1>
+<h2>From concurrency to data science</h2>
+<br /><br /><br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>email: <a href="mailto:t.petricek@kent.ac.uk">t.petricek@kent.ac.uk</a><br />
+twitter: <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a><br /></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Background</em></h1>
+<h2>What are important programming<br /> research problems?</h2>
+</section>
+<section >
+<h1><em>Programming research</em></h1>
+<h2>What kind of science is computer science</h2>
+<p><em><i class="fa fa-flask"></i></em> Experiments to confirm hypotheses?</p>
+<p><em><i class="fa fa-archway"></i></em> Build systems like engineers?</p>
+<p><em><i class="fa fa-pencil-alt"></i></em> Prove theorems about theories?</p>
+<p><em><i class="fa fa-magnet"></i></em> Even physics is not as obvious!</p>
+</section>
+<section >
+<h1><em>Programming research</em></h1>
+<img src="images/newton.png" style="float:right;max-width:300px;margin-top:30px;margin-left:20px" />
+<h3>Solving hard problems</h3>
+<ul>
+<li>Verified operating systems</li>
+<li>Make JavaScript as fast as C</li>
+<li>Good scientific problems</li>
+</ul>
+<div class="fragment">
+<h3>Changing how we think</h3>
+<ul>
+<li>Program as a formal linguistic entity</li>
+<li>Types as sets of values <span class="ref"><span>PLDI 2016</span></span> <span class="ref"><span>Onward! 2015</span></span></li>
+<li>Philosophy of science challenge <span class="ref"><span>AISB 2014</span></span></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Changing how we think</em></h1>
+<h2>From concurrency to data science</h2>
+<p><em><i class="fa fa-stopwatch"></i></em> Computations for <strong>asynchronous programming</strong></p>
+<p><em><i class="fa fa-cloud"></i></em> Unified notion of <strong>context dependence</strong></p>
+<p><em><i class="fa fa-database"></i></em> Types for working with <strong>external data sources</strong></p>
+<p><em><i class="fa fa-user"></i></em> Programming as <strong>human data interaction</strong></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Concurrency</em></h1>
+<h2>Non-standard kinds of computations</h2>
+</section>
+<section >
+<h1><em>F# computation expressions</em></h1>
+<br />
+<img src="images/monads.png" style="max-width:540px;float:left;margin:40px 30px 100px 0px;" />
+<p>Abstractions and syntax for reactive, concurrent and asynchronous programming.</p>
+</section>
+<section >
+<h1><em>Non-standard computations</em></h1>
+<img src="images/monads.jpg" style="float:right;max-width:300px;margin-top:50px;margin-left:20px" />
+<h3>Monads in programming</h3>
+<ul>
+<li>Structure effectful computations</li>
+<li>Language support in Haskell, F#</li>
+<li>Inspired LINQ, JavaScript async</li>
+</ul>
+<div class="fragment">
+<h3>What are monads</h3>
+<ul>
+<li>Mathematical abstraction with laws</li>
+<li>Social and cultural artifact <span class="ref"><span>Programming 2018</span></span></li>
+<li>Non-standard computation <span class="ref"><span>PADL 2014</span></span></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Non-standard computations</em></h1>
+<h2>Start with blocking imperative F# program</h2>
+<br />
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="f">printAllPrices</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">files</span> <span class="o">=</span>
+  <span class="k">for</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">url</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">files</span> <span class="k">do</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="i">data</span> <span class="o">=</span> <span class="i">downloadCsv</span> <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="i">url</span>
+    <span class="k">for</span> <span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="i">row</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="i">data</span><span class="o">.</span><span class="i">Rows</span> <span class="k">do</span>
+      <span class="i">print</span> <span class="s">&quot;%o %f&quot;</span> <span onmouseout="hideTip(event, 'fs5', 9)" onmouseover="showTip(event, 'fs5', 9)" class="i">row</span><span class="o">.</span><span class="i">Date</span> <span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="i">row</span><span class="o">.</span><span class="i">Price</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h1><em>Non-standard computations</em></h1>
+<h2>Non-blocking code using async workflows</h2>
+<br />
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="f">printAllPrices</span> <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="i">files</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 13)" onmouseover="showTip(event, 'fs7', 13)" class="i">async</span> {
+  <span class="k">for</span> <span onmouseout="hideTip(event, 'fs3', 14)" onmouseover="showTip(event, 'fs3', 14)" class="i">url</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs2', 15)" onmouseover="showTip(event, 'fs2', 15)" class="i">files</span> <span class="k">do</span>
+    <span class="k">let!</span> <span onmouseout="hideTip(event, 'fs4', 16)" onmouseover="showTip(event, 'fs4', 16)" class="i">data</span> <span class="o">=</span> <span class="i">asyncDownloadCsv</span> <span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="i">url</span>
+    <span class="k">for</span> <span onmouseout="hideTip(event, 'fs5', 18)" onmouseover="showTip(event, 'fs5', 18)" class="i">row</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs4', 19)" onmouseover="showTip(event, 'fs4', 19)" class="i">data</span><span class="o">.</span><span class="i">Rows</span> <span class="k">do</span>
+      <span class="i">print</span> <span class="s">&quot;%o %f&quot;</span> <span onmouseout="hideTip(event, 'fs5', 20)" onmouseover="showTip(event, 'fs5', 20)" class="i">row</span><span class="o">.</span><span class="i">Date</span> <span onmouseout="hideTip(event, 'fs5', 21)" onmouseover="showTip(event, 'fs5', 21)" class="i">row</span><span class="o">.</span><span class="i">Price</span> }
+</code></pre></td>
+</tr>
+</table>
+<div class="fragment">
+  <div class="tipbox" style="left:512px;top:-228px;width:86px;height:29px"></div>
+  <div class="tiplbl" style="left:562px;top:-330px">Non-blocking code</div>
+  <div class="tipbox" style="left:105px;top:-240px;width:72px;height:29px"></div>
+  <div class="tiplbl" style="left:30px;top:-230px">Bind</div>
+</div>
+</section>
+<section >
+<h1><em>Non-standard computations</em></h1>
+<h2>Non-blocking code using async workflows</h2>
+<br />
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 22)" onmouseover="showTip(event, 'fs8', 22)" class="f">printAllPrices</span> <span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="i">files</span> <span class="o">=</span> <span class="i">asyncSeq</span> {
+  <span class="k">for</span> <span class="i">url</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs9', 24)" onmouseover="showTip(event, 'fs9', 24)" class="i">files</span> <span class="k">do</span>
+    <span class="k">let!</span> <span class="i">data</span> <span class="o">=</span> <span class="i">asyncDownloadCsv</span> <span class="i">url</span>
+    <span class="k">for</span> <span class="i">row</span> <span class="k">in</span> <span class="i">data</span><span class="o">.</span><span class="i">Rows</span> <span class="k">do</span>
+      <span class="k">yield</span> <span class="i">row</span><span class="o">.</span><span class="i">Date</span>, <span class="i">row</span><span class="o">.</span><span class="i">Price</span> }
+</code></pre></td>
+</tr>
+</table>
+<div class="fragment">
+  <div class="tipbox" style="left:512px;top:-228px;width:140px;height:29px"></div>
+  <div class="tiplbl" style="left:592px;top:-330px">Non-blocking generator</div>
+  <div class="tipbox" style="left:140px;top:-163px;width:90px;height:29px"></div>
+  <div class="tiplbl" style="left:70px;top:-145px">Unit with monoid</div>
+</div>
+</section>
+<section class="part">
+<h1><em>Demo</em></h1>
+<p>Async workflows and async sequences <span class="ref"><span>PADL 2011a</span></span></p>
+</section>
+<section >
+<h1><em>Non-standard computations</em></h1>
+<h2>Join calculus using pattern matching</h2>
+<div id="chan">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 25)" onmouseover="showTip(event, 'fs10', 25)" class="i">putString</span> <span class="o">=</span> <span class="i">Channel</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="i">string</span><span class="o">&gt;</span>()
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 27)" onmouseover="showTip(event, 'fs12', 27)" class="i">putInt</span> <span class="o">=</span> <span class="i">Channel</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs13', 28)" onmouseover="showTip(event, 'fs13', 28)" class="i">int</span><span class="o">&gt;</span>()
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 29)" onmouseover="showTip(event, 'fs14', 29)" class="i">getString</span> <span class="o">=</span> <span class="i">ReplyChannel</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs11', 30)" onmouseover="showTip(event, 'fs11', 30)" class="i">string</span><span class="o">&gt;</span>()
+
+<span class="i">join</span> {
+  <span class="i">match!</span> <span onmouseout="hideTip(event, 'fs14', 31)" onmouseover="showTip(event, 'fs14', 31)" class="i">getString</span>, <span onmouseout="hideTip(event, 'fs10', 32)" onmouseover="showTip(event, 'fs10', 32)" class="i">putString</span>, <span onmouseout="hideTip(event, 'fs12', 33)" onmouseover="showTip(event, 'fs12', 33)" class="i">putInt</span> <span class="k">with</span>
+  | <span class="i">repl</span>, <span class="i">v</span>, <span class="o">?</span> <span class="k">-&gt;</span> <span class="i">repl</span><span class="o">.</span><span class="i">Reply</span>(<span class="s">&quot;Echo &quot;</span> <span class="o">+</span> <span class="i">v</span>)
+  | <span class="i">repl</span>, <span class="o">?</span>, <span class="i">v</span> <span class="k">-&gt;</span> <span class="i">repl</span><span class="o">.</span><span class="i">Reply</span>(<span class="s">&quot;Echo &quot;</span> <span class="o">+</span> (<span onmouseout="hideTip(event, 'fs11', 34)" onmouseover="showTip(event, 'fs11', 34)" class="i">string</span> <span class="i">v</span>)) }
+</code></pre></td>
+</tr>
+</table>
+</div>
+<script>
+document.getElementById("chan").children[0].children[0].children[0].children[1].children[0].children[0].children[22].className="k"
+</script>
+<div class="fragment">
+  <div class="tipbox" style="left:312px;top:-346px;width:310px;height:29px"></div>
+  <div class="tiplbl" style="left:570px;top:-450px">Join calculus channels</div>
+  <div class="tipbox" style="left:70px;top:-240px;width:102px;height:29px"></div>
+  <div class="tiplbl" style="left:150px;top:-340px">Non-standard match</div>
+</div>
+</section>
+<section >
+<h1><em>Non-standard computations</em></h1>
+<h2>Computation expressions are not just monads</h2>
+<p><em><i class="fa fa-pen"></i></em> Syntax to support monad-like abstractions</p>
+<p><em><i class="fa fa-code"></i></em> Further syntax requires further operations <span class="ref"><span>PADL 2014</span></span></p>
+<p><em><i class="fa fa-ruler"></i></em> Non-standard notion of pattern matching <span class="ref"><span>PADL 2011b</span></span></p>
+<p><em><i class="fa fa-brain"></i></em> Different <strong>way of thinking</strong> about computations</p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Coeffects</em></h1>
+<h2>Unified notion of context dependence</h2>
+</section>
+<section >
+<h1><em>Context dependence</em></h1>
+<h2>Neighbourhood in stencil computations</h2>
+<div style="margin-top:-50px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">sum</span> <span class="o">=</span> <span class="i">inp</span><span class="o">.</span>[<span class="i">cursor</span><span class="o">-</span><span class="n">1</span>] <span class="o">+</span> <span class="i">inp</span><span class="o">.</span>[<span class="i">cursor</span>] <span class="o">+</span> <span class="i">inp</span><span class="o">.</span>[<span class="i">cursor</span><span class="o">+</span><span class="n">1</span>]
+<span class="k">if</span> <span class="i">sum</span> <span class="o">=</span> <span class="n">2</span> <span class="o">||</span> (<span class="i">sum</span> <span class="o">=</span> <span class="n">1</span> <span class="o">&amp;&amp;</span> <span class="i">inp</span><span class="o">.</span>[<span class="i">cursor</span><span class="o">-</span><span class="n">1</span>] <span class="o">=</span> <span class="n">0</span>)
+<span class="k">then</span> <span class="i">out</span><span class="o">.</span>[<span class="i">cursor</span>] <span class="o">&lt;-</span> <span class="n">1</span> <span class="k">else</span> <span class="i">out</span><span class="o">.</span>[<span class="i">cursor</span>] <span class="o">&lt;-</span> <span class="n">0</span>
+</code></pre></td>
+</tr>
+</table>
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="images/coeffects/interactive.js" type="text/javascript"></script>
+<script src="images/coeffects/tips.js" type="text/javascript"></script>
+<script type="text/javascript">
+  window.toolTipsStopFunc = function(t) { return t == "absolute"; }
+  window.toolTipsStopRelative = true;
+  window.toolTipsRoot = function(el) {
+    var res = el;
+    while(res.prop("tagName") != "SECTION") res = res.parent();
+    return res;
+  }
+</script>
+<script src="images/coeffects/smoothie.js"></script>
+<script src="images/coeffects/script.js" type="text/javascript"></script>
+<style type="text/css">
+.reveal #rule110 td { padding:0px !important; border-style:none !important; }
+</style>
+<div style="border:4px solid #404040;padding:5px;margin:10px 40px 5px 40px;background-color:#D5DB80;">
+  <table id='rule110' style="overflow:hidden;"></table>
+</div>
+<div style="text-align:left;margin-left:40px;"><button id='rule110btn' data-light="transparent" data-dark="#F28E8E"
+  data-size="4" class="btn" style="background:#f0f0f0;border-color:#e0e0e0;border-radius:0px;border-width:2px;
+    padding:5px;width:170px;margin:0px 40px 5px 0px">Run</button></div>
+</div>
+</section>
+<section >
+<h1><em>Type system for coeffects</em></h1>
+<img src="images/weather.jpg" style="float:right;max-width:300px;margin-top:30px;margin-left:20px" />
+<h3>Effect systems</h3>
+<ul>
+<li>What program <strong>does</strong> to the world</li>
+<li>Attached to program <strong>output</strong></li>
+<li>Output, state, errors</li>
+</ul>
+<div class="fragment">
+<h3>Coeffect systems <span class="ref"><span>ICALP 2013</span></span><span class="ref"><span>ICFP 2014</span></span></h3>
+<ul>
+<li>What it <strong>requires</strong> from the world</li>
+<li>Attached to program <strong>input</strong></li>
+<li>Neighbourhood, implicit parameters</li>
+</ul>
+</div>
+</section>
+<section >
+<div style="display:none">
+<p><span class="math">\[\definecolor{leff}{RGB}{177,35,43}
+\definecolor{lcoeff}{RGB}{35,177,53}
+\definecolor{ltyp}{RGB}{147,43,127}
+\definecolor{lexpr}{RGB}{0,0,0}
+\definecolor{lkvd}{RGB}{0,45,177}
+\definecolor{lnum}{RGB}{43,177,93}\]</span></p>
+</div>
+<h1><em>Simple type systems</em></h1>
+<h3>Typing rule</h3>
+<div style="position:relative;padding-top:20px;left:-20px;transform:scale(0.85)">
+<p><span class="math">\(x:{\color{ltyp} \text{int}},~ y:{\color{ltyp} \text{int}} \vdash x+y : {\color{ltyp} \text{int}}\)</span></p>
+</div>
+<h3>Reading</h3>
+<ul>
+<li>Given a free variable context</li>
+<li>Expression has a certain type</li>
+</ul>
+</section>
+<section >
+<h1><em>Effect type systems</em></h1>
+<h3>Typing rule</h3>
+<div style="position:relative;left:-20px;padding-top:20px;transform:scale(0.85)">
+<p><span class="math">\(hello : {\color{ltyp} \text{string}} \vdash {\color{lkvd} \text{print}}~hello : {\color{ltyp} \text{unit}} {\scriptsize \;\&amp;\;} {\color{leff} \{ \text{io} \} }\)</span></p>
+</div>
+<h3>Reading</h3>
+<ul>
+<li>Given a free variable context</li>
+<li>Expression has a type <strong>and produces effects</strong></li>
+</ul>
+</section>
+<section >
+<h1><em>Coeffect type systems</em></h1>
+<h3>Typing rule</h3>
+<div style="position:relative;left:-20px;padding-top:20px;transform:scale(0.85)">
+<p><span class="math">\(deadline : {\color{ltyp} \text{time}} {\scriptsize \;@\;} {\color{lcoeff} \{ \text{clock} \} }
+\vdash {\color{lkvd} \text{now}} \geq deadline : {\color{ltyp} \text{bool}}\)</span></p>
+</div>
+<h3>Reading</h3>
+<ul>
+<li>Given variables <strong>and additional context</strong></li>
+<li>Expression has a certain type</li>
+</ul>
+</section>
+<section >
+<h1><em>Unified notion of context</em></h1>
+<img src="images/phone.jpg" style="float:right;max-width:300px;margin-top:50px;margin-left:20px" />
+<h3>Applications of coeffects</h3>
+<ul>
+<li>Available network resources</li>
+<li>Dynamically scoped variables</li>
+<li>Dataflow and liveness</li>
+</ul>
+<div class="fragment">
+<h3>What do they share</h3>
+<ul>
+<li>Attach information to context</li>
+<li>Interesting functions treatment</li>
+<li>Semantics based on comonads</li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Ordinary function</em></h1>
+<h3>Typing rule</h3>
+<div style="transform:scale(0.9);padding-top:10px">
+<p><span class="math">\(\dfrac
+{\Gamma, x:{\color{ltyp} \tau_1} \vdash e : {\color{ltyp} \tau_2}}
+{\Gamma \vdash {\color{lkvd} \text{fun}}~x \rightarrow e : {\color{ltyp} \tau_1} \rightarrow {\color{ltyp} \tau_2}}\)</span></p>
+</div>
+<h3>Explanation</h3>
+<ul>
+<li>If body can be typed in a context</li>
+<li>Then lambda has a function type</li>
+</ul>
+</section>
+<section >
+<h1><em>Effectful functions</em></h1>
+<h3>Typing rule</h3>
+<div style="transform:scale(0.9);padding-top:10px">
+<p><span class="math">\(\dfrac
+{\Gamma, x:{\color{ltyp} \tau_1} \vdash e : {\color{ltyp} \tau_2 } {\scriptsize \;\&amp;\;} {\color{leff} r} }
+{\Gamma \vdash {\color{lkvd} \text{fun}}~x \rightarrow e : {\color{ltyp} \tau_1} \xrightarrow{~\color{leff} r~} {\color{ltyp} \tau_2} {\scriptsize \;\&amp;\;} {\color{leff} \emptyset}}\)</span></p>
+</div>
+<h3>Explanation</h3>
+<ul>
+<li>If evaluating body produces effects</li>
+<li>Effects will happen on function call</li>
+</ul>
+</section>
+<section >
+<h1><em>Coeffectful functions</em></h1>
+<h3>Typing rule</h3>
+<div style="transform:scale(0.9);padding-top:10px">
+<p><span class="math">\(\dfrac
+{\Gamma, x:{\color{ltyp} \tau_1} {\scriptsize \;@\;} {\color{lcoeff} r\wedge s} \vdash e : {\color{ltyp} \tau_2 } }
+{\Gamma {\scriptsize \;@\;} {\color{lcoeff} r} \vdash {\color{lkvd} \text{fun}}~x \rightarrow e : {\color{ltyp} \tau_1} \xrightarrow{~\color{lcoeff} s~} {\color{ltyp} \tau_2}}\)</span></p>
+</div>
+<h3>Explanation</h3>
+<ul>
+<li>If body requires certain context to run</li>
+<li>It can come from declaration-site or call-site</li>
+</ul>
+</section>
+<section class="part">
+<h1><em>Demo</em></h1>
+<p>Dataflow coeffects (see <a href="http://tomasp.net/coeffects">tomasp.net/coeffects</a>)</p>
+</section>
+<section >
+<h1><em>Coeffects</em></h1>
+<h2>Unified notion of context-dependence</h2>
+<p><em><i class="fa fa-desktop"></i></em> What is the <strong>context</strong> in which programs run?</p>
+<p><em><i class="fa fa-book"></i></em> Variables, resources, history, etc.</p>
+<p><em><i class="fa fa-box"></i></em> Per-context and per-variable definitions</p>
+<p><em><i class="fa fa-code"></i></em> Towards context-aware programming languages</p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Type providers</em></h1>
+<h2>External data as part of your type system</h2>
+</section>
+<section >
+<h1><em>Reading data</em></h1>
+<h2>Unsafe dynamic access in a typed language</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://dvd.netflix.com/Top100RSS"</span>;
+<span class="k">var</span> rss <span class="o">=</span> XDocument.Load(topRssFeed);
+<span class="k">var</span> channel <span class="o">=</span> rss.Element(<span class="s">"rss"</span>).Element(<span class="s">"channel"</span>);
+
+<span class="k">foreach</span>(<span class="k">var</span> item <span class="k">in</span> channel.Elements(<span class="s">"item"</span>)) {    
+  Console.WriteLine(item.Element(<span class="s">"text"</span>).Value);
+}
+</code></pre></td></tr></table>
+<div class="fragment">
+  <div class="tipbox" style="left:626px;top:-112px;width:86px;height:29px"></div>
+  <div class="tiplbl" style="left:666px;top:-95px">Not found!</div>
+</div>
+</section>
+<section >
+<h1><em>Reading data</em></h1>
+<h2>Unsafe dynamic access in a typed language</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://dvd.netflix.com/Top100RSS"</span>;
+<span class="k">var</span> rss <span class="o">=</span> XDocument.Load(topRssFeed);
+<span class="k">var</span> channel <span class="o">=</span> rss.Element(<span class="s">"rss"</span>).Element(<span class="s">"channel"</span>);
+
+<span class="k">foreach</span>(<span class="k">var</span> item <span class="k">in</span> channel.Elements(<span class="s">"item"</span>)) {    
+  Console.WriteLine(item.Element(<span class="s">"title"</span>).Value);
+}
+</code></pre></td></tr></table>
+<div>
+  <div class="tipbox" style="left:626px;top:-112px;width:104px;height:29px"></div>
+  <br />
+</div>
+</section>
+<section >
+<h1><em>Reading data</em></h1>
+<h2>Accessing data from external data sources</h2>
+<p><em><i class="fa fa-file-excel"></i></em> Languages do not understand data</p>
+<p><em><i class="fa fa-tags"></i></em> There is rarely explicit schema</p>
+<p><em><i class="fa fa-code"></i></em> Manually define types to capture it</p>
+<p><em><i class="fa fa-wrench"></i></em>  Easier in dynamic languages</p>
+</section>
+<section >
+<h1 style="text-align:center"><em>Type providers</em></h1>
+<div class="bigeq">
+<p><span class="math">\(\emptyset \vdash e : \tau\)</span></p>
+</div>
+</section>
+<section >
+<h1 style="text-align:center"><em>Type providers</em></h1>
+<div class="bigeq bigeq2">
+<p><span class="math">\(\pi(~~~~~~~) \vdash e : \tau\)</span></p>
+<img src="images/globe.png" class="nb" style="position:absolute;left:272px;top:160px;width:170px" />
+</div>
+</section>
+<section class="part">
+<h1><em>Demo</em></h1>
+<p>Reading data from an RSS feed <span class="ref"><span>PLDI 2016</span></span></p>
+</section>
+<section >
+<h1><em>F# Data library</em></h1>
+<h2>Type providers for structured data</h2>
+<p><em><i class="fa fa-adjust"></i></em> Structural shape inference</p>
+<p><em><i class="fa fa-sitemap"></i></em> Language integration via type providers</p>
+<p><em><i class="fa fa-bomb"></i></em> Relative type safety</p>
+<p><em><i class="fa fa-wrench"></i></em> Pragmatic choices for usability</p>
+</section>
+<section >
+<h1 style="text-align:center;margin-bottom:80px"><em>Structural shape inference</em></h1>
+<div class="diagram1">
+<p>
+  <span>{title&nbsp;:&nbsp;string,&nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;int}}</span>
+  <span style="margin-left:50px">{author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}}</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:55px;left:72px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;top:30px;left:40px">{&nbsp;title&nbsp;:&nbsp;option&lt;string&gt;,
+    &nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}&nbsp;}</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<h1 style="text-align:center;margin-bottom:80px"><em>Structural shape inference</em></h1>
+<div class="diagram2">
+<p>
+  <span>{&nbsp;coordinates&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}</span>
+  <span style="margin-left:50px">string</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:55px;left:200px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;left:70px;top:30px">
+  {&nbsp;coordinates&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}&nbsp;+&nbsp;string&nbsp;</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<h1><em>Relative type safety</em></h1>
+<h2>Well typed programs do not go wrong...</h2>
+</section>
+<section >
+<h1><em>Relative type safety</em></h1>
+<h2>...as long as the world is well-behaved!</h2>
+</section>
+<section >
+<h1><em>Relative type safety</em></h1>
+<h2>Safety guarantees provided by F# Data</h2>
+<style>.reveal .math p em { font-style:italic; }</style>
+<div style="margin-top:100px" class="math fragment">
+<p>Given <strong>representative samples</strong> and <strong>an input</strong> value</p>
+<p><span class="math">\(S(d)\sqsubset S(d_1, \ldots, d_n)\)</span></p>
+</div><div class="fragment" style="margin-top:70px">
+<p>Any <strong>program</strong> written using a <strong>type provider</strong> reduces</p>
+<p><span class="math">\(e_{user}[x\leftarrow {\color{mc}\text{new}}~C(d)] \rightsquigarrow^* v\)</span></p>
+</div>
+</section>
+<section >
+<h1><em>Fancy types for the masses</em></h1>
+<h2>Row types to track names and types of fields</h2>
+<div style="margin-top:-50px;padding:0px 0px 30px 0px;position:relative;left:-110px;transform:scale(0.75)">
+<p><span class="math">\[\definecolor{cc}{RGB}{204,82,34}
+\definecolor{mc}{RGB}{0,0,153}
+\frac
+  {\Gamma \vdash e : {\color{cc}[f_1:\tau_1, \ldots, f_n:\tau_n]}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{cc} [f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n]}}\]</span></p>
+</div><div class="fragment">
+<h2>Embed row types in provided nominal types</h2>
+<div style="margin-top:-60px;padding:0px 0px 30px 0px;position:relative;left:-110px;transform:scale(0.75)">
+<p><span class="math">\[\frac
+  {\Gamma \vdash e : {\color{mc} C_1}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{mc} C_2}}
+\quad{\small \text{where}}\]</span></p>
+<div style="position:relative;top:-20px;">
+<p><span class="math">\[\begin{array}{l}
+\\[-0.5em]
+{fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}\\
+{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}
+\end{array}\]</span></p>
+</div></div>
+</section>
+<section >
+<h1><em>Fancy types for the masses</em></h1>
+<h2>Powerful idea that works in other contexts</h2>
+<p><em><i class="fa fa-table"></i></em> Row types and phantom types</p>
+<p><em><i class="fa fa-phone"></i></em> Session types for communication</p>
+<p><em><i class="fa fa-question"></i></em> Add your own fancy type here!</p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Data science</em></h1>
+<h2>Programming as human data interaction</h2>
+</section>
+<section >
+<img src="images/nyt.png" style="max-width:700px;float:left;margin-right:30px;" class="nb" />
+<p><strong>Data journalism</strong></p>
+<p>Can we make data science easy for journalists?</p>
+</section>
+<section >
+<h1><em>Aggregating data</em></h1>
+<h2>Athletes by number of golds from Rio 2016</h2>
+<div style="padding:0px 0px 60px 0px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">olympics</span> <span class="o">=</span> <span class="i">pd</span><span class="o">.</span><span class="i">read_csv</span>(<span class="s">&quot;olympics.csv&quot;</span>)
+<span class="i">olympics</span>[<span class="i">olympics</span>[<span class="s">&quot;Games&quot;</span>] <span class="o">==</span> <span class="s">&quot;Rio (2016)&quot;</span>]
+  <span class="o">.</span><span class="i">groupby</span>(<span class="s">&quot;Athlete&quot;</span>)
+  <span class="o">.</span><span class="i">agg</span>({<span class="s">&quot;Gold&quot;</span><span class="o">:</span> <span class="i">sum</span>})
+  <span class="o">.</span><span class="i">sort_values</span>(<span class="i">by</span><span class="o">=</span><span class="s">&quot;Gold&quot;</span>, <span class="i">ascending</span><span class="o">=</span><span class="i">False</span>)
+  <span class="o">.</span><span class="i">head</span>(<span class="n">8</span>)
+</code></pre></td>
+</tr>
+</table>
+</div>
+<div class="fragment">
+  <div class="tipbox" style="left:455px;top:-324px;width:220px;height:25px"></div>
+  <div class="tiplbl" style="left:550px;top:-415px">Unknown file</div>
+  <div class="tipbox" style="left:364px;top:-254px;width:90px;height:25px"></div>
+  <div class="tiplbl" style="left:390px;top:-245px">Column name</div>
+</div>
+</section>
+<section >
+<h1><em>Aggregating data</em></h1>
+<h2>Language features you need to know</h2>
+<p><em><i class="fa fa-book"></i></em> Python dictionaries <code>{"key": value}</code></p>
+<p><em><i class="fa fa-eye"></i></em> Generalised indexers <code>.[ condition ]</code></p>
+<p><em><i class="fa fa-university"></i></em> Operation names <code>sort_values</code></p>
+<p><em><i class="fa fa-database"></i></em> Data column names <code>"Athlete"</code></p>
+</section>
+<section >
+<div style="background:black;position:absolute;width:200%;right:51%;height:400%;top:-100%;z-index:-1000;"></div>
+<table style="margin-top:50px"><tr><td style="width:48%;color:white" class="fragment">
+<h3 style="color:white;"><strong>Spreadsheets</strong></h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p style="color:white"><i class="fa fa-birthday-cake"></i> Easy to use</p>
+<p style="color:white"><i class="fa fa-table"></i> Simple problems</p>
+<p style="color:white"><i class="fa fa-redo-alt"></i> Not reproducible</p>
+</div>
+</td><td style="width:50%" class="fragment">
+<h3><strong>Programming</strong></h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-university"></i> Needs expert skills</p>
+<p><i class="fa fa-globe"></i> Internet-scale</p>
+<p><i class="fa fa-code"></i> Open &amp; transparent</p>
+</div>
+</td></tr></table>
+</section>
+<section >
+<img src="images/excel2.gif" style="display:none" id="img1a" />
+<img src="images/excel1.png" style="cursor:pointer;max-width:500px;float:left;margin-right:30px;" class="nb"  id="img1b" />
+<script type="text/javascript">
+  var p1 = false;
+  document.getElementById("img1b").onclick = function() {
+    document.getElementById("img1b").src = p1 ? "images/excel1.png" : document.getElementById("img1a").src;
+    p1 = !p1;
+  }
+</script>
+<p>What makes spreadsheets so easy to learn and use?</p>
+<p>How can programming tools learn from Excel?</p>
+<div class="fragment">
+<p><strong>Think of programming as interaction!</strong></p>
+</div>
+</section>
+<section class="part">
+<h1><em>Demo</em></h1>
+<p>The Gamma (see <a href="http://gamma.turing.ac.uk/playground">gamma.turing.ac.uk</a>) <span class="ref"><span>ECOOP 2017</span></span></p>
+</section>
+<section >
+<h1><em>Dot-driven development</em></h1>
+<h2>Complex logic via simple member access</h2>
+<p><em><i class="fa fa-cog"></i></em> Type providers for member generation</p>
+<p><em><i class="fa fa-balance-scale"></i></em> Cognitive cost of interactions</p>
+<p><em><i class="fa fa-rocket"></i></em> Fancy types for the masses!</p>
+<p><em><i class="fa fa-table"></i></em> Adding spreadsheet-like live experience</p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Summary</em></h1>
+<h2>Changing how we think about programming</h2>
+</section>
+<section >
+<h1><em>Changing how we think</em></h1>
+<h2>From concurrency to data science</h2>
+<ul>
+<li>Non-standard computations, context, types</li>
+<li>Programming as interaction with data</li>
+<li>Can we change how we think with just papers?</li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<p>Tomas Petricek<br />
+<a href="mailto:t.petricek@kent.ac.uk">t.petricek@kent.ac.uk</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
