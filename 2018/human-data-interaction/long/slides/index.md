@@ -1,5 +1,5 @@
 ﻿- title : Programming as Human Data Interaction
-- description : 
+- description :
 - author : Tomas Petricek
 - theme : white
 - transition : none
@@ -33,7 +33,7 @@ _Open, reproducible and accessible data science_
 <br />
 
 # Approach
-_Human-centric programming languages and tools_ 
+_Human-centric programming languages and tools_
 
 ---------------------------------------------------------------------------------------------------
 
@@ -468,7 +468,7 @@ _Generate class corresponding to a record shape_
 
 ## Programming for data science
 
-_<span class="circ"><span>1</span></span> Data analytics is an interactive process_ 
+_<span class="circ"><span>1</span></span> Data analytics is an interactive process_
 
 _<span class="circ"><span>2</span></span> Program against data, not abstract symbols_
 
@@ -514,7 +514,7 @@ _Making programming with data easier_
 **Properties** _Relative safety but also cognitive cost_
 
 
-</div> 
+</div>
 <br /><br />
 
 Tomas Petricek, _University of Kent_
@@ -526,11 +526,10 @@ _<i class="fa fa-envelope"></i> [tomas@tomasp.net](mailto:tomas@tomasp.net) | [@
 
 ## References
 
-_Don Syme, Keith Battocchi, Kenji Takeda, Donna Malayeri and Tomas Petricek. 
+_Don Syme, Keith Battocchi, Kenji Takeda, Donna Malayeri and Tomas Petricek.
    **Themes in Information-Rich Functional Programming for Internet-Scale Data Sources**. In proceedings of DDFP 2013_
 
-_Tomas Petricek, Gustavo Guerra and Don Syme. 
+_Tomas Petricek, Gustavo Guerra and Don Syme.
    **Types from data: Making structured data first-class citizens in F#**.  PLDI 2016_
 
 _Tomas Petricek. **Data exploration through dot-driven development**. In proceedings of ECOOP 2017_
-

@@ -1,0 +1,44 @@
+{
+"Functional - #1 Seq processing": {
+	"prefix":"func-1-seq",
+	"description": "Functional - #1 Seq processing",
+	"body": [
+		"|> Seq.pairwise",
+		"|> Seq.filter (fun (before, after) -> before.GbpUsd - after.GbpUsd > 0.02M)",
+		"|> Seq.map (fun (before, after) -> before.Date.ToShortDateString())" ]
+	},
+"Functional - #2 Data frames": {
+	"prefix":"func-2-frames",
+	"description": "Functional - #2 Data frames",
+	"body": [
+		"|> Frame.groupRowsByString \"Sex\"",
+		"|> Frame.applyLevel fst Stats.mean" ]
+	},
+"Functional - #3 Async Seq template": {
+	"prefix":"func-3-asyncseq",
+	"description": "Functional - #3 Async Seq template",
+	"body": [
+		"type Rate =",
+		"  { code : string",
+		"    value : float }",
+		"",
+		"type Prices = ",
+		"  { rates : Rate[] }",
+		"",
+		"show \"section2\"",
+		"async {",
+		"  for i in 0 .. 364 do",
+		"    let url = sprintf \"/data/%d.json\" i",
+		"    let! p = readJson<Prices> url",
+		"    let gbp = p.rates |> Array.find (fun r -> r.code = \"GBP\")",
+		"    Section2.current.innerText <- sprintf \"GBP: %A\" gbp.value",
+		"    do! Async.Sleep(100) }",
+		"|> Async.StartImmediate" ]
+},
+"Functional - #4 Async seq - color change ": {
+	"prefix":"func-4-colorchange",
+	"description": "Functional - #4 Async seq - color change",
+	"body": [
+		"Section2.current.style.color <- if n < p then \"red\" else \"green\"" ]
+	}	
+}

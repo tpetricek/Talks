@@ -63,6 +63,9 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [**Changing how we think about programming**](http://tpetricek.github.io/Talks/2019/programming-thinking/) (April 2019) - TU Darmstadt<br />
+   See also: [interactive coeffects essay](http://tomasp.net/coeffects), [TheGamma playground](http://gamma.turing.ac.uk/playground)
+
  - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/edinburgh/index.html#/) (August 2018) - University of Edinburgh<br />
    See also: [source code](https://github.com/tpetricek/Talks/tree/master/2018/human-data-interaction/code), [TheGamma playground](http://gamma.turing.ac.uk) and shorter version below.
 
@@ -153,6 +156,10 @@ Talks and slides
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
 ### F# and Functional Programming
+
+ - [**Functional-first programming with F#**](http://tpetricek.github.io/Talks/2019/functionalist-pl-design/) (March 2019) - NDC Porto<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2019/functionalist-pl-design/code),
+   [fun3d.net](http://fun3d.net), [thegamma.net](http://thegamma.net) and [gamma playground](http://gamma.turing.ac.uk/playground).
 
  - [**Build Your Own Excel 365 in an Hour with F#**](https://github.com/tpetricek/Talks/tree/master/2018/write-your-own-excel/) (June 2018) - NDC Oslo<br />
    See: [text file with slides](https://github.com/tpetricek/Talks/blob/master/2018/write-your-own-excel/slides.txt),

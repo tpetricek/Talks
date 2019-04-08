@@ -1,0 +1,41 @@
+module AsyncReactive.Main
+
+open System
+open Fable.Core
+open Fable.Import
+open Fable.Import.Browser
+open System.Collections.Generic
+open AsyncReactive.Helpers
+
+show "section1"
+async {
+  while true do
+    for color in ["green"; "orange"; "red"] do
+      do! Async.AwaitGuiEvent Section1.next.addEventListener_click
+      Section1.light.style.backgroundColor <- "green" } 
+|> Async.StartImmediate
+
+type Rate =
+  { code : string
+    value : float }
+
+type Prices = 
+  { rates : Rate[] }
+
+show "section2"
+let readPrices () = 
+  asyncSeq {
+    for i in 0 .. 364 do
+      let url = sprintf "/data/%d.json" i
+      let! p = readJson<Prices> url
+      let gbp = p.rates |> Array.find (fun r -> r.code = "GBP")
+      yield gbp.value }
+
+asyncSeq {
+  for p, n in AsyncSeq.pairwise(readPrices()) do
+    Section2.current.innerText <- sprintf "GBP: %A" p 
+    Section2.current.style.color <- if n < p then "red" else "green" 
+    // do! Async.Sleep(100)
+    do! Async.AwaitGuiEvent Section2.next.addEventListener_click }
+|> AsyncSeq.start
+
