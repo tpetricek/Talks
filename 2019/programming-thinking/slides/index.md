@@ -205,7 +205,7 @@ _<i class="fa fa-pen"></i>_ Syntax to support monad-like abstractions
 
 _<i class="fa fa-code"></i>_ Further syntax requires further operations <span class="ref"><span>PADL 2014</span></span>
 
-_<i class="fa fa-ruler"></i>_ Non-standard notion of pattern matching <span class="ref"><span>PADL 2011b</span></span>
+_<i class="fa fa-ruler"></i>_ Non-standard pattern matching <span class="ref"><span>PADL 2011b</span></span> <span class="ref"><span>Haskell 2011</span></span>
 
 _<i class="fa fa-brain"></i>_ Different **way of thinking** about computations
 
@@ -430,11 +430,11 @@ Dataflow coeffects (see [tomasp.net/coeffects](http://tomasp.net/coeffects))
 
 _<i class="fa fa-desktop"></i>_ What is the **context** in which programs run?
 
-_<i class="fa fa-book"></i>_ Variables, resources, history, etc.
+_<i class="fa fa-book"></i>_ Variables, resources, history, etc. <span class="ref"><span>ICALP 2013</span></span>
 
-_<i class="fa fa-box"></i>_ Per-context and per-variable definitions
+_<i class="fa fa-box"></i>_ Per-context and per-variable definitions <span class="ref"><span>ICFP 2014</span></span>
 
-_<i class="fa fa-code"></i>_ Towards context-aware programming languages
+_<i class="fa fa-code"></i>_ Algebra of (co)effect annotations <span class="ref"><span>Festschrift 2016</span></span>
 
 
 ****************************************************************************************************
@@ -520,7 +520,7 @@ $\pi(~~~~~~~) \vdash e : \tau$
 - class: part
 
 # _Demo_
-Reading data from an RSS feed <span class="ref"><span>PLDI 2016</span></span>
+Reading data from an RSS feed <span class="ref"><span>DDFP 2013</span></span> <span class="ref"><span>PLDI 2016</span></span>
 
 ---------------------------------------------------------------------------------------------------
 
@@ -601,55 +601,6 @@ $e_{user}[x\leftarrow {\color{mc}\text{new}}~C(d)] \rightsquigarrow^* v$
 
 </div>
 
----------------------------------------------------------------------------------------------------
-
-# _Fancy types for the masses_
-## Row types to track names and types of fields
-
-<div style="margin-top:-50px;padding:0px 0px 30px 0px;position:relative;left:-110px;transform:scale(0.75)">
-
-$$$
-\definecolor{cc}{RGB}{204,82,34}
-\definecolor{mc}{RGB}{0,0,153}
-\frac
-  {\Gamma \vdash e : {\color{cc}[f_1:\tau_1, \ldots, f_n:\tau_n]}}
-  {\Gamma \vdash e.\text{drop}~f_i : {\color{cc} [f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n]}}
-
-</div><div class="fragment">
-
-## Embed row types in provided nominal types
-
-<div style="margin-top:-60px;padding:0px 0px 30px 0px;position:relative;left:-110px;transform:scale(0.75)">
-
-$$$
-\frac
-  {\Gamma \vdash e : {\color{mc} C_1}}
-  {\Gamma \vdash e.\text{drop}~f_i : {\color{mc} C_2}}
-\quad{\small \text{where}}
-
-<div style="position:relative;top:-20px;">
-
-$$$
-\begin{array}{l}
-\\[-0.5em]
-{fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}\\
-{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}
-\end{array}
-
-</div></div>
-
----------------------------------------------------------------------------------------------------
-
-# _Fancy types for the masses_
-## Powerful idea that works in other contexts
-
-_<i class="fa fa-table"></i>_ Row types and phantom types
-
-_<i class="fa fa-phone"></i>_ Session types for communication
-
-_<i class="fa fa-question"></i>_ Add your own fancy type here!
-
-
 ****************************************************************************************************
 - class: part
 
@@ -700,6 +651,73 @@ _<i class="fa fa-eye"></i>_ Generalised indexers `.[ condition ]`
 _<i class="fa fa-university"></i>_ Operation names `sort_values`
 
 _<i class="fa fa-database"></i>_ Data column names `"Athlete"`
+
+---------------------------------------------------------------------------------------------------
+- class: part
+
+# _Demo_
+The Gamma (see [gamma.turing.ac.uk](http://gamma.turing.ac.uk/playground/nopreview.html)) <span class="ref"><span>ECOOP 2017</span></span>
+
+---------------------------------------------------------------------------------------------------
+
+# _Dot-driven development_
+## Complex logic via simple member access
+
+_<i class="fa fa-cog"></i>_ Type providers for member generation
+
+_<i class="fa fa-balance-scale"></i>_ Cognitive cost of interactions
+
+_<i class="fa fa-rocket"></i>_ Fancy types for the masses!
+
+_<i class="fa fa-table"></i>_ Adding spreadsheet-like live experience
+
+---------------------------------------------------------------------------------------------------
+
+# _Fancy types for the masses_
+## Row types to track names and types of fields
+
+<div style="margin-top:-50px;padding:0px 0px 30px 0px;position:relative;left:-110px;transform:scale(0.75)">
+
+$$$
+\definecolor{cc}{RGB}{204,82,34}
+\definecolor{mc}{RGB}{0,0,153}
+\frac
+  {\Gamma \vdash e : {\color{cc}[f_1:\tau_1, \ldots, f_n:\tau_n]}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{cc} [f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n]}}
+
+</div><div class="fragment">
+
+## Embed row types in provided nominal types
+
+<div style="margin-top:-60px;padding:0px 0px 30px 0px;position:relative;left:-110px;transform:scale(0.75)">
+
+$$$
+\frac
+  {\Gamma \vdash e : {\color{mc} C_1}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{mc} C_2}}
+\quad{\small \text{where}}
+
+<div style="position:relative;top:-20px;">
+
+$$$
+\begin{array}{l}
+\\[-0.5em]
+{fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}\\
+{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}
+\end{array}
+
+</div></div>
+
+---------------------------------------------------------------------------------------------------
+
+# _Fancy types for the masses_
+## Powerful idea that works in other contexts
+
+_<i class="fa fa-table"></i>_ Row types and phantom types
+
+_<i class="fa fa-phone"></i>_ Session types for communication
+
+_<i class="fa fa-question"></i>_ Add your own fancy type here!
 
 ----------------------------------------------------------------------------------------------------
 
@@ -753,21 +771,7 @@ How can programming tools learn from Excel?
 - class: part
 
 # _Demo_
-The Gamma (see [gamma.turing.ac.uk](http://gamma.turing.ac.uk/playground)) <span class="ref"><span>ECOOP 2017</span></span>
-
-
----------------------------------------------------------------------------------------------------
-
-# _Dot-driven development_
-## Complex logic via simple member access
-
-_<i class="fa fa-cog"></i>_ Type providers for member generation
-
-_<i class="fa fa-balance-scale"></i>_ Cognitive cost of interactions
-
-_<i class="fa fa-rocket"></i>_ Fancy types for the masses!
-
-_<i class="fa fa-table"></i>_ Adding spreadsheet-like live experience
+Live previews (see [gamma.turing.ac.uk](http://gamma.turing.ac.uk/playground)) <span class="ref"><span>ECOOP 2017</span></span>
 
 ****************************************************************************************************
 - class: part
@@ -791,3 +795,85 @@ _<i class="fa fa-table"></i>_ Adding spreadsheet-like live experience
 
 Tomas Petricek<br />
 [t.petricek@kent.ac.uk](mailto:t.petricek@kent.ac.uk) | [@tomaspetricek](http://twitter.com/tomaspetricek)
+
+****************************************************************************************************
+- class: part
+
+# _References_
+## From concurrency to data science
+
+----------------------------------------------------------------------------------------------------
+ - class: refs
+
+<style type="text/css">
+.reveal .refs p em { text-transform:none; font-size:24pt; line-height:0.8em;}
+.reveal .refs p em .ref span { font-weight:300; }
+.refs .ref { top:-0.2em; }
+.refs .ref span { top:0em; }
+</style>
+
+# _Philosophy and history_
+
+_<span class="ref"><span>Programming 2018</span></span>
+T. Petricek. [What we talk about when we talk about monads](http://tomasp.net/academic/papers/monads/).
+The Art, Science, and Engineering of Programming, Vol. 2, Issue 3, Article 12._
+
+_<span class="ref"><span>Onward 2015</span></span>
+Tomas Petricek. [Against a universal definition of 'type'](http://tomasp.net/academic/papers/against-types).
+In  Onward! pp. 254-266, ISBN 9781450336888, ACM 2015_
+
+_<span class="ref"><span>AISB 2014</span></span>
+T. Petricek. [What can programming language research learn from the philosophy of science?](http://tomasp.net/academic/papers/philosophy-pl)
+In proceedings of AISB Conference, selected papers, ed. Rodger Kibble, 2014._
+
+----------------------------------------------------------------------------------------------------
+ - class: refs
+
+# _Computation expressions_
+
+_<span class="ref"><span>PADL 2014</span></span>
+T. Petricek and D. Syme. [The F# computation expression Zoo](http://tomasp.net/academic/papers/computation-zoo).
+In proceedings of PADL, pp. 33-48, Springer 2014._
+
+_<span class="ref"><span>Haskell 2011</span></span>
+T. Petricek, Alan Mycroft and Don Syme. [Extending monads with pattern matching](http://tomasp.net/academic/papers/docase).
+In proceedings of Haskell Symposium, ACM SIGPLAN Notices. vol. 46. no. 12. ACM, 2011._
+
+_<span class="ref"><span>PADL 2011a</span></span>
+D. Syme, T. Petricek and D. Lomov. [The F# asynchronous programming model](http://tomasp.net/academic/papers/async).
+In proceedings of PADL workshop, pp.205–219, Springer Berlin Heidelberg 2011._
+
+_<span class="ref"><span>PADL 2011b</span></span>
+T. Petricek and D. Syme. [Joinads: a retargetable control-flow construct for reactive, parallel and concurrent programming](http://tomasp.net/academic/papers/joinads). In proceedings of PADL, pp.205–219, Springer 2011._
+
+----------------------------------------------------------------------------------------------------
+ - class: refs
+
+# _Coeffects_
+
+_<span class="ref"><span>ICFP 2014</span></span>
+T. Petricek, D. Orchard and A. Mycroft. [Coeffects: A calculus of context dependent computation](http://tomasp.net/academic/papers/structural).
+In proceedings of ICFP, pp. 123–135, ISBN 9781450328739, ACM 2014._
+
+_<span class="ref"><span>ICALP 2013</span></span>
+T. Petricek, D. Orchard and A. Mycroft. [Coeffects: Unified static analysis of context-dependence](http://tomasp.net/academic/papers/coeffects).
+ICALP 2013, In Automata, Languages, and Programming. pp. 385–397. Springer 2013._
+
+_<span class="ref"><span>Festschrift 2016</span></span>
+A. Mycroft, D. Orchard, T. Petricek. [Effect systems revisited – control-flow algebra and semantic](http://tomasp.net/academic/papers/effects-revisited).
+In Semantics, Logics, and Calculi, pp. 1-32, ISBN 9783319278094, Springer 2016_
+
+----------------------------------------------------------------------------------------------------
+- class: refs
+
+# _Type providers_
+
+_<span class="ref"><span>ECOOP 2017</span></span>
+T. Petricek. [Data exploration through dot-driven development](http://tomasp.net/academic/papers/pivot). In Proceedings of ECOOP 2017. Associated software artifact has been evaluated and archived in DARTS, vol. 3, no. 2, pp. 12:1–12:2, 2017._
+
+_<span class="ref"><span>PLDI 2016</span></span>
+T. Petricek, D. Syme, G. Guerra. [Types from data: Making structured data first-class citizens in F#](http://tomasp.net/academic/papers/fsharp-data).
+In proceedings of PLDI, pp. 477-490, ISBN 9781450342612. ACM 2016_
+
+_<span class="ref"><span>DDFP 2013</span></span>
+D. Syme, K. Battocchi, K. Takeda, D. Malayeri and T. Petricek. [Themes in information-rich functional prog¬¬ramming for internet-scale data sources](http://tomasp.net/academic/papers/inforich). DDFP Workshop, pp. 1–4, ISBN 9781450318716, ACM 2013._
