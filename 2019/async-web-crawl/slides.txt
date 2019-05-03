@@ -1,0 +1,145 @@
+=================================================
+
+          CRAWLING THE WEB WITH ASYNC
+              From the ground up!
+
+
+
+
+Tomas Petricek, University of Kent & fsharpWorks
+      tomas@tomasp.net | @tomaspetricek
+
+=================================================
+
+
+
+
+=================================================
+
+    ELM-STYLE FUNCTIONAL USER INTERFACES
+
+type State = { ... }
+type Event = .. | .. | ..
+
+val initial : State
+val render  : (Event -> unit) -> State -> Html
+val update  : State -> Event -> State
+
+=================================================
+
+
+
+
+=================================================
+
+           CONTINUATION-PASSING STYLE             
+
+  * Obscure functional programming trick! 
+  * Your only option in JavaScript before ES8
+
+  * Function never returns any result
+  * Call a 'continuation' when done!
+
+=================================================
+
+
+
+
+=================================================
+
+           CONTINUATION-PASSING STYLE             
+
+  let copy source target =
+    let data = read source
+    write target
+
+  let copy source target cont = 
+    read source (fun data ->
+      write target (fun () -> cont ()))
+
+=================================================
+
+
+
+
+=================================================
+
+              ASYNC TYPE EXPLAINED             
+
+      given a continuation    start doing work
+      +------------------+         +----+
+        ('T   ->   unit)      ->    unit              
+        +---+   
+   pass the result to the
+   continuation eventually
+
+=================================================
+
+
+
+
+=================================================
+
+         TIME FOR THE MYTHICAL M-WORD          
+
+  type M<'T> = { ... }
+
+  unit  :  'T -> M<'T>
+  bind  :  M<'T> -> ('T -> M<'R>) -> M<'R>         
+
+
+=================================================
+
+
+
+
+=================================================
+
+          HOW DOES REAL F# ASYNC LOOK?          
+
+type AsyncActivation<'T> = 
+  { cont  : 'T -> unit
+    econt : exn -> unit 
+    ccont : OperationCanceledException -> unit 
+    token : CancellationToken }
+
+type Async<'T> = 
+  Async of AsyncActivation<'T> -> unit
+
+=================================================
+
+
+
+
+=================================================
+
+          HOW DOES REAL C# ASYNC LOOK?          
+
+  switch(state) {
+    case 0: downlaod(url, continuation);
+            state = 1;
+    case 1: trigger(AddPage(source, title))
+            crawl(n-1, title, link, continuation)
+            state = 2; 
+    case 2: crawl(n-1, title, link, continuation)
+            state = 3; 
+  }
+
+=================================================
+
+
+
+
+=================================================
+
+CRAWLING THE WEB WITH ASYNC - FROM THE GROUND UP
+
+  * If you want to try F#, use Fable + Elmish!
+  * Function types are for domain modelling too
+  * Async and await is not (quite) magic!
+
+
+Tomas Petricek, tomas@tomasp.net | @tomaspetricek
+
+=================================================
+

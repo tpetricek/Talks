@@ -140,6 +140,10 @@ Talks and slides
 
 ### Web and Reactive programming
 
+ - [**Crawling the Web with Async: From the grounds up!**](https://github.com/tpetricek/Talks/tree/master/2019/async-web-crawl/) (May 2019) - BuildStuff Malaga<br />
+   See: [text file with slides](https://github.com/tpetricek/Talks/blob/master/2019/async-web-crawl/slides.txt),
+   download all code as a [single zip file](https://github.com/tpetricek/Talks/blob/master/2019/async-web-crawl/async-web-crawl.zip).
+
  - [**Observables, Events, Asynchronous Sequences and Other Wild Animals**](http://tpetricek.github.io/Talks/2017/async-observable-zoo/) (April 2017) - F# eXchange, London<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2017/async-observable-zoo/code)
 

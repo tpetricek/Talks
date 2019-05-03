@@ -1,0 +1,39 @@
+{
+	"Snippet 1: Add sample pages": {
+		"scope": "fsharp",
+		"prefix": "snip1-sample",
+	  "body": [
+			"trigger(AddPage(\"Microsoft\", \"Bill Gates\"))",
+			"trigger(AddPage(\"Microsoft\", \"Visual F# Enterprise Edition\"))",
+			"trigger(AddPage(\"Microsoft\", \"Windows\"))",
+			"trigger(AddPage(\"Windows\", \"Windows 3.11\"))",
+			"trigger(AddPage(\"Windows\", \"Windows ME\"))",
+			"trigger(AddPage(\"Windows\", \"Windows Vista\"))"
+		],
+		"description": "Snippet 1: Add sample pages"
+	},
+	"Snippet 2: Add download and parsePage": {
+		"scope": "fsharp",
+		"prefix": "snip2-download",
+		"body": [
+			"let regexLink = Regex(\"\\<a href=\\\"\/wiki\/[^\\\"]*\\\"\")\r\nlet regexTitle = Regex(\"\\<title\\>[^\\<]*\\<\")\r\nlet parsePage html = \r\n  let title = regexTitle.Match(html).Value\r\n  let title = \r\n    if not (title.Contains(\"-\")) then title\r\n    else title.Substring(7, title.LastIndexOf('-')-8)\r\n  let links = \r\n    [ for link in unbox<Match[]> (regexLink.Matches(html)) do\r\n        let atag = link.Value\r\n        if not (atag.Contains(\":\")) then\r\n          let prefix = \"http:\/\/localhost:8011\"\r\n          yield prefix + atag.Split('\"').[1] ]\r\n  title, links\r\n\r\nlet download url cont = \r\n  let xhr = XMLHttpRequest.Create()\r\n  xhr.addEventListener_readystatechange(fun e ->\r\n    if xhr.readyState = 4. && xhr.status = 200. then\r\n      cont (parsePage (string xhr.response))\r\n  )\r\n  xhr.``open``(\"GET\", url)\r\n  xhr.send(\"\")\r\n\r\nlet root = \"http:\/\/localhost:8011\/wiki\/Microsoft\"\r\nlet rnd = System.Random()\r\n"			
+		],
+		"description": "Snippet 2: Add download and parsePage"
+	},
+	"Snippet 3: Async computation builder": {
+		"scope": "fsharp",
+		"prefix": "snip3-async",
+		"body": [
+			"type AsyncBuilder() = \r\n  member x.Bind(a, f) = afterwards f a\r\n  member x.Return(v) = unit v\r\n  member x.Zero() = unit ()\r\n\r\nlet async = AsyncBuilder()\r\n"
+		],
+		"description": "Snippet 3: Async computation builder"
+	},
+	"Snippet 4: For loop extension": {
+		"scope": "fsharp",
+		"prefix": "snip4-for",
+		"body": [
+			"  member x.For(l, f) =  \r\n    match l with \r\n    | [] -> unit ()\r\n    | l::ls -> x.Bind(f l, fun () -> x.For(ls, f))\r\n"
+		],
+		"description": "Snippet 4: For loop extension"
+	}
+}
