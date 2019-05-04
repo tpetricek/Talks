@@ -22,8 +22,8 @@ type State = { ... }
 type Event = .. | .. | ..
 
 val initial : State
-val render  : (Event -> unit) -> State -> Html
 val update  : State -> Event -> State
+val render  : (Event -> unit) -> State -> Html
 
 =================================================
 
@@ -32,7 +32,7 @@ val update  : State -> Event -> State
 
 =================================================
 
-           CONTINUATION-PASSING STYLE             
+          CONTINUATION-PASSING STYLE             
 
   * Obscure functional programming trick! 
   * Your only option in JavaScript before ES8
@@ -47,15 +47,15 @@ val update  : State -> Event -> State
 
 =================================================
 
-           CONTINUATION-PASSING STYLE             
+          CONTINUATION-PASSING STYLE             
 
   let copy source target =
     let data = read source
-    write target
+    write data target
 
   let copy source target cont = 
     read source (fun data ->
-      write target (fun () -> cont ()))
+      write data target (fun () -> cont ()))
 
 =================================================
 
@@ -70,8 +70,8 @@ val update  : State -> Event -> State
       +------------------+         +----+
         ('T   ->   unit)      ->    unit              
         +---+   
-   pass the result to the
-   continuation eventually
+  pass the result to the
+  continuation eventually
 
 =================================================
 
@@ -80,7 +80,7 @@ val update  : State -> Event -> State
 
 =================================================
 
-         TIME FOR THE MYTHICAL M-WORD          
+        TIME FOR THE MYTHICAL M-WORD          
 
   type M<'T> = { ... }
 
