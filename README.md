@@ -16,14 +16,14 @@ Talks by category
  - [FsLab and Data Science](#fslab-and-data-science)
  - [Web and Reactive programming](#web-and-reactive-programming)
  - [F# and Functional Programming](#f-and-functional-programming)
- 
+
 Talks and slides
 ----------------
 
 ### Data journalism and data science
 
  - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2018/wrattler/) (July 2018) - TaPP London
- 
+
  - [**The Gamma: Towards open and reproducible data-driven storytelling**](http://tpetricek.github.io/Talks/2018/thegamma/cogx/) (June 2018) - CogX London<br />
   See also: [thegamma.net](https://www.thegamma.net) and [The Alan Turing Institute demos](http://gamma.turing.ac.uk/)
 
@@ -36,7 +36,7 @@ Talks and slides
 
  - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University<br />
    See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
- 
+
  - [**The Gamma: Towards open and transparent data-driven storytelling**](http://tpetricek.github.io/Talks/2016/open-storytelling/) (November 2016) - Alan Turing Institute<br />
    See also: [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/) using The Gamma
 
@@ -48,16 +48,16 @@ Talks and slides
  - [**Rethinking compilers with live coding**](http://tpetricek.github.io/Talks/2018/live-compilers/) (September 2018) - LambdaWorld, Seattle<br />
    See: [live language demo](http://tpetricek.github.io/Talks/2018/live-compilers/demo/), [source code](https://github.com/tpetricek/Talks/tree/master/2018/live-compilers/code/completed), [thegamma.net](https://www.thegamma.net), <br />
    Previously presented at LambdaDays, Krakow (February 2018)
-   
+
  - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/milan/) (November 2017) - CodeMotion Milan<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/thegamma-data-science/milan/code), [thegamma.net](https://www.thegamma.net) and [UK Government Expenditure](http://gamma.turing.ac.uk/expenditure)
 
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
- 
+
  - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup<br />
    See also: [source code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
- 
+
  - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow<br />
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
@@ -74,29 +74,31 @@ Talks and slides
 
  - [**Teaching old type systems new tricks with type providers**](http://tpetricek.github.io/Talks/2018/type-provider-tricks/kent/) (February 2018) - University of Kent<br />
    See also: [Birmingham version](http://tpetricek.github.io/Talks/2018/type-provider-tricks/bham/), [F# Data paper](http://tomasp.net/academic/papers/fsharp-data/) (PLDI 2016) and [Dot-driven development paper](http://tomasp.net/academic/papers/pivot/) (ECOOP 2017)
-   
+
  - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
    See also: [Source code for the demos](https://github.com/tpetricek/Talks/tree/master/2017/multi-runtime-challenges/demos) and
    [In the Age of Web](http://tomasp.net/academic/papers/age-of-web) paper
-  
+
  - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/) (June 2017) - ECOOP, Barcelona<br />
    See also: [Sample interactive articles on UK open data](http://gamma.turing.ac.uk/) and [the ECOOP paper](http://tomasp.net/academic/papers/pivot/)
 
  - [**Types from data: Making structured data first-class citizens in F#**](http://tpetricek.github.io/Talks/2016/fsharp-data-pldi/) (June 2016) - PLDI, Santa Barbara<br />
    See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2016/fsharp-data-pldi/code) and [F# Data library documentation](http://fsharp.github.io/FSharp.Data)
-   
+
  - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June 2015) - STTI MFF
 
  - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague<br />
 
-### Philosophy of Science 
+### Philosophy of Science
+
+ - [**The Search for Fundamental Software Engineering Principles**](http://tpetricek.github.io/Talks/2019/swe-principles/newcrafts/) (May 2019) - NewCrafts, Paris
 
  - [**What we talk about when we talk about monads**](http://tpetricek.github.io/Talks/2018/monads-what-we-talk-about/nice/index.html) (April 2018) - Programming 2018, Nice<br />
    Earlier version: [Monads are not what they seem](http://tpetricek.github.io/Talks/2017/monads-are-not-what-they-seem/paris/), February 2017 (CNRS Paris)
 
  - **Salon des Refusés**: [Welcome to Salon des Refusés](http://tpetricek.github.io/Talks/2018/salon-des-refuses/welcome/index.html), Nice 2018<br />
    [Critique of An anatomy of interaction: Co-occurrences and
-   entanglements](http://tpetricek.github.io/Talks/2018/salon-des-refuses/interaction/index.html) 
+   entanglements](http://tpetricek.github.io/Talks/2018/salon-des-refuses/interaction/index.html)
 
  - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2018/programming-entities/index.html#/) (February 2018) - PROGRAMme meeting, Lille<br />
    See also: [HaPoC 2017 (Brno) version](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/)<br />
@@ -104,21 +106,21 @@ Talks and slides
  - [**Would aliens understand lambda calculus?**](http://tpetricek.github.io/Talks/2017/aliens-lambda-calculus/codemesh/) (November 2017) - CodeMesh, London
 
  - [**Where Mathematics Comes From by Lakoff & Núñez**](http://tpetricek.github.io/Talks/2017/pwl-where-mathematics-comes-from) (August 2017) - Papers We Love, London
-   
- - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2017/living-with-errors/ncrafts) (May 2017) - NCrafts, Paris<br /> 
+
+ - [**Miscomputation: Learning to live with errors**](http://tpetricek.github.io/Talks/2017/living-with-errors/ncrafts) (May 2017) - NCrafts, Paris<br />
    See also: [CodeMesh 2016 (London) version](http://tpetricek.github.io/Talks/2016/living-with-errors), [Programming 2017 (Brussels) version](http://tpetricek.github.io/Talks/2017/living-with-errors/programming/) and [HaPoC 2015 (Pisa) version](http://tpetricek.github.io/Talks/2015/living-with-errors/)
 
  - **Salon des Refusés**: [Welcome to Salon des Refusés](http://tpetricek.github.io/Talks/2017/salon-des-refuses/welcome), Brussels 2017<br />
-   [Critical commentary for Programming is Writing is Programming](http://tpetricek.github.io/Talks/2017/salon-des-refuses/programming-is-writing-review) 
- 
+   [Critical commentary for Programming is Writing is Programming](http://tpetricek.github.io/Talks/2017/salon-des-refuses/programming-is-writing-review)
+
  - [**Thinking the Unthinkable**](http://tpetricek.github.io/Talks/2016/unthinkable/ppig/) (September 2016) - PPIG, Cambridge
 
  - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2016/philosophy-of-types) (February 2016) - LambdaDays Krakow<br />
    See also: [Philosophy books every computer scientist should read](http://tomasp.net/blog/2015/reading-list/)
    and [older version of the talk](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
 
- - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC 
-   
+ - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC
+
 ### FsLab and Data Science
 
  - [**F# for data science**](http://tpetricek.github.io/Talks/2018/fsharp-data-science/) (November 2018) - Royal Mail<br />
@@ -126,12 +128,12 @@ Talks and slides
 
  - [**Analyzing big time-series data in the cloud**](http://tpetricek.github.io/Talks/2016/big-data-analytics/ndc-oslo) (June 2016) - NDC Oslo<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/big-data-analytics) and sample [Big Deedle data providers](https://github.com/BlueMountainCapital/Deedle.BigDemo)
-   
+
  - [**Data Science with FsLab**](http://tpetricek.github.io/Talks/2015/data-science-with-fslab/) (November 2015) - MVP Summit, Redmond<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/data-science-with-fslab/code-done) and [journal source  code](https://github.com/tpetricek/Talks/blob/master/2015/data-science-with-fslab/code-done/journal/Tutorial.fsx)
-  
+
  - [**Functional Machine Learning with F#**](http://tpetricek.github.io/Talks/2015/functional-machine-learning/qconrio/) together with [@evelinag](http://www.github.com/evelinag) (August 2015) - QCon Rio
-  
+
  - [**F# in Finance: Data science with FsLab**](http://tpetricek.github.io/Talks/2015/deedle-finance/toronto/) (June 2015) - Citi and S&P, Toronto<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/deedle-finance/code-done) and [journal source  code](https://github.com/tpetricek/Talks/blob/master/2015/deedle-finance/journal/Tutorial.fsx)
 
@@ -152,10 +154,10 @@ Talks and slides
 
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2016/end-to-end-web/qcon/) (March 2016) - QCon Sao Paulo, Updated<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/end-to-end-web/qcon/code-done)
- 
+
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/ndc/) (June 2015) - NDC Oslo, Improved<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/ndc/code-done)
- 
+
  - [**End-to-end functional web development**](http://tpetricek.github.io/Talks/2015/end-to-end-web/usa/) (May, June 2015) - Seattle and New York F# meetups<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
@@ -175,17 +177,17 @@ Talks and slides
 
  - [**Functional-First Programming with F#**](http://tpetricek.github.io/Talks/2017/functional-first/prague) (December 2017) - LambdUp, Prague<br />
    See also: [source code from demos](https://github.com/tpetricek/Talks/tree/master/2017/functional-first/prague/code)
-  
+
  - [**Building stuff that works with F#**](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously) (January 2016) - NDC London<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2016/taking-your-craft-seriously/code-done) and [slide with library list](http://tpetricek.github.io/Talks/2016/taking-your-craft-seriously/#/4)
 
  - [**10 Ways of Getting Started with F#**](http://tpetricek.github.io/Talks/2015/10-ways-getting-started/) (August 2015) - QCon Rio<br />
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/10-ways-getting-started/qconrio/code-done)
-   
+
  - [**Functional library design**](http://tpetricek.github.io/Talks/2015/functional-libraries/paris/) (May 2015) - NCrafts.io, Paris
- 
+
  - [**The big F# open-source love story**](http://tpetricek.github.io/Talks/2015/love-open-source/london/) (April 2015) - F# eXchange, London
- 
+
  - [**Literate programming with F#**](http://tpetricek.github.io/Talks/2015/literate-programming/london/talk.html) (March 2015) - F#unctional Londoners, London (slightly improved)<br />
    See also: [source code for the talk materials](https://github.com/tpetricek/Talks/tree/master/2015/literate-programming)
 
