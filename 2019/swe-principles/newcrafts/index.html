@@ -1,0 +1,481 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The search for Fundamental Software Engineering Principles</title>
+    <meta name="description" content="The search for Fundamental Software Engineering Principles">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em><span style="font-weight:300">The search for</span> <br /> Fundamental Software Engineering Principles</em></h1>
+<br /><br /><br /><br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>University of Kent and fsharpWorks<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Motivation</em></h1>
+<h2>What is a fundamental principle?</h2>
+</section>
+<section >
+<img src="images/opticks.jpg" style="max-width:400px;float:left;margin:30px 40px 100px 0px" />
+<p><strong>Fundamental knowledge</strong></p>
+<div class="fragment">
+<p><em>What knowledge about software will remain<br />
+relevant in 100 years?</em></p>
+</div>
+<div class="fragment">
+<p><em>What should we teach students at university?</em></p>
+</div>
+</section>
+<section >
+<h1><em>The halting problem</em></h1>
+<h2>Fundamental computer science knowledge</h2>
+<img src="images/turing.gif" style="float:right;max-width:340px;margin-top:0px;margin-left:40px" class="nb"/>
+<p>It is impossible to give a program
+<span class="math">\(\Theta\)</span> that, for any<br />
+other program <span class="math">\(p\)</span> decides whether <span class="math">\(p\)</span> terminates or not.</p>
+</section>
+<section >
+<h1><em>Software engineering</em></h1>
+<h2>What knowledge do we teach today</h2>
+<p><em><i class="fa fa-history"></i></em> Agile and Scrum methodologies</p>
+<p><em><i class="fa fa-square"></i></em> UML or DDD modelling methods</p>
+<p><em><i class="fa fa-project-diagram"></i></em> Object-oriented design patterns</p>
+<p><em><i class="fa fa-wrench"></i></em> Tools like Git, Travis, Docker</p>
+</section>
+<section >
+<h1><em>Software engineering</em></h1>
+<h2>The search for fundamental knowledge</h2>
+<p><em><i class="fa fa-church"></i></em> What is impossible to build?</p>
+<p><em><i class="fa fa-trophy"></i></em> Can we guarantee cost or correctness?</p>
+<p><em><i class="fa fa-chalkboard-teacher"></i></em> Not a formal mathematical problem</p>
+<p><em><i class="fa fa-book"></i></em> Can we say anything certain at all?</p>
+</section>
+<section >
+<img src="images/sdi.jpg" style="max-width:500px;float:left;margin:30px 40px 100px 0px" />
+<p><strong>Historically situated Software Engineering</strong></p>
+<p><em>History and critical analysis of software development tools and practices</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>History</em></h1>
+<h2>Historically situated Software Engineering</h2>
+</section>
+<section >
+<h1><em>Programming in 1950</em></h1>
+<h2>Hacker culture of programming</h2>
+<img src="images/boys.jpg" style="float:right;max-width:230px;margin-top:0px;margin-left:60px" class="nb"/>
+<p><em>Programming in the 1950s was a black art, a private
+arcane matter (...), each problem required a unique beginning at square one,
+and the success of a program depended primarily on the programmer's<br />
+private techniques and inventions.</em></p>
+</section>
+<section >
+<img src="images/nato.jpg" style="max-width:450px;float:left;margin:60px 30px 100px 0px" />
+<p><strong>NATO 1968 Conference on Software Engineering</strong></p>
+<p><em>Programming started transition from a craft for a
+long-haired priest-hood to
+a real engineering discipline.</em></p>
+</section>
+<section >
+<h1><em>Software engineering</em></h1>
+<h2>Agreement on problems, not on solutions</h2>
+<p><em><i class="fa fa-user-friends"></i></em> Follow-up NATO 1969 Conference failed</p>
+<p><em><i class="fa fa-file"></i></em> Mathematical culture favours proofs</p>
+<p><em><i class="fa fa-user-tie"></i></em> Business culture favours management</p>
+<p><em><i class="fa fa-university"></i></em> Roots of a cultural divide?</p>
+</section>
+<section >
+<img src="images/office.jpg" style="max-width:440px;float:left;margin:50px 30px 100px 0px" />
+<p><strong>Apply industrial methods of production to software</strong></p>
+<p><em>Control over budgets, scheduling, workforce</em></p>
+<p><em>Process should eliminate reliance on individuals</em></p>
+<div class="fragment">
+<p>Heavy-weight processes like Waterfall make sense!</p>
+</div>
+</section>
+<section >
+<h1><em>Paradigm Change (1987)</em></h1>
+<img src="images/floyd.jpg" style="float:right;max-width:220px;margin-top:50px;margin-left:40px" class="nb"/>
+<p><strong>Product oriented</strong></p>
+<p><em>Software is seen as a product<br />
+serving some fixed use case</em></p>
+<div class="fragment">
+<p><strong>Process oriented</strong></p>
+<p><em>Software emerges from the totality<br />
+of interconnected processes of<br />
+learning and communication in<br />
+an evolving environment</em></p>
+</div>
+</section>
+<section >
+<h1><em>Fundamental knowledge</em></h1>
+<h2>Agile methodology in historical context</h2>
+<p><em><i class="fa fa-sync"></i></em> Context, response and problems</p>
+<p><em><i class="fa fa-comments"></i></em> Minority process oriented paradigm</p>
+<p><em><i class="fa fa-user-tie"></i></em> Pushback against managerial culture</p>
+<p><em><i class="fa fa-mobile-alt"></i></em> Application crisis of 1990s</p>
+</section>
+<section >
+<h1><em>Modelling in context</em></h1>
+<img src="images/uml.jpg" style="float:right;max-width:200px;margin-top:0px;margin-left:50px" />
+<p><strong>Modelling using UML</strong></p>
+<ul>
+<li><em>Fully specify system up-front</em></li>
+<li><em>Managerial control over process</em></li>
+<li><em>Becomes communication tool</em></li>
+</ul>
+<p><strong>Modelling via code and tests</strong></p>
+<ul>
+<li><em>Rise of engineering culture</em></li>
+<li><em>Supports process-oriented approach</em></li>
+<li><em>Keeping model up-to-date</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Principles</em></h1>
+<h2>Fundamental ideas from the past</h2>
+</section>
+<section >
+<p><strong>What is more complex software system to build?</strong></p>
+<table><tr>
+<td>
+<img src="images/stockfish.png" class="nb" style="width:390px"/>
+<p>Chess engine that can consistently win against grandmasters?</p>
+</td><td>
+<img src="images/quickbooks.png" class="nb" style="width:420px"/>
+<p>Accounting system that calculates VAT in UK and France?</p>
+</td>
+</tr></table>
+</section>
+<section >
+<img src="images/system360.jpg" style="max-width:500px;float:left;margin:30px 40px 100px 0px" />
+<p><strong>IBM System/360</strong></p>
+<p>Operating system<br />
+for a wide range of<br />
+IBM machines</p>
+<p><em>Massively delayed<br />
+due to complexity<br />
+and conflicting requirements</em></p>
+</section>
+<section >
+<h1><em>Software complexity</em></h1>
+<h2>No Silver Bullet (Fred Brooks, 1986)</h2>
+<img src="images/brooks.jpg" style="float:right;max-width:260px;margin-top:-20px;margin-left:50px" />
+<p><em>Much of the complexity [software engineer] must master is arbitrary
+complexity, forced without rhyme<br />
+or reason by the many human
+institutions and systems to which his interfaces must confirm.</em></p>
+</section>
+<section >
+<h1><em>No silver bullet (1986)</em></h1>
+<img src="images/nosilver.png" style="max-width:220px;float:right;margin:30px 0px 0px 20px" />
+<p><strong>Essential complexity</strong></p>
+<ul>
+<li><em>Complexity of essential logic</em></li>
+<li><em>Specification is as complex as program implementing it</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Accidental complexity</strong></p>
+<ul>
+<li><em>Imperfect programming tools</em></li>
+<li>
+<em>Unless this is more than 9/10, order<br />
+of magnitude improvement is impossible</em>
+</li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/bullet.png" style="max-width:400px;float:left;margin:30px 40px 100px 0px" />
+<p><strong>Fundamental Software Engineering principle</strong></p>
+<p><em>There is no single development, in either technology or management technique, which by
+itself promises even one<br />
+order-of-magnitude improvement within a decade in productivity,
+in reliability, in simplicity.</em></p>
+</section>
+<section >
+<img src="images/starwars.jpg" style="max-width:540px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>Star Wars (1980s)</strong></p>
+<p><em>Fully automatic software system to track and shoot down Soviet nuclear missiles</em></p>
+<p>Can reliable system to do this be built?</p>
+</section>
+<section >
+<h1><em>Sources of complexity</em></h1>
+<p><strong>Analog systems</strong><br />
+<em>Small change in input causes small change in output</em><br />
+<em>Analog computers of 1930s, audio synthesizers</em></p>
+<p><strong>Digital systems with repeated components</strong><br />
+<em>Non-linear, but we can test components in isolation</em><br />
+<em>CPU units and much of modern hardware</em></p>
+<p><strong>Digital systems without repetition</strong><br />
+<em>Non-linear and very hard to test</em><br />
+<em>Any modern software system!</em></p>
+</section>
+<section >
+<img src="images/lick.jpg" style="max-width:460px;float:left;margin:40px 70px 100px 0px" />
+<p><strong>Fundamental Software<br />
+Engineering Principle</strong></p>
+<p><em>Complex software can only be mastered if it is developed progressively, with the aid of
+extensive testing, and then operated more or less continually in a somewhat lenient and forgiving environment.</em></p>
+</section>
+<section >
+<h1><em>Arguments that count (2013)</em></h1>
+<img src="images/arguments.png" style="max-width:260px;float:right;margin:40px 0px 0px 20px" />
+<p><strong>Defense would be unreliable</strong></p>
+<p><em>Since we have no spare planets<br />
+on which to fight trial nuclear<br />
+wars, testing of a global ABM<br />
+system is impossible.</em></p>
+<div class="fragment">
+<p><strong>Enemy has it easier</strong></p>
+<p><em>Very expensive defenses could give the Soviet Union an incentive to invest in relatively
+cheap offensive countermeasures, creating arms race instabilities.</em></p>
+</div>
+</section>
+<section >
+<img src="images/patriot.jpg" style="float:left;max-width:560px;margin-top:0px;margin-right:40px" />
+<p><strong>Developed into the Patriot system</strong></p>
+<div class="fragment">
+<p><em>Accidentally hit British fighter<br />
+plane killing two</em></p>
+<p><em>Software updated 9 times during<br />
+the Gulf War</em></p>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Metaphors</em></h1>
+<h2>Fundamental ideas from other disciplines</h2>
+</section>
+<section >
+<h1><em>Metaphors for programming</em></h1>
+<img src="images/bridge.jpg" style="float:right;max-width:280px;margin-top:20px;margin-left:20px" />
+<p><strong>Engineering metaphor</strong></p>
+<ul>
+<li><em>Managerial response to crisis</em></li>
+<li><em>Focus on planning and control</em></li>
+<li><em>Each metaphor has misfits</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Many other metaphors</strong></p>
+<ul>
+<li><em>Architecture and urban planning</em></li>
+<li><em>Programming is writing code</em></li>
+<li><em>Programming is growing a system</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/garden.jpg" style="max-width:500px;float:left;margin:20px 30px 100px 0px" />
+<p><strong>Why metaphors for programming matter?</strong></p>
+<p>New way of thinking and shift of emphasis</p>
+<div class="fragment">
+<p><em>Goal of writing is communication</em></p>
+<p><em>Growing needs long-term maintainability</em></p>
+</div>
+</section>
+<section >
+<h1><em>Urban planning</em></h1>
+<img src="images/corbusier.jpg" style="float:right;max-width:340px;margin-top:0px;margin-left:40px" />
+<p><strong>Complexity of software</strong></p>
+<ul>
+<li><em>Analog systems</em></li>
+<li><em>Repetitive digital systems</em></li>
+<li><em>Non-repetitive digital</em></li>
+</ul>
+<p><strong>Complexity of cities</strong></p>
+<ul>
+<li><em>Problems of simplicity</em></li>
+<li><em>Problems of unorganized complexity</em></li>
+<li><em>Problems of organized complexity</em></li>
+</ul>
+</section>
+<section >
+<img src="images/life.jpg" style="float:left;max-width:400px;margin:20px 60px 0px 40px" />
+<p><strong>Dealing with problems<br />
+of organized complexity</strong></p>
+<p><em>City processes are too complex to be abstracted. Explore them in full complexity.</em></p>
+<p><em>One unaverage value tells us more than statistic.</em></p>
+</section>
+<section >
+<h1><em>Adaptable buildings</em></h1>
+<img src="images/learn.jpg" style="max-width:300px;float:right;margin:30px 0px 0px 20px" />
+<p><strong>Evolve and need maintenance</strong></p>
+<ul>
+<li><em>But none are designed to evolve</em></li>
+<li><em>Different layers evolve differently</em></li>
+<li><em>How to teach maintenance?</em></li>
+</ul>
+<p><strong>Choosing a material</strong></p>
+<ul>
+<li><em>Traditional materials are well understood</em></li>
+<li><em>It should look bad before it acts bad</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Conclusions</em></h1>
+<h2>What is Software Engineering?</h2>
+</section>
+<section >
+<h1><em>It's own discipline</em></h1>
+<img src="images/newton.jpg" style="max-width:400px;float:right;margin:30px 0px 0px 20px" />
+<p><strong>Meeting of cultures</strong></p>
+<ul>
+<li><em>Managerial culture</em></li>
+<li><em>Engineering culture</em></li>
+<li><em>Mathematical culture</em></li>
+</ul>
+<div class="fragment">
+<p><strong>What are the foundations</strong></p>
+<ul>
+<li><em>Cannot be from just one culture</em></li>
+<li><em>Past tools and practices in context</em></li>
+<li><em>Historically situated</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/latour.jpg" style="max-width:400px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>We Have Never<br />
+Been Modern</strong></p>
+<p><em>We must rework our thinking to conceive of a "Parliament of Things"
+where natural and social phenomena, and the discourse about them are not seen as
+separate objects, but as hybrids made by the interaction of people, things and concepts.</em></p>
+</section>
+<section >
+<h1><em>Summary</em></h1>
+<p><strong>Fundamental Software Engineering principles</strong></p>
+<ul>
+<li><em>History and critical analysis of software development tools and practices</em></li>
+<li>
+<em>Interaction between cultures:<br />
+managerial, mathematical, engineering</em>
+</li>
+<li><em>"Parliament of Things" made by interaction</em></li>
+</ul>
+<br /><br />
+<p><strong>Tomas Petricek</strong>, University of Kent and fsharpWorks<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<p><strong>Reading list</strong></p>
+<div class="sm"><style> .reveal .sm li { font-size:26pt; margin-bottom:10px; } </style>
+<ul>
+<li>Nathan Ensmenger (2012). <a href="https://amzn.to/2YCeTeF">Computer Boys Take Over</a></li>
+<li>Rebecca Slayton (2013). <a href="https://amzn.to/2Ho41uW">Arguments that Count</a></li>
+<li>
+Jane Jacobs (1961). <a href="https://amzn.to/2LR4El7">The Death and Life of<br />
+Great American Cities</a>
+</li>
+<li>Bruno Latour (1993). <a href="https://amzn.to/2Eg5UIb">We Have Never Been Modern</a></li>
+<li>Stewart Brand (1994). <a href="https://amzn.to/2JJQlfv">How Buildings Learn</a></li>
+<li>
+Brian Randell (1968). <a href="http://homepages.cs.ncl.ac.uk/brian.randell/NATO/NATOReports/">The 1968/69 NATO<br />
+Software Engineering Reports</a>
+</li>
+<li>
+Christiane Floyd (1993). <a href="https://link.springer.com/chapter/10.1007/978-94-011-1793-7_11">Outline of a Paradigm<br />
+Change in Software Engineering</a>
+</li>
+<li>Fred Brooks (1986). <a href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">No Silver Bullet</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
