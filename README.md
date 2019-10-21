@@ -63,7 +63,7 @@ Talks and slides
 
 ### Programming Languages Research
 
- - [**Histogram: You have to know the past to understand the present**](https://tpetricek.github.io/Talks/2019/histogram/live/) (October 2019) - LIVE, Athens
+ - [**Histogram: You have to know the past to understand the present**](https://tpetricek.github.io/Talks/2019/histogram/live/) (October 2019) - LIVE, Athens<br />
    See also: [Histogram interactive essay](http://tomasp.net/histogram/) and [motivating F# example](https://github.com/tpetricek/Talks/tree/master/2019/histogram/live/code)
 
  - [**Programming languages as a design problem**](http://tpetricek.github.io/Talks/2019/cities-and-programming/) (October 2019) - Bertinoro
