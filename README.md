@@ -63,8 +63,11 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [**Histogram: You have to know the past to understand the present**](https://tpetricek.github.io/Talks/2019/histogram/live/) (October 2019) - LIVE, Athens
+   See also: [Histogram interactive essay](http://tomasp.net/histogram/) and [motivating F# example](https://github.com/tpetricek/Talks/tree/master/2019/histogram/live/code)
+
  - [**Programming languages as a design problem**](http://tpetricek.github.io/Talks/2019/cities-and-programming/) (October 2019) - Bertinoro
- 
+
  - [**Changing how we think about programming**](http://tpetricek.github.io/Talks/2019/programming-thinking/) (April 2019) - TU Darmstadt<br />
    See also: [interactive coeffects essay](http://tomasp.net/coeffects), [TheGamma playground](http://gamma.turing.ac.uk/playground)
 

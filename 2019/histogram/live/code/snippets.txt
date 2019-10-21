@@ -1,0 +1,21 @@
+// Load and clean rail data
+let rail = Frame.ReadCsv("clean/rail.csv")
+let rk = 
+  rail 
+  |> Frame.filterRows (fun _ row -> 
+    row.GetAs "victim" = "KIL" && row.GetAs "accident" = "TOTAL" && 
+      row.GetAs "geo" <> "EU28" && row.GetAs "pers_inv" = "TOTAL")
+  |> Stats.sum
+  |> Series.dropMissing
+
+// Show column chart
+let aligned = 
+  frame [ "Train" => rk; "Air" => ak ] 
+  |> Frame.mapRowKeys int
+  |> Frame.sortRowsByKey
+  |> Frame.filterRows (fun k _ -> k > 2005)
+
+Chart.Column
+  [ Series.observations aligned?Train
+    Series.observations aligned?Air ]
+|> Chart.WithLabels ["Train"; "Air"]
