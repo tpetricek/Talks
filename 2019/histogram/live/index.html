@@ -1,0 +1,238 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Histogram - You have to know the past to understand the present</title>
+    <meta name="description" content="Histogram - You have to know the past to understand the present">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em>Histogram</em></h1>
+<h2>You have to know the past<br /> to understand the present</h2>
+<br /><br /><br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>University of Kent<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Motivation</em></h1>
+<h2>Programming as interaction</h2>
+</section>
+<section >
+<img src="images/chart.png" style="max-width:620px;float:left;margin:0px 30px 0px 0px" class="nb" />
+<p><strong>DEMO</strong><br />
+<em>Using modern programming environment for data analysis</em></p>
+</section>
+<section >
+<div style="background:black;position:absolute;width:200%;right:51%;height:400%;top:-100%;z-index:-1000;"></div>
+<table style="width:100%"><tr><td style="width:50%;padding:0px" class="white">
+<h3>Programs</h3>
+<p><em><i class="fa fa-file"></i> Just final result</em></p>
+<p><em><i class="fa fa-brain"></i> No creative process</em></p>
+<p><em><i class="fa fa-cocktail"></i> Only recipe</em></p>
+<p><em><i class="fa fa-code"></i> Syntactic entities</em></p>
+</td><td style="width:50%;padding:0px" class="fragment">
+<h3>Programming</h3>
+<p><em><i class="fa fa-magic"></i> Creative activity</em></p>
+<p><em><i class="fa fa-undo"></i> Learn from mistakes</em></p>
+<p><em><i class="fa fa-cog"></i> Includes evaluation</em></p>
+<p><em><i class="fa fa-video"></i> User interactions</em></p>
+</td></tr></table>
+</section>
+<section >
+<img src="images/rules.png" style="max-width:470px;float:left;margin:20px 30px 0px 0px" />
+<p><strong>Medium is the message</strong></p>
+<div class="fragment">
+<p><em>Formalism is great for talking about programs.</em></p>
+<p><em>Rules also fit in papers!</em></p>
+</div><div class="fragment">
+<p>How to convey ideas<br />
+on user interaction?</p>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Histogram</em></h1>
+<h2>Programming experiment</h2>
+</section>
+<section >
+<h1><em>Design principles</em></h1>
+<h2>Live programming environment</h2>
+<p><em><i class="fa fa-list-alt"></i></em> Represent programs as lists of interactions</p>
+<p><em><i class="fa fa-caret-square-down"></i></em> Program by choosing from a list of options</p>
+<p><em><i class="fa fa-th"></i></em> Move away from concrete syntax</p>
+<p><em><i class="fa fa-chart-bar"></i></em> Explore the idea using data science use case</p>
+</section>
+<section >
+<img src="images/histogram.png" style="max-width:620px;float:left;margin:0px 30px 0px 0px" class="nb"/>
+<p><strong>DEMO</strong><br />
+<em>Analysing aviation accidents with Histogram</em></p>
+</section>
+<section >
+<h1><em>Interactions</em></h1>
+<img src="images/interactions.png" style="float:right;max-width:450px;margin-top:20px;margin-left:50px" />
+<p><strong>Standard coding</strong></p>
+<ul>
+<li><em>Access member</em></li>
+<li><em>Invoke operation</em></li>
+<li><em>Define a value</em></li>
+</ul>
+<p><strong>Programming process</strong></p>
+<ul>
+<li><em>Evaluate component</em></li>
+<li><em>Refactor as function</em></li>
+</ul>
+</section>
+<section >
+<h1><em>Implications</em></h1>
+<h2>Why is Histogram interesting</h2>
+<p><em><i class="fa fa-list-alt"></i></em> Type checking lists of interactions</p>
+<p><em><i class="fa fa-check-square"></i></em> Evaluation can affect types</p>
+<p><em><i class="fa fa-mouse-pointer"></i></em> Bind interactions to user interface</p>
+<p><em><i class="fa fa-table"></i></em> Multiple views for the same program</p>
+</section>
+<section >
+<img src="images/spreadsheet.png" style="max-width:620px;float:left;margin:0px 30px 0px 0px" class="nb"/>
+<p><strong>DEMO</strong><br />
+<em>Representing code as spreadsheets and direct manipulation</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Presentation</em></h1>
+<h2>Interactive essays</h2>
+</section>
+<section >
+<h1><em>Evaluation</em></h1>
+<h2>How to talk about system design</h2>
+<p><em>❶</em> No established way of design evaluation</p>
+<p><em>❷</em> Often seen as early work presentation</p>
+<p><em>❸</em> Makes us shift focus to other questions</p>
+<p><em>❹</em> "Evaluating programming systems design"</p>
+</section>
+<section >
+<h1><em>Evaluating interactive essays</em></h1>
+<img src="images/hacking.jpg" style="float:right;max-width:220px;margin-top:20px;margin-left:50px" />
+<p><strong>Hacking and entity realism</strong></p>
+<ul>
+<li>Are electrons real or models?</li>
+<li>If you can spray them, they're real</li>
+<li>Effect is theory independent</li>
+</ul>
+<div class="fragment">
+<p><strong>Programming system design</strong></p>
+<ul>
+<li>What is theory independent?</li>
+<li>How to convey implications?</li>
+<li>Simplify, but let users explore</li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Summary</em></h1>
+<h2>Investigating programming</h2>
+</section>
+<section >
+<h1><em>Histogram</em></h1>
+<h2>A point in programming system design space</h2>
+<p><em><i class="fa fa-keyboard"></i></em> We should study programming not programs</p>
+<p><em><i class="fa fa-list"></i></em> Represent programs as lists of interactions</p>
+<p><em><i class="fa fa-caret-square-down"></i></em> Program by choosing not creating</p>
+<p><em><i class="fa fa-microscope"></i></em> Allows interesting new experiences</p>
+<br /><br />
+<p><strong>Tomas Petricek</strong>, University of Kent<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
