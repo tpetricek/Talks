@@ -22,7 +22,13 @@ Talks and slides
 
 ### Data journalism and data science
 
+ - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2019/wrattler/) (November 2019) - ATI, London<br />
+   See also: [wrattler.org](http://wrattler.org) and [wrattler on github](http://github.com/wrattler).
+
  - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2018/wrattler/) (July 2018) - TaPP London
+
+ - [**The Gamma: Making data relevant in an age of fake news**](http://tpetricek.github.io/Talks/2020/dot-driven/) (January 2020) - University of Kent<br />
+   See also: [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk).
 
  - [**The Gamma: Towards open and reproducible data-driven storytelling**](http://tpetricek.github.io/Talks/2018/thegamma/cogx/) (June 2018) - CogX London<br />
   See also: [thegamma.net](https://www.thegamma.net) and [The Alan Turing Institute demos](http://gamma.turing.ac.uk/)
@@ -63,6 +69,9 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [**The Gamma & Histogram: Towards dot-driven data exploration**](http://tpetricek.github.io/Talks/2019/dot-driven-data-exploration/) (November 2020) - IFIP 2.16, Nice<br />
+ 	 See also: [Histogram interactive essay](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
+
  - [**Histogram: You have to know the past to understand the present**](https://tpetricek.github.io/Talks/2019/histogram/live/) (October 2019) - LIVE, Athens<br />
    See also: [Histogram interactive essay](http://tomasp.net/histogram/) and [motivating F# example](https://github.com/tpetricek/Talks/tree/master/2019/histogram/live/code)
 
@@ -102,8 +111,7 @@ Talks and slides
    Earlier version: [Monads are not what they seem](http://tpetricek.github.io/Talks/2017/monads-are-not-what-they-seem/paris/), February 2017 (CNRS Paris)
 
  - **Salon des Refusés**: [Welcome to Salon des Refusés](http://tpetricek.github.io/Talks/2018/salon-des-refuses/welcome/index.html), Nice 2018<br />
-   [Critique of An anatomy of interaction: Co-occurrences and
-   entanglements](http://tpetricek.github.io/Talks/2018/salon-des-refuses/interaction/index.html)
+   [Critique of An anatomy of interaction: Co-occurrences and entanglements](http://tpetricek.github.io/Talks/2018/salon-des-refuses/interaction/index.html)
 
  - [**The inner life of programming concepts**](http://tpetricek.github.io/Talks/2018/programming-entities/index.html#/) (February 2018) - PROGRAMme meeting, Lille<br />
    See also: [HaPoC 2017 (Brno) version](http://tpetricek.github.io/Talks/2017/programming-entities/index.html#/)<br />
@@ -167,6 +175,9 @@ Talks and slides
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
 ### F# and Functional Programming
+
+- [**Designing composable functional libraries**](http://tpetricek.github.io/Talks/2020/composable-libraries/) (March 2020) - LambdaDays, Krakow<br />
+  See also: [source code](https://github.com/tpetricek/Talks/tree/master/2020/composable-libraries/code) and [thegamma.net demos](http://gamma.turing.ac.uk).
 
  - [**Functional-first programming with F#**](http://tpetricek.github.io/Talks/2019/functionalist-pl-design/) (March 2019) - NDC Porto<br />
    See also: [source code](https://github.com/tpetricek/Talks/tree/master/2019/functionalist-pl-design/code),
