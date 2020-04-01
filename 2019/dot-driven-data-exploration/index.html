@@ -1,0 +1,335 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The Gamma - Towards dot-driven data exploration</title>
+    <meta name="description" content="The Gamma - Towards dot-driven data exploration">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em>The Gamma <span style="padding:10px">&amp;</span> Histogram</em></h1>
+<h2>Towards dot-driven data exploration</h2>
+<br /><br /><br /><br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>University of Kent<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Motivation</em></h1>
+<h2>Data journalism practice</h2>
+</section>
+<section >
+<img src="images/nyt.png" style="max-width:620px;float:left;margin:0px 30px 0px 0px" class="nb" />
+<p><strong>Motivation</strong></p>
+<p><em>Open data analyses published by journalists</em></p>
+</section>
+<section >
+<div style="background:black;position:absolute;width:200%;right:51%;height:400%;top:-100%;z-index:-1000;"></div>
+<table style="width:100%"><tr><td style="width:50%;padding:0px" class="white">
+<h3>Spreadsheets</h3>
+<p><em><i class="fa fa-birthday-cake"></i> Easy to use</em></p>
+<p><em><i class="fa fa-table"></i> Simple problems</em></p>
+<p><em><i class="fa fa-redo-alt"></i> Not reproducible</em></p>
+</td><td style="width:50%;padding:0px" class="fragment">
+<h3>Programming</h3>
+<p><em><i class="fa fa-university"></i> Expert skills</em></p>
+<p><em><i class="fa fa-globe"></i> Internet-scale</em></p>
+<p><em><i class="fa fa-code"></i> Reproducible</em></p>
+</td></tr></table>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Design principles</em></h1>
+<h2>Dot-driven development by example</h2>
+</section>
+<section >
+<h1><em>Design principles</em></h1>
+<h2>Dot-driven data exploration</h2>
+<p><em><i class="fa fa-gavel"></i></em> Work with concrete, not abstract</p>
+<p><em><i class="fa fa-code"></i></em> Record interactions to enable learning</p>
+<p><em><i class="fa fa-cubes"></i></em> Make simple things easy</p>
+<p><em><i class="fa fa-list"></i></em> Choosing over constructing</p>
+</section>
+<section >
+<img src="images/co2.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p><strong>DEMO</strong><br />
+<em>Comparing CO2 emissions of China and US</em></p>
+</section>
+<section >
+<img src="images/wb1.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p>Ways of slicing data cubes</p>
+</section>
+<section >
+<img src="images/wb2.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p>Ways of slicing data cubes</p>
+<p><em>Select a year</em></p>
+<p><em>Plane with indicators for countries</em></p>
+</section>
+<section >
+<img src="images/wb3.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p>Ways of slicing data cubes</p>
+<p><em>Select a year</em></p>
+<p><em>Select indicator</em></p>
+<p><em>Line with value for each country</em></p>
+</section>
+<section >
+<img src="images/wb4.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p>Ways of slicing data cubes</p>
+<p><em>Select a year</em></p>
+<p><em>Select indicator</em></p>
+<p><em>Select country</em></p>
+<p><em>Data point</em></p>
+</section>
+<section >
+<img src="images/rio.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p><strong>DEMO</strong><br />
+<em>Aggregating table of Olympic medal winners</em></p>
+</section>
+<section >
+<img src="images/sql.png" style="max-width:900px;margin:0px 0px 20px 20px" />
+<p>Wrapper over an SQL-like query language</p>
+<p><em>Offer meaningful options in a given context</em><br />
+<em>Joins are an interesting open problem</em></p>
+</section>
+<section >
+<img src="images/drwho.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p><strong>DEMO</strong><br />
+<em>Querying the<br />
+Dr Who graph database</em></p>
+</section>
+<section >
+<img src="images/neo4j.png" style="max-width:500px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p>Querying graph databases</p>
+<div style="width:400px;overflow:hidden;position:relative;left:-40px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="text">START a=node(1)
+MATCH
+  (a)-[:ALLY_OF]-&gt;(b)
+     -[:APPEARED_IN]-&gt;(c)
+RETURN b, c
+</code></pre></td></tr></table>
+</div>
+</section>
+<section >
+<h1><em>Dot-driven development</em></h1>
+<h2>Experimenting with a design principle</h2>
+<p><em><i class="fa fa-list"></i></em> All is done by choosing from a list</p>
+<p><em><i class="fa fa-birthday-cake"></i></em> Does this make programming easier?</p>
+<p><em><i class="fa fa-code"></i></em> Very different query languages underneath</p>
+<p><em><i class="fa fa-brain"></i></em> Does knowledge of one transfer to another?</p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Next steps</em></h1>
+<h2>How to get closer to spreadsheets</h2>
+</section>
+<section >
+<h1><em>Next steps</em></h1>
+<h2>What can we learn from spreadsheets</h2>
+<p><em><i class="fa fa-user-ninja"></i></em> Interaction with the system matters</p>
+<p><em><i class="fa fa-table"></i></em> Programming as interacting with data</p>
+<p><em><i class="fa fa-hand-point-right"></i></em> Direct manipulation for program construction</p>
+<p><em><i class="fa fa-file"></i></em> How to publish ideas on interaction?</p>
+</section>
+<section >
+<img src="images/histogram.png" style="max-width:600px;float:left;margin:0px 50px 0px 0px" class="nb" />
+<p><strong>DEMO</strong><br />
+<em>Histogram<br />
+(Live 2019)</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Dirty tricks</em></h1>
+<h2>And crimes committed along the way</h2>
+</section>
+<section >
+<h1><em>Dirty tricks</em></h1>
+<h2>And crimes committed along the way</h2>
+<p><em><i class="fa fa-cog"></i></em> Type providers to hide fancy types</p>
+<p><em><i class="fa fa-cog"></i></em> Reinventing scope with 'then'</p>
+<p><em><i class="fa fa-cog"></i></em> I also need some lambdas sometimes!</p>
+<p><em><i class="fa fa-cog"></i></em> Generating builder patterns</p>
+</section>
+<section >
+<img src="images/then.png" style="max-width:600px;float:left;margin:60px 30px 100px 0px" />
+<p><strong>Linearization</strong></p>
+<p>Write everything as a single linear chain</p>
+<p><em>Except that 'then' is reinventing parenthesis</em></p>
+<p><em>But it is second class construct...</em></p>
+</section>
+<section >
+<h1><em>Type providers</em></h1>
+<h2>Encoding complex logic via member access</h2>
+<p><em><i class="fa fa-cog"></i></em> Type providers for member generation</p>
+<p><em><i class="fa fa-history"></i></em> Laziness for scaling to large hierarchies</p>
+<p><em><i class="fa fa-rocket"></i></em> Fancy types for the masses!</p>
+</section>
+<section >
+<h2><em>Row types to track schema</em></h2>
+<div style="padding:0px 0px 30px 0px;position:relative;top:-50px;left:-120px;transform:scale(0.6)">
+<p><span class="math">\[\definecolor{cc}{RGB}{204,82,34}
+\definecolor{mc}{RGB}{0,0,153}
+\frac
+  {\Gamma \vdash e : {\color{cc}[f_1:\tau_1, \ldots, f_n:\tau_n]}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{cc} [f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n]}}\]</span></p>
+</div><div class="fragment" style="position:relative;top:-40px;">
+<h2><em>Embed row types in nominal types</em></h2>
+<div style="top:-100px;padding:0px 0px 30px 0px;position:relative;left:-120px;transform:scale(0.6)">
+<p><span class="math">\[\frac
+  {\Gamma \vdash e : {\color{mc} C_1}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{mc} C_2}}
+\quad{\small \text{where}}\]</span></p>
+<p><span class="math">\[\begin{array}{l}
+\\[-0.5em]
+{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}\\
+{fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}
+\end{array}\]</span></p>
+</div></div>
+</section>
+<section >
+<h1><em>Type providers</em></h1>
+<h2>Fancy types for the masses!</h2>
+<p><em><i class="fa fa-table"></i></em> Row types and phantom types</p>
+<p><em><i class="fa fa-phone"></i></em> Session types for communication</p>
+<p><em><i class="fa fa-question"></i></em> Add your own fancy type here!</p>
+</section>
+<section >
+<h1><em>Structure of a type provider</em></h1>
+<p><em>Context <span class="math">\(L\)</span> maps names to<br />
+definitions and nested contexts</em></p>
+<div style="padding:10px 0px 50px 60px">
+<p><span class="math">\(L(C) = {\color{mc}\text{type}}~C(x:\tau) = \overline{m}, L'\)</span></p>
+</div><div class="fragment">
+<p><em>Pivot provider takes schema and<br />
+provides a class with context</em></p>
+<div style="padding:10px 0px 50px 60px">
+<p><span class="math">\(\text{pivot}(F) = C, L\)</span></p>
+</div></div>
+</section>
+<section >
+<h1><em>Pivot type provider</em></h1>
+<h2>Generate classes that drop individual columns</h2>
+<div style="padding:0px 0px 0px 0px">
+<img src="images/eq1.png" style="width:650px;margin-left:50px"/>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Summary</em></h1>
+<h2>Investigating programming</h2>
+</section>
+<section >
+<h1>Conclusions</h1>
+<h2>Towards dot-driven data exploration</h2>
+<div style="margin-top:-30px;padding:0px 0px 20px 40px">
+<ul>
+<li><em>Exploring an interesting design principle</em></li>
+<li><em>Using a wide range of case studies</em></li>
+<li><em>Can prove and evaluate a few things</em></li>
+<li><em>Am I making falsifiable claims?</em></li>
+</ul>
+</div>
+<p>TheGamma: <em><a href="http://thegamma.net">thegamma.net</a></em><br />
+Demos: <em><a href="http://turing.thegamma.net">turing.thegamma.net</a></em><br />
+Histogram: <em><a href="http://tomasp.net/histogram">tomasp.net/histogram</a></em></p>
+<p><strong>Tomas Petricek</strong>, <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>

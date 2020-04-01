@@ -1,0 +1,224 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Data exploration through dot-driven development</title>
+    <meta name="description" content="">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1>Wrattler: <em>Interactive, smart<br /> and polyglot notebooks</em></h1>
+<h4 style="margin-bottom:0px;margin-top:300px">Tomas Petricek, <em>The Alan Turing Institute</em></h4>
+<p><em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+</section>
+<section >
+<section >
+<h3>What makes data science hard?</h3>
+<br />
+<p><em><i class="fa fa-hand-spock"></i></em> Big data is big<br />
+<span style="margin-right:60px"></span> <em>Hard-to-find special cases</em></p>
+<p><em><i class="fa fa-calendar-alt"></i></em> The Double Anna Karenina principle<br />
+<span style="margin-right:60px"></span> <em>Every data set is different</em></p>
+<p><em><i class="fa fa-sync-alt"></i></em> Feedback loops everywhere<br />
+<span style="margin-right:60px"></span> <em>Can't say what works until we've done it</em></p>
+<p><em><i class="fa fa-align-justify"></i></em> Death by a thousand cuts<br />
+<span style="margin-right:60px"></span> <em>Many tasks are repetitive</em></p>
+</section>
+<section >
+<h3>Data science</h3>
+<p><em>What tools do we need?</em></p>
+<br />
+<p><em><i class="fa fa-comment"></i></em> Interactive – <em>give quick feedback</em></p>
+<p><em><i class="fa fa-retweet"></i></em> Reproducible – <em>be able to go back</em></p>
+<p><em><i class="fa fa-sign-language"></i></em> Polyglot – <em>mix tools that work</em></p>
+<p><em><i class="fa fa-flask"></i></em> Smart – <em>get help from the AI</em></p>
+<p><em><i class="fa fa-user"></i></em> Explainable – <em>no black boxes</em></p>
+</section>
+<section >
+<h4>DEMO: Wrattler in BinderHub</h4>
+<img src="images/org.png" style="height:600px" />
+</section>
+<section >
+<h2>Traditional notebook architecture</h2>
+<img src="images/jupyter.png" style="width:70%;margin-bottom:60px"/>
+<p><em><span class="circ"><span>1</span></span> Limited reproducibility</em><br />
+<em><span class="circ"><span>2</span></span> No rollback of state</em><br />
+<em><span class="circ"><span>3</span></span> Limited interaction model</em><br />
+<em><span class="circ"><span>4</span></span> One language per kernel</em></p>
+</section>
+<section >
+<h2>Wrattler system architecture</h2>
+<img src="images/wrattler.png" style="width:70%"/>
+</section>
+<section >
+<h2>Wrattler system architecture</h2>
+<p><em><span class="circ"><span>1</span></span> Versioning and provenance</em><br />
+<em><span class="circ"><span>2</span></span> Interactive development</em><br />
+<em><span class="circ"><span>3</span></span> Platform for AI assistants</em><br />
+<em><span class="circ"><span>4</span></span> Polyglot programming</em></p>
+</section>
+</section>
+<section >
+<section >
+<h3>Recent developments</h3>
+<p><em>New in Wrattler over the last 6 months</em></p>
+<ul>
+<li><em>Integration with community-driven JupyterLab</em></li>
+<li><em>Deployment via BinderHub, both locally and in the cloud</em></li>
+<li><em>Integration with AI assistants for data wrangling</em></li>
+<li><em>Easy access to dependency graph from notebooks</em></li>
+<li><em>Performance and UX improvements</em></li>
+<li><em>Experimental languages for dataviz</em></li>
+<li><em>Work-in-progress homepage and documentation</em></li>
+</ul>
+</section>
+<section >
+<h3>DEMO: JupyterLab &amp; Binder deployment</h3>
+<p><em>Integrating with standard community-driven environment</em></p>
+<img src="images/lab.png" style="height:500px" />
+</section>
+<section >
+<h3>JupyterLab and Binder deployment</h3>
+<ul>
+<li><em>Joining the largest data science community</em></li>
+<li><em>Try Wrattler as part of your Jupyter project</em></li>
+<li><em>Support both "try now" and local deployment</em></li>
+</ul>
+</section>
+<section >
+<h3>DEMO: Analysis of scenic places</h3>
+<p><em>Hosting and showcasing Turing research</em></p>
+<img src="images/scenic.png" style="height:500px" />
+</section>
+<section >
+<h3>DEMO: AI assistants</h3>
+<p><em>Simplifying data wrangling with AI assistants</em></p>
+<img src="images/aia.png" style="height:500px" />
+</section>
+<section >
+<h3>AI assistants</h3>
+<ul>
+<li><em>Semi-automatic data wrangling tools</em></li>
+<li><em>Developed as part of the AIDA project</em></li>
+<li><em>Simple framework for writing new assistants</em></li>
+</ul>
+</section>
+<section >
+<h3>DEMO: Transparent data visualizations</h3>
+<ul>
+<li><em>Creating charts with linking &amp; brushing</em></li>
+<li><em>From provenance to explaining computations</em></li>
+<li><em>Wrattler is great for hosting PL research!</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section >
+<h1>Summary</h1>
+<p><em>Platform for Turing data science research</em></p>
+</section>
+<section >
+<h3>Wrattler</h3>
+<p><em>Platform for Turing data science research</em></p>
+<br />
+<p><em><i class="fa fa-code"></i> New languages and tools for data science</em></p>
+<p><em><i class="fa fa-image"></i> Scenic places and other case studies</em></p>
+<p><em><i class="fa fa-magic"></i> AI assistants for data science</em></p>
+</section>
+<section >
+<h2>Where next &amp; questions and answers</h2>
+<h4>Data store – <em>Best data and annotation formats?</em></h4>
+<h4>Integration – <em>Languages? Jupyter integration?</em></h4>
+<h4>AI assistants – <em>What kinds of assistants?</em></h4>
+<br />
+<br />
+<p><em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+
