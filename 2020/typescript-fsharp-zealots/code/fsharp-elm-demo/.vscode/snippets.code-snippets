@@ -1,0 +1,45 @@
+{
+	"emish-1-types": {
+		"scope": "fsharp",
+		"prefix": "elmish-1-types",
+		"body": [
+			"type Model = ",
+			"  { Count : int option }",
+			"",
+			"type Event =",
+			"  | Reset ",
+			"  | Update of int"
+		],
+		"description": "emish-1-types"
+	},
+	"emish-2-render": {
+		"scope": "fsharp",
+		"prefix": "elmish-2-render",
+		"body": [
+			"  match state.Count with",
+			"  | None ->",
+			"      h?div [] [",
+			"        yield h?h1 [] [ text \"Welcome to Counter!\" ]",
+			"        yield h?button [ \"click\" =!> fun _ _ -> trigger Reset ] [ text \"Start\" ]",
+			"      ]",
+			"  | Some n ->",
+			"      h?div [] [",
+			"        yield h?h1 [] [ text (\"Current count: \" + string n) ]",
+			"        yield h?button [ \"click\" =!> fun _ _ -> trigger (Update 1)] [ text\"+1\" ]",
+			"        yield h?button [ \"click\" =!> fun _ _ -> trigger (Update -1)] [ text\"-1\" ]",
+			"      ]"
+		],
+		"description": "emish-2-render"
+	},
+	"emish-3-update": {
+		"scope": "fsharp",
+		"prefix": "elmish-3-update",
+		"body": [
+			"  match msg, state with ",
+			"  | Reset, _ -> { Count = Some 0 }",
+			"  | Update n, { Count = Some old } -> { Count = Some(old + n) }",
+			"  | Update _, _ -> state"
+				],
+		"description": "emish-3-update"
+	}
+}

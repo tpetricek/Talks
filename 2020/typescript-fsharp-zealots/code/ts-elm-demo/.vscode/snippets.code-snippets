@@ -1,0 +1,49 @@
+{
+	"elmish-1-model": {
+		"scope": "javascript,typescript",
+		"prefix": "elmish-1-model",
+		"body": [
+			"interface Model {",
+"  count : number ",
+"}",
+"",
+"interface ResetEvent { kind:'reset' }",
+"interface UpdateEvent { kind:'update', by:number }",
+"type Event = ResetEvent | UpdateEvent"
+		],
+		"description": "elmish-1-model"
+	},
+	"elmish-2-render": {
+		"scope": "javascript,typescript",
+		"prefix": "elmish-2-render",
+		"body": [
+			"  if (state.count != null) {",
+"    return h('div', {}, [",
+"      h('h1', {}, [ 'Current count: ', state.count.toString() ]),",
+"      h('button', { key:'inc', onclick:()=>trigger({kind:'update', by:1}) }, [ '+1' ]),",
+"      h('button', { key:'dec', onclick:()=>trigger({kind:'update', by:-1}) }, [ '-1' ])      ",
+"    ])",
+"  } else { ",
+"    return h('div', {}, [",
+"      h('h1', {}, [ 'Welcome to Counter!' ]),",
+"      h('button', { onclick:()=>trigger({kind:'reset'}) }, [ 'Start' ])",
+"    ])",
+"  }"
+		],
+		"description": "elmish-2-render"
+	},
+	"elmish-3-update": {
+		"scope": "javascript,typescript",
+		"prefix": "elmish-3-update",
+		"body": [
+			"  switch(evt.kind) {",
+"    case 'reset': ",
+"      return { count: 0 };",
+"    case 'update': ",
+"      if (state.count != null) return { count: state.count + evt.by };",
+"      else return state;",
+"  }"
+		],
+		"description": "elmish-3-update"
+	}
+}

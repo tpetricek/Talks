@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationDir": "exports",
+    // "target": "es6",
+    "lib": [ "es2015.promise", "es2015", "es5", "dom", "es2015.symbol", "es2015.symbol.wellknown" ]
+  }
+}

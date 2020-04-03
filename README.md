@@ -176,8 +176,11 @@ Talks and slides
 
 ### F# and Functional Programming
 
-- [**Designing composable functional libraries**](http://tpetricek.github.io/Talks/2020/composable-libraries/) (March 2020) - LambdaDays, Krakow<br />
-  See also: [source code](https://github.com/tpetricek/Talks/tree/master/2020/composable-libraries/code) and [thegamma.net demos](http://gamma.turing.ac.uk).
+ - [**TypeScript for F# Zealots**](http://tpetricek.github.io/Talks/2020/typescript-fsharp-zealots/) (April 2020) - NDC Copenhagen (virtual)<br />
+   See also: [wrattler.org](http://wrattler.org) and [source code](https://github.com/tpetricek/Talks/tree/master/2020/typescript-fsharp-zealots/code)
+
+ - [**Designing composable functional libraries**](http://tpetricek.github.io/Talks/2020/composable-libraries/) (March 2020) - LambdaDays, Krakow<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2020/composable-libraries/code) and [thegamma.net demos](http://gamma.turing.ac.uk).
 
  - [**Functional-first programming with F#**](http://tpetricek.github.io/Talks/2019/functionalist-pl-design/) (March 2019) - NDC Porto<br />
    See also: [source code](https://github.com/tpetricek/Talks/tree/master/2019/functionalist-pl-design/code),
