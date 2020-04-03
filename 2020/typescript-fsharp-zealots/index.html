@@ -1,0 +1,735 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TypeScript for F# Zealots</title>
+    <meta name="description" content="TypeScript for F# Zealots">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">type Item =<br />&#160;&#160;{Title: string;<br />&#160;&#160;&#160;DueDate: DateTime;}<br /><br />Full name: index.Item</div>
+<div class="tip" id="fs2">Item.Title: string</div>
+<div class="tip" id="fs3">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs4">Item.DueDate: DateTime</div>
+<div class="tip" id="fs5">Multiple items<br />type DateTime =<br />&#160;&#160;struct<br />&#160;&#160;&#160;&#160;new : ticks:int64 -&gt; DateTime + 10 overloads<br />&#160;&#160;&#160;&#160;member Add : value:TimeSpan -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddDays : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddHours : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMilliseconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMinutes : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddMonths : months:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddSeconds : value:float -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddTicks : value:int64 -&gt; DateTime<br />&#160;&#160;&#160;&#160;member AddYears : value:int -&gt; DateTime<br />&#160;&#160;&#160;&#160;...<br />&#160;&#160;end<br /><br />Full name: System.DateTime<br /><br />--------------------<br />DateTime()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(ticks: int64, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: Globalization.Calendar) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, millisecond: int, kind: DateTimeKind) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
+<div class="tip" id="fs6">type Model = Item list<br /><br />Full name: index.Model</div>
+<div class="tip" id="fs7">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
+<div class="tip" id="fs8">type Message =<br />&#160;&#160;| Add of Item<br />&#160;&#160;| Reset<br /><br />Full name: index.Message</div>
+<div class="tip" id="fs9">union case Message.Add: Item -&gt; Message</div>
+<div class="tip" id="fs10">union case Message.Reset: Message</div>
+<div class="tip" id="fs11">type unit = Unit<br /><br />Full name: Microsoft.FSharp.Core.unit</div>
+<div class="tip" id="fs12">Multiple items<br />module Event<br /><br />from Microsoft.FSharp.Control<br /><br />--------------------<br />type Event&lt;&#39;T&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;T&gt;<br />&#160;&#160;member Trigger : arg:&#39;T -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_&gt;<br /><br />--------------------<br />type Event&lt;&#39;Delegate,&#39;Args (requires delegate and &#39;Delegate :&gt; Delegate)&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;<br />&#160;&#160;member Trigger : sender:obj * args:&#39;Args -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;Delegate,&#39;Args&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_,_&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;T&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;</div>
+<div class="tip" id="fs13">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs14">val id : x:&#39;T -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.Operators.id</div>
+<div class="tip" id="fs15">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em><strong>TypeScript</strong> <br/> for F# zealots</em></h1>
+<br /><br /><br /><br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>University of Kent and fsharpWorks<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<img src="images/cat.gif" style="float:right;width:300px" class="nb" />
+<h1><em><strong>TypeScript</strong> <br/> for F# zealots</em></h1>
+<br /><br /><br /><br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>University of Kent and fsharpWorks<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Wrattler</em></h1>
+<h2>My experience with TypeScript</h2>
+</section>
+<section >
+<img src="images/wrattler.png" class="nb" style="max-width:560px;float:left;margin:30px 60px 0px 0px" />
+<p><strong>Wrattler</strong></p>
+<p>New notebook system for data science</p>
+<p><em>Interactive, smart dependency tracking and caching</em></p>
+<p>Client-side in TyepScript!</p>
+</section>
+<section >
+<h1><em>What Wrattler does</em></h1>
+<h2>Next generation of data science notebooks</h2>
+<p><em><i class="fa fa-comments"></i></em> Polyglot <em>- mix multuple languages</em></p>
+<p><em><i class="fa fa-sync"></i></em> Reproducible <em>- dependency tracking</em></p>
+<p><em><i class="fa fa-hand-pointer"></i></em> Interactive <em>- do more in the browser</em></p>
+<p><em><i class="fa fa-brain"></i></em> Smart <em>- support for AI assistants</em></p>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Wrattler in Action</h2>
+</section>
+<section >
+<h1><em>Building Wrattler</em></h1>
+<img src="images/ts.png" style="float:right;width:350px" class="nb"/>
+<p><strong>Why we choose TypeScript</strong></p>
+<ul>
+<li><em>I'm an F# person!</em></li>
+<li><em>The team knew TypeScript</em></li>
+<li><em>Jupyter uses TypeScript</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Reflections on TypeScript</strong></p>
+<ul>
+<li><em>The Good: Decent for functional programming!</em></li>
+<li><em>The Bad: Difficult trade-offs in type system</em></li>
+<li><em>The Ugly: You'd think it has simple syntax</em></li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>The Good</em></h1>
+<h2>Functional programming with TypeScript</h2>
+</section>
+<section >
+<h1><em>Elm architecture</em></h1>
+<img src="images/elm.png" style="float:right;width:200px" class="nb"/>
+<p><strong>Wrattler code structure</strong></p>
+<ul>
+<li><em>Immutable</em> Model <em>and</em> Event</li>
+<li><em>Pure</em> update <em>and</em> render</li>
+<li><em>Almost no dependencies</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Why not just use React</strong></p>
+<ul>
+<li><em>Not very fancy user interface</em></li>
+<li><em>Avoid fast-paced JavaScript world</em></li>
+<li><em>Control over how things work</em></li>
+<li><em>Core React is pretty simple!</em></li>
+</ul>
+</div>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Elm architecture in F#</h2>
+</section>
+<section >
+<h1><em>Domain modelling</em></h1>
+<p><strong>Modelling TODO list with F# types</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="t">Item</span> <span class="o">=</span> { <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Title</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="t">string</span>; <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">DueDate</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">DateTime</span> }
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="t">Model</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="t">list</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs1', 8)" onmouseover="showTip(event, 'fs1', 8)" class="t">Item</span><span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="t">Message</span> <span class="o">=</span>
+  | <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="p">Add</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs1', 11)" onmouseover="showTip(event, 'fs1', 11)" class="t">Item</span>
+  | <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="p">Reset</span>
+</code></pre></td>
+</tr>
+</table>
+<p><strong>Elm-architecture operations</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">val</span> <span class="i">update</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="i">Model</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs8', 14)" onmouseover="showTip(event, 'fs8', 14)" class="i">Message</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="i">Model</span>
+<span class="k">val</span> <span class="i">render</span> <span class="o">:</span> (<span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="i">Message</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="i">unit</span>) <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 18)" onmouseover="showTip(event, 'fs6', 18)" class="i">Model</span> <span class="k">-&gt;</span> <span class="i">Html</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h1><em>Functional TypeScript</em></h1>
+<img src="images/ts.png" style="float:right;width:350px" class="nb"/>
+<p><strong>Strict mode is great!</strong></p>
+<ul>
+<li>strictNullChecks <em>to avoid</em> null</li>
+<li>noImplicitAny <em>to avoid</em> any</li>
+<li>strict <em>for more good things</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Functional data types</strong></p>
+<ul>
+<li><em>Interfaces for simple record types</em></li>
+<li><em>Unions with singleton types for DUs</em></li>
+<li><em>Discipline to avoid mutation :-)</em></li>
+</ul>
+</div>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Elm architecture in TypeScript</h2>
+</section>
+<section >
+<h1><em>Elmish in TypeScript</em></h1>
+<p><strong>Model and discriminated union for events</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">interface</span> <span onmouseout="hideTip(event, 'fs6', 19)" onmouseover="showTip(event, 'fs6', 19)" class="i">Model</span> {
+  <span class="i">count</span> <span class="o">:</span> <span class="i">number</span> | <span class="k">null</span>
+}
+<span class="k">interface</span> <span class="i">ResetEvent</span> { <span class="i">kind</span><span class="o">:</span><span class="s">&quot;reset&quot;</span> }
+<span class="k">interface</span> <span class="i">UpdateEvent</span> { <span class="i">kind</span><span class="o">:</span><span class="s">&quot;update&quot;</span>, <span class="i">by</span><span class="o">:</span><span class="i">number</span> }
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="i">Event</span> <span class="o">=</span> <span class="i">ResetEvent</span> | <span class="i">UpdateEvent</span>
+</code></pre></td>
+</tr>
+</table>
+<p><strong>Elm-architecture operations</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">render</span> <span class="o">:</span> (<span class="i">trigger</span><span class="o">:</span>((<span class="i">event</span><span class="o">:</span><span class="i">TEvent</span>) <span class="o">=&gt;</span> <span class="k">void</span>), <span class="i">state</span><span class="o">:</span><span class="i">TState</span>) <span class="o">=&gt;</span> <span class="i">VNode</span>
+<span class="i">update</span> <span class="o">:</span> (<span class="i">state</span><span class="o">:</span><span class="i">TState</span>, <span class="i">event</span><span class="o">:</span><span class="i">TEvent</span>) <span class="o">=&gt;</span> <span class="i">TState</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>The Bad</em></h1>
+<h2>Trade-offs in the type system</h2>
+</section>
+<section >
+<img src="images/charts.png" class="nb" style="max-width:560px;float:left;margin:30px 60px 0px 0px" />
+<p><strong>Extensibility</strong></p>
+<p>External language<br />
+<em>Kernel with eval</em></p>
+<p>Language plugin<br />
+<em>Block with custom user interface</em></p>
+<p>AI assistants<br />
+<em>Clever component</em></p>
+</section>
+<section >
+<h1><em>Language plugins</em></h1>
+<p><strong>Custom user interface, evaluation, dependencies</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">interface</span> LanguagePlugin {
+  language : <span class="k">string</span>
+  editor : Editor&lt;EditorState, any&gt;
+
+  parse(code:<span class="k">string</span>) : Block
+  evaluate(context:EvaluationContext, node:Graph.Node)
+    : Promise&lt;EvaluationResult&gt;
+  bind(context:BindingContext, block: Block)
+    : Promise&lt;BindingResult&gt;
+  save(block:Block):<span class="k">string</span>;
+}
+</code></pre></td></tr></table>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Implementing language plugins</h2>
+</section>
+<section >
+<h1><em>Classes vs. Interfaces (1/5)</em></h1>
+<p><strong>When you might want a class</strong></p>
+<ul>
+<li><em>If you want object-oriented style</em></li>
+<li><em>If you want checks using</em> instanceof</li>
+</ul>
+<p><strong>When you do not want a class</strong></p>
+<ul>
+<li><em>If you want somewhat lighter syntax</em></li>
+<li><em>If you want somewhat more flexibility</em></li>
+</ul>
+</section>
+<section >
+<h1><em>Classes vs. Interfaces (2/5)</em></h1>
+<p><strong>Anonymous interface implementations are great!</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">const</span> myLangPlugin : Langs.LanguagePlugin <span class="o">=</span> {
+  language: <span class="s">"merger"</span>,
+  iconClassName: <span class="s">"fa fa-object-group"</span>,
+  editor: mergerEditor,
+  getDefaultCode: (id:number) <span class="o">=</span><span class="o">&gt;</span> <span class="s">""</span>,
+  parse: (code:<span class="k">string</span>) : MergerBlock <span class="o">=</span><span class="o">&gt;</span> {
+    <span class="k">let</span> [outName, inputs] <span class="o">=</span> code.split(<span class="s">'='</span>)
+    <span class="k">return</span> { language: <span class="s">"merger"</span>,
+      output: outName, inputs: inputs.split(<span class="s">','</span>) }
+  }
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1><em>Classes vs. Interfaces (3/5)</em></h1>
+<p><strong>But switching to a class is pain</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">class</span> MyLangPlugin <span class="k">implements</span> Langs.LanguagePlugin {
+  language <span class="o">=</span> <span class="s">"merger"</span>
+  iconClassName <span class="o">=</span> <span class="s">"fa fa-object-group"</span>
+  editor <span class="o">=</span> mergerEditor
+  getDefaultCode <span class="o">=</span> (id:number) <span class="o">=</span><span class="o">&gt;</span> <span class="s">""</span>
+  parse(code:<span class="k">string</span>) : MergerBlock {
+    <span class="k">let</span> [outName, inputs] <span class="o">=</span> code.split(<span class="s">'='</span>)
+    <span class="k">return</span> { language: <span class="s">"merger"</span>,
+      output: outName, inputs: inputs.split(<span class="s">','</span>) }
+  }
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1><em>Classes vs. Interfaces (4/5)</em></h1>
+<p><strong>Writing constructors is so much work!</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">export</span> <span class="k">class</span> JsLanguagePlugin <span class="k">implements</span> LanguagePlugin  {
+  <span class="k">readonly</span> language: <span class="k">string</span>
+  <span class="k">readonly</span> editor: Langs.Editor&lt;JsState, JsEvent&gt;
+  <span class="k">readonly</span> datastoreURI:<span class="k">string</span>
+
+  <span class="k">constructor</span>(datastoreURI:<span class="k">string</span>) {
+    <span class="k">this</span>.language <span class="o">=</span> <span class="s">"javascript"</span>
+    <span class="k">this</span>.editor= javascriptEditor
+    <span class="k">this</span>.datastoreURI <span class="o">=</span> datastoreURI
+  }
+  parse (code:<span class="k">string</span>): JavascriptBlockKind{
+    <span class="k">return</span> <span class="k">new</span> JavascriptBlockKind(code);
+  }
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1><em>Classes vs. Interfaces (5/5)</em></h1>
+<p><strong>Can I get F# implicit class syntax please?</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">JsLanguagePlugin</span>(<span class="i">datastoreURI</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="i">string</span>)
+  <span class="k">let</span> <span class="i">language</span> <span class="o">=</span> <span class="s">&quot;javascript&quot;</span>
+  <span class="k">let</span> <span class="i">editor</span><span class="o">=</span> <span class="i">javascriptEditor</span>
+  <span class="k">let</span> <span class="i">datastoreURI</span> <span class="o">=</span> <span class="i">datastoreURI</span>
+
+  <span class="k">interface</span> <span class="i">LanguagePlugin</span> <span class="k">with</span>
+    <span class="k">member</span> <span class="i">x</span><span class="o">.</span><span class="i">parse</span>(<span class="i">code</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs3', 22)" onmouseover="showTip(event, 'fs3', 22)" class="i">string</span>) <span class="o">=</span>
+      <span class="i">JavascriptBlockKind</span>(<span class="i">code</span>)
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h1><em>Breaking the type system (1/3)</em></h1>
+<p><strong>You cannot fully avoid the any type</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">let</span> response <span class="o">=</span> <span class="k">await</span> axios.get(url, {headers:{Inputs:header}});
+<span class="k">let</span> data <span class="o">=</span> response.data;
+
+<span class="k">return</span> data.map(r <span class="o">=</span><span class="o">&gt;</span> ({
+    name: r.name,
+    path: r.path.split(<span class="s">"/"</span>).filter((p:<span class="k">string</span>) <span class="o">=</span><span class="o">&gt;</span> p <span class="o">!</span><span class="o">=</span> <span class="s">""</span>)
+  }));
+</code></pre></td></tr></table>
+<p><em>F# type providers are nice, but don't always help</em></p>
+<p><em>You can get more checks with</em> noImplicitAny</p>
+</section>
+<section >
+<h1><em>Breaking the type system (2/3)</em></h1>
+<p><strong>It is still JavaScript underneath...</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">interface</span> <span class="i">Variable</span> {
+  <span class="i">name</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs3', 23)" onmouseover="showTip(event, 'fs3', 23)" class="i">string</span>
+}
+<span class="k">type</span> <span class="i">Scope</span> <span class="o">=</span> { [<span class="i">variable</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs3', 24)" onmouseover="showTip(event, 'fs3', 24)" class="i">string</span>]<span class="o">:</span> <span class="i">Variable</span> }
+
+<span class="k">function</span> <span class="i">getVarLength</span>(<span class="i">scope</span><span class="o">:</span><span class="i">Scope</span>, <span class="i">k</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs3', 25)" onmouseover="showTip(event, 'fs3', 25)" class="i">string</span>) <span class="o">:</span> <span class="i">number</span> {
+  <span class="k">return</span> <span class="i">scope</span>[<span class="i">k</span>] <span class="o">!=</span> <span class="i">undefined</span> <span class="o">?</span> <span class="i">scope</span>[<span class="i">k</span>]<span class="o">.</span><span class="i">name</span><span class="o">.</span><span class="i">length</span> <span class="o">:</span> <span class="o">-</span><span class="n">1</span>;
+}
+</code></pre></td>
+</tr>
+</table>
+<p><em>Can</em> getVarLength <em>fail because</em> name <em>is</em> undefined?</p>
+</section>
+<section >
+<h1><em>Breaking the type system (3/3)</em></h1>
+<p><strong>It is still JavaScript underneath...</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">interface</span> <span class="i">Variable</span> {
+  <span class="i">name</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs3', 26)" onmouseover="showTip(event, 'fs3', 26)" class="i">string</span>
+}
+<span class="k">type</span> <span class="i">Scope</span> <span class="o">=</span> { [<span class="i">variable</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs3', 27)" onmouseover="showTip(event, 'fs3', 27)" class="i">string</span>]<span class="o">:</span> <span class="i">Variable</span> }
+
+<span class="k">function</span> <span class="i">getVarLength</span>(<span class="i">scope</span><span class="o">:</span><span class="i">Scope</span>, <span class="i">k</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs3', 28)" onmouseover="showTip(event, 'fs3', 28)" class="i">string</span>) <span class="o">:</span> <span class="i">number</span> {
+  <span class="k">return</span> <span class="i">scope</span>[<span class="i">k</span>] <span class="o">!=</span> <span class="i">undefined</span> <span class="o">?</span> <span class="i">scope</span>[<span class="i">k</span>]<span class="o">.</span><span class="i">name</span><span class="o">.</span><span class="i">length</span> <span class="o">:</span> <span class="o">-</span><span class="n">1</span>;
+}
+
+<span class="k">let</span> <span class="i">evil</span> <span class="o">=</span> <span class="i">getVarLength</span>({}, <span class="s">&quot;toString&quot;</span>) <span class="c">// Boom!</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h1><em>Poor type inference (1/3)</em></h1>
+<p><strong>F# can typically infer types from the first use</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="k">mutable</span> <span class="i">outputs</span> <span class="o">=</span> []
+<span class="k">let</span> <span class="i">addOutput</span> <span class="o">=</span> <span class="k">fun</span> <span class="i">f</span> <span class="k">-&gt;</span>
+  <span class="i">outputs</span> <span class="o">&lt;-</span> <span class="i">f</span><span class="o">::</span><span class="i">outputs</span>
+
+<span class="i">evaluateCode</span> <span class="i">code</span> <span class="i">addOutput</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h1><em>Poor type inference (2/3)</em></h1>
+<p><strong>Type inference in the strict mode is poor</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">var</span> outputs <span class="o">=</span> [];
+<span class="k">var</span> addOutput <span class="o">=</span> <span class="k">function</span>(f) {
+  outputs.push(f)
+}
+evaluateCode(code, addOutput)
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1><em>Poor type inference (3/3)</em></h1>
+<p><strong>Type inference in the strict mode is poor</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">var</span> outputs : ((id:<span class="k">string</span>) <span class="o">=</span><span class="o">&gt;</span> <span class="k">void</span>)[] <span class="o">=</span> [];
+<span class="k">var</span> addOutput <span class="o">=</span> <span class="k">function</span>(f:(id:<span class="k">string</span>) <span class="o">=</span><span class="o">&gt;</span> <span class="k">void</span>) {
+  outputs.push(f)
+}
+evaluateCode(code, addOutput)
+</code></pre></td></tr></table>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>The Ugly</em></h1>
+<h2>Syntax for functional programming</h2>
+</section>
+<section >
+<img src="images/aia.png" class="nb" style="max-width:560px;float:left;margin:30px 60px 0px 0px" />
+<p><strong>AI assistants</strong></p>
+<p>Tools for semi-automated data wrangling</p>
+<p><em>New code block with custom user interface</em></p>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Wrattler AI assistants</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Implementing AI assistant code block</h2>
+</section>
+<section >
+<h1><em>Two function syntaxes (1/2)</em></h1>
+<p><strong>Function definition using a lambda</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">let</span> createAiaEditor <span class="o">=</span> (assistants:AiAssistant[])
+    : Langs.Editor&lt;AiaState, AiaEvent&gt; <span class="o">=</span><span class="o">&gt;</span> ({
+  initialize: (id:number, block:Langs.Block) <span class="o">=</span><span class="o">&gt;</span> {  
+    <span class="k">let</span> aiaBlock <span class="o">=</span> &lt;AiaBlock&gt;block
+    <span class="k">return</span> { id: id, block: aiaBlock, chain: [],
+      expanded: <span class="k">false</span>, assistants: assistants }
+  }
+});
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1><em>Two function syntaxes (2/2)</em></h1>
+<p><strong>Explicit function using a keyword</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">function</span> createAiaEditor(assistants:AiAssistant[])
+    : Langs.Editor&lt;AiaState, AiaEvent&gt; {
+  <span class="k">return</span> { initialize: (id:number, block:Langs.Block) <span class="o">=</span><span class="o">&gt;</span> {  
+    <span class="k">let</span> aiaBlock <span class="o">=</span> &lt;AiaBlock&gt;block
+    <span class="k">return</span> { id: id, block: aiaBlock, chain: [],
+      expanded: <span class="k">false</span>, assistants: assistants }
+  } };
+};
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1><em>Generating HTML (1/2)</em></h1>
+<p><strong>Building HTML nodes is hard work!</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">let</span> previewButton <span class="o">=</span>
+  h(<span class="s">'button'</span>, { onclick:() <span class="o">=</span><span class="o">&gt;</span>
+    ctx.evaluate(cell.editor.id) }, [<span class="s">"Evaluate!"</span>] )    
+<span class="k">let</span> spinner <span class="o">=</span>
+  h(<span class="s">'i'</span>, {<span class="k">class</span>: 'fa fa-spinner fa-spin' }, [])
+<span class="k">let</span> preview <span class="o">=</span> h(<span class="s">'div'</span>, {<span class="k">class</span>:<span class="s">'preview'</span>}, [
+  (cell.code.value <span class="o">=</span><span class="o">=</span> undefined) ?
+    (cell.evaluationState <span class="o">=</span><span class="o">=</span> <span class="s">'pending'</span>) ? spinner : previewButton :
+  (createOutputPreview(cell, cell.code.value))]);
+</code></pre></td></tr></table>
+</section>
+<section >
+<h1><em>Generating HTML (2/2)</em></h1>
+<p><strong>F# comprehensions are so nice!</strong></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">preview</span> <span class="o">=</span> <span class="i">h</span><span class="o">?</span><span class="i">div</span> [<span class="s">&quot;class&quot;</span><span class="o">=&gt;</span><span class="s">&quot;preview&quot;</span>] [
+  <span class="k">match</span> <span class="i">cell</span><span class="o">.</span><span class="i">code</span><span class="o">.</span><span class="i">value</span>, <span class="i">cell</span><span class="o">.</span><span class="i">evaluationState</span> <span class="k">with</span>
+  | <span onmouseout="hideTip(event, 'fs13', 29)" onmouseover="showTip(event, 'fs13', 29)" class="i">None</span>, <span class="s">&quot;pending&quot;</span> <span class="k">-&gt;</span>
+      <span class="k">yield</span> <span class="i">h</span><span class="o">?</span><span class="i">i</span> [<span class="s">&quot;class&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;fa fa-spinner&quot;</span> ] []
+  | <span onmouseout="hideTip(event, 'fs13', 30)" onmouseover="showTip(event, 'fs13', 30)" class="i">None</span>, _ <span class="k">-&gt;</span>
+      <span class="k">yield</span> <span class="i">h</span><span class="o">?</span><span class="i">button</span> [ <span class="s">&quot;onclick&quot;</span> <span class="o">=!&gt;</span> <span class="k">fun</span> _ _ <span class="k">-&gt;</span>
+        <span class="i">ctx</span><span class="o">.</span><span class="i">evaluate</span> <span class="i">cell</span><span class="o">.</span><span class="i">editor</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 31)" onmouseover="showTip(event, 'fs14', 31)" class="i">id</span> ] [ <span class="i">text</span> <span class="s">&quot;Evaluate!&quot;</span> ]
+  | <span onmouseout="hideTip(event, 'fs15', 32)" onmouseover="showTip(event, 'fs15', 32)" class="i">Some</span> <span class="i">value</span>, _ <span class="k">-&gt;</span>
+      <span class="k">yield</span> <span class="i">createOutputPreview</span> <span class="i">cell</span> <span class="i">value</span>
+]
+</code></pre></td>
+</tr>
+</table>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Conclusions</em></h1>
+<h2>TypeScript for F# Zealots</h2>
+</section>
+<section >
+<h1><em>TypeScript for F# Zealots</em></h1>
+<h2>Lessons learned from Wrattler project</h2>
+<p><em><i class="fa fa-long-arrow-alt-right"></i> Can support functional patterns</em></p>
+<p><em><i class="fa fa-shapes"></i> Works fine with Elm architecture</em></p>
+<p><em><i class="fa fa-code"></i> Not designed for functional style</em></p>
+<p><em><i class="fa fa-user-secret"></i> Trying to be JavaScript or not?</em></p>
+</section>
+<section >
+<div style="background:black;position:absolute;width:200%;right:51%;height:400%;top:-100%;z-index:-1000;"></div>
+<table style="width:100%"><tr><td style="width:50%;padding:0px" class="white">
+<h3>F# for the web</h3>
+<p><em><i class="fa fa-dot-circle"></i> Functional core</em></p>
+<p><em><i class="fa fa-lock"></i> Safe and clean</em></p>
+<p><em><i class="fa fa-arrows-alt"></i> Extra integration</em></p>
+<p><em><i class="fa fa-money-bill"></i> Makes trade-offs</em></p>
+</td><td style="width:50%;padding:0px" class="fragment">
+<h3>TypeScript</h3>
+<p><em><i class="fa fa-shapes"></i> Many styles</em></p>
+<p><em><i class="fa fa-object-group"></i> OOP, functional</em></p>
+<p><em><i class="fa fa-archive"></i> Does not hide JS</em></p>
+<p><em><i class="fa fa-cloud"></i> Cloudy mix of all</em></p>
+</td></tr></table>
+</section>
+<section >
+<h1><em>TypeScript for F# Zealots</em></h1>
+<img src="images/cat.gif" style="float:right;width:300px" class="nb" />
+<p>TypeScript experience<br />
+<em>Elmish architecture works!</em><br />
+<em>Hard to be disciplined</em></p>
+<p>Project context<br />
+<em>Team, community, app type</em><br />
+<em>Would I choose TypeScript again?</em></p>
+<br />
+<p><strong>Tomas Petricek</strong>, <em>University of Kent and fsharpWorks</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
