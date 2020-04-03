@@ -44,7 +44,7 @@ New notebook system for data science
 
 _Interactive, smart dependency tracking and caching_
 
-Client-side in TyepScript!
+Client-side in TypeScript!
 
 ----------------------------------------------------------------------------------------------------
 
