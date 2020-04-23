@@ -5,6 +5,21 @@
     "body": [
       "let barChart data = ",
       "  Shape.Axes(false, false, true, true, ",
+      "     Shape.Layered [",
+      "       for p, clr, v in data -> ",
+      "         Derived.FillColor(clr,",
+      "           Shape.Padding((0., 10., 0., 10.), ",
+      "             Derived.Column(ca p, co v)) )",
+      "  ])"
+    ],
+    "description": "anim-barchart"
+	},
+  "anim-barchart-scaled": {
+    "scope": "fsharp",
+    "prefix": "anim-barchart-scaled",
+    "body": [
+      "let barChart data = ",
+      "  Shape.Axes(false, false, true, true, ",
       "     Shape.InnerScale(None, Some(co 0, co 400), Shape.Layered [",
       "       for p, clr, v in data -> ",
       "         Derived.FillColor(clr,",
@@ -12,7 +27,7 @@
       "             Derived.Column(ca p, co v)) )",
       "  ]))"
     ],
-    "description": "anim-barchart"
+    "description": "anim-barchart-scaled"
 	},
 	"anim-timeout": {
     "scope": "fsharp",
