@@ -1,0 +1,237 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Critique - Bicycles for the mind have to be see-through</title>
+    <meta name="description" content="">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>    
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h2><em>Critique</em>: Bicycles for the mind<br />have to be see-through<br /><span style="font-weight:300;font-size:90%">(Kartik Agaram)</span></h2>
+<br /><br /><br /><br />
+<p>Tomas Petricek<br />
+<a href="http://tomasp.net">tomasp.net</a> | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section >
+<h2>Convivial tools</h2>
+</section>
+<section >
+<h2><em>Points to agree with</em></h2>
+<p><em>Convivial tools</em><br />
+Tool shouldn't just make some activity more convenient<br />
+Tools should preserve individual agency!</p>
+<div class="fragment" style="padding-top:15px">
+<p><em>Avoiding 'bad' complexity</em><br />
+Don't paper over tool deficiencies with a second tool<br />
+Maintenance leads to compounding claims on time<br />
+Take the first tool out, think the problem anew</p>
+</div>
+</section>
+<section >
+<h2><em>I admire the goals of Mu!</em></h2>
+<blockquote>
+<p>Mu is a stack designed from the ground up: to fit in a single brain and to not grow complex over time.</p>
+</blockquote>
+</section>
+<section >
+<h2>Am I getting my bicycle...</h2>
+<img src="images/bike.jpg" style="width:700px" />
+</section>
+<section >
+<h2>...with a steel forge?</h2>
+<img src="images/forge.jpg" style="width:700px" />
+</section>
+<section >
+<h2>Ways of thinking about tools?</h2>
+<p><em>Pre-modern</em><br />
+Craftspeople crafting their own low-tech tools</p>
+<p><em>Modern</em><br />
+Scientist designs optimal tools for us</p>
+<p><em>Post-modern</em><br />
+Messy pluralist world that we need to navigate</p>
+</section>
+</section>
+<section >
+<section >
+<h2>High modernism</h2>
+</section>
+<section >
+<h2>Seeing Like a State</h2>
+<img src="images/state.jpg" />
+</section>
+<section >
+<h2>Design for legibility</h2>
+<p><em>Scientific forestry</em><br />
+Spruce forests are easy to plant and harvest<br />
+They get infected and are not resistant</p>
+<div class="fragment" style="padding-top:15px">
+<p><em>Soviet collectivization</em><br />
+Standardized organization of farming<br />
+Not flexible enough to produce e.g. raspberries</p>
+</div>
+</section>
+<section >
+<h2>Design for legibility</h2>
+<ul>
+<li>Trying to make sense of a thing, <em>affects its design</em></li>
+<li>Leads to more legible designs <em>lacking other qualities</em></li>
+<li>Certain schemes <em>have failed</em>, i.e. killed millions</li>
+<li>Leads to the creation of <em>dark twins</em></li>
+</ul>
+</section>
+<section >
+<h2>Mu and high modernism?</h2>
+<p><em>Dark twins?</em><br />
+"As it executes instructions, the SubX emulator
+monitors for labels that start with a <code>$watch-</code> prefix."</p>
+<p><em>Unexpected consequences?</em><br />
+What desirable systems would become hard to think/create using the Mu approach?</p>
+</section>
+</section>
+<section >
+<section >
+<h2>Abstraction</h2>
+</section>
+<section >
+<h2>Abstraction is not convivial?</h2>
+<blockquote>
+<p>Using fewer abstractions - carefully designed to leak in just the right
+ways - can make the maintenance task more approachable to end users.</p>
+</blockquote>
+</section>
+<section >
+<h2>Limiting abstraction</h2>
+<p><em>Mu approach</em> - pre-modern?<br />
+Use with caution, make sure system 'fits in the brain'</p>
+<div class="fragment">
+<p><em>Haskell approach</em> - modern?<br />
+Optimal non-leaky abstractions designed by scientists</p>
+</div><div class="fragment">
+<p><em>Alternative approach?</em> - post-modern?<br />
+Cannot fit in the brain, but need to be able to cope..</p>
+</div>
+</section>
+<section >
+<h2>Cities: Don't fit the brain, but are legible</h2>
+<img src="images/metro.jpg" style="width:700px" />
+</section>
+<section >
+<h2>Making sense of a city</h2>
+<ul>
+<li>I only know the <em>bits I need</em> to know</li>
+<li>I have some <em>general idea</em> about the rest</li>
+<li>I <em>can learn</em> about other bits if I need to</li>
+<li>Can we make software <em>more navigable</em>?</li>
+</ul>
+<p>Kevin Lynch (1960). The Image of the City</p>
+</section>
+</section>
+<section >
+<section >
+<h2>Conclusions</h2>
+</section>
+<section >
+<p><em>Mu is an impressive attempt to address</em></p>
+<ul>
+<li>We need convivial tools</li>
+<li>Abstraction is a major issue</li>
+</ul>
+<p><em>What is the approach and its dangers?</em></p>
+<ul>
+<li>Is this pre-modern instead of post-modern?</li>
+<li>Is this suffering from high-modernist flaws?</li>
+</ul>
+<br />
+<br />
+<br />
+<p>Tomas Petricek | <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
