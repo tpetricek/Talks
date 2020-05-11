@@ -69,6 +69,9 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [Critique: Bicycles for the mind have to be see-through (Kartik Agaram)](http://tpetricek.github.io/Talks/2020/sdr-bicycles/) (May 2020) - Online<br />
+   See also: [original paper (pdf)](http://akkartik.name/akkartik-convivial-20200315.pdf) and [presentation recording](https://vimeo.com/416363066)
+ 
  - [**The Gamma & Histogram: Towards dot-driven data exploration**](http://tpetricek.github.io/Talks/2019/dot-driven-data-exploration/) (November 2020) - IFIP 2.16, Nice<br />
  	 See also: [Histogram interactive essay](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
 
