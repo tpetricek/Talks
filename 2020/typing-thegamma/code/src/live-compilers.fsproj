@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="helpers/virtualdom.fs" />
+    <Compile Include="helpers/common.fs" />
+    <Compile Include="helpers/html.fs" />
+    <Compile Include="helpers/parsec.fs" />
+    <Compile Include="ast.fs" />
+    <Compile Include="parser.fs" />
+    <Compile Include="binder.fs" />
+    <Compile Include="images.fs" />
+    <Compile Include="evaluator.fs" />
+    <Compile Include="main.fs" />
+  </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
+</Project>
