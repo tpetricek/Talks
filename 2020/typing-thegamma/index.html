@@ -1,0 +1,299 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TypeScript for F# Zealots</title>
+    <meta name="description" content="TypeScript for F# Zealots">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
+<div class="tip" id="fs2">type bool = System.Boolean<br /><br />Full name: Microsoft.FSharp.Core.bool</div>
+<div class="tip" id="fs3">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs4">type &#39;T option = Option&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.option&lt;_&gt;</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em><strong>Incremental, Runtime and Extensible</strong>: Type Checker<br /> for a Funny Language</em></h1>
+<br /><br /><br /><br /><br />
+<p><strong>Tomas Petricek</strong></p>
+<p>University of Kent and fsharpWorks<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section class="part">
+<h1><em>The Gamma</em></h1>
+<h2>Simple language for data exploration</h2>
+</section>
+<section >
+<img src="images/nyt.png" class="nb" style="max-width:600px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>Data journalism</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p>Making facts great again!</p>
+<p><em>Building more open, transparent and engaging data visualization</em></p>
+</div>
+</section>
+<section >
+<h1><em>The Gamma</em></h1>
+<h2>Programming tools for data journalists</h2>
+<p><em><i class="fa fa-user-tie"></i> Can it be written by a</em> non-expert?</p>
+<p><em><i class="fa fa-redo"></i> Can the result be</em> reproduced?</p>
+<p><em><i class="fa fa-code"></i> Can the reader</em> check the logic?</p>
+<p><em><i class="fa fa-edit"></i> Can the reader</em> explore variations?</p>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Exploring Olympic medals</h2>
+</section>
+<section >
+<h1><em>Data exploration calculus</em></h1>
+<p><strong>Capturing the essence of The Gamma</strong></p>
+<div style="transform:scale(0.6);margin:-40px 0px -40px -100px;">
+<p><span class="math">\[\begin{array}{rlcl}
+\textit{(programs)}\quad&amp; p &amp;::=&amp; c_1; \ldots; c_n\\
+\textit{(commands)}\quad&amp; c &amp;::=&amp; \textbf{let}~x = t ~|~ t\\
+\textit{(expressions)}\quad&amp; e &amp;::=&amp; t ~|~ \lambda x\rightarrow e\\
+\textit{(terms)}\quad&amp; t &amp;::=&amp; o ~|~ x ~|~ t.m(e, \ldots, e)\\
+\end{array}\]</span></p>
+</div>
+<div class="fragment">
+<p><strong>What makes the language funny?</strong></p>
+<ul>
+<li><em>Program is a list of declarations or values</em></li>
+<li><em>Lambdas allowed only as method arguments</em></li>
+<li><em>No abstraction mechanism (yet)</em></li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Liveness</em></h1>
+<h2>Incremental evaluation and type checking</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Image manipulation without tricks</h2>
+</section>
+<section >
+<h1><em>Incremental type checking</em></h1>
+<img src="images/ts-logo.png" style="float:right;width:180px" class="nb"/>
+<p><strong>Two-phase process</strong></p>
+<ul>
+<li><em>Inspired by Roslyn &amp; TypeScript</em></li>
+<li><em>Update a dependency graph</em></li>
+<li><em>Type-check graph, not expressions</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Graph construction</strong></p>
+<ul>
+<li><em>Build graph for dependencies</em></li>
+<li><em>Variables used, arguments, etc.</em></li>
+<li><em>Reuse nodes if dependencies unchanged</em></li>
+<li><em>Attach value and type to graph nodes</em></li>
+</ul>
+</div>
+</section>
+<section class="part">
+<h1><em>SKETCH</em></h1>
+<h2>Incremental type checking &amp; evaluation</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Image manipulation in The Gamma</h2>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Fancy types</em></h1>
+<h2>Generics, dependent types &amp; type providers</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>COVID-19 cases in London</h2>
+</section>
+<section >
+<h1><em>Fancy types</em></h1>
+<h2>For accessing libraries and online data</h2>
+<p><em><i class="fa fa-globe-asia"></i></em> Type providers <em>generate types from data</em></p>
+<p><em><i class="fa fa-plug"></i></em> Extensible <em>to allow new kinds of types</em></p>
+<p><em><i class="fa fa-sync"></i></em> Dependent types <em>can depend on values</em></p>
+<p><em><i class="fa fa-angle-double-right"></i></em> Generics <em>for importing JS libraries</em></p>
+</section>
+<section >
+<h1><em>Object and method types</em></h1>
+<p>Interface with object members &amp; type equality</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">ObjectType</span> <span class="o">=</span>
+  <span class="k">abstract</span> <span class="i">Members</span> <span class="o">:</span> <span class="i">Member</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">list</span>
+  <span class="k">abstract</span> <span class="i">TypeEquals</span> <span class="o">:</span> <span class="i">ObjectType</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">bool</span>
+</code></pre></td>
+</tr>
+</table>
+<div class="fragment">
+<p>Computes type from types &amp; values of arguments</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">MethodArgument</span> <span class="o">=</span>
+  { <span class="i">Name</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">string</span>; <span class="i">Static</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">bool</span>; <span class="i">Type</span><span class="o">:</span> <span class="i">Type</span> }
+<span class="k">type</span> <span class="i">MethodType</span> <span class="o">=</span>
+  { <span class="i">Arguments</span><span class="o">:</span> <span class="i">MethodArgument</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="i">list</span>
+    <span class="i">TypeFunc</span><span class="o">:</span> ((<span class="i">Type</span> <span class="o">*</span> <span class="i">Value</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="i">option</span>) <span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="i">list</span> <span class="k">-&gt;</span> <span class="i">Type</span> <span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="i">option</span> }
+</code></pre></td>
+</tr>
+</table>
+</div>
+</section>
+<section >
+<h1><em>Implementing fancy types</em></h1>
+<img src="images/russell.jpg" style="float:right;width:250px" class="nb"/>
+<p><strong>Generics / polymorphism</strong><br />
+<em>New ObjectType implementation</em><br />
+<em>Generic methods do resolution</em></p>
+<div class="fragment">
+<p><strong>Type providers</strong><br />
+<em>Methods inspect data source</em><br />
+<em>Generate simple object types</em></p>
+</div>
+<div class="fragment">
+<p><strong>"Dependent" types</strong><br />
+<em>Method argument marked as static</em><br />
+<em>Type function gets value from the system</em></p>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Summary</em></h1>
+<h2>Lessons from the project</h2>
+</section>
+<section class="part">
+<h1><em>CAVEAT</em></h1>
+<h2>The Gamma is intentionally very primitive!</h2>
+</section>
+<section >
+<h1><em>What makes things work?</em></h1>
+<p><strong>Incremental type checking</strong></p>
+<ul>
+<li><em>Tractable dependencies</em></li>
+<li><em>Also fine in TypeScript and C#</em></li>
+<li><em>Much harder to do for F#</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Fancy extensible types</strong></p>
+<ul>
+<li><em>All logic in method types</em></li>
+<li><em>Abstract type equality testing</em></li>
+<li><em>No generalization on 'let'</em></li>
+<li><em>Integrated evaluation and type checking</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/thegamma.png" style="float:right;width:180px" class="nb"/>
+<p>Funny languages are fun<br />
+<em>What is the use case?</em><br />
+<em>What assumptions still hold?</em></p>
+<p>Live and extensible<br />
+<em>Compilers must support editors</em><br />
+<em>Language design based on uses?</em></p>
+<p>Papers with more info<br />
+<a href="http://tomasp.net/academic/papers/live/"><em>Foundations of a live data exploration environment</em></a>
+<a href="http://tomasp.net/academic/papers/pivot/"><em>Data exploration through dot-driven development</em></a></p>
+<br />
+<p><strong>Tomas Petricek</strong>, <em>U. of Kent &amp; fsharpWorks</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
