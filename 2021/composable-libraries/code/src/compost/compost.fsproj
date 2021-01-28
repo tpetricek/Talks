@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="html.fs" />
+    <Compile Include="core.fs" />
+    <Compile Include="compost.fs" />
+    <Compile Include="helpers.fs" />
+    <Compile Include="demos.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fable.Browser.Dom" Version="1.1.0" />
+    <PackageReference Include="Fable.Core" Version="3.1.5" />
+  </ItemGroup>
+</Project>

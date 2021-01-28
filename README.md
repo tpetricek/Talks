@@ -9,7 +9,7 @@ and other talks, check out [my other repository](http://github.com/tpetricek/Doc
 Talks by category
 -----------------
 
- - [Data Journalism Research](#data-journalism-research)
+ - [Data science and data journalism](#data-science-and-data-journalism)
  - [F# and Fable talks on TheGamma](#f-and-fable-talks-on-thegamma)
  - [Programming Languages Research](#programming-languages-research)
  - [Philosophy of Science](#philosophy-of-science)
@@ -20,7 +20,10 @@ Talks by category
 Talks and slides
 ----------------
 
-### Data journalism and data science
+### Data science and data journalism
+
+ - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2021/composable-libraries/) (January 2021) - NDC London (virtual)<br />
+  See also: [Compost.js](https://compostjs.github.io/compost/) and [F# demos branch](https://github.com/compostjs/compost/tree/ndc-ldn-2021).
 
  - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2019/wrattler/) (November 2019) - ATI, London<br />
    See also: [wrattler.org](http://wrattler.org) and [wrattler on github](http://github.com/wrattler).
@@ -69,6 +72,9 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [**AI assistants: A framework for semi-automated, accountable, and tooling-rich data wrangling**](http://tpetricek.github.io/Talks/2021/ai-assistants/) (January 2021) - Kent<br />
+  See also:  [Wrattler homepage](http://www.wrattler.org/), [Wrattler examples](https://github.com/wrattler/wrattler-examples)
+
  - [**Incremental, Runtime and Extensible: Type Checker for a Funny Language**](http://tpetricek.github.io/Talks/2020/typing-thegamma/) (October 2020) - Facebook<br />
    See also:  [code samples](https://github.com/tpetricek/Talks/tree/master/2020/typing-thegamma/code), [Histogram](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
 
@@ -110,6 +116,9 @@ Talks and slides
  - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague<br />
 
 ### Philosophy of Science
+
+ - [**Cultures of Programming**](http://tpetricek.github.io/Talks/2020/cultures-of-programming/codemesh.pdf) (November 2020) - CodeMesh London (virtual)<br/>
+   See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
 
  - [**The Search for Fundamental Software Engineering Principles**](http://tpetricek.github.io/Talks/2019/swe-principles/newcrafts/) (May 2019) - NewCrafts, Paris
 

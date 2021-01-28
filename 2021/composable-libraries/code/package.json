@@ -1,0 +1,41 @@
+{
+  "name": "compostjs",
+  "version": "0.0.5",
+  "description": "Composable data visualization library for JavaScript",
+  "author": "Tomas Petricek",
+  "license": "MIT",
+  "scripts": {
+    "standalone": "webpack --config src/webpack.pub.js && webpack --config src/webpack.latest.js",
+    "build": "fable-splitter src/compost/compost.fsproj -o dist",
+    "start": "webpack-dev-server --config src/webpack.dev.js",
+    "prepublish": "npm run standalone && git add . && git commit -m \"Update standalone release file in docs\" && npm run build",
+    "release": "np --yolo --no-release-draft"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compostjs/compost.git"
+  },
+  "keywords": [
+    "visualization",
+    "data science",
+    "charting"
+  ],
+  "bugs": {
+    "url": "https://github.com/compostjs/compost/issues"
+  },
+  "homepage": "https://compostjs.github.io",
+  "main": "./dist/compost.js",
+  "dependencies": {
+    "virtual-dom": "^2.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "fable-compiler": "^2.4.15",
+    "fable-loader": "^2.1.8",
+    "fable-splitter": "^2.2.0",
+    "np": "^6.2.4",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
