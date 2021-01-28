@@ -1,0 +1,311 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AI assistants: A framework for semi-automated, accountable, and tooling-rich data wrangling</title>
+    <meta name="description" content="AI assistants: A framework for semi-automated, accountable, and tooling-rich data wrangling">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="front">
+<h1><em><strong>AI assistants</strong>: A framework for semi-automated, accountable, and tooling-rich data wrangling</em></h1>
+<div style="margin:180px 0px 60px 0px">
+<p><strong>Tomas Petricek</strong><br />
+<em><span style="font-size:80%;line-height:30px">with Gerrit J.J. van den Burg, Alfredo Nazabal, Taha Ceritli, Ernesto Jimenez-Ruiz, Christopher K. I. Williams</span></em></p>
+</div>
+<p><em>University of Kent &amp; The Alan Turing Institute</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Motivation</em></h1>
+<h2>AI tools for data wrangling</h2>
+</section>
+<section >
+<h1><em>Data wrangling</em></h1>
+<img src="images/tidyverse.png" style="float:right;width:250px" class="nb"/>
+<p><strong>Getting data into usable form</strong></p>
+<ul>
+<li><em>Merge data from multiple sources</em></li>
+<li><em>Fix errors and missing data</em></li>
+<li><em>Add semantic information</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Sure you want to be a data scientist?</strong></p>
+<ul>
+<li><em>Takes 80% of data science project</em></li>
+<li><em>Tedious iterative manual process</em></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Can automatic AI tools help with this?</strong></p>
+</div>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Merging real-world CSV files with datadiff</h2>
+</section>
+<section >
+<h1><em>What do we want</em></h1>
+<h2>Semi-automatic data wrangling tools that are</h2>
+<p><em><i class="fa fa-sync"></i></em> Interactive <em>- Let analyst guide and correct things</em></p>
+<p><em><i class="fa fa-plug"></i></em> Unified <em>- Share common structure</em></p>
+<p><em><i class="fa fa-search"></i></em> Accountable <em>- Not just opaquely transform data</em></p>
+<p><em><i class="fa fa-wrench"></i></em> Tooling-rich <em>- Integrate with notebook tools</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Wrattler</em></h1>
+<h2>A glimpse of the future</h2>
+</section>
+<section >
+<img src="images/wrattler.png" class="nb" style="max-width:600px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>Wrattler project</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p>Research extension for JupyterLab</p>
+<p><em>Mix languages, build interactive tools, analyse code provenance</em></p>
+</div>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Wrattler and outlier detection</h2>
+</section>
+<section >
+<img src="images/outliers.png" class="nb" style="max-width:400px;float:left;margin:80px 60px 100px 0px" />
+<p><strong>How AI assistants work</strong></p>
+<div class="fragment" style="margin-top:40px;">
+<div style="padding-left:440px;">
+<ol>
+<li><em>Start with no constraints</em></li>
+<li><em>Guess a cleaning script</em></li>
+<li><em>Run it to show preview</em></li>
+<li><em>Offer constraints to add</em></li>
+<li><em>Continue from 1</em></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Theory</em></h1>
+<h2>Formalizing AI assistants</h2>
+</section>
+<section class="mathslide">
+<h1><em>Formal model</em></h1>
+<p><strong>AI assistant works with</strong></p>
+<ul>
+<li><span class="math">\(e\)</span> <em>– expressions representing cleaning scripts</em></li>
+<li><span class="math">\(\mathcal{D}\)</span> <em>– assistant-specific data representation</em></li>
+<li><span class="math">\(H\)</span> <em>– traces of human interactions</em></li>
+</ul>
+<div class="fragment">
+<p><strong>AI assistant is defined by</strong></p>
+<ul>
+<li><span class="math">\(f(e, \mathcal{D})=\mathcal{D}'\)</span> <em>– evaluation function</em></li>
+<li><span class="math">\(\mathit{best}_{\mathcal{D}}(H)=e\)</span> <em>– recommends best expression</em></li>
+<li><span class="math">\(\mathit{choices}_{\mathcal{D}}(H)=(H_1, \ldots, H_n)\)</span> <em>– offers constraints</em></li>
+<li><span class="math">\(H_0\)</span> <em>– empty human interaction trace</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Tooling support</em></h1>
+<h2>Interacting with an AI assistant in Wrattler</h2>
+<img src="images/flow.png" class="nb" style="max-width:800px;float:left;margin:-30px 30px 100px 0px" />
+</section>
+<section class="mathslide">
+<h1><em>Machine learning model</em></h1>
+<p><strong>Over in the machine learning world</strong></p>
+<ul>
+<li><span class="math">\(Q_H(\mathcal{D}, e)\)</span> <em>– objective (scoring) function</em></li>
+<li><span class="math">\(E_H\)</span> <em>– set of expressions allowed under</em> <span class="math">\(H\)</span></li>
+</ul>
+<div class="fragment" style="margin-top:80px">
+<p><strong>Optimization-based AI assistants</strong><br />
+<em>Solve problem of finding best allowed expression</em></p>
+<p><span class="math">\(\mathit{best}_{\mathcal{D}}(H) = \mathit{arg~max}_{e\in E_H}~Q_H(\mathcal{D}, e)\)</span></p>
+</div>
+</section>
+<section >
+<h1><em>Formal model</em></h1>
+<h2>Why AI assistants need a formal model</h2>
+<p><em><i class="fa fa-magic"></i> Capture what an AI assistant really is</em></p>
+<p><em><i class="fa fa-puzzle-piece"></i> Formally define the interface</em></p>
+<p><em><i class="fa fa-wrench"></i> Explain how tools can use AI assistants</em></p>
+<p><em><i class="fa fa-clone"></i> Lets us easily capture many examples</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Examples</em></h1>
+<h2>Some useful AI assistants</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Datadiff AI assistant</h2>
+</section>
+<section class="mathslide">
+<h1><em>Datadiff AI assistant</em></h1>
+<p><strong>Patches and constraints</strong></p>
+<ul>
+<li>Patches <em>– recode, permute, insert, delete, linear</em></li>
+<li>Constraints <em>– nomatch, notransform, match</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Optimization-based datadiff assistant</strong></p>
+<ul>
+<li><span class="math">\(H_0\)</span> <em>– empty set of constraints</em></li>
+<li><span class="math">\(e\)</span> <em>– list of patches to apply</em></li>
+<li><span class="math">\(E_H\)</span> <em>– expressions allowed under conditions</em> <span class="math">\(H\)</span></li>
+</ul>
+</div>
+</section>
+<section class="mathslide">
+<h1><em>Outlier detection AI assistant</em></h1>
+<p><strong>Different kind of interactivity</strong></p>
+<ul>
+<li><em>Human builds expression by choosing</em></li>
+<li>Choices <em>suggests possible filters to add</em></li>
+<li>Best <em>simply returns the selected filters</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Still fits with the formal model!</strong></p>
+<ul>
+<li><span class="math">\(\mathit{best}_{\mathcal{D}}(H)=H\)</span> <em>– trace is an expression</em></li>
+<li><span class="math">\(\mathit{choices}_{\mathcal{D}}(H)=(H\cup \{f_1\}, \ldots, H\cup\{ f_n \})\)</span></li>
+<li><em>Filters</em> <span class="math">\(f_1, \ldots, f_n\)</span> <em>generated by clever AI</em></li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Evaluation</em></h1>
+<h2>What can we do with this</h2>
+</section>
+<section >
+<h1><em>Evaluation</em></h1>
+<h2>What can we do with AI assistants</h2>
+<p><em><i class="fa fa-th"></i> Many existing tools fit this model!</em></p>
+<p><em><i class="fa fa-brain"></i> Can be extended for Bayesian framework</em></p>
+<p><em><i class="fa fa-user"></i> Qualitative evaluation using case studies</em></p>
+<p><em><i class="fa fa-stopwatch"></i> Count necessary human interactions</em></p>
+</section>
+<section >
+<h1><em>Quantitative evaluation</em></h1>
+<img src="images/eval.png" class="nb" style="max-width:600px;margin:30px 30px 30px 50px" />
+<p><strong>Can wrangle more data with a few hints!</strong></p>
+<ul>
+<li><em>But any evaluation is tricky</em></li>
+<li><em>About specific tools, not the framework</em></li>
+<li><em>Needs ad-hoc data set for each assistant</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Conclusions</em></h1>
+<h2>Framework of AI assistants</h2>
+</section>
+<section >
+<p><strong>AI assistants</strong>: A framework for semi-automated, accountable, and tooling-rich data wrangling</p>
+<br />
+<ul>
+<li><em>Programming theory meets machine learning!</em></li>
+<li><em>Capture important class of ML tools!</em></li>
+<li><em>But where &amp; how should we publish this??</em></li>
+</ul>
+<br />
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
