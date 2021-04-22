@@ -1,0 +1,383 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Programming as architecture, urban planning and design?</title>
+    <meta name="description" content="Programming as architecture, urban planning and design?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<section class="front">
+<img src="images/map.png" style="float:right;max-width:460px;margin-left:40px" />
+<h1><em><strong>Programming</strong><br />as architecture, urban planning and design?</em></h1>
+<div style="height:290px"></div>
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<h1><em>Disclaimer</em></h1>
+<h2>This talk should not be taken too seriously!</h2>
+<p><em><i class="fa fa-desktop"></i></em> What is this about?<br />
+<em><i class="fa fa-xx"></i> Programs, languages or programming?</em></p>
+<p><em><i class="fa fa-fire"></i></em> Anything goes?<br />
+<em><i class="fa fa-xx"></i> Inconsistencies maybe, pluralism certainly</em></p>
+</section>
+<section >
+<style type="text/css">
+.grid p { padding:0px; }
+.grid { position:relative; top:-20px; }
+</style>
+<table class="grid"><tr>
+<td><img style="max-width:300px" src="images/coeffects.png" />
+<p><strong>What my boss thinks I do?</strong></p>
+<p>Programming language theory, data science applications</p>
+</td>
+<td class="fragment"><img style="max-width:300px" src="images/thinker.jpg" />
+<p><strong>What I think I actually do?</strong></p>
+<p>Programming systems, cultures of programming, philosophy</p>
+</td>
+<td class="fragment">
+<img style="max-width:300px" src="images/radiant.jpg" />
+<p><strong>What you will think I do?</strong></p>
+<p>Architecture, urban planning and design</p>
+</td>
+</tr></table>
+<h4>You should read and cite my papers but this talk won't help :-)</h4>
+</section>
+<section >
+<h1><em>Focus of the talk</em></h1>
+<img src="images/systems.png" style="float:right;width:350px" class="nb"/>
+<p><strong>Complex problems &amp; systems</strong></p>
+<ul>
+<li><em>Solving complex problems</em></li>
+<li><em>Using interactive systems</em></li>
+<li><em>Tackling essential complexity?</em></li>
+</ul>
+<h4>Essential complexity (Brooks) E-programs (Lehman, 1980)</h4>
+<div class="fragment">
+<p><strong>Alternative paradigms</strong></p>
+<ul>
+<li><em>Programming as mathematics?</em></li>
+<li><em>Programming as engineering discipline?</em></li>
+<li><em>Programming as something else?</em></li>
+</ul>
+<h4>What about our way of working is historical accident?</h4>
+<h4>Alternative paradigms, Chang's complementary science</h4>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Design and urban planning</em></h1>
+<h2>Does this even make sense?</h2>
+</section>
+<section >
+<h1><em>Designerly Ways of Knowing</em></h1>
+<img src="images/designerly.jpg" style="float:right;width:240px;margin-top:50px" class="nb" />
+<p><strong>Science</strong><br />
+<em>Study natural world using<br />
+experiment aiming for truth</em></p>
+<p><strong>Art</strong><br />
+<em>Study human experience using<br />
+metaphor aiming for justice</em></p>
+<p><strong>Design</strong><br />
+<em>Study the artificial using<br />
+synthesis aiming for appropriateness</em></p>
+</section>
+<section >
+<h1><em>Urban planning</em></h1>
+<br />
+<table class="grid"><tr>
+<td style="width:50%">
+<p><strong><i class="fa fa-city"></i> Jacobs on cities</strong></p>
+<p>Problems of simplicity<br />
+<em>Fully analyzable</em></p>
+<p>Unorganized complexity<br />
+<em>Statistically analyzable</em></p>
+<p>Organized complexity<br />
+<em>Non-reducible</em></p>
+</td>
+<td class="fragment" style="width:50%">
+<p><strong><i class="fa fa-rocket"></i> Parnas on software</strong></p>
+<p>Analogy systems
+<em>Continuous models</em></p>
+<p>Repetitive digital<br />
+<em>Reduce via abstraction</em></p>
+<p>Non-repetitive digital
+<em>Non-reducible</em></p>
+</td></tr></table>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Understanding</em></h1>
+<h2>Conceptual coherence</h2>
+</section>
+<section >
+<h1><em>Conceptual coherence</em></h1>
+<blockquote>
+<img src="images/mm.jpg" style="float:right;max-width:230px;margin-top:30px; margin-left:50px" class="nb"/>
+<p>Any product that is sufficiently big (...) must be conceptually coherent to the
+single mind of the user and at the same time desinged by many minds.</p>
+<p style="text-align:right;width:60%">Brooks (1995)</p>
+</blockquote>
+</section>
+<section >
+<h1><em>Two kinds of cities</em></h1>
+<img src="images/nyc.png" style="max-width:410px;margin:20px 0px 0px 30px" />
+<img src="images/prg.png" style="max-width:410px;margin:20px 0px 0px 30px" />
+<div class="fragment">
+<blockquote>
+<p>The fact that the layout of the city (...)<br />
+lacks a consistent geometric logic does<br />
+not mean that it was at all confusing<br />
+to its inhabitants.
+<span style="float:right;">Scott (1998)</p></p>
+</blockquote>
+</div>
+</section>
+<section >
+<h1><em>Understanding cities</em></h1>
+<img src="images/state.jpg" style="float:right;width:250px" class="nb"/>
+<p><strong>Legibility of a cityscape</strong></p>
+<ul>
+<li><em>Old city privileges local knowledge</em></li>
+<li><em>Illegibility provides political safety</em></li>
+<li><em>Grid makes public services easy</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Legibility of a software</strong></p>
+<ul>
+<li><em>Hackers use local knowledge, engineers outside knowledge?</em></li>
+<li><em>How open-source communities work?</em></li>
+<li><em>Grid in spreadsheets for addressing?</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/map.png" style="max-width:520px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>Understanding cities</strong></p>
+<div class="fragment">
+<p>I know areas around a couple of the stops and some links</p>
+<p><em>There is a way of learning new parts<br />
+if I need that</em></p>
+</div>
+</section>
+<section >
+<h1><em>Image of a city</em></h1>
+<img src="images/lynch.jpg" style="float:right;width:200px;" />
+<p><strong>City as perceived by inhabitants</strong></p>
+<ul>
+<li><em>Districts, landmarks, pathways</em></li>
+<li><em>Easily identifiable and groupable</em></li>
+<li><em>Subway &amp; bike give different images</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Can we build software like this?</strong></p>
+<ul>
+<li><em>Messy but navigable?</em></li>
+<li><em>Shareable local knowledge?</em></li>
+<li><em>Inhabitable programming systems?</em></li>
+</ul>
+</div>
+<h4>Reference to Richard Gabriel &amp; Christopher Alexander?</h4>
+</section>
+<section >
+<img src="images/interlisp.jpg" style="float:left;width:400px;margin:60px 40px 100px 20px; image-rendering:crisp-edges;" />
+<p><strong>Did we lose something along the way?</strong></p>
+<p><em>Interlisp and Smalltalk appear more inhabitable and navigable</em></p>
+<div class="fragment" style="padding-top:20px">
+<p><strong>Complementary science</strong></p>
+<p><em>Recover and update interesting past ideas!</em></p>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Theories</em></h1>
+<h2>Is there a place for elegant theories?</h2>
+</section>
+<section >
+<h1><em>Programming as maths</em></h1>
+<img src="images/boys.jpg" style="float:right;width:200px" />
+<p><strong>Good research strategy</strong></p>
+<ul>
+<li><em>Defines Kuhnian normal science</em></li>
+<li><em>Algorithm as a central concept</em></li>
+<li><em>Established it academically</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Historical accident?</strong></p>
+<ul>
+<li><em>Just one programming culture</em></li>
+<li><em>Focuses on mathematical questions</em></li>
+<li><em>Misses more important ones?</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/brasilia.jpg" style="max-width:480px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>Utopian urban planning</strong></p>
+<p>Modernism, radiant city and garden city plans</p>
+<p><em>Housing blocks in green or rural spaces</em></p>
+<p><em>Clear organization of functions of the city</em></p>
+</section>
+<section >
+<h1><em>Jane Jacobs</em></h1>
+<img src="images/northend.jpg" style="float:right;width:300px" />
+<p><strong>Life and Death of Great<br />
+American Cities (1961)</strong></p>
+<ul>
+<li><em>East Village &amp; Boston North End</em></li>
+<li><em>Demolition and redevelopment?</em></li>
+<li><em>Lively city streets that work</em></li>
+</ul>
+<div class="fragment">
+<p><strong>How theory does not work</strong></p>
+<ul>
+<li><em>Informal social control</em></li>
+<li><em>Enabled by mixed function</em></li>
+<li><em>Density and diversity</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Utopian Software</em></h1>
+<img src="images/jacobs.jpg" style="float:right;width:260px" />
+<p><strong>Rigorous software methods</strong></p>
+<ul>
+<li><em>Non-reducibility of problems</em></li>
+<li><em>Are simple principles too simple?</em></li>
+<li><em>Abstraction &amp; information hiding?</em></li>
+</ul>
+<div class="fragment">
+<p><strong>How to study such questions?</strong></p>
+<ul>
+<li><em>Describe concrete cases<br /> that work despite theory</em></li>
+<li><em>Focus on unaverage indicators</em></li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Conclusions</em></h1>
+<h2>Design, architecture, urban planning</h2>
+</section>
+<section >
+<h1><em>What did not fit</em></h1>
+<img src="images/musgum.jpg" style="float:right;max-width:200px" />
+<p><strong>Vernacular architecture</strong></p>
+<ul>
+<li><em>Architecture without architects</em></li>
+<li><em>Developed by gradual adaptation</em></li>
+<li><em>Longer time-frame in software?</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Designing for maintenance</strong></p>
+<ul>
+<li><em>Teaching maintenance habits</em></li>
+<li><em>Materials that look bad before going bad</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Programming</em></h1>
+<h2>As architecture, urban planning and design?</h2>
+<p><em><i class="fa fa-city"></i> At least as good metaphor as<br />
+<i class="fa fa-xx"></i> engineering and mathematics!</em></p>
+<p><em><i class="fa fa-globe"></i> Incommensurable paradigm<br />
+<i class="fa fa-xx"></i> asking different questions?</em></p>
+<br />
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
