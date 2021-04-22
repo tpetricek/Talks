@@ -72,6 +72,8 @@ Talks and slides
 
 ### Programming Languages Research
 
+ - [**Programming as architecture, urban planning and design?**](http://tpetricek.github.io/Talks/2021/programming-as-design/) (April 2021) - MIT SDG<br />
+
  - [**AI assistants: A framework for semi-automated, accountable, and tooling-rich data wrangling**](http://tpetricek.github.io/Talks/2021/ai-assistants/) (January 2021) - Kent<br />
   See also:  [Wrattler homepage](http://www.wrattler.org/), [Wrattler examples](https://github.com/wrattler/wrattler-examples)
 
