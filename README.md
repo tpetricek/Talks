@@ -122,6 +122,9 @@ Talks and slides
 
 ### Philosophy of Science
 
+ - [**Popup from Hell**](https://tpetricek.github.io/Talks/2021/popup-from-hell) (September 2021) - Bertinoro)<br/>
+  See also: [source code](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/slides/images/code.png) and [recorded demo](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/screen.gif)
+
  - [**Cultures of Programming**](http://tpetricek.github.io/Talks/2020/cultures-of-programming/codemesh.pdf) (November 2020) - CodeMesh London (virtual)<br/>
    See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
 
