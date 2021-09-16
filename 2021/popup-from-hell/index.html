@@ -1,0 +1,294 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Popup from hell</title>
+    <meta name="description" content="Popup from hell">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="front">
+<h1>Popup from hell</h1>
+<img class="fragment" src="images/ad.png" style="float:right;max-width:440px;margin-top:40px;margin-left:20px" />
+<div style="height:40px"></div>
+<h1><em>Reflections on the most annoying 1990s program</em></h1>
+<div style="height:200px"></div>
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<h1><em>Pop-ups in the 1990s</em></h1>
+<img src="images/popad.jpg" style="float:right;width:300px;" />
+<p><strong>Origins of pop-up ads</strong></p>
+<ul>
+<li><em>Created at Tripod.com</em></li>
+<li><em>Hosting site like Geocities</em></li>
+<li><em>Disassociate ad from content</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Normal web design</strong></p>
+<ul>
+<li><em>Custom dialog windows</em></li>
+<li><em>Manage window size &amp; look</em></li>
+<li><em>Normal programs use windows!</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/nn4.png" style="float:left;width:530px;margin:80px 40px 100px 0px" class="nb"/>
+<p><strong>Technical side</strong></p>
+<p>JavaScript <em>first appeared in the Netscape Navigator browser in 1995</em></p>
+<p>window.open <em>and</em> window.onunload <em>exist from version 1</em></p>
+</section>
+<section >
+<img src="images/geocities.png" style="width:650px;margin:20px 40px 0px 0px;float:left" class="nb" />
+<p><strong>Social side</strong></p>
+<p>Geocities</p>
+<p><em>Fairly well-documented creative online community of the 1990s</em></p>
+</section>
+<section >
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Popup from hell</h2>
+</section>
+<section >
+<img src="images/code.png" style="width:700px;margin-left:100px" class="nb"/>
+</section>
+<section >
+<img src="images/popups.png" style="width:700px;margin-left:100px" class="nb"/>
+</section>
+</section>
+<section >
+<img src="images/block.png" style="float:left;width:500px;margin:20px 30px 20px 0px" class="nb"/>
+<p><strong>No more fun :-(</strong></p>
+<p>Popup blocking commonplace in<br/> the early 2000s</p>
+<p><em>Blocks popups on page load, unload and timer events, but not on click</em></p>
+</section>
+<section >
+<img src="images/sitepoint.png" style="float:left;width:540px;margin:20px 30px 20px 0px" />
+<p><strong>Well, actually...</strong></p>
+<p><em>Same user experience, recreated using harder to block technique</em></p>
+</section>
+<section class="part">
+<h1><em>Reflections</em></h1>
+<h2>What is a program</h2>
+</section>
+<section >
+<h1><em>What is a program</em></h1>
+<h2>Popup from hell that cannot be closed</h2>
+<p><em><i class="fa fa-school"></i> Source code from my highschool years?</em></p>
+<p><em><i class="fa fa-globe"></i> Other equivalent code from the web?</em></p>
+<p><em><i class="fa fa-lightbulb"></i> More general idea of an evil popup?</em></p>
+<p><em><i class="fa fa-window-restore"></i> System change prevents it from working!</em></p>
+<p><em><i class="fa fa-user-secret"></i> Environment determines if it is "bad"</em></p>
+</section>
+<section class="part">
+<h1><em>REFLECTIONS</em></h1>
+<h2>Two eras of the web</h2>
+</section>
+<section >
+<div style="background:black;position:absolute;width:200%;right:51%;height:400%;top:-100%;z-index:-1000;"></div>
+<style> .ts h3 { text-transform:none; } .tw p { color:white; font-size:1em; } .tw h3 { color:white; }</style>
+<table class="ts" style="margin-top:40px"><tr><td style="width:45%;color:white" class="fragment tw">
+<h3>1990s</h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-code"></i> <em>View source</em></p>
+<p><i class="fa fa-paste"></i> <em>Copy & paste</em></p>
+<p><i class="fa fa-window-restore"></i> <em>Windows work!</em></p>
+</div>
+</td><td style="width:45%" class="fragment">
+<h3>2010s</h3>
+<div class="narrow" style="padding:20px 0px 105px 0px;">
+<p><i class="fa fa-file"></i> <em>Compiled code</em></p>
+<p><i class="fa fa-magic"></i> <em>Custom elements</em></p>
+<p><i class="fa fa-cogs"></i> <em>WASM + Canvas</em></p>
+</div>
+</td></tr></table>
+</section>
+<section >
+<img src="images/gdocs.png" style="max-width:520px;float:left;margin:30px 50px 100px 0px" />
+<p><strong>Google Docs</strong></p>
+<p>Replace built-in editable element with custom code (May 2021)</p>
+<div class="fragment">
+<p><em>Better performance</em><br />
+<em>Accessibility issues</em><br />
+<em>Affects extensions</em></p>
+</div>
+</section>
+<section >
+<img src="images/atom.png" style="max-width:520px;float:left;margin:30px 50px 100px 0px" />
+<p><strong>Atom vs Code</strong></p>
+<p>Mini-editor war<br />
+of the 2010s</p>
+<div class="fragment">
+<p><em>Code enforces information hiding for performance, limits unexpected extensibility</em></p>
+</div>
+</section>
+<section class="part">
+<h1><em>REFLECTIONS</em></h1>
+<h2>Evolution of systems</h2>
+</section>
+<section >
+<h1><em>Growth of opacity</em></h1>
+<img src="images/js.png" style="float:right;width:270px" class="nb"/>
+<p><strong>JavaScript code</strong></p>
+<ul>
+<li><em>From small clear code</em></li>
+<li><em>To compiled and minified</em></li>
+<li><em>And compiled assembly</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Browser element use</strong></p>
+<ul>
+<li><em>From window.open to DOM</em></li>
+<li><em>And custom canvas element</em></li>
+<li><em>There are exceptions!</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Embedding</em></h1>
+<h2>Use of system structure for program aspects</h2>
+<p><em><i class="fa fa-folder-open"></i> Program running in a system</em></p>
+<p><em><i class="fa fa-object-group"></i> Web page embedded in a browser</em></p>
+<p><em><i class="fa fa-desktop"></i> Smalltalk embedded in a host OS</em></p>
+</section>
+<section >
+<h1><em>Deep vs. shallow</em></h1>
+<img src="images/smalltalk.jpg" style="float:right;width:350px" class="nb"/>
+<p><strong>Shallow embedding</strong></p>
+<ul>
+<li>Reuse system features</li>
+<li>Limited control</li>
+<li>Legible to the system</li>
+<li>Allows accessibility, blocking</li>
+</ul>
+<div class="fragment">
+<p><strong>Deep embedding</strong></p>
+<ul>
+<li>Redo everything from scratch</li>
+<li>Lose commonality, accessibility</li>
+<li>Gain control and flexibility</li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Deep embedding</em></h1>
+<h2>Why and how did it happen?</h2>
+<p><em><i class="fa fa-window-restore"></i></em> Popups from hell<br />
+<em><i class="fa fa-xx"></i> Avoiding being understood by browser</em></p>
+<p><em><i class="fa fa-cogs"></i></em> Compilation to JavaScript<br />
+<em><i class="fa fa-xx"></i> Use "better" programming languages</em></p>
+<p><em><i class="fa fa-palette"></i></em> Replacing built-in features<br />
+<em><i class="fa fa-xx"></i> Programmers think they can do better</em></p>
+</section>
+<section >
+<h1><em>Deep embedding</em></h1>
+<h2>Is this an inevitable development?</h2>
+<p><em><i class="fa fa-puzzle-piece"></i> Attractive puzzle solving activity!</em></p>
+<p><em><i class="fa fa-users"></i> Community may be too small to do it</em></p>
+<p><em><i class="fa fa-recycle"></i> Community culture may favour reuse</em></p>
+<p><em><i class="fab fa-apple"></i> App Store may block doing this</em></p>
+</section>
+<section class="part">
+<h1><em>Summary</em></h1>
+<h2>Popup from hell</h2>
+</section>
+<section >
+<h1><em>Summary</em></h1>
+<h2>Popup from hell</h2>
+<p><em><i class="fa fa-city"></i></em> Laws of software system evolution?<br />
+<em><i class="fa fa-xx"></i> When is deep embedding inevitable?</em></p>
+<p><em><i class="fa fa-globe"></i></em> Embedding and information hiding<br />
+<em><i class="fa fa-xx"></i> Deep embedding hides information from system</em></p>
+<br />
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
