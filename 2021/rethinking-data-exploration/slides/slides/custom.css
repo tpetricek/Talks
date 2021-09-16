@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+/*--------------------------------------------------------------------------
+  Formatting for code snippets
+/*--------------------------------------------------------------------------*/
+
+body { background:black; color:white; }
+
+.reveal .pre {
+  background:transparent;
+  border-style:none;
+}
+.reveal td.snippet {
+  padding:10px;
+}
+.reveal pre {
+  background:transparent;
+  color:#f0f0f0;
+}
+.reveal code {
+  font:18pt 'Roboto Mono' !important;
+}
+.reveal .bigcode code {
+  font:24pt 'Roboto Mono' !important;
+}
+.reveal pre .f {
+  color:#f0f0f0;
+}
+.reveal pre .i {
+  color:#f0f0f0;
+}
+.reveal pre .o {
+  color:#9A5Dff;
+}
+.reveal pre .s {
+  color:#ffd060;
+}
+.reveal pre .n {
+  color:#60ff70;
+}
+.reveal pre .k {
+  color:#40a0ff;
+}
+.reveal .pre td.lines {
+  display:none;
+}
+
+/*--------------------------------------------------------------------------
+  Diagrams and tips
+/*--------------------------------------------------------------------------*/
+
+.ref {
+  background:black;
+  color:white;
+  display:inline-block;
+  border-radius:0.6em;
+	height:1.8em;
+  text-align:center;
+  font-size:0.4em !important;
+  position:relative;
+	top:0.2em;
+  margin:0em 0em 0em 0.3em !important;
+}
+.ref span {
+	position:relative;
+  top:-0.5em;
+  display:inline-block;
+  margin:0.0em 0.4em 0.0em 0.4em;
+}
+
+
+div.tipbox { position:relative; border:solid 4px #F26722; }
+div.tiplbl { position:relative; background:#F26722; color:white; font-size:16pt; padding:8px 14px 8px 14px; display:inline-block; }
+
+.reveal .bigeq p { text-align:center; }
+.reveal .bigeq .MathJax { font-size:5em !important; color:#F26722; }
+.reveal .sec h1 { text-align:center; }
+
+.reveal .diagram1 p, .reveal .diagram2 p {
+  text-align:center;
+}
+.diagram1 span {
+  padding:15px;
+  font-size:24pt;
+  background:#CC5222;
+  color:white;
+}
+
+.diagram2 span {
+  padding:15px;
+  font-size:24pt;
+  background:#B57D1E;
+  color:white;
+}
+
+.reveal .diagram1 .arrow-down {
+  padding:0px;
+  background:transparent;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #CC5222;
+}
+
+.reveal .diagram2 .arrow-down {
+  padding:0px;
+  background:transparent;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #B57D1E;
+}
+
+/*--------------------------------------------------------------------------
+  Extras for coeffects
+/*--------------------------------------------------------------------------*/
+
+.live-chart {
+  margin:0px 4% 0px 4%;
+  width:100%;
+}
+.drawing-space {
+  border:1px solid #606060;
+  border-radius:5px;
+  height:216px;
+  background:#282828;
+  position:relative;
+}
+.drawing-space span {
+  color:#383838;
+  font-size:12pt;
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  text-align:right;
+  font-weight:bold;
+}
+.drawing-space span i {
+  float:left;
+  font-size:26pt;
+  margin-right:10px;
+  margin-top:5px;
+}
+
+/*--------------------------------------------------------------------------
+  Formatting for normal things
+/*--------------------------------------------------------------------------*/
+
+.reveal section[style] {
+  top:0px !important;
+}
+.reveal section {
+  text-align:left;
+}
+.reveal h1 {
+  line-height:1.1em !important;
+  margin-bottom:0px !important;
+}
+.reveal code {
+  font-family:'Roboto Mono', monospace;
+  font-size:22pt;
+	background:transparent;
+}
+.reveal p strong, .reveal li strong, .reveal h1 strong, .reveal h2 strong, .reveal h3 strong, .reveal h4 strong {
+  font-weight:400;
+}
+.reveal p em strong, .reveal li em strong, .reveal h1 em strong, .reveal h2 em strong, .reveal h3 em strong, .reveal h4 em strong {
+  font-weight:300;
+}
+.reveal p em, .reveal li em {
+  font-weight:100;
+  font-style:normal;
+}
+.reveal h1 em, .reveal h2 em, .reveal h3 em, .reveal h4 em {
+  font-weight:100;
+	text-transform:uppercase;
+	font-style:normal;
+}
+.reveal .part h1 {
+  margin-top:200px;
+	margin-bottom:20px;
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal p, .reveal ul, .reveal ol {
+  font-family:Roboto;
+  width:calc(100%-40px);
+  padding:0px 20px 0px 20px;
+  text-align:left;
+  font-weight:300;
+	line-height:1.1em;
+  display:block;
+	color:white;
+	letter-spacing:-0.02em;
+}
+.reveal p, .reveal li {
+  font-family:Roboto;
+	font-size:30pt;
+	letter-spacing:0em;
+}
+.reveal p {
+	margin-bottom:25px;
+}
+.reveal li {
+  font-family:Roboto;
+	font-size:30pt;
+	letter-spacing:0em;
+	line-height:1.15em;
+}
+.reveal h1 {
+  font:44pt Roboto;
+	font-weight:300;
+	line-height:1em;
+	margin:0px 0px 10px 0px;
+}
+.reveal h2 {
+  font:46px Roboto;
+	font-weight:300;
+  margin:0px 0px 60px 0px;
+}
+.reveal h3 {
+  font-size:40px;
+	font-weight:300;
+	text-transform:uppercase;
+  margin:60px 0px 20px 0px;
+}
+.reveal ul, .reveal ol {
+  margin-bottom:40px;
+}
+
+.reveal i.fa {
+  width:1.5em;
+  display:inline-block;
+}
+.reveal a {
+  color:#49a5ff;
+}
+.reveal a:hover, .reveal a:active {
+  color:#79d5ff;
+}
+
+.reveal .controls .navigate-right.enabled {
+  border-left-color:#9ca1bd;
+}
+.reveal .controls .navigate-left.enabled {
+  border-right-color:#9ca1bd;
+}
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color:#9ca1bd;
+}
+.reveal .controls .navigate-down.enabled {
+  border-top-color:#9ca1bd;
+}
+.reveal blockquote {
+  border-style:none;
+  box-shadow:none;
+  margin-top:50px;
+  display:inline;
+}
+.reveal blockquote p {
+  font-size:28pt;
+  width:auto;
+  font-weight:100;
+}
+
+.klogo {
+  position:absolute;
+  right:0px;
+  bottom:20px;
+  width:120px;
+  z-index:1000;
+}
+.reveal img.nb {
+  border-style:none;
+  box-shadow:none;
+}
+
+.mathslide .math span {
+  font-size:28pt;
+}

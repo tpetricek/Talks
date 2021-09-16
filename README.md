@@ -22,6 +22,9 @@ Talks and slides
 
 ### Data science and data journalism
 
+ - [**Rethinking data exploration tools**](http://tpetricek.github.io/Talks/2021/rethinking-data-exploration/#/) (May 2021) - Huawei (virtual)<br />
+  See also: [wrattler.org](http://wrattler.org), [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk)
+
  - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2021/composable-libraries/) (January 2021) - NDC London (virtual)<br />
   See also: [Compost.js](https://compostjs.github.io/compost/) and [F# demos branch](https://github.com/compostjs/compost/tree/ndc-ldn-2021).
 
