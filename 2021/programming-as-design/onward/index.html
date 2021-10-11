@@ -1,0 +1,381 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Programming as architecture, urban planning and design?</title>
+    <meta name="description" content="Programming as architecture, urban planning and design?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="front">
+<h1><strong>Programming</strong><br /> as architecture, design,<br/> and urban planning</h1>
+<div style="height:260px"></div>
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<h2>Dealing with complexity</h2>
+<blockquote>
+<p>We may wish for easier, all-purpose analyses, and for simpler, magical all-purpose cures, but
+wishing cannot change these problems into simpler matters (…) no matter how much we try to evade
+the realities and to handle them as something different.</p>
+</blockquote>
+<div class="aside">
+<img src="images/jacobs.jpg" style="max-height:220px"/>
+<p><em><strong>Jane Jacobs</strong> (1961)<br />
+The Death and Life of<br />
+Great American Cities</em></p>
+</div>
+</section>
+<section >
+<h2>What kind of a problem city is</h2>
+<h3>Why is urban planning difficult?</h3>
+<ul>
+<li>
+<p><strong>Problems of simplicity</strong><br />
+Admit precise analytical solution</p>
+</li>
+<li>
+<p><strong>Problems of disorganized complexity</strong>
+Reducible via statistical analysis</p>
+</li>
+<li>
+<p><strong>Problems of organized complexity</strong>
+Complexity cannot be abstracted away</p>
+</li>
+</ul>
+<div class="aside">
+<img src="images/jacobs.jpg" style="max-height:220px"/>
+<p><em><strong>Jane Jacobs</strong> (1961)<br />
+The Death and Life of<br />
+Great American Cities</em></p>
+</div>
+</section>
+<section >
+<h2>What kind of a problem software is</h2>
+<h3>Why anti-ballistic-missile system can’t work?</h3>
+<ul>
+<li>
+<p><strong>Analog systems</strong><br />
+Small <em>in</em> change causes small <em>out</em> change</p>
+</li>
+<li>
+<p><strong>Repetitive digital systems</strong><br />
+Large, but reducible, number of states</p>
+</li>
+<li>
+<p><strong>Problems of organized complexity</strong><br />
+Large irreducible number of states</p>
+</li>
+</ul>
+<div class="aside">
+<img src="images/sdi.jpg" style="max-height:220px"/>
+<p><em><strong>Dave Parnas</strong> (1985)<br />
+Software Aspects of<br />
+Strategic Defence Systems</em></p>
+</div>
+</section>
+<section >
+<h2>Beautiful theories</h2>
+<blockquote>
+<p>The pseudoscience of city planning and its<br /> companion, the art of city design, have not yet broken
+with the specious comfort of wishes, familiar superstitions, oversimplifications, and symbols,
+and have not yet embarked upon the adventure of probing the real world.</p>
+</blockquote>
+<div class="aside">
+<img src="images/jacobs.jpg" style="max-height:220px"/>
+<p><em><strong>Jane Jacobs</strong> (1961)<br />
+The Death and Life of<br />
+Great American Cities</em></p>
+</div>
+</section>
+<section >
+<h2>Utopian urban planning ideas</h2>
+<img src="images/corbusier.jpg" />
+<div class="aside">
+<br /><br />
+<p><em><strong>Le Corbusier</strong> (1930s)<br />
+La Ville Radieuse</em></p>
+<p><em><strong>Ebenezer Howard</strong> (1900s)<br />
+Garden Cities</em></p>
+</div>
+</section>
+<section >
+<h2>What cities actually work</h2>
+<h3>Greenwich Village and Boston North End</h3>
+<img src="images/boston.jpg" />
+<div class="aside">
+<img src="images/jacobs.jpg" style="max-height:220px"/>
+<p><em><strong>Jane Jacobs</strong> (1961)<br />
+The Death and Life of<br />
+Great American Cities</em></p>
+</div>
+</section>
+<section >
+<section >
+<h2>Utopian programming system ideas</h2>
+<h3>Wishes, superstitions, oversimplifications</h3>
+<ul>
+<li>
+<p><strong>Fatal abstraction</strong><br />
+Puts software at risk of failure</p>
+</li>
+<li>
+<p><strong>Information hiding</strong><br />
+Hinders long-term maintainability</p>
+</li>
+<li>
+<p><strong>Formal models</strong><br />
+Often miss crucial aspects</p>
+</li>
+</ul>
+<div class="aside">
+<br />
+<p><em><strong>Friedrich Steimann</strong> (2018)<br />
+Fatal Abstraction</em></p>
+<p><em><strong>Colin Clark, Antranig Basman</strong> (2017)<br />
+Tracing a paradigm for externalization: Avatars and the GPII Nexus"</em></p>
+</div>
+</section>
+<section >
+<h2>What programming systems actually work</h2>
+<blockquote>
+<p>It is curious to observe how the authors in this field, who in the formal aspects of their work
+require painstaking demonstration and proof, in the informal aspects are satisfied with
+subjective claims that have not the slightest support.</p>
+</blockquote>
+<div class="aside">
+<img src="images/verification.jpg" style="max-height:220px"/>
+<p><em><strong>Peter Naur</strong> (1992)<br />
+The place of strictly defined<br />
+notation in human insight</em></p>
+</div>
+</section>
+</section>
+<section >
+<h2>Understanding complex systems</h2>
+<blockquote>
+<p>In the case of understanding cities, I think the most important habits of thought are these:
+(1) to think about processes; (2) to work inductively; (3) to seek for ‘unaverage’ clues
+involving very small quantities, which reveal the way larger and more ‘average’ quantities
+are operating.</p>
+</blockquote>
+<div class="aside">
+<img src="images/jacobs.jpg" style="max-height:220px"/>
+<p><em><strong>Jane Jacobs</strong> (1961)<br />
+The Death and Life of<br />
+Great American Cities</em></p>
+</div>
+</section>
+<section >
+<h1><strong>Call to action #1</strong></h1>
+<h2><em>Study programming systems that work in their full complexity!</em></h2>
+</section>
+<section >
+<h2>Conceptual coherence</h2>
+<blockquote>
+<p>Conceptual [coherence] dictates that the design must proceed from one mind, or from a very small
+number of agreeing resonant minds.</p>
+<p>Any product that is sufficiently big (...) must be conceptually coherent to the single mind of
+the user and at the same time designed by many minds.</p>
+</blockquote>
+<div class="aside">
+<img src="images/brooks.jpg" style="max-height:220px"/>
+<p><em><strong>Fred Brooks</strong> (1975)<br />
+The Mythical Man-Month</em></p>
+</div>
+</section>
+<section >
+<h2>Two kinds of cities</h2>
+<h3>Conceptual coherence vs. <br /> Evolutionary process</h3>
+<div style="width:2000px;margin-top:80px">
+<img src="images/nyc.png" style="max-height:320px;margin-right:20px" />
+<img src="images/prague.png" style="max-height:320px" />
+</div>
+</section>
+<section >
+<h2>Making sense of a city</h2>
+<blockquote>
+<p>The fact that the layout of the city [like Bruges], having developed without any overall design,
+lacks a consistent geometric logic does not mean that it was at all confusing to its inhabitants.
+<br /><br />
+[T]he relative illegibility of some urban neighbourhoods has provided a
+vital margin of political safety from control by outside elites</p>
+</blockquote>
+<div class="aside">
+<img src="images/state.jpg" style="max-height:220px"/>
+<p><em><strong>James C. Scott</strong> (1998)<br />
+Seeing Like a State</em></p>
+</div>
+</section>
+<section >
+<h2>The image of a city</h2>
+<h3>How do you find your way around?</h3>
+<img src="images/metro.png" style="xmax-height:320px" class="nb" />
+<div class="aside">
+<img src="images/image.jpg" style="max-height:220px"/>
+<p><em><strong>Kevin Lynch</strong> (1960)<br />
+The Image of The City</em></p>
+</div>
+</section>
+<section >
+<h1><strong>Call to action #2</strong></h1>
+<h2><em>Start thinking about understandability, not conceptual coherence!</em></h2>
+</section>
+<section >
+<h2>Adaptable software</h2>
+<blockquote>
+<p>Almost no buildings adapt well. They’re designed not to adapt; also budgeted and financed not to,
+constructed not to, administered not to, maintained not to, regulated and taxed not to, even
+remodelled not to. But all buildings (...) adapt anyway, however poorly, because the usages
+in and around them are changing constantly.</p>
+</blockquote>
+<div class="aside">
+<img src="images/brand.jpg" style="max-height:220px"/>
+<p><em><strong>Stewart Brand</strong> (1994)<br />
+How Buildings Learn</em></p>
+</div>
+</section>
+<section >
+<h2>Maintenance and materials</h2>
+<h3>How to design maintainable buildings?</h3>
+<ul>
+<li>
+<p><strong>New buildings teach bad maintenance</strong><br />
+Inhabitants stop paying attention</p>
+</li>
+<li>
+<p><strong>Maintainability depends on materials</strong><br />
+Materials that look bad before they go bad</p>
+</li>
+</ul>
+<div class="aside">
+<img src="images/window.jpg" style="max-width:384px"/>
+</div>
+</section>
+<section >
+<h2>Vernacular architecture</h2>
+<h3>Design without reinventing the form</h3>
+<ul>
+<li>
+<p><strong>Un-self-conscious architecture.</strong><br />
+Obtains ideal form over generations through small adaptations</p>
+</li>
+<li>
+<p><strong>Vernacular software?</strong><br />
+Configuration rather than programming, sharing as in Hypercard and 1990s web?</p>
+</li>
+</ul>
+<div class="aside">
+<img src="images/mudhut.jpg" style="max-height:300px"/>
+</div>
+</section>
+<section >
+<h1><strong>Call to action #3</strong></h1>
+<h2><em>Invent programming ‘materials’ that age well and allow adaptation!</em></h2>
+</section>
+<section >
+<h1>Conclusions</h1>
+<p><strong>Software engineering (1970s)</strong><br />
+Response to increasing computer availability</p>
+<p><strong>Light-weight methodologies (1990s)</strong><br />
+Response to internet and faster market</p>
+<p><strong>Architecture, design and urban planning</strong><br />
+Do we have to wait for another change in<br />
+the socio-technological context?</p>
+<div class="aside">
+<br /><br />
+<p><strong>Tomas Petricek</strong><br />
+<em>University of Kent</em></p>
+<p><a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</div>
+</section>
+
+
+            <div class="camblock"></div>
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>

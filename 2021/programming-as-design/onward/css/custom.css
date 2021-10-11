@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Linden+Hill:ital@0;1&display=swap');
+
+/*--------------------------------------------------------------------------
+  Formatting for normal things
+/*--------------------------------------------------------------------------*/
+
+.reveal section[style] {
+  top:0px !important;
+}
+.reveal section {
+  text-align:left;
+}
+.reveal p, .reveal li, .reveal h1, .reveal h2, .reveal h3 {
+  font-family:'linden hill';
+}
+.reveal p, .reveal li {
+  font-size:28pt;
+}
+.reveal h3 {
+  font-size:28pt;
+  margin-top:-20px;
+  margin-bottom:30px;
+}
+.reveal h1 {
+  line-height:1.2em;
+  font-size:45pt;
+}
+.reveal h2 {
+  line-height:1.2em;
+  font-size:36pt;
+  margin-bottom:25px;
+}
+.slides {
+  width:1200px !important;
+}
+.slides section {
+  width:640px !important;
+}
+
+.camblock {
+  _background:red;
+  display:none;
+  position:absolute;
+  right:80px;
+  top:20px;
+  width:384px;
+  height:216px;
+  z-index:1000;
+}
+
+.aside {
+  text-align:right;
+  position:absolute;
+  right:-480px;
+  top:260px;
+  width:384px;
+  z-index:1000;
+}
+.aside p {
+  font-size:20pt;
+  line-height:1.1em;
+}
+.reveal blockquote {
+  border-style:none;
+  box-shadow:none;
+  margin-top:50px;
+  display:inline;
+}
+.reveal blockquote p {
+  font-size:28pt;
+  width:auto;
+  font-weight:100;
+}
+
+
+/*
+.reveal h1 {
+  line-height:1.1em !important;
+  margin-bottom:0px !important;
+}
+.reveal code {
+  font-family:'Roboto Mono', monospace;
+  font-size:22pt;
+	background:transparent;
+}
+.reveal p strong, .reveal li strong, .reveal h1 strong, .reveal h2 strong, .reveal h3 strong, .reveal h4 strong {
+  font-weight:400;
+}
+.reveal p em strong, .reveal li em strong, .reveal h1 em strong, .reveal h2 em strong, .reveal h3 em strong, .reveal h4 em strong {
+  font-weight:300;
+}
+.reveal p em, .reveal li em {
+  font-weight:100;
+  font-style:normal;
+}
+.reveal h1 em, .reveal h2 em, .reveal h3 em, .reveal h4 em {
+  font-weight:100;
+	text-transform:uppercase;
+	font-style:normal;
+}
+.reveal .front h1 em {
+  text-transform:none;
+}
+.reveal .front h1 em strong {
+  font-weight:400;
+}
+.reveal .part h1 {
+  margin-top:200px;
+	margin-bottom:20px;
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal p, .reveal ul, .reveal ol {
+  font-family:Roboto;
+  width:calc(100%-40px);
+  padding:0px 20px 0px 20px;
+  text-align:left;
+  font-weight:300;
+	line-height:1.1em;
+  display:block;
+	color:black;
+	letter-spacing:-0.02em;
+}
+.reveal p, .reveal li {
+  font-family:Roboto;
+	font-size:30pt;
+	letter-spacing:0em;
+}
+.reveal p {
+  line-height:1.2em;
+	margin-bottom:25px;
+}
+.reveal li {
+  font-family:Roboto;
+	font-size:30pt;
+	letter-spacing:0em;
+	line-height:1.15em;
+}
+.reveal h1 {
+  font:44pt Roboto;
+	font-weight:300;
+	line-height:1em;
+	margin:0px 0px 10px 0px;
+}
+.reveal h2 {
+  font:46px Roboto;
+	font-weight:300;
+  margin:0px 0px 60px 0px;
+}
+.reveal h3 {
+  font-size:40px;
+	font-weight:300;
+	text-transform:uppercase;
+  margin:60px 0px 20px 0px;
+}
+.reveal ul, .reveal ol {
+  margin-bottom:40px;
+}
+
+.reveal i.fa {
+  width:1.5em;
+  display:inline-block;
+}
+.reveal a {
+  color:#09357B;
+}
+.reveal a:hover, .reveal a:active {
+  color:#9ca1bd;
+}
+
+.reveal .controls .navigate-right.enabled {
+  border-left-color:#9ca1bd;
+}
+.reveal .controls .navigate-left.enabled {
+  border-right-color:#9ca1bd;
+}
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color:#9ca1bd;
+}
+.reveal .controls .navigate-down.enabled {
+  border-top-color:#9ca1bd;
+}
+
+.klogo {
+  position:absolute;
+  right:0px;
+  bottom:20px;
+  width:120px;
+  z-index:1000;
+}
+.mathslide .math span {
+  font-size:28pt;
+}
+*/
+
+.reveal img.nb {
+  border-style:none;
+  box-shadow:none;
+}
+
+
+.klogo { display:none; }
