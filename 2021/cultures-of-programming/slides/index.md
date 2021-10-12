@@ -165,7 +165,7 @@ _More control to programmers_
 
 # _Exceptions_
 
-<img src="images/goodenough.png" style="float:right;width:350px"/>
+<img src="images/jgoodenough.png" style="float:right;width:350px"/>
 
 **John B. Goodenough (1975)**
 
