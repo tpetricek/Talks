@@ -75,9 +75,10 @@ Talks and slides
 
 ### Programming Languages Research
 
- - [**Programming as architecture, urban planning and design?**](http://tpetricek.github.io/Talks/2021/programming-as-design/) (April 2021) - MIT SDG<br />
+ - [**Programming as architecture, urban planning and design?**](http://tpetricek.github.io/Talks/2021/programming-as-design/mit/) (April 2021) - MIT SDG<br />
+   See also: [shorter version for Onward!](http://tpetricek.github.io/Talks/2021/programming-as-design/onward/) and [Onward! Essay pre-print](http://tomasp.net/academic/papers/metaphors/)
 
- - [**AI assistants: A framework for semi-automated, accountable, and tooling-rich data wrangling**](http://tpetricek.github.io/Talks/2021/ai-assistants/) (January 2021) - Kent<br />
+ - [**AI assistants: A framework for semi-automated and tooling-rich data wrangling**](http://tpetricek.github.io/Talks/2021/ai-assistants/) (January 2021) - Kent<br />
   See also:  [Wrattler homepage](http://www.wrattler.org/), [Wrattler examples](https://github.com/wrattler/wrattler-examples)
 
  - [**Incremental, Runtime and Extensible: Type Checker for a Funny Language**](http://tpetricek.github.io/Talks/2020/typing-thegamma/) (October 2020) - Facebook<br />
@@ -122,6 +123,10 @@ Talks and slides
 
 ### Philosophy of Science
 
+ - [**An incomplete history of
+getting programs to behave**](http://tpetricek.github.io/Talks/2021/cultures-of-programming) (October 2021) - Centre for Reasoning, Kent<br/>
+  See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
+
  - [**Popup from Hell**](https://tpetricek.github.io/Talks/2021/popup-from-hell) (September 2021) - Bertinoro)<br/>
   See also: [source code](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/slides/images/code.png) and [recorded demo](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/screen.gif)
 
@@ -153,7 +158,7 @@ Talks and slides
 
  - [**History and philosophy of types**](http://tpetricek.github.io/Talks/2016/philosophy-of-types) (February 2016) - LambdaDays Krakow<br />
    See also: [Philosophy books every computer scientist should read](http://tomasp.net/blog/2015/reading-list/)
-   and [older version of the talk](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
+   and [older version](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
 
  - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC
 
