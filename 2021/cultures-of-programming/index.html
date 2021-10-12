@@ -1,0 +1,326 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Programming as architecture, urban planning and design?</title>
+    <meta name="description" content="Programming as architecture, urban planning and design?">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="front">
+<h1><em><strong>Cultures of programming</strong><br />An incomplete history of<br />getting programs to behave</em></h1>
+<div style="height:340px"></div>
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<h2>How did software get reliable without proof?</h2>
+<div style="float:right;text-align:center;"><img src="images/hoare.jpg" style="max-width:200px"  />
+<p style="margin:-20px 0px 20px 10px;font-size:18pt">(Hoare, 1996)</p></div>
+<p><em>"Twenty years ago it was reasonable to predict that the size of software
+would be severely limited by [its] unreliability."</em></p>
+<p><em>"Fortunately, the problem of program correctness has turned out to be far less serious than predicted."</em></p>
+<p><em>"So [a question arises]: why have twenty years of pessimistic predictions been falsified?"</em></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Origins</em></h1>
+<h2>From black art to a discipline</h2>
+</section>
+<section >
+<img src="images/eniac.jpg" style="float:left;max-width:440px;margin:30px 30px 100px 0px"/>
+<p><em>"Programming in the early 1950s was a black art, a private arcane matter involving a programmer,
+a problem, a computer, and perhaps a small library of subroutines and a primiti- ve assembly program"</em></p>
+<p>(Backus, 1976)</p>
+</section>
+<section >
+<h1><em>Establishing a discipline</em></h1>
+<img src="images/knuth.png" style="float:right;width:330px;margin-top:20px" class="nb"/>
+<p><strong>Hacker culture of programming</strong></p>
+<ul>
+<li><em>Learning through practice</em></li>
+<li><em>Favours individual skills</em></li>
+<li><em>Knowledge not written down</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Establishing a discipline</strong></p>
+<ul>
+<li><em>Mathematical computer science</em></li>
+<li><em>Programming as engineering discipline</em></li>
+<li><em>Programming as scientific management</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/babel.png" style="float:left;max-width:450px;margin:20px 50px 100px 0px" />
+<p><strong>Mathematical culture</strong></p>
+<p>Programming as mathematics</p>
+<p><em>Notion of algorithm becomes central</em></p>
+<p><em>Use formal methods to show correctness</em></p>
+<p>Worked well in academia!</p>
+</section>
+<section >
+<img src="images/swe.jpg" style="float:left;max-width:450px;margin:100px 50px 100px 0px" />
+<p><strong>Engineering culture</strong></p>
+<p><em>The black art of programming has to make a way for the science of software engineering.</em></p>
+<p>NATO 1968 and 1969 Conferences on Software Engineering</p>
+</section>
+<section >
+<img src="images/mckinsey.png" style="float:left;max-width:450px;margin:100px 50px 100px 0px" />
+<p><strong>Managerial culture</strong></p>
+<p>Unlocking Computer’s Profit Potential (McKinsey, 1968)</p>
+<p><em>Control over budgets, complexity, scheduling and the workforce.</em></p>
+<p><em>Focus on organisation and development proces</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Debugging</em></h1>
+<h2>Getting programs to work</h2>
+</section>
+<section >
+<h1><em>Debugging Epoch Opens (1965)</em></h1>
+<img src="images/computers.png" style="float:right;width:250px;margin-top:30px" />
+<p>Limiting factors for computing</p>
+<ul>
+<li><em>Hardware until mid-1950s</em></li>
+<li><em>Programming until mid-1960s</em></li>
+<li><em>What now? Now: debugging.</em></li>
+</ul>
+<div class="fragment">
+<p>Terminology in the 1960s</p>
+<ul>
+<li><em>Program checkout</em></li>
+<li><em>Debugging and testing</em></li>
+<li><em>Error handling</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>On-line debugging (1966)</em></h1>
+<img src="images/tt.jpg" style="float:right; max-width:270px;margin:30px 0px 0px 30px" />
+<p><em>"With some care, it has been possible, for example, to find a bug while at a breakpoint in
+running a test case, call the [structure] editor to make a correction, run the program on a
+simpler test case to verify the correctness of the change, then resume execution of the original
+test case from the breakpoint."</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Error handling</em></h1>
+<h2>Recovering from failures</h2>
+</section>
+<section >
+<img src="images/errors.png" style="float:left;max-width:400px; margin:40px 70px 100px 0px" class="nb"/>
+<p><strong>ON in PL/1 (1964)</strong></p>
+<p><em>Allow writing<br />
+robust programs</em></p>
+<p><em>Handle 23 known errors</em></p>
+<p><strong>ERRORSET in LISP (1962)</strong></p>
+<p><em>More control to programmers</em></p>
+</section>
+<section >
+<h1><em>Exceptions</em></h1>
+<img src="images/goodenough.png" style="float:right;width:350px"/>
+<p><strong>John B. Goodenough (1975)</strong></p>
+<ul>
+<li><em>Introduces "exceptions"</em></li>
+<li><em>Language feature</em></li>
+<li><em>Theory of exceptions</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Exception as boundary object</strong></p>
+<ul>
+<li><em>Studied formally</em></li>
+<li><em>Implemented in compilers</em></li>
+<li><em>Handled in reliable ways</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/axe.jpg" style="float:left;max-width:420px; margin:40px 40px 100px 0px" />
+<p><strong>Exceptions in telecom</strong></p>
+<p><em>One machine is not enough</em></p>
+<p><em>When something goes wrong, kill the process</em></p>
+<p><em>Supervisor process restars</em></p>
+<p>Exceptions as a basis for programming style</p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Testing</em></h1>
+<h2>Getting programs to solve the problem</h2>
+</section>
+<section >
+<img src="images/test.jpg" style="float:left;max-width:420px; margin:40px 70px 100px 20px" />
+<p><strong>Computer Program Test Methods Symposium (1972)</strong></p>
+<p><em>Testing distinguished<br />
+from debugging</em></p>
+<p><em>Companies hire</em> test managers <em>and</em> test technicians</p>
+<p><em>Test automation establishes a</em> test <em>as an artifact</em></p>
+</section>
+<section >
+<h1><em>Growth of software testing</em></h1>
+<div style="float:right;text-align:center;"><img src="images/gelperin.jpg" style="max-width:200px"  />
+<p style="margin:-20px 0px 20px 10px;font-size:18pt">(Gelperin & Hetzel, 1988)</p></div>
+<p><strong>Demonstration period (1957-78)</strong></p>
+<ul>
+<li>
+<em>Test to show that programs<br />
+work as required</em>
+</li>
+<li><em>Alternative to proofs</em></li>
+</ul>
+<p><strong>Destruction period (1978-82)</strong></p>
+<ul>
+<li><em>Test to find errors</em></li>
+<li><em>Enables new tool developments</em></li>
+<li><em>Mutation testing, random testing</em></li>
+</ul>
+</section>
+<section >
+<img src="images/waterfall.png" style="max-width:510px;float:left;margin:100px 30px 100px 0px" class="nb"/>
+<p><strong>Testing as part of the development process</strong></p>
+<p><em>Testing after coding in Waterfall (1970)</em></p>
+<p>Unit testing <em>separate from</em> acceptance tests</p>
+</section>
+<section >
+<h1><em>Extreme programming</em></h1>
+<img src="images/tdd.jpg" style="float:right;width:350px" class="nb"/>
+<p><strong>Test-Driven Development</strong></p>
+<ul>
+<li><em>Programmers &amp; customers</em></li>
+<li><em>Write tests first</em></li>
+<li><em>Then write code and improve</em></li>
+</ul>
+<p><strong>Development methodology</strong></p>
+<ul>
+<li><em>From black art to engineering</em></li>
+<li>
+<em>Engineering take on<br />
+managerial methods</em>
+</li>
+</ul>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Conclusions</em></h1>
+<h2>Cultures of programming</h2>
+</section>
+<section >
+<img src="images/debug.gif" style="max-width:400px;float:left;margin:30px 60px 100px 0px" />
+<p><strong>What happened<br />
+to debugging?</strong></p>
+<p><em>Conceptually similar to '60s</em><br />
+<em>Learned through practice</em><br />
+<em>Hacker culture only</em></p>
+<p>No boundary object to exchange with other cultures?</p>
+</section>
+<section >
+<h1><em>Cultures of programming</em></h1>
+<h2>Ways of trusting software systems</h2>
+<p><em><i class="fa fa-keyboard"></i></em> Hacker <em>- Trust person making it</em></p>
+<p><em><i class="fa fa-wrench"></i></em> Engineering <em>- Rely on tools</em></p>
+<p><em><i class="fa fa-project-diagram"></i></em> Managerial <em>- Rely on processes</em></p>
+<p><em><i class="fa fa-infinity"></i></em> Mathematical <em>- Trust formal proofs</em></p>
+</section>
+<section class="front">
+<h1><em><strong>Cultures of programming</strong></em></h1>
+<h2>A useful perspective for history of programming</h2>
+<p><em><i class="fa fa-subscript"></i> Mathematization of programming</em></p>
+<p><em><i class="fa fa-wrench"></i> Rise of software engineering</em></p>
+<p><em><i class="fa fa-terminal"></i> Interactive programming</em></p>
+<p><em><i class="fa fa-tape"></i> Programming with types</em></p>
+<br />
+<p>Papers: <a href="http://tomasp.net/academic"><a href="http://tomasp.net/academic">http://tomasp.net/academic</a></a><br />
+Contact: <a href="mailto:t.petricek@kent.ac.uk">t.petricek@kent.ac.uk</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
