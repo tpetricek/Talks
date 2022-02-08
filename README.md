@@ -123,6 +123,9 @@ Talks and slides
 
 ### Philosophy of Science
 
+ - [**Cultures of programming: Understanding the history of programming through technical artifacts and controversies**](http://tpetricek.github.io/Talks/2022/cultures-of-programming/) (October 2021) - History of Programming meetup (virtual)<br/>
+ See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
+
  - [**An incomplete history of
 getting programs to behave**](http://tpetricek.github.io/Talks/2021/cultures-of-programming) (October 2021) - Centre for Reasoning, Kent<br/>
   See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
