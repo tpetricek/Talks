@@ -1,0 +1,273 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cultures of programming</title>
+    <meta name="description" content="Cultures of programming">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="front">
+<h1><em><strong>Cultures of programming</strong><br />Understanding the history of programming through technical  artifacts and controversies</em></h1>
+<div style="height:280px"></div>
+<p><strong>Tomas Petricek</strong>, <em>University of Kent</em><br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<img src="images/paper.png" style="float:left;max-width:400px;margin:0px 70px 100px 0px"/>
+<p>Learning to live with errors
+<em>Programming, 2017</em></p>
+<p>Cultures of programming<br />
+<em>Draft for HOPL IV</em><br />
+<em>Could this be a book?</em></p>
+</section>
+<section >
+<section class="part">
+<h1><em>Cultures</em></h1>
+<h2>Introducing cultures of programming</h2>
+</section>
+<section >
+<h1><em>Cultures of programming</em></h1>
+<img src="images/cobol.jpg" style="float:right;width:420px;margin-top:20px" class="nb"/>
+<p><strong>Different cultures</strong></p>
+<ul>
+<li><em>Hacker culture</em></li>
+<li><em>Mathematical culture</em></li>
+<li><em>Managerial culture</em></li>
+<li><em>Engineering culture</em></li>
+<li><em>Humanistic culture</em></li>
+</ul>
+<div class="fragment">
+<p><strong>When cultures meet</strong></p>
+<ul>
+<li><em>Arguing about principles</em></li>
+<li><em>Contributing to a concept</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1><em>Hacker culture</em></h1>
+<h2>Basic assumptions about programming</h2>
+<p><em><i class="fa fa-laptop-code"></i></em> Programming <em>is learned through practice</em></p>
+<p><em><i class="fa fa-chalkboard-teacher"></i></em> Advocate <em>direct access to computer</em></p>
+<p><em><i class="fa fa-file-image" style="position:relative;left:10px"></i></em> Exemplars <em>include Spacewar! and HAKMEM</em></p>
+</section>
+<section >
+<h1><em>Mathematical culture</em></h1>
+<h2>Basic assumptions about programming</h2>
+<p><em><i class="fa fa-laptop-code"></i></em> Programming <em>is a mathematical discipline</em></p>
+<p><em><i class="fa fa-chalkboard-teacher"></i></em> Advocate <em>proving programs correct</em></p>
+<p><em><i class="fa fa-file-image" style="position:relative;left:10px"></i></em> Exemplars <em>include ALGOL and PLT papers</em></p>
+</section>
+<section >
+<h1><em>Managerial culture</em></h1>
+<h2>Basic assumptions about programming</h2>
+<p><em><i class="fa fa-laptop-code"></i></em> Programming <em>is industrial production process</em></p>
+<p><em><i class="fa fa-chalkboard-teacher"></i></em> Advocate <em>organizational processes</em></p>
+<p><em><i class="fa fa-file-image" style="position:relative;left:10px"></i></em> Exemplars <em>include Waterfall and SCRUM</em></p>
+</section>
+<section >
+<h1><em>Engineering culture</em></h1>
+<h2>Basic assumptions about programming</h2>
+<p><em><i class="fa fa-laptop-code"></i></em> Programming <em>should be an engineering practice</em></p>
+<p><em><i class="fa fa-chalkboard-teacher"></i></em> Advocate <em>tools and development practices</em></p>
+<p><em><i class="fa fa-file-image" style="position:relative;left:10px"></i></em> Exemplars <em>include TDD and information hiding</em></p>
+</section>
+<section >
+<h1><em>Humanistic culture</em></h1>
+<h2>Basic assumptions about programming</h2>
+<p><em><i class="fa fa-laptop-code"></i></em> Programming <em>is a creative human activity</em></p>
+<p><em><i class="fa fa-chalkboard-teacher"></i></em> Advocate <em>improving the human condition</em></p>
+<p><em><i class="fa fa-file-image" style="position:relative;left:10px"></i></em> Exemplars <em>include oNLine System, Sonic Pi</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>How cultures meet</em></h1>
+<h2>Controversies and technical artifacts</h2>
+</section>
+<section >
+<h1><em>Controversies and artifacts</em></h1>
+<img src="images/dynabook.png" style="float:right;width:320px;margin-top:20px" />
+<p><strong>Programming controversies</strong></p>
+<ul>
+<li><em>NATO conference (1969)</em></li>
+<li><em>Verification debate (1979)</em></li>
+<li><em>Dynabook vs iPad (2010)</em></li>
+<li><em>Haskell vs TypeScript (2012)</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Programming concepts</strong></p>
+<ul>
+<li><em>Programming languages</em></li>
+<li><em>(The real history of) types</em></li>
+<li><em>Testing and error handling</em></li>
+<li><em>Object-oriented programming</em></li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Technical artifacts</em></h1>
+<h2>Multi-cultural programming concepts</h2>
+</section>
+<section >
+<h1><em>Programming languages</em></h1>
+<h2>Language as a machine-independent entity</h2>
+<div class="fragment">
+<p><em><i class="fa fa-terminal"></i></em> Hacker culture<br />
+<em><i class="fa fa-xx"></i> EDSAC initial orders and interpretative routines</em></p>
+<p><em><i class="fa fa-infinity"></i></em> Mathematical culture<br />
+<em><i class="fa fa-xx"></i> Logic, formal languages and grammars</em></p>
+<p><em><i class="fa fa-users"></i></em> Managerial culture<br />
+<em><i class="fa fa-xx"></i> Business need for cross-machine compatibility</em></p>
+</div>
+</section>
+<section >
+<h1><em>Types</em></h1>
+<h2>Types as sets, LCF and a great unification</h2>
+<div class="fragment">
+<p><em><i class="fa fa-users"></i></em> Managerial culture<br />
+<em><i class="fa fa-xx"></i> Records and business data processing</em></p>
+<p><em><i class="fa fa-infinity"></i></em> Mathematical culture<br />
+<em><i class="fa fa-xx"></i> Lambda calculus models of PLs</em></p>
+<p><em><i class="fa fa-wrench"></i></em> Engineering culture<br />
+<em><i class="fa fa-xx"></i> Clu and abstract data types</em></p>
+</div>
+</section>
+<section >
+<h1><em>Testing</em></h1>
+<h2>Professionalization of testing vs. debugging</h2>
+<div class="fragment">
+<p><em><i class="fa fa-terminal"></i></em> Hacker culture<br />
+<em><i class="fa fa-xx"></i> Program checkout, debugging and testing</em></p>
+<p><em><i class="fa fa-wrench"></i></em> Engineering culture<br />
+<em><i class="fa fa-xx"></i> From demonstration to destruction</em></p>
+<p><em><i class="fa fa-infinity"></i></em> Mathematical culture<br />
+<em><i class="fa fa-xx"></i> Designing comprehensive test suites</em></p>
+<p><em><i class="fa fa-users"></i></em> Managerial culture<br />
+<em><i class="fa fa-xx"></i> Testing in Waterfall vs. testing in TDD</em></p>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Conclusions</em></h1>
+<h2>Cultures of programming</h2>
+</section>
+<section >
+<img src="images/debug.gif" style="max-width:400px;float:left;margin:30px 60px 100px 0px" />
+<p><strong>What happened<br />
+to debugging?</strong></p>
+<p><em>Conceptually similar to '60s</em><br />
+<em>Learned through practice</em><br />
+<em>Hacker culture only</em></p>
+<p>No boundary object to exchange with other cultures?</p>
+</section>
+<section >
+<h1><em>Cultures of programming</em></h1>
+<h2>Ways of trusting software systems</h2>
+<p><em><i class="fa fa-keyboard"></i></em> Hacker <em>- Trust person making it</em></p>
+<p><em><i class="fa fa-wrench"></i></em> Engineering <em>- Rely on tools</em></p>
+<p><em><i class="fa fa-project-diagram"></i></em> Managerial <em>- Rely on processes</em></p>
+<p><em><i class="fa fa-infinity"></i></em> Mathematical <em>- Trust formal proofs</em></p>
+</section>
+<section >
+<h1><em>Cultures of programming</em></h1>
+<h2>A useful perspective for history of programming</h2>
+<p><em><i class="fa fa-subscript"></i> Mathematization of programming</em></p>
+<p><em><i class="fa fa-wrench"></i> Rise of software engineering</em></p>
+<p><em><i class="fa fa-terminal"></i> Interactive programming</em></p>
+<p><em><i class="fa fa-tape"></i> Programming with types</em></p>
+<br />
+<p><a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
