@@ -1,0 +1,307 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tomas Petricek - Changing how we think about programming</title>
+    <meta name="description" content="Tomas Petricek - Changing how we think about programming">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1>Changing how we think</h1>
+<p><em>Programming languages and systems</em></p>
+<br /><br /><br />
+<br /><br /><br />
+<br />
+<p>Tomas Petricek, <em>University of Kent</em><br />
+<em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+</section>
+<section >
+<section >
+<p><em><strong>1. About me</strong></em></p>
+<p><em>2. Past research</em></p>
+<p><em>3. Research vision</em></p>
+</section>
+<section >
+<h1>Education</h1>
+<p><em>Context-aware programming and F# contributions</em></p>
+<br />
+<p><em><i class="fa fa-university"></i></em> Faculty of Mathematics and Physics, 2004-2010</p>
+<p><em><i class="fa fa-industry"></i></em> Microsoft Research, 2007, 2008-2009</p>
+<p><em><i class="fa fa-university"></i></em> University of Cambridge, 2011-2016</p>
+<br />
+<div class="fragment">
+<p><em><i class="fa fa-pencil-alt"></i> Independent theoretical research project</em></p>
+<p><em><i class="fa fa-book"></i> Functional programming book and trainings</em></p>
+<p><em><i class="fa fa-chalkboard-teacher"></i> Teach topics I would myself find useful!</em></p>
+</div>
+<br />
+<br />
+</section>
+<section >
+<h1>Post-doctoral</h1>
+<p><em>Creating tools for data exploration</em></p>
+<br />
+<p><em><i class="fa fa-industry"></i></em> Microsoft Research, 2014-2016</p>
+<p><em><i class="fa fa-city"></i></em> The Alan Turing Institute, 2016-2018</p>
+<br />
+<div class="fragment">
+<p><em><i class="fab fa-google"></i> Funding from Google Digital News Initiative</em></p>
+<p><em><i class="fab fa-github"></i> Open-source and technology transfer</em></p>
+<p><em><i class="fa fa-comment"></i> Collaborating with AI researchers &amp; journalists</em></p>
+</div>
+<br />
+<br />
+</section>
+<section >
+<h1>Lectureship</h1>
+<p><em>Leading data science tooling research</em></p>
+<br />
+<p><em><i class="fa fa-university"></i></em> University of Kent, 2018-now</p>
+<p><em><i class="fa fa-city"></i></em> The Alan Turing Institute, 2018-2020</p>
+<br />
+<div class="fragment">
+<p><em><i class="fa fa-money-bill"></i> Obtained funding from GCHQ &amp; Dstl</em></p>
+<p><em><i class="fa fa-users"></i> Research supervision &amp; collaboration</em></p>
+<p><em><i class="fa fa-address-book"></i> Teaching undergraduate &amp; graduate students</em></p>
+</div>
+<br />
+<br />
+</section>
+</section>
+<section >
+<section >
+<p><em>1. About me</em></p>
+<p><em><strong>2. Past research</strong></em></p>
+<p><em>3. Research vision</em></p>
+</section>
+<section >
+<h1><strong>Context-aware programming</strong></h1>
+<span class="ref"><span>ICALP 2013</span></span>
+<span class="ref"><span>ICFP 2014</span></span>
+<br /><br />
+<p><em><i class="fa fa-pencil-alt"></i> How to track context requirements in programs?</em></p>
+<p><em><i class="fa fa-external-link-alt"></i> Provenance, liveness, resource usage, linear types</em></p>
+<p><em><i class="fa fa-cubes"></i> Context in distributed, adaptive &amp; component systems</em></p>
+<br />
+<div class="fragment">
+<p><em><i class="fab fa-chrome"></i> 80 citations &amp; interactive essay with 30k+ views</em></p>
+<p><em><i class="fa fa-igloo"></i> Inspired grants in USA, UK, France &amp; Iceland</em></p>
+<p><em><i class="fab fa-facebook"></i> Adopted by Facebook Hack and inspired Scala</em></p>
+</div>
+<br />
+<br />
+</section>
+<section >
+<h1><strong>F# and asynchronous programming</strong></h1>
+<span class="ref"><span>PLDI 2016</span></span>
+<span class="ref"><span>PADL 2014</span></span>
+<span class="ref"><span>PADL 2011a</span></span>
+<span class="ref"><span>PADL 2011b</span></span>
+<br /><br />
+<p><em><i class="fa fa-database"></i> Type providers for structured and unstructured data</em></p>
+<p><em><i class="fa fa-network-wired"></i> Encoding asynchronous and concurrent computations</em></p>
+<p><em><i class="fa fa-cloud"></i> Programming abstractions for cloud computing?</em></p>
+<br />
+<div class="fragment">
+<p><em><i class="fa fa-award"></i> 100+/30+ citations, ACM SIGPLAN Research Highlight</em></p>
+<p><em><i class="fa fa-globe"></i> Close links with large industry user-base</em></p>
+<p><em><i class="fab fa-chrome"></i> Async/await primitives in C#, JavaScript, Python</em></p>
+</div>
+<br />
+<br />
+</section>
+<section >
+<h1><strong>Programming tools for data science</strong></h1>
+<span class="ref"><span>POPL 2022</span></span>
+<span class="ref"><span>JFP 2021</span></span>
+<span class="ref"><span>Programming 2020</span></span>
+<span class="ref"><span>ECOOP 2017</span></span>
+<br /><br />
+<p><em><i class="fa fa-newspaper"></i> Tools for simple data-driven storytelling</em></p>
+<p><em><i class="fa fa-chart-line"></i> Composable &amp; explainable data visualization</em></p>
+<p><em><i class="fa fa-flag-checkered"></i> Performance awareness in data processing?</em></p>
+<br />
+<div class="fragment">
+<p><em><i class="fa fa-umbrella"></i> Reshaping flagship AI for Data Analytics project</em></p>
+<p><em><i class="fa fa-file-alt"></i> Led work by post-doc, two RSEs and four interns</em></p>
+<p><em><i class="fa fa-microphone"></i> Interest from BBC, UK public service, The Guardian</em></p>
+</div>
+<br />
+<br />
+</section>
+</section>
+<section >
+<section >
+<p><em>1. About me</em></p>
+<p><em>2. Past research</em></p>
+<p><em><strong>3. Research vision</strong></em></p>
+</section>
+<section >
+<style type="text/css">
+.bwtl h3 { color:white; }
+</style>
+<div style="background:black;position:absolute;width:200%;right:50%;height:400%;top:-100%;z-index:-1000;"></div>
+<table style="margin-top:140px"><tr><td style="width:45%;color:white" class="fragment bwtl">
+<h3><em>Programming languages</em></h3>
+<div style="padding:20px 0px 105px 0px;">
+<p><em><i class="fa fa-university"></i> Established theory</em></p>
+<p><em><i class="fa fa-code"></i> Program is expression</em></p>
+<p><em><i class="fa fa-wrench"></i> Plethora of tools</em></p>
+<p><em><i class="fa fa-microscope"></i> Ignores interaction</em></p>
+</div></td><td style="width:45%" class="fragment">
+<h3><em>Programming systems</em></h3>
+<div style="padding:20px 0px 105px 0px;">
+<p><em><i class="fa fa-object-group"></i> Disconnected field</em></p>
+<p><em><i class="fa fa-flask"></i> Stateful environment</em></p>
+<p><em><i class="fa fa-tools"></i> Old &amp; new methods</em></p>
+<p><em><i class="fa fa-mobile-alt"></i> Data, low-code, etc.</em></p>
+</div></td></tr></table>
+</section>
+<section >
+<h1><strong>Simple trustworthy data exploration</strong></h1>
+<br />
+<p><em><i class="fa fa-table"></i></em> How to capture for actual data wrangling?</p>
+<p><em><i class="fa fa-list-ul"></i></em> Script as a sequence of interactions!</p>
+<p><em><i class="fa fa-university"></i></em> Leverage systems verification &amp; performance?</p>
+<br />
+<div class="fragment">
+<p><em><i class="fa fa-check-circle"></i> Check correctness of exploration scripts</em></p>
+<p><em><i class="fa fa-question-circle"></i> Provenance tracking for accountability <span class="ref"><span>ICFP 2014</span></span></em></p>
+<p><em><i class="fa fa-money-check-alt"></i> CUNI PRIMUS (Round 7) and follow-up ERC</em></p>
+</div>
+<br />
+<br />
+</section>
+<section >
+<h1><strong>Opening the software black-box</strong></h1>
+<br />
+<p><em><i class="fa fa-user-edit"></i></em> How to make software open and customizable?</p>
+<p><em><i class="fa fa-hand-point-up"></i></em> Interacting rather than coding vs. using!</p>
+<p><em><i class="fa fa-university"></i></em> Learn from adaptive architectures &amp; tracing?</p>
+<br />
+<div class="fragment">
+<p><em><i class="fa fa-history"></i> Reifying and exposing evaluation traces <span class="ref"><span>POPL 2022</span></span></em></p>
+<p><em><i class="fa fa-box"></i> Interdisciplinary research on black-boxing</em></p>
+<p><em><i class="fa fa-money-check-alt"></i> GAČR JUNIOR STAR, ERC Synergy Grant</em></p>
+</div>
+<br />
+<br />
+</section>
+<section >
+<h1>Collaborations</h1>
+<div class="wide">
+<p><em><i class="fa fa-cubes"></i></em> Working Group on Language Design (IFIP 2.16)<br />
+<em><i class="fa fa-xxx"></i> Victoria (NZ), CWI (NL), INRIA (FR), Industry (USA)</em></p>
+<p><em><i class="fa fa-cubes"></i></em> Microsoft Research &amp; The Alan Turing Institute<br />
+<em><i class="fa fa-xxx"></i> Cambridge (UK), Research Software Engineering (UK)</em></p>
+<p><em><i class="fa fa-cubes"></i></em> F# and functional programming communities<br />
+<em><i class="fa fa-xxx"></i> Erlang Solutions (UK), NDC (NO), Industry (UK, USA)</em></p>
+<p><em><i class="fa fa-cubes"></i></em> Interdisciplinary ANR PROGRAMme project<br />
+<em><i class="fa fa-xxx"></i> CNRS (FR), Bologna (IT), Milan (IT), RPI (US)</em></p>
+</div>
+<style type="text/css">.wide p { margin-top:30px}</style>
+<br /><br />
+</section>
+</section>
+<section >
+<h1><strong>Tomas Petricek</strong></h1>
+<br /><br />
+<p><em><i class="fa fa-trophy"></i> D3S has a great reputation and students!</em></p>
+<p><em><i class="fa fa-puzzle-piece"></i> New direction that fits well with D3S</em></p>
+<p><em><i class="fa fa-globe-europe"></i> International research &amp; teaching track-record</em></p>
+<p><em><i class="fa fa-folder-open"></i> Research vision with two grants in the works</em></p>
+<br /><br />
+<p><em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>

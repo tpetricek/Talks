@@ -1,0 +1,501 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Data exploration as a programming problem</title>
+    <meta name="description" content="Data exploration as a programming problem">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h1><em><strong>Data exploration</strong></em><br />as a programming problem</h1>
+<br /><br /><br />
+<br /><br /><br />
+<br />
+<p>Tomas Petricek, <em>University of Kent</em><br />
+<em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+</section>
+<section >
+<section >
+<h1><em><strong>Data exploration</strong></em></h1>
+</section>
+<section >
+<img src="images/nyt.png" style="width:800px;margin-left:60px" />
+</section>
+<section >
+<h1>Motivation</h1>
+<p><em>Simple, trustworthy and accountable data exploration</em></p>
+<br />
+<h1>Approach</h1>
+<p><em>Theoretical programming research in a new context</em></p>
+</section>
+<section >
+<style type="text/css">
+.bwtl h3 { color:white; }
+</style>
+<div style="background:black;position:absolute;width:200%;right:53%;height:400%;top:-100%;z-index:-1000;"></div>
+<table style="margin-top:140px"><tr><td style="width:45%;color:white" class="fragment bwtl">
+<h3><em>Spreadsheets</em></h3>
+<div style="padding:20px 0px 105px 0px;">
+<p><em><i class="fa fa-user"></i> Easy to use</em></p>
+<p><em><i class="fa fa-table"></i> Small tabular data</em></p>
+<p><em><i class="fa fa-redo-alt"></i> Not reproducible</em></p>
+<p><em><i class="fa fa-bug"></i> Error prone</em></p>
+</div></td><td style="width:45%" class="fragment">
+<h3><em>Programming</em></h3>
+<div style="padding:20px 0px 105px 0px;">
+<p><em><i class="fa fa-user-graduate"></i> Requires expert skills</em></p>
+<p><em><i class="fa fa-globe"></i> Internet-scale</em></p>
+<p><em><i class="fa fa-code"></i> Reproducible &amp; open</em></p>
+<p><em><i class="fa fa-robot"></i> Formally verifiable</em></p>
+</div></td></tr></table>
+</section>
+<section >
+<h1>Best of both worlds</h1>
+<p><em>Can we make data exploration tools</em></p>
+<br />
+<p><em><i class="fa fa-user"></i> As simple as spreadsheets?</em></p>
+<p><em><i class="fa fa-globe"></i> As flexible as programming tools?</em></p>
+<p><em><i class="fa fa-robot"></i> Formally verifiable like programs?</em></p>
+</section>
+<section >
+<h3>DEMO</h3>
+<p><em>Exploring Olympic medals <span class="ref"><span>ECOOP 2017</span></span> <span class="ref"><span>Programming 2020</span></span></em></p>
+</section>
+</section>
+<section >
+<section >
+<h1><em><strong>Working with data</strong></em></h1>
+</section>
+<section >
+<h1>Reading data</h1>
+<p><em>Unsafe data access in a typed language</em></p>
+<br />
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://owm.org/forecast/daily?q=Prague"</span>;
+<span class="k">var</span> forecast <span class="o">=</span> JsonValue.Load(url);
+<span class="k">var</span> days <span class="o">=</span> forecast[<span class="s">"list"</span>];
+
+<span class="k">foreach</span>(JsonValue day <span class="k">in</span> days) {
+  <span class="k">var</span> hi <span class="o">=</span> (<span class="k">double</span>)day[<span class="s">"temp"</span>][<span class="s">"high"</span>];
+  Console.WriteLine(hi);
+}
+</code></pre></td></tr></table>
+<div class="fragment">
+  <div class="tipbox" style="position:absolute;left:390px;top:305px;width:102px;height:30px"></div>
+  <div class="tipbox" style="position:absolute;left:443px;top:421px;width:102px;height:30px"></div>
+  <div class="tipbox" style="position:absolute;left:584px;top:421px;width:102px;height:30px"></div>
+</div>
+<div class="fragment">
+  <div class="tiplbl" style="position:absolute;left:630px;top:475px">Not found!</div>
+</div>
+</section>
+<section >
+<h1>Reading data</h1>
+<p><em>Unsafe data access in a typed language</em></p>
+<br />
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">var</span> url <span class="o">=</span> <span class="s">"http://owm.org/forecast/daily?q=Prague"</span>;
+<span class="k">var</span> forecast <span class="o">=</span> JsonValue.Load(url);
+<span class="k">var</span> days <span class="o">=</span> forecast[<span class="s">"list"</span>];
+
+<span class="k">foreach</span>(JsonValue day <span class="k">in</span> days) {
+  <span class="k">var</span> hi <span class="o">=</span> (<span class="k">double</span>)day[<span class="s">"temp"</span>][<span class="s">"max"</span>];
+  Console.WriteLine(hi);
+}
+</code></pre></td></tr></table>
+<div class="fragmentt">
+  <div class="tipbox" style="left:584px;top:-154px;width:86px;height:30px"></div>
+  <br/>
+</div>
+</section>
+<section >
+<h1>Reading data</h1>
+<p><em>Accessing data from external data sources</em></p>
+<br />
+<p><em><i class="fa fa-file-excel"></i> Languages do not understand data</em></p>
+<p><em><i class="fa fa-tags"></i> There is rarely explicit schema</em></p>
+<p><em><i class="fa fa-code"></i> Manually defined types can capture it</em></p>
+<p><em><i class="fa fa-wrench"></i> Easier in dynamic languages!</em></p>
+<br /><br />
+</section>
+<section >
+<h1>Querying data</h1>
+<p><em>Athletes by number of gold medals from Rio 2016</em></p>
+<div style="padding:40px 0px 60px 0px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">olympics</span> <span class="o">=</span> <span class="i">pd</span><span class="o">.</span><span class="i">read_csv</span>(<span class="s">&quot;olympics.csv&quot;</span>)
+<span class="i">olympics</span>[<span class="i">olympics</span>[<span class="s">&quot;Games&quot;</span>] <span class="o">==</span> <span class="s">&quot;Rio (2016)&quot;</span>]
+  <span class="o">.</span><span class="i">groupby</span>(<span class="s">&quot;Athlete&quot;</span>)
+  <span class="o">.</span><span class="i">agg</span>({<span class="s">&quot;Gold&quot;</span><span class="o">:</span> <span class="i">sum</span>})
+  <span class="o">.</span><span class="i">sort_values</span>(<span class="i">by</span><span class="o">=</span><span class="s">&quot;Gold&quot;</span>, <span class="i">ascending</span><span class="o">=</span><span class="i">False</span>)
+  <span class="o">.</span><span class="i">head</span>(<span class="n">8</span>)
+</code></pre></td>
+</tr>
+</table>
+</div>
+<div class="fragment">
+  <div class="tipbox" style="left:455px;top:-324px;width:220px;height:25px"></div>
+  <div class="tiplbl" style="left:550px;top:-415px">Unknown file</div>
+  <div class="tipbox" style="left:364px;top:-254px;width:90px;height:25px"></div>
+  <div class="tiplbl" style="left:390px;top:-245px">Column name</div>
+</div>
+</section>
+<section >
+<h1>Querying data</h1>
+<p><em>Language and data source features you need to know</em></p>
+<br />
+<p><em><i class="fa fa-book"></i> Python dictionaries <code>{"key": value}</code></em></p>
+<p><em><i class="fa fa-eye"></i> Generalised indexers <code>.[ condition ]</code></em></p>
+<p><em><i class="fa fa-university"></i> Operation names <code>sort_values</code></em></p>
+<p><em><i class="fa fa-database"></i> Data column names <code>"Athlete"</code></em></p>
+<br /><br />
+</section>
+</section>
+<section >
+<section >
+<h1><em><strong>Type providers</strong></em></h1>
+</section>
+<section >
+<div class="bigeq">
+<p><span class="math">\(\emptyset \vdash e : \tau\)</span></p>
+</div>
+</section>
+<section >
+<div class="bigeq bigeq2">
+<p><span class="math">\(\pi(~~~~~~~) \vdash e : \tau\)</span></p>
+<img src="images/globe.png" style="position:absolute;left:285px;top:75px;width:170px" />
+</div>
+</section>
+<section >
+<h3>DEMO</h3>
+<p><em>Parsing JSON weather forecast <span class="ref"><span>PLDI 2016</span></span></em></p>
+</section>
+<section >
+<h1>F# Data</h1>
+<p><em>Interesting theoretical aspects of data access</em></p>
+<br />
+<p><em><i class="fa fa-adjust"></i> Pragmatic structural shape inference</em></p>
+<p><em><i class="fa fa-shapes"></i> Predictable handling of schema change</em></p>
+<p><em><i class="fa fa-bomb"></i> Relative type safety property</em></p>
+<br /><br />
+<br /><br />
+</section>
+<section >
+<div class="diagram1">
+<p>
+  <span>{title&nbsp;:&nbsp;string,&nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;int}}</span>
+  <span style="margin-left:50px">{author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}}</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:55px;left:72px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;top:30px;left:40px">{&nbsp;title&nbsp;:&nbsp;option&lt;string&gt;,
+    &nbsp;author&nbsp;:&nbsp;{age&nbsp;:&nbsp;float}&nbsp;}</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<div class="diagram2">
+<p>
+  <span>{&nbsp;coordinates&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}</span>
+  <span style="margin-left:50px">string</span>
+</p>  
+<div class="fragment">
+<p><span style="position:relative;top:55px;left:200px" class="arrow-down"></span></p>
+<p>
+  <span style="position:relative;left:70px;top:30px">
+  {&nbsp;coordinates&nbsp;:&nbsp;{lng:num,&nbsp;lat:num}&nbsp;}&nbsp;+&nbsp;string&nbsp;</span>
+</p>  
+</div>
+</div>
+</section>
+<section >
+<h1>Schema change</h1>
+<p><em>Provided type can change only in limited ways</em></p>
+<br />
+<p><span class="math">\(C[e] \rightarrow C[e.M]\)</span></p>
+<p><span class="math">\(C[e] \rightarrow C[{\sf match}~e~{\sf with}~\ldots]\)</span></p>
+<p><span class="math">\(C[e] \rightarrow C[int(e)]\)</span></p>
+<br />
+<br />
+<br />
+<br />
+</section>
+<section >
+<h1>Dot-driven development</h1>
+<p><em>Encoding complex logic via simple member access</em></p>
+<img src="images/thegamma.png" style="width:740px;margin-top:30px" />
+<br /><br />
+</section>
+<section >
+<h1>The Gamma</h1>
+<p><em>Interesting theoretical aspects of data querying</em></p>
+<br />
+<p><em><i class="fa fa-tree"></i> Laziness for scaling to large hierarchies</em></p>
+<p><em><i class="fa fa-bell"></i> Fancy types for the masses <span class="ref"><span>ECOOP 2017</span></span></em></p>
+<p><em><i class="fa fa-sync"></i> Efficient on-the-fly code evaluation <span class="ref"><span>Programming 2020</span></span></em></p>
+<p><em><i class="fa fa-pen-fancy"></i> Can non-experts really do this? <span class="ref"><span>WiP 2022</span></span></em></p>
+<br /><br />
+</section>
+<section >
+<h1>Fancy types</h1>
+<p><em>Row types track names and types of fields</em></p>
+<div style="padding:0px 0px 40px 0px;position:relative;left:-80px;transform:scale(0.75)">
+<p><span class="math">\[\definecolor{cc}{RGB}{204,82,34}
+\definecolor{mc}{RGB}{0,0,153}
+\frac
+  {\Gamma \vdash e : {\color{cc}[f_1:\tau_1, \ldots, f_n:\tau_n]}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{cc} [f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n]}}\]</span></p>
+</div><div class="fragment">
+<p><em>Embed row types in provided nominal types</em></p>
+<div style="padding:-20px 0px 30px 0px;position:relative;left:-80px;transform:scale(0.75)">
+<p><span class="math">\[\frac
+  {\Gamma \vdash e : {\color{mc} C_1}}
+  {\Gamma \vdash e.\text{drop}~f_i : {\color{mc} C_2}}\]</span></p>
+<div style="position:relative;top:-20px;" class="fragment">
+<p><span class="math">\[\begin{array}{l}
+\\[-0.5em]
+{fields({\color{mc} C_1}) = {\color{mc} \{f_1:\tau_1, \ldots, f_n:\tau_n\}}}\\
+{fields({\color{mc} C_2}) = {\color{mc} \{f_1:\tau_1, \ldots, f_{i-1}:\tau_{i-1}, f_{i+1}:\tau_{i+1}, \ldots, f_n:\tau_n\}}}
+\end{array}\]</span></p>
+</div></div>
+</section>
+</section>
+<section >
+<section >
+<h1><em><strong>AI assistants</strong></em></h1>
+</section>
+<section >
+<h1>Data wrangling</h1>
+<p><em>Getting data into the right format</em></p>
+<br />
+<p><em><i class="fa fa-percent"></i> Manual process taking 80% of analyst's time</em></p>
+<p><em><i class="fa fa-table"></i> Obtaining, merging and fixing data</em></p>
+<p><em><i class="fa fa-cogs"></i> Automatic AI tools still need some help!</em></p>
+<p><em><i class="fa fa-gamepad"></i> Ad-hoc interfaces and feedback mechanisms</em></p>
+</section>
+<section >
+<img src="images/wrattler.png" class="nb" style="max-width:580px;float:left;margin:10px 60px 100px 0px" />
+<h1>Wrattler</h1>
+<p><em>Research platform for The Gamma<br/> and AI assistants</em></p>
+<br />
+<p><em>Mix languages, build interactive tools, analyse<br /> code provenance</em></p>
+</section>
+<section class="part">
+<h3>DEMO</h3>
+<p><em>Wrattler and outlier detection <span class="ref"><span>TaPP 2018</span></span></em></p>
+</section>
+<section class="mathslide">
+<h1>AI assistants</h1>
+<p><em>Semi-interactive tools for data wrangling <span class="ref"><span>Submitted 2022</span></span></em></p>
+<br />
+<div class="fragment">
+<p><em>A tuple <span class="math">\((\mathit{best}, \mathit{choices}, f)\)</span> such that</em></p>
+<ul>
+<li><span class="math">\(\mathit{best}_X(H)=e\)</span> <em>– recommends best expression</em></li>
+<li><span class="math">\(\mathit{choices}_X(H)=(H_1, \ldots, H_n)\)</span> <em>– offers constraints</em></li>
+<li><span class="math">\(f(e, X)=Y\)</span> <em>– evaluation function</em></li>
+</ul>
+</div>
+</section>
+<section class="part">
+<h3>DEMO</h3>
+<p><em>Datadiff AI assistant <span class="ref"><span>Submitted 2022</span></span></em></p>
+</section>
+<section >
+<h1>AI assistants</h1>
+<p><em>Empirical evaluation of number of interactions</em></p>
+<img src="images/eval.png" style="width:600px;margin-top:30px"/>
+</section>
+</section>
+<section >
+<section >
+<h1><em><strong>Data visualization</strong></em></h1>
+</section>
+<section >
+<img src="images/compost.png" class="nb" style="max-width:540px;float:left;margin:40px 70px 100px 0px" />
+<h1>Compost.js</h1>
+<p><em>Composable data visualization library <span class="ref"><span>JFP 2021</span></span></em></p>
+<br />
+<p><em>Functional ideas applied to data visualization</em></p>
+<br /><br />
+</section>
+<section >
+<img src="images/fluid.png" class="nb" style="max-width:540px;float:left;margin:40px 20px 100px 0px" />
+<h1>Fluid</h1>
+<p><em>Linked visualizations via Galois dependencies <span class="ref"><span>POPL 2022</span></span></em></p>
+<br />
+<p><em>Uses program slicing to make linking automatic</em></p>
+<br /><br />
+</section>
+</section>
+<section >
+<section >
+<h1><em><strong>Future work</strong></em></h1>
+</section>
+<section >
+<img src="images/notebook.png" class="nb" style="max-width:520px;float:left;margin:0px 40px 100px 0px;border:black 3px solid" />
+<h1>Notebooks for data exploration</h1>
+<br />
+<p><em>Programming as interaction with a stateful environment</em></p>
+</section>
+<section >
+<h1>Programming languages</h1>
+<p><em>Programs as expressions in a formal grammar</em></p>
+<br />
+<h1>Programming systems</h1>
+<p><em>Programs as lists of interactions with the evnrionment</em></p>
+</section>
+<section >
+<div class="bigeq">
+<p><span class="math">\(e := e_1 + e_2~|~e_1~e_2~|~\lambda x.e\)</span></p>
+</div>
+<br /><br />
+</section>
+<section >
+<div class="bigeq">
+<p><span class="math">\(p := a_1;~a_2;~\ldots;~a_n\)</span></p>
+</div>
+<br /><br />
+</section>
+<section >
+<h1>Data exploration</h1>
+<p><em>Programming as a sequence of interactions</em></p>
+<br />
+<p><em><i class="fa fa-table"></i> Accommodates manual data edits</em></p>
+<p><em><i class="fa fa-sort-alpha-up"></i> Supports user interface interactions</em></p>
+<p><em><i class="fa fa-not-equal"></i> Amenable to formal analysis</em></p>
+<p><em><i class="fa fa-external-link-alt"></i> Correctness, provenance etc. <span class="ref"><span>ICFP 2014</span></span></em></p>
+<br/><br/>
+</section>
+</section>
+<section >
+<section >
+<h1><em><strong>Summary</strong></em></h1>
+</section>
+<section >
+<h1>Thank you!</h1>
+<br />
+<p><em><i class="fa fa-binoculars"></i> Programming research in a new context</em></p>
+<p><em><i class="fa fa-chart-line"></i> Data access, AI assistants, data visualization</em></p>
+<p><em><i class="fa fa-desktop"></i> From languages to programming systems</em></p>
+<br /><br /><br />
+<p>Tomas Petricek, <em>University of Kent</em><br />
+<em><a href="http://tomasp.net/academic"><a href="http://tomasp.net">http://tomasp.net</a></a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></em></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
