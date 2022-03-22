@@ -22,11 +22,14 @@ Talks and slides
 
 ### Data science and data journalism
 
+ - [**Foundations of a live data exploration environment**](tpetricek.github.io/Talks/2022/live-data-exploration/index.html) (March 2022) - Programming, Porto<br />
+   See also: [thegamma.net playground](http://turing.thegamma.net/playground), [image processing code](https://github.com/tpetricek/Talks/tree/master/2022/live-data-exploration/code) and [pandas notebook](https://github.com/tpetricek/Talks/blob/master/2022/live-data-exploration/notebook/analysis.ipynb)
+
  - [**Rethinking data exploration tools**](http://tpetricek.github.io/Talks/2021/rethinking-data-exploration/#/) (May 2021) - Huawei (virtual)<br />
-  See also: [wrattler.org](http://wrattler.org), [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk)
+   See also: [wrattler.org](http://wrattler.org), [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk)
 
  - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2021/composable-libraries/) (January 2021) - NDC London (virtual)<br />
-  See also: [Compost.js](https://compostjs.github.io/compost/) and [F# demos branch](https://github.com/compostjs/compost/tree/ndc-ldn-2021).
+   See also: [Compost.js](https://compostjs.github.io/compost/) and [F# demos branch](https://github.com/compostjs/compost/tree/ndc-ldn-2021).
 
  - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2019/wrattler/) (November 2019) - ATI, London<br />
    See also: [wrattler.org](http://wrattler.org) and [wrattler on github](http://github.com/wrattler).
