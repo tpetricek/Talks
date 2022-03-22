@@ -117,8 +117,12 @@ _Unsafe data access in a typed language_
     }
 
 <div class="fragment">
-  <div class="tipbox" style="left:584px;top:-154px;width:102px;height:30px"></div>
-  <div class="tiplbl" style="left:621px;top:-137px">Not found!</div>
+  <div class="tipbox" style="position:absolute;left:390px;top:305px;width:102px;height:30px"></div>
+  <div class="tipbox" style="position:absolute;left:443px;top:421px;width:102px;height:30px"></div>
+  <div class="tipbox" style="position:absolute;left:584px;top:421px;width:102px;height:30px"></div>
+</div>
+<div class="fragment">
+  <div class="tiplbl" style="position:absolute;left:630px;top:475px">Not found!</div>
 </div>
 
 ---------------------------------------------------------------------------------------------------
@@ -378,13 +382,13 @@ _Getting data into the right format_
 
 <br />
 
-_<i class="fa fa-percent"></i> Takes 80% of data analyst's time_
+_<i class="fa fa-percent"></i> Manual process taking 80% of analyst's time_
 
-_<i class="fa fa-hand-spock"></i> Tedious manual process_
+_<i class="fa fa-table"></i> Obtaining, merging and fixing data_
 
-_<i class="fa fa-table"></i> Obtaining and merging data_
+_<i class="fa fa-cogs"></i> Automatic AI tools still need some help!_
 
-_<i class="fa fa-flask"></i> Fixing and resolving ambiguities_
+_<i class="fa fa-gamepad"></i> Ad-hoc interfaces and feedback mechanisms_
 
 ----------------------------------------------------------------------------------------------------
 
@@ -392,11 +396,11 @@ _<i class="fa fa-flask"></i> Fixing and resolving ambiguities_
 
 # Wrattler
 
-_Research extension for JupyterLab_
+_Research platform for The Gamma<br/> and AI assistants_
 
 <br />
 
-_Mix languages, build interactive tools, analyse code provenance_
+_Mix languages, build interactive tools, analyse<br /> code provenance_
 
 ----------------------------------------------------------------------------------------------------
 - class: part
@@ -415,11 +419,11 @@ _Semi-interactive tools for data wrangling <span class="ref"><span>Submitted 202
 
 <div class="fragment">
 
-*A tuple $(H_0, f, \mathit{best}, \mathit{choices})$ such that*
+*A tuple $(\mathit{best}, \mathit{choices}, f)$ such that*
 
-- $f(e, X)=Y$ _– evaluation function_
 - $\mathit{best}_X(H)=e$ _– recommends best expression_
-- $\mathit{choices}_X=(H_1, \ldots, H_n)$ _– offers constraints_
+- $\mathit{choices}_X(H)=(H_1, \ldots, H_n)$ _– offers constraints_
+- $f(e, X)=Y$ _– evaluation function_
 
 </div>
 
@@ -475,28 +479,29 @@ _Uses program slicing to make linking automatic_
 
 ---------------------------------------------------------------------------------------------------
 
-# From **programming languages**
+<img src="images/notebook.png" class="nb" style="max-width:520px;float:left;margin:0px 40px 100px 0px;border:black 3px solid" />
+
+# Notebooks for data exploration
+
+<br />
+
+_Programming as interaction with a stateful environment_  
+
+---------------------------------------------------------------------------------------------------
+
+# Programming languages
 _Programs as expressions in a formal grammar_
 
 <br />
 
-# To **programming systems**
-_Programming as interacting with stateful environment_
-
----------------------------------------------------------------------------------------------------
-
-<img src="images/notebook.png" class="nb" style="max-width:520px;float:left;margin:40px 40px 100px 0px;border:black 3px solid" />
-
-# Notebooks for data exploration
-
-_Program as a list  
-of interactions!_  
+# Programming systems
+_Programs as lists of interactions with the evnrionment_
 
 ---------------------------------------------------------------------------------------------------
 
 <div class="bigeq">
 
-$e := e + e~|~e~e~|~\lambda x.e$
+$e := e_1 + e_2~|~e_1~e_2~|~\lambda x.e$
 
 </div>
 <br /><br />
@@ -527,23 +532,6 @@ _<i class="fa fa-not-equal"></i> Amenable to formal analysis_
 _<i class="fa fa-external-link-alt"></i> Correctness, provenance etc. <span class="ref"><span>ICFP 2014</span></span>_
 
 <br/><br/>
-
----------------------------------------------------------------------------------------------------
-
-<img src="images/smalltalk.png" class="nb" style="max-width:430px;float:left;margin:40px 40px 100px 0px;border:black 3px solid" />
-
-# Open & accessible programming
-
-<div class="wide">
-
-_Eliminate programming<br /> vs. using distinction_  
-
-_Inter-disciplinary methods to explain how we got here_
-
-_Explain how results are computed <span class="ref"><span>POPL 2022</span></span>_
-
-</div>
-<style type="text/css">.wide p { margin:30px 0px 10px 0px; }</style>
 
 ***************************************************************************************************
 

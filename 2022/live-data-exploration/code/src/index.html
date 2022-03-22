@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <title>Simple Fable App</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="fable.ico" />
+  <script src="https://cdn.polyfill.io/v2/polyfill.js?features=es6,fetch"></script>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);
+    body { font-family:'Roboto'; font-size:18pt; }
+    textarea { width:47vw; height:300px; margin-left:1vw; margin-top:10px; font-size:20pt; }
+    #vl { width:50vw; position:absolute; left:0px; top:0px; }
+    #vr { width:50vw; position:absolute; left:50vw; top:0px; }
+    .info { padding-left:20px; }
+  </style>
+</head>
+<body>
+  <div id="vl">
+    <div id="editor"></div>
+  </div>
+  <div id="vr">
+    <canvas id="canv"></canvas>
+  </div>
+  <canvas id="loader" style="display:none"></canvas>
+</body>
+</html>
