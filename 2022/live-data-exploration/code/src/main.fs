@@ -43,9 +43,9 @@ let render trigger state =
       | Some(t0, t1, t2, t3) ->
           yield h?h2 [] [text "Performance statistics"]
           yield h?ul [] [
-              h?li [] [text "Parsing: "; h?strong[] [text(sprintf "%dms" (int (t1-t0)))] ]
-              h?li [] [text "Binding: "; h?strong[] [text(sprintf "%dms" (int (t2-t0)))] ]
-              h?li [] [text "Evaluation: "; h?strong[] [text(sprintf "%dms" (int (t3-t0)))] ]
+              h?li [] [text "Parsing: "; h?strong [] [text(sprintf "%dms" (int (t1-t0)))] ]
+              h?li [] [text "Binding: "; h?strong [] [text(sprintf "%dms" (int (t2-t0)))] ]
+              h?li [] [text "Evaluation: "; h?strong [] [text(sprintf "%dms" (int (t3-t0)))] ]
             ]
       | _ -> ()
     ]
@@ -57,11 +57,10 @@ let update state (UpdateSource newSource) = async {
   match Parser.parse newSource with
   | Some prog ->
       let t1 = performance.now()
-      let ent, _ = Binder.bindProgram state.BindingContext prog
+      //let ent, _ = Binder.bindProgram state.BindingContext prog
       try
         let t2 = performance.now()
-        // TODO: Switch to Evaluator.evaluateEntity ent
-        match Evaluator.evaluateEntity ent with
+        match Evaluator.evaluateExpr state.Variables prog.Node with
         | :? GammaImage as img -> 
             let mutable times = None
             let! a = img.render()
