@@ -1,0 +1,284 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cultures of programming</title>
+    <meta name="description" content="Cultures of programming">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="front">
+<h1><em><strong>PROGRAMme</strong><br />Notations: There is no escape</em></h1>
+<div style="height:320px"></div>
+<p><strong>PROGRAMme</strong> <em>(leading auhtors: Troy Astarte, Maarten Bullynck, Felice Cardone, Martin Carlé, Liesbeth De Mol, Marie-José Durand-Richard,</em> <br/>Tomas Petricek, <em>Mark Priestley, Henri Salha)</em></p>
+</section>
+<section >
+<section >
+<img src="images/button-box.jpg" style="float:left;max-width:460px;margin:30px 30px 0px 0px"/>
+<p><strong>Perlman's button box</strong><br />
+Programmable or not?</p>
+<p><em>1) Buttons control turtle</em>
+<em>2) "Memory box" buttons</em>
+<em>3) Kid interface for LOGO</em></p>
+</section>
+<section class="h1-center">
+<br /><br /><br /><br /><br />
+<h1><strong>machine</strong> ⟷ <strong>human</strong></h1>
+</section>
+<section class="h1-center">
+<br /><br /><br /><br /><br />
+<h1><strong>machine</strong> ⟷ notation ⟷ <strong>human</strong></h1>
+</section>
+<section >
+<h1><em>Meaning of notations</em></h1>
+<p><strong>Negotiation of meaning</strong></p>
+<ul>
+<li><em>Machine and human "understanding" differ</em></li>
+<li><em>Different users have different needs</em></li>
+<li><em>Meaning found in operational structure</em></li>
+</ul>
+<p><strong>High programmability</strong></p>
+<ul>
+<li><em>Potential to establish new meaning</em></li>
+<li><em>Allows "meaningful" programming</em></li>
+</ul>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Blind computation</em></h1>
+</section>
+<section >
+<h1><em>Blind computation</em></h1>
+<img src="images/jevons.jpg" style="float:right;width:280px;margin-top:20px" />
+<p><strong>19th century English algebraists</strong></p>
+<ul>
+<li><em><span class="math">\(\sqrt{a-b}\)</span> only defined if <span class="math">\(a\geq b\)</span></em></li>
+<li><em>Independence from arithmetic</em></li>
+<li><em>Terms "general in form and value"</em></li>
+</ul>
+<p><strong>20th century mathematical logic</strong></p>
+<ul>
+<li><em>Tackle decidability problems</em></li>
+<li><em>Mechanical rule following</em></li>
+</ul>
+</section>
+<section >
+<h1><em>Operational meaning</em></h1>
+<p><strong>Meaning in blind computation</strong></p>
+<ul>
+<li><em>Establishes analogies<br />that reveal new patterns</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Reverse Polish notation</strong></p>
+<ul>
+<li><em>Example:</em> <code>3 2 + 5 4 2 * + *</code></li>
+<li><em>Notation matches evaluator!</em></li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Surprise of programming</em></h1>
+</section>
+<section >
+<h1><em>Electronic speed</em></h1>
+<p><em>[C]ontemplate the prospect of locking twenty people for two years during which they would be steadily performing computations. And you must give them such explicit instructions at the time of incarceration that at the end of two years you could return and obtain the correct result for your lengthy problem!</em> (John von Neumann)</p>
+</section>
+<section >
+<h1><em>Notations for humans</em></h1>
+<img src="images/flowchart.jpg" style="float:right;width:250px;margin-top:20px" />
+<p><strong>Flowcharts</strong></p>
+<ul>
+<li><em>John von Neumann for EDVAC</em></li>
+<li><em>Translated manually to instructions</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Interpretive subroutines</strong></p>
+<ul>
+<li><em>Wilkes et al. for EDSAC</em></li>
+<li><em>Symbolic codes</em></li>
+<li><em>Executed by initial orders</em></li>
+</ul>
+</div>
+</section>
+<section >
+<img src="images/babel.png" style="float:left;max-width:400px;margin:0px 70px 100px 0px"/>
+<p><strong>Opening of Pandora's box</strong></p>
+<p>Many notations solving:</p>
+<p><em>1) Problem of control</em><br />
+<em>2) User problem</em><br />
+<em>3) Effectiveness problem</em></p>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>Closing of Pandora's box</em></h1>
+</section>
+<section >
+<img src="images/cadavre.jpg" style="float:left;max-width:400px;margin:30px 50px 300px 0px"/>
+<p><strong>Like surrealist "exquisite corpse" drawings!</strong></p>
+<p>1) Automatic programming<br />
+2) Universal language<br />
+3) Self-programmability<br />
+4) Concrete notations</p>
+</section>
+<section >
+<img src="images/cadavre.jpg" style="float:left;max-width:400px;margin:30px 50px 300px 0px"/>
+<p>1) Automatic programming<br />
+<em>High-level notations...</em><br />
+<em>Could there be just one?</em></p>
+<div class="fragment">
+<p>2) Universal language<br />
+<em>One language is not enough</em><br />
+<em>Could it be adaptable?</em></p>
+</div>
+<div class="fragment">
+<p>3) Self-programmability<br />
+<em>System as meta-medium</em><br />
+<em>Uses direct representation</em></p>
+</div>
+<div class="fragment">
+<p>4) Concrete notations<br />
+<em>Focus on directness</em><br />
+<em>No need for generality...</em></p>
+</div>
+</section>
+<section >
+<h1><em>Self-programmability</em></h1>
+<img src="images/hospital.png" style="float:right;width:230px;margin-top:20px" />
+<p><strong>LISP</strong></p>
+<ul>
+<li><em>Recursion &amp; programs as data</em></li>
+<li><em>Adaptable meta-notation</em></li>
+<li><em>Time-sharing and IBM 704</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Smalltalk</strong></p>
+<ul>
+<li><em>Objects represent real things</em></li>
+<li><em>Programmable meta-medium</em></li>
+<li><em>Recursion on the notion of computer</em></li>
+</ul>
+</div>
+</section>
+</section>
+<section >
+<section class="part">
+<h1><em>There is no escape</em></h1>
+</section>
+<section >
+<h1><em>There is no escape</em></h1>
+<img src="images/hal9000.png" style="float:right;width:180px;margin-top:0px" />
+<p><strong>No-code programming</strong></p>
+<ul>
+<li><em>Programming for end-users</em></li>
+<li><em>Visual and UI is also notation</em></li>
+<li><em>Low notational programmability</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Automatic programming, revisited</strong></p>
+<ul>
+<li><em>AI that "understands" human language</em></li>
+<li><em>No negotiation of meaning</em></li>
+<li><em>Human is programmed!</em></li>
+</ul>
+</div>
+</section>
+<section class="front">
+<h1><em><strong>PROGRAMme</strong><br />Notations: There is no escape</em></h1>
+<br /><br />
+<p><strong>Conclusions</strong></p>
+<p><em><i class="fa fa-comments"></i></em> If we want  <em>meaningful programming</em></p>
+<p><em><i class="fa fa-language"></i></em> We get <em>notational pluralism</em></p>
+<p><em><i class="fa fa-cogs"></i></em> Ideally with <em>high notational programmability</em></p>
+</section>
+</section>
+
+
+            <img src="images/kent.png" class="klogo" />
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
