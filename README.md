@@ -78,7 +78,10 @@ Talks and slides
 
 ### Programming Languages Research
 
- - [**Methodology of programming systems**](https://tpetricek.github.io/Talks/2022/systems-methodology/index.html) (March 2022) - Programming, Porto
+ - [**Programming Systems - Not just for data science**](http://tpetricek.github.io/Talks/2022/programming-systems/) (May 2022) - Aarhus<br />
+   See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions (PDF)](https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf)
+
+ - [**Methodology of programming systems**](https://tpetricek.github.io/Talks/2022/systems-methodology/index.html) (March 2022) - Programming, Porto<br />
    See also: [PPIG paper](http://tomasp.net/academic/papers/evaluating-systems/), [TechDims paper](https://github.com/jdjakub/papers/blob/master/prog-2022/prog22-master.pdf) and [TechDims slides](https://github.com/jdjakub/papers/blob/master/prog-2022/prog22-tutorial.pdf)
 
  - [**Programming as architecture, urban planning and design?**](http://tpetricek.github.io/Talks/2021/programming-as-design/mit/) (April 2021) - MIT SDG<br />
@@ -128,6 +131,8 @@ Talks and slides
  - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague<br />
 
 ### Philosophy of Science
+
+ - [**Notations: There is no escape**](http://tpetricek.github.io/Talks/2022/programme-talks/notations.html#/) (June 2022) - PROGRAMme, Lille
 
  - [**Cultures of programming: Understanding the history of programming through technical artifacts and controversies**](http://tpetricek.github.io/Talks/2022/cultures-of-programming/) (October 2021) - History of Programming meetup (virtual)<br/>
  See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
@@ -212,6 +217,9 @@ getting programs to behave**](http://tpetricek.github.io/Talks/2021/cultures-of-
    See also: [completed source code](https://github.com/tpetricek/Talks/tree/master/2015/end-to-end-web/usa/code-done)
 
 ### F# and Functional Programming
+
+ - [**Building a basic BASIC interpreter with F# for fun and profit!**](https://raw.githubusercontent.com/tpetricek/Talks/master/2022/basic-basic/code/scripts/slides.txt) (May 2022) - Aarhus<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2022/basic-basic/code) and [Commodore 64 essay](http://tomasp.net/commodore64/)
 
  - [**TypeScript for F# Zealots**](http://tpetricek.github.io/Talks/2020/typescript-fsharp-zealots/) (April 2020) - NDC Copenhagen (virtual)<br />
    See also: [wrattler.org](http://wrattler.org) and [source code](https://github.com/tpetricek/Talks/tree/master/2020/typescript-fsharp-zealots/code)
