@@ -1,0 +1,195 @@
+
+
+
+
+=================================================
+
+      Building a basic BASIC interpreter        
+         with F# for fun and profit!            
+
+
+
+Tomas Petricek, University of Kent & fsharpWorks
+      tomas@tomasp.net | @tomaspetricek
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+           WHY COMMODRE 64 BASIC ??
+
+
+ * Nostalgia! It is a fun project!
+ * Example of learnable programming 
+ * Clever combination of REPL with editor
+
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+      TECHNIQUES FOR BUILDING DSLs IN F#
+
+ * Domain modelling with algebraic data types
+ * Recursive functional data processing 
+ * Writing non-blocking code with async!
+ * Writing parsers for textual data / languages
+ * Targetting client-side web with F#
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+  DOMAIN MODELLING WITH ALGEBRAIC DATA TYPES
+
+ * Primitive types - numbers, strings, ...
+ * Records - combination of other types
+ * Unions - choice of several types
+ * Lists - multiple values of single type
+
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+     WORKING WITH FUNCTIONAL DOMAIN MODELS
+
+ * The 'Visitor' pattern made obsolete!
+ * Pattern matching using 'match'
+ * Add clauses until the compiler is happy!
+ * Adding case results in useful warnings
+ * Recursive data ~ recursive functions
+
+=================================================     
+
+
+
+
+
+
+
+
+
+=================================================     
+
+         RUNNING F# IN THE BROWSER
+         
+ * Using the Fable compiler: https://fable.io
+ * Supports many standard F# libraries
+ * Mappings for common JS libraries
+ * Integrated with npm, WebPack etc.
+
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+          F# ASYNCHRONOUS WORKFLOWS
+ 
+    async { let! var = someAsyncOperation() 
+            ... }
+
+ * Avoid blocking threads for I/O operations 
+ * Also useful for user interface programming!   
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+     REFACTORING SCRIPTS TO APPLICATIONS
+
+ * I use scripts until         Helpers.fs
+   code gets too messy...      Domain.fs
+                               Processing1.fs
+ * Typical structure           Processing2.fs
+   of F# applications          App.fs
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+    WRITING PARSERS FOR DATA AND LANGUAGES
+
+
+ * Last rather than first step!
+ * Just syntax for the domain we already have 
+ * Parser combinators, active patterns, etc.
+
+
+=================================================
+
+
+
+
+
+
+
+
+
+=================================================
+
+ * In F# you always start with 'type'..
+ * .. and add code until the compiler is happy!
+
+ * Fable & functional style for the web FTW!
+ * Simple language for solving complex problems!
+
+Tomas Petricek | tomas@tomasp.net | @tomaspetricek
+
+=================================================

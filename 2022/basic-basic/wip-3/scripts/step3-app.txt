@@ -1,0 +1,13 @@
+module Basic.App
+
+open Browser.Dom
+open Basic.Helpers
+
+// TODO: input/print echo using events
+// TODO: input/print echo using async
+
+async {
+  while true do
+    let! msg = awaitObservable input
+    print ("ECHO " + msg) }
+|> Async.StartImmediate

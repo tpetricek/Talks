@@ -1,0 +1,69 @@
+module Basic.App
+
+open Browser.Dom
+open Basic.Helpers
+
+// DOMAIN MODEL
+
+type Value = 
+  | String of string
+   
+type Expression = 
+  | Literal of Value
+
+type Command = 
+  | Print of Expression 
+  | Goto of int
+  | Run 
+
+type Input = int option * Command
+
+// EVALUATION
+
+type State =
+  { Program : Map<int, Command> }
+
+let rec evalExpr state = function
+  | Literal v -> v
+
+let toString = function
+  | String s -> s
+
+let rec runCommand state (ln, cmd) = async {
+  do! Async.Sleep 1000
+  let statements () = 
+    [ for (KeyValue(k,v)) in state.Program -> Some k, v ] 
+    |> Seq.sortBy fst 
+  let next state = async {
+    match ln with 
+    | None -> return state
+    | Some ln -> 
+        let next = statements() |> Seq.tryFind (fun (l, _) -> l > Some ln)
+        match next with 
+        | None -> return state
+        | Some next -> return! runCommand state next }
+  match cmd with 
+  | Print(e) -> 
+      print (toString(evalExpr state e))
+      return! next state
+  | Goto l -> return! runCommand state (Some l, state.Program.[l])
+  | Run -> return! runCommand state (Seq.head (statements ())) }
+
+let runInput state (ln, cmd) = async {
+  match ln with 
+  | None -> return! runCommand state (ln, cmd) 
+  | Some ln -> return { state with Program = state.Program.Add(ln, cmd) } }
+
+// DEMO
+
+let hello = 
+  [ Some 10, Print(Literal(String "HELLO WORLD"))
+    Some 20, Goto 10
+    None, Run ]
+
+async {
+  let mutable state = { Program = Map.empty }
+  for cmd in hello do 
+    let! newState = runInput state cmd
+    state <- newState }
+|> Async.StartImmediate
