@@ -1,0 +1,442 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Programming systems, not just for data science</title>
+    <meta name="description" content="Programming systems, not just for data science">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="intro">
+<h1><em>Programming systems</em></h1>
+<h2>Not just for data science</h2>
+<div style="height:330px"></div>
+<p>Tomas Petricek, <em>University of Kent</em><br />
+<em><a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a></em></p>
+</section>
+<section >
+<section >
+<img src="images/making1.png" style="" />
+</section>
+<section >
+<img src="images/making2.png" style="" />
+</section>
+<section >
+<h1>Making programming better</h1>
+<p><em>Caricatures of conventional views</em></p>
+<br />
+<p><em><i class="fa fa-laptop-code"></i></em> What is programming?<br />
+<em><i class="fa fa-xx"></i> Producing code in a programming language!</em></p>
+<p><em><i class="fa fa-file"></i></em> How to improve it?<br />
+<em><i class="fa fa-xx"></i> Write a research paper with a prototype!</em></p>
+<p><em><i class="fa fa-check-circle"></i></em> What matters about it?<br />
+<em><i class="fa fa-xx"></i> Safety, efficiency, usability!</em></p>
+<br />
+</section>
+<section >
+<img src="images/making1.png" style="" />
+</section>
+<section >
+<img src="images/making3.png" style="" />
+</section>
+</section>
+<section >
+<section >
+<h1><em>Technical dimensions</em></h1>
+<p><em>(with Joel Jakubovic and Jonathan Edwards)</em></p>
+</section>
+<section >
+<img src="images/tapl.png" style="max-width:560px;float:left;margin:10px 80px 100px 0px" />
+<h2><strong>Programming Languages</strong></h2>
+<p><em>Programming is writing code</em></p>
+<p><em>Formal semantics, implementation, paradigms</em></p>
+<div class="fragment">
+<p>We know how to study this!</p>
+</div>
+</section>
+<section >
+<img src="images/gops.png" style="max-width:580px;float:left;margin:10px 60px 100px 0px" />
+<h2><strong>Programming Systems</strong></h2>
+<p><em>Interacting with stateful system</em></p>
+<p><em>Visualizations, feedback, interaction</em></p>
+<div class="fragment">
+<p>But how do we study this?</p>
+</div>
+</section>
+<section >
+<img src="images/smalltalk.png" style="max-width:580px;float:left;margin:30px 40px 100px 0px" />
+<h2><strong>Language is<br />a small part</strong></h2>
+<p><em>Together with editors, debuggers &amp; other tools</em></p>
+<p><em>Less interesting but overemphasized?</em></p>
+</section>
+<section >
+<h1>Technical dimensions</h1>
+<p><em>Science of programming systems</em></p>
+<br />
+<p><em><i class="fa fa-icons"></i> Academics &amp; start-ups build interesting systems!</em></p>
+<p><em><i class="fa fa-hand-sparkles"></i> Disconnected and hard to compare</em></p>
+<p><em><i class="fa fa-clipboard-list"></i> Can we find a common language?</em></p>
+<p><em><i class="fa fa-archway"></i> Stand on the shoulders of giants?</em></p>
+<br /><br />
+</section>
+<section >
+<img src="images/nest.png" style="max-width:500px;float:left;margin:10px 60px 100px 0px" />
+<h2><strong>Dimensions</strong></h2>
+<p><em>Identify interesting characteristics</em></p>
+<p>Cover "good old" and new systems alike</p>
+<p><em>Allow qualitative comparison</em></p>
+<p>Don't say what's good!</p>
+</section>
+<section >
+<style> .narrow p, .narrow li { margin:2px; font-size:24pt; } </style>
+<table class="narrow"><tr><td>
+<p><strong>Interaction</strong></p>
+<ul>
+<li><em>Feedback Loops</em></li>
+<li><em>Modes of interaction</em></li>
+<li><em>Abstraction Construction</em></li>
+</ul>
+<p><strong>Notation</strong></p>
+<ul>
+<li><em>Notational Structure</em></li>
+<li><em>Surface/Internal</em></li>
+<li><em>Primary/Secondary</em></li>
+<li><em>Expression Geography</em></li>
+<li><em>Uniformity</em></li>
+</ul>
+<p><strong>Error Handling</strong></p>
+<ul>
+<li><em>Error Detection</em></li>
+<li><em>Error Response</em></li>
+</ul>
+</td><td>
+<p><strong>Conceptual Structure:</strong></p>
+<ul>
+<li><em>Integrity/Openness</em></li>
+<li><em>Composability</em></li>
+<li><em>Convenience</em></li>
+<li><em>Commonality</em></li>
+</ul>
+<p><strong>Customizability</strong></p>
+<ul>
+<li><em>Staging</em></li>
+<li><em>Externalizability</em></li>
+<li><em>Additive Authoring</em></li>
+<li><em>Self-Sustainability</em></li>
+</ul>
+<p><strong>(Others)</strong></p>
+<ul>
+<li><em>Degrees of Automation</em></li>
+<li><em>Learnability &amp; Sociability</em></li>
+</ul>
+</td></tr></table>
+</section>
+<section >
+<h2><em>Abstraction Construction</em></h2>
+<img src="images/fill.jpg" style="float:right;max-width:400px" />
+<p><strong>From Concrete</strong></p>
+<ul>
+<li><em>Generalize from examples</em></li>
+<li><em>Expanding range in Excel</em></li>
+<li><em>Pygmalion system</em></li>
+</ul>
+<div class="fragment">
+<p><strong>From Abstract</strong></p>
+<ul>
+<li><em>Define function first</em></li>
+<li><em>Most programming languages</em></li>
+<li><em>Coding done without values</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h2><em>Notational Uniformity</em></h2>
+<img src="images/lisp.png" style="float:right;max-width:300px" />
+<p><strong>Post-modernist</strong></p>
+<ul>
+<li><em>Variety of different notations</em></li>
+<li><em>More to learn, but better problem fit</em></li>
+<li><em>Perl language, Web platform</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Modernist</strong></p>
+<ul>
+<li><em>Small set of uniform primitives</em></li>
+<li><em>Not everything fits the notation</em></li>
+<li><em>Lisp and (partly) Smalltalk</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h2><em>Self-sustainability</em></h2>
+<img src="images/lmi.png" style="float:right;max-width:300px" />
+<p><strong>Separate language level</strong></p>
+<ul>
+<li><em>Implementation vs. user level</em></li>
+<li><em>Limited changeability from within</em></li>
+<li><em>Java and other languages</em></li>
+</ul>
+<div class="fragment">
+<p><strong>Integrated systems design</strong></p>
+<ul>
+<li><em>Implemented &amp; modifiable in itself</em></li>
+<li><em>Often changeable at runtime</em></li>
+<li><em>Smalltalk, Lisp Machines</em></li>
+</ul>
+</div>
+</section>
+<section >
+<h1>Technical dimensions</h1>
+<p><em>Why and how to use them</em></p>
+<br />
+<p><em><i class="fa fa-hand-point-right"></i> Systems are more than languages</em></p>
+<p><em><i class="fa fa-language"></i> Trying to find a common language</em></p>
+<p><em><i class="fa fa-desktop"></i> New look at past programming systems?</em></p>
+<p><em><i class="fa fa-map"></i> Map for exploring new design ideas?</em></p>
+<br /><br />
+</section>
+</section>
+<section >
+<section >
+<h1><em>Data exploration</em></h1>
+</section>
+<section >
+<h1>Querying data</h1>
+<p><em>Athletes by number of gold medals from Rio 2016</em></p>
+<div style="padding:40px 0px 60px 0px">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">olympics</span> <span class="o">=</span> <span class="i">pd</span><span class="o">.</span><span class="i">read_csv</span>(<span class="s">&quot;olympics.csv&quot;</span>)
+<span class="i">olympics</span>[<span class="i">olympics</span>[<span class="s">&quot;Games&quot;</span>] <span class="o">==</span> <span class="s">&quot;Rio (2016)&quot;</span>]
+  <span class="o">.</span><span class="i">groupby</span>(<span class="s">&quot;Athlete&quot;</span>)
+  <span class="o">.</span><span class="i">agg</span>({<span class="s">&quot;Gold&quot;</span><span class="o">:</span> <span class="i">sum</span>})
+  <span class="o">.</span><span class="i">sort_values</span>(<span class="i">by</span><span class="o">=</span><span class="s">&quot;Gold&quot;</span>, <span class="i">ascending</span><span class="o">=</span><span class="i">False</span>)
+  <span class="o">.</span><span class="i">head</span>(<span class="n">8</span>)
+</code></pre></td>
+</tr>
+</table>
+</div>
+<div class="fragment">
+  <div class="tipbox" style="left:455px;top:-324px;width:220px;height:25px"></div>
+  <div class="tiplbl" style="left:550px;top:-415px">Unknown file</div>
+  <div class="tipbox" style="left:364px;top:-254px;width:90px;height:25px"></div>
+  <div class="tiplbl" style="left:390px;top:-245px">Column name</div>
+</div>
+</section>
+<section >
+<h1>Querying data</h1>
+<p><em>Language and data source features you need to know</em></p>
+<br />
+<p><em><i class="fa fa-book"></i> Python dictionaries <code>{"key": value}</code></em></p>
+<p><em><i class="fa fa-eye"></i> Generalised indexers <code>.[ condition ]</code></em></p>
+<p><em><i class="fa fa-university"></i> Operation names <code>sort_values</code></em></p>
+<p><em><i class="fa fa-database"></i> Data column names <code>"Athlete"</code></em></p>
+<br />
+<br />
+</section>
+<section >
+<img src="images/ft.png" style="max-width:620px;float:left;margin:10px 40px 100px 0px" />
+<h1>Notebooks</h1>
+<p><strong>Financial Times waste analysis</strong></p>
+<p><em>Note the clever abstraction mechanism!</em></p>
+</section>
+<section >
+<img src="images/ft2.png" style="max-width:580px;float:left;margin:10px 80px 150px 0px" />
+<h1>Notebooks</h1>
+<p><strong>Financial Times waste analysis</strong></p>
+<p><em>Note the clever abstraction mechanism!</em></p>
+<div style="height:305px"></div>
+</section>
+<section >
+<h1>The Gamma</h1>
+<p><em>Programming through iterative prompting</em></p>
+<br />
+<p><em><i class="fa fa-list"></i> Program just by using auto-complete!</em></p>
+<p><em><i class="fa fa-brain"></i> Recognition over recall principle</em></p>
+<p><em><i class="fa fa-sort-alpha-down"></i> Make correct and complete suggestions</em></p>
+<br /><br />
+</section>
+<section >
+<h1><em>Demo</em></h1>
+<p><em>Iterative prompting in The Gamma</em></p>
+</section>
+<section >
+<h1>The Gamma</h1>
+<p><em>Technical dimensions analysis</em></p>
+<br />
+<p><em><i class="fa fa-church"></i></em> Uniformity of notation <em>- everything is a member</em></p>
+<p><em><i class="fa fa-archive"></i></em> Self-sustainability <em>- all libraries external!</em></p>
+<p><em><i class="fa fa-layer-group"></i></em> Conceptual structure <em>- convenient at the top-level</em></p>
+<p><em><i class="fa fa-heart-broken"></i></em> Error detection <em>and prevention using types</em></p>
+<br /><br />
+</section>
+<section >
+<h1>Histogram</h1>
+<p><em>Programs as sequences of interactions</em></p>
+<br />
+<p><em><i class="fa fa-code"></i> Creating code equal to using user interface</em></p>
+<p><em><i class="fa fa-not-equal"></i> Sequence of actions rather than expressions</em></p>
+<p><em><i class="fa fa-cut"></i> Extract function as a first-class feature</em></p>
+<p><em><i class="fa fa-play"></i> Integrate programming and execution</em></p>
+<br /><br />
+</section>
+<section >
+<h1><em>Demo</em></h1>
+<p><em>Data exploration in Histogram</em></p>
+</section>
+<section >
+<h1>Histogram</h1>
+<p><em>Technical dimensions analysis</em></p>
+<br />
+<p><em><i class="fa fa-pen-fancy"></i></em> Notational structure <em>- explicit structure editing</em></p>
+<p><em><i class="fa fa-truck"></i></em> Abstraction construction <em>- from concrete example</em></p>
+<p><em><i class="fa fa-hand-spock"></i></em> Modes of interaction <em>- editing &amp; running in one mode</em></p>
+<p><em><i class="fa fa-archive"></i></em> Self-sustainability <em>- libraries remain external</em></p>
+<br /><br />
+</section>
+</section>
+<section >
+<section >
+<h1><em>Complementary science</em></h1>
+</section>
+<section >
+<img src="images/popups.gif" style="max-width:800px;margin:10px 80px 150px 0px" />
+</section>
+<section >
+<img src="images/temp.jpg" style="max-width:420px;float:left;margin:10px 100px 100px 0px" />
+<h1>Complementary science</h1>
+<div style="margin-top:40px">
+<p><em>Doing history to contribute to contemporary science</em></p>
+<p>Are there lost ideas worth recovering?</p>
+<p><em>Works even better in programming!</em></p>
+<div>
+</section>
+<section >
+<h1><em>Demo</em></h1>
+<p><em>Recovering Commodore 64 BASIC</em></p>
+</section>
+<section >
+<h1>Commodore 64</h1>
+<p><em>Technical dimensions analysis</em></p>
+<br />
+<p><em><i class="fa fa-hand-spock"></i></em> Modes of interaction <em>- editing &amp; running in one mode</em></p>
+<p><em><i class="fa fa-gamepad"></i></em> Learnability <em>- use BASIC even to play games!</em></p>
+<p><em><i class="fa fa-newspaper"></i></em> Sociability <em>- code shareable in magazines</em></p>
+<p><em><i class="fa fa-plug"></i></em> Conceptual convenience <em>- high with escape hatches</em></p>
+<br /><br />
+</section>
+</section>
+<section >
+<section >
+<h1><em>Conclusions</em></h1>
+</section>
+<section >
+<img src="images/making3.png" style="" />
+</section>
+<section class="intro">
+<h2>Programming systems</h2>
+<p><em><i class="fa fa-chart-line"></i></em> Technical dimensions <em>to think about systems</em></p>
+<p><em><i class="fa fa-sync"></i></em> Iterative prompting <em>for non-expert data exploration</em></p>
+<p><em><i class="fa fa-hand-point-right"></i></em> Programming as interaction <em>to design new systems!</em></p>
+<p><em><i class="fa fa-archway"></i></em> Complementary science <em>to get more ideas!</em></p>
+<br /><br />
+<p>Tomas Petricek, <em>University of Kent</em><br />
+<em><a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://twitter.com/tomaspetricek">@tomaspetricek</a> <span style="margin:0px 6px 0px 6px">|</span>
+<a href="http://tomasp.net"><a href="http://tomasp.net">http://tomasp.net</a></a></em></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
