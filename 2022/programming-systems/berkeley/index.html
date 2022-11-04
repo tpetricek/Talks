@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Programming Systems Deserve a Theory Too!</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Titillium+Web:wght@200;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				_background:red;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 44pt 'Titillium Web', sans-serif;
+				padding:0px;
+				margin:0px;
+				color:#f47b6a;
+				line-height:1.2em;
+			}
+			h2 {
+				font:200 40pt 'Titillium Web', sans-serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 30pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:700 30pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:300;
+			}
+			a {
+				text-decoration:none;
+				color:#0060ff;
+			}
+			a:hover, a:active {
+				color:#66A0FF;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.reveal .lists img { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.reveal .lists.smaller img { max-width:280px; max-height:350px; }
+			.lists.noborder img { border-style:none  }
+			.lists.smaller2x img { max-width:200px; max-height:200px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:26pt; margin-bottom:30px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:200px; text-align:center; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h2 { margin-top:-40px; }
+			.title .body { position:absolute; bottom:40px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { color:#303030; font-size:80%; width:40px; margin:0px 2px 0px 0px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.noborder img { border-style:none; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			.subtitle.motto h1 { text-align:center; }
+			.subtitle.motto em { font-weight:200; font-style:normal; }
+
+			.mfflogo {
+				position:absolute;
+				right:0px;
+				bottom:0px;
+				width:220px;
+			}
+
+			/* broken in Firefox
+			.slides:has(section.title.present) .mfflogo { display:none; }
+			*/
+
+			.overview .mfflogo { display:none; }
+
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1>Programming systems<br />deserve a theory too!</h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> |
+<a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+<p>with Joel Jakubovic and Jonathan Edwards</p>
+</div>
+</section></section><section><section class="lists smaller"><h1>Programming language revolution</h1>
+<img src="img/revolution.png"/>
+<div>
+<h2>From systems to languages</h2>
+<ul>
+<li>Mixins, CLOS and Flavors</li>
+<li>Reality of a running system</li>
+<li>Relationships prescribed in code</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Scientific paradigm shifts</h2>
+<ul>
+<li>The past is a foreign country</li>
+<li>Paradigms are incommensurable</li>
+<li>Old notions stop making any sense</li>
+</ul>
+</div>
+</section></section><section><section class="image "><div class="body1">
+<p><img src="img/tapl.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Programming Languages</h1>
+<p>Programming is<br />
+writing code</p>
+<p>Formal semantics, implementation, paradigms</p>
+</div>
+<div class="fragment">
+<p><strong>We know how<br />
+to study this!</strong></p>
+</div>
+</div>
+</div>
+</section></section><section><section class="image noborder"><div class="body1">
+<p><img src="img/gops.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Programming systems</h1>
+<p>Interacting with a stateful system</p>
+<p>Feedback, interactive display, live update</p>
+</div>
+<div class="fragment">
+<p><strong>But how do we<br />
+study this?</strong></p>
+</div>
+</div>
+</div>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>DEMO</h1>
+<h2>Commodore 64 BASIC</h2>
+</div>
+</section></section><section><section class="lists smaller"><h1>Why look at Commodore 64?</h1>
+<img src="img/maplin.jpg"/>
+<div>
+<h2>Technical aspects</h2>
+<ul>
+<li>Integrated REPL and editor</li>
+<li>Structure editing via line numbers</li>
+<li>Simple with POKE for hackers</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Social aspects</h2>
+<ul>
+<li>Easy to get started with</li>
+<li>Program sharing in magazines</li>
+<li>Computer boots into programming system!</li>
+</ul>
+</div>
+</section></section><section><section class="image smaller"><div class="body1">
+<p><img src="img/temp.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>How to look at Commodore 64?</h1>
+<p><strong>Complementary science approach by Hasok Chang</strong></p>
+<p>Doing history to contribute to contemporary science</p>
+<p>Recover ideas lost for scientific or social reasons</p>
+</div>
+</div>
+</div>
+</section></section><section><section class="image smaller"><div class="body1">
+<p><img src="img/plastic.gif" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Programming for<br /> non-programmers</h1>
+<p><strong>Data exploration using Excel, JS and Python</strong></p>
+</div>
+<div class="fragment">
+<p>Data is an integrated<br />
+part of the program</p>
+<p>Programs are run once</p>
+<p>We don't need no abstraction!</p>
+</div>
+</div>
+</div>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>DEMO</h1>
+<h2>Data exploration in The Gamma</h2>
+</div>
+</section></section><section><section class="icons "><h1>The Gamma</h1>
+<h2>What makes it interesting?</h2>
+<ul>
+<li><i class='fa fa-diagram-project'></i> Everything is a member access</li>
+<li><i class='fa fa-layer-group'></i> Two-level conceptual structure</li>
+<li><i class='fa fa-book'></i> All libraries are external</li>
+<li><i class='fa fa-gift'></i> Abstractions from concrete examples</li>
+</ul>
+</section></section><section><section class="lists noborder smaller"><h1>Studying programming systems</h1>
+<img src="img/techdims.png"/>
+<div>
+<h2>Technical dimensions</h2>
+<ul>
+<li>Analyze interesting past systems</li>
+<li>Capture key characteristics</li>
+<li>Understand range of options</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Example dimensions</h2>
+<ul>
+<li>Self-sustainability</li>
+<li>Feedback loops &amp; modes of interaction</li>
+<li>Factoring of complexity &amp; level of automation</li>
+</ul>
+</div>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>DEMO</h1>
+<h2>Programs as sequences of interactions</h2>
+</div>
+</section></section><section><section class="title "><h1>Conclusions</h1>
+<p><strong>Programming systems deserve theory too!</strong></p>
+<ul>
+<li>Take history seriously and learn from it</li>
+<li>Not everything needs proof or evaluation</li>
+<li>Disagree with our Technical Dimensions!</li>
+</ul>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> |
+<a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+<p>with Joel Jakubovic and Jonathan Edwards</p>
+</div>
+</section></section><section><section class="content condensed"><h1>References &amp; demos</h1>
+<div class="body">
+<div>
+<ul>
+<li><a href="https://thegamma.net/"><strong>The Gamma</strong>: Tools for open data-driven storytelling</a></li>
+<li><a href="http://turing.thegamma.net/"><strong>The Gamma</strong>: Democratizing data science</a></li>
+<li><a href="https://tomasp.net/histogram/"><strong>Histogram</strong>: You have to know the past to understand the present</a></li>
+<li><a href="https://tomasp.net/commodore64/"><strong>The Lost Ways of Programming</strong>: Commodore 64 BASIC</a></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>J. Jakubovic, J. Edwards, T. Petricek (2022). <a href="https://github.com/jdjakub/papers/blob/master/prog-2022/prog22-master.pdf">Technical dimensions of programming systems</a>. To appear</li>
+<li>T. Petricek, J. Jakubovic (2021). <a href="http://tomasp.net/academic/drafts/complementary/">Complementary science of interactive programming systems</a>. HaPoC</li>
+<li>T. Petricek (2022) <a href="http://tomasp.net/academic/papers/iterative/">The Gamma Programmatic Data Exploration for Non-programmers</a>. VL/HCC</li>
+<li>J. Jakubovic, T. Petricek (2022) <a href="http://tomasp.net/academic/papers/self-sustainability/">Ascending the Ladder to Self-Sustainability</a> Onward!</li>
+<li>J. Edwards, S. Kell, T. Petricek, L. Church (2019). <a href="http://tomasp.net/academic/papers/evaluating-systems/">Evaluating programming systems design</a>. PPIG</li>
+</ul>
+</div>
+</div>
+</section></section>
+				<img src="img/matfyz.png" class="mfflogo" />
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
