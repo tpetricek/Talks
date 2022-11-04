@@ -9,9 +9,9 @@ and other talks, check out [my other repository](http://github.com/tpetricek/Doc
 Talks by category
 -----------------
 
- - [Data science and data journalism](#data-science-and-data-journalism)
+ - [Data Science and Data Journalism](#data-science-and-data-journalism)
  - [F# and Fable talks on TheGamma](#f-and-fable-talks-on-thegamma)
- - [Programming Languages Research](#programming-languages-research)
+ - [Programming Systems Research](#programming-systems-research)
  - [Philosophy of Science](#philosophy-of-science)
  - [FsLab and Data Science](#fslab-and-data-science)
  - [Web and Reactive programming](#web-and-reactive-programming)
@@ -20,7 +20,7 @@ Talks by category
 Talks and slides
 ----------------
 
-### Data science and data journalism
+### Data Science and Data Journalism
 
  - [**Foundations of a live data exploration environment**](https://tpetricek.github.io/Talks/2022/live-data-exploration/index.html) (March 2022) - Programming, Porto<br />
    See also: [thegamma.net playground](http://turing.thegamma.net/playground), [image processing code](https://github.com/tpetricek/Talks/tree/master/2022/live-data-exploration/code) and [pandas notebook](https://github.com/tpetricek/Talks/blob/master/2022/live-data-exploration/notebook/analysis.ipynb)
@@ -76,9 +76,15 @@ Talks and slides
  - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow<br />
    See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
-### Programming Languages Research
+### Programming Systems Research
 
- - [**Programming Systems - Not just for data science**](http://tpetricek.github.io/Talks/2022/programming-systems/) (May 2022) - Aarhus<br />
+ - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2022/programming-systems/berkeley) (November 2022) - Berkeley (virtual)<br />
+   See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions (PDF)](https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf)
+
+ - [**The Gamma: Programmatic data exploration for non-programmers**](http://tpetricek.github.io/Talks/2022/the-gamma/vlhcc/) (September 2022) - VL/HCC (Rome)<br />
+   See also: [VL/HCC paper](http://tomasp.net/academic/papers/iterative/) and [The Gamma](http://turing.thegamma.net/)
+
+ - [**Programming Systems - Not just for data science**](http://tpetricek.github.io/Talks/2022/programming-systems/aarhus) (May 2022) - Aarhus<br />
    See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions (PDF)](https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf)
 
  - [**Methodology of programming systems**](https://tpetricek.github.io/Talks/2022/systems-methodology/index.html) (March 2022) - Programming, Porto<br />
