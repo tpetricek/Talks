@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Cultures of Programming</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				_background:red;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 44pt 'Rasa', sans-serif;
+				letter-spacing: -1px;
+				padding:0px;
+				margin:0px;
+				color:#D22D40;
+				line-height:1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', sans-serif;
+				letter-spacing: -1px;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 30pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:700 30pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:300;
+			}
+			a {
+				text-decoration:none;
+				color:#0060ff;
+			}
+			a:hover, a:active {
+				color:#66A0FF;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists img { margin-top:20px; float:right; max-width:350px; max-height:400px; }
+			.reveal .lists.smaller img { max-width:280px; max-height:350px; }
+			.lists.border img { border:3px solid black; }
+			.lists.smaller2x img { max-width:200px; max-height:200px; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:26pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:200px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h2 { margin-top:-40px; }
+			.title .body { position:absolute; bottom:40px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:24pt; }
+			.title i { color:#303030; font-size:80%; width:40px; margin:0px 2px 0px 0px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:36pt; margin-bottom:30px; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			.subtitle.motto h1 { text-align:center; }
+			.subtitle.motto em { font-weight:200; font-style:normal; }
+
+			.mfflogo {
+				position:absolute;
+				right:-100px;
+				bottom:0px;
+				width:400px;
+			}
+
+			/* broken in Firefox
+			.slides:has(section.title.present) .mfflogo { display:none; }
+			*/
+
+			.overview .mfflogo { display:none; }
+
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1>Cultures of Programming</h1>
+<h2>A Look at the History of Programming</h2>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University<br />
+<em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa-solid fa-circle-right"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-twitter"></i></em> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</div>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>Introduction</h1>
+<h2>Cultures of Programming</h2>
+</div>
+</section><section class="image smaller noborder"><div class="body1">
+<p><img src="img/knight.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Twist the Lion's Tail</h1>
+<p><strong>Implemented new code replacing the "Power Peg",
+deployed the change and enabled a flag to turn it on.</strong></p>
+</div>
+<div class="fragment">
+<p>Deployment failed, running old untested code. Rollback only made it worse!</p>
+</div>
+<div class="fragment">
+<p><strong>What should have been done to prevent this?</strong></p>
+</div>
+</div>
+</div>
+</section><section class="lists smaller2x"><h1>Counterfactual Speculations (1/2)</h1>
+<img src="img/im.png"/>
+<div>
+<h2>Mathematical Culture</h2>
+<ul>
+<li>
+"Formal Verification of Financial<br />
+Algorithms, Progress and Prospects"
+</li>
+<li>The bug was not in the algorithm</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Engineering Culture</h2>
+<ul>
+<li>"Had [they] implemented an automated deployment system [the error] would have been avoided."</li>
+<li>Cautionary tale of the DevOps movement</li>
+</ul>
+</div>
+</section><section class="lists smaller2x"><h1>Counterfactual Speculations (2/2)</h1>
+<img src="img/sec.png"/>
+<div>
+<h2>Managerial Culture</h2>
+<ul>
+<li>"system of risk management controls and supervisory procedures not reasonably designed" as required by the rule 15c3-5</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Hacker and Humanistic Cultures</h2>
+<ul>
+<li>How can it take 45 minutes to stop it?</li>
+<li>
+Automated trading is not in line <br />
+with augmenting human intellect
+</li>
+</ul>
+</div>
+</section><section class="icons "><h1>Cultures of Programming</h1>
+<h2>What is this talk about</h2>
+<ul>
+<li><i class='fa fa-microchip'></i> Multi-disciplinary origins of programming</li>
+<li><i class='fa fa-user-lock'></i> Cultures remain surprisingly stable over time</li>
+<li><i class='fa fa-explosion'></i> Interesting things happen when they meet</li>
+<li><i class='fa fa-book-journal-whills'></i> Useful fiction for understanding the history</li>
+</ul>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>Case Study #1</h1>
+<h2>Mathematization of Programming</h2>
+</div>
+</section><section class="image "><div class="body1">
+<p><img src="img/eniac.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Programming<br />in the 1940s</h1>
+<p><strong>Planning the computation and wiring cables</strong></p>
+<p>No idea of a programming language!</p>
+</div>
+</div>
+</div>
+</section><section class="lists border"><h1>Making Programming Easier</h1>
+<img src="img/shortcode.png"/>
+<div>
+<h2>Hacker tricks (late 1940s)</h2>
+<ul>
+<li>Pseudo-instructions</li>
+<li>Translated or interpreted</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Mathematical theories (late 1950s)</h2>
+<ul>
+<li>Chomsky's work on formal grammars</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Managerial needs (1950s)</h2>
+<ul>
+<li>Computer installation managers</li>
+<li>Need cross-machine compatibility</li>
+</ul>
+</div>
+</section><section class="image smaller"><div class="body1">
+<p><img src="img/hopper.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>When technology became language</h1>
+<div class="citation">
+<p>(Nofre, Priestley, 2014)</p>
+</div>
+<p><strong>Meeting of hacker, mathematical and managerial culture!</strong></p>
+<p>Birth of a single unified<br />
+way of thinking?</p>
+</div>
+</div>
+</div>
+</section><section class="icons "><h1>Languages of the 1950s</h1>
+<h2>Different cultures think differently</h2>
+<ul>
+<li><i class='fa fa-user-tie'></i> <strong>COBOL</strong> - Common business-oriented language</li>
+<li><i class='fa fa-not-equal'></i> <strong>ALGOL</strong> - Formal mathematical language</li>
+<li><i class='fa fa-brain'></i> <strong>LISP</strong> - Symbolic manipulation with interactivity</li>
+</ul>
+</section><section class="image "><div class="body1">
+<p><img src="img/goto.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Goto Considered Harmful</h1>
+<div class="citation">
+<p>(Dijkstra, 1968)</p>
+</div>
+</div>
+<div class="fragment">
+<p><strong>Engineering</strong><br />
+Code difficult to understand</p>
+<p><strong>Mathematical</strong><br />
+Breaks compositional reasoning</p>
+</div>
+</div>
+</div>
+</section><section class="icons "><h1>Structured Programming</h1>
+<h2>A better way of organizing code</h2>
+<ul>
+<li><i class='fa fa-person-chalkboard'></i> Coined by Dijkstra a year later in 1969</li>
+<li><i class='fa fa-square-check'></i> Intended as a good programming practice</li>
+<li><i class='fa fa-arrows-rotate'></i> Code corresponds to execution logic</li>
+<li><i class='fa fa-database'></i> Later generalized to structured data</li>
+</ul>
+</section><section class="image "><div class="body1">
+<p><img src="img/datamation.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Structured Programming</h1>
+<p><strong>Chief programmer teams methodology</strong></p>
+<p>Adapts the idea for management purposes</p>
+<p><strong>Organizing code vs.
+Organizing people</strong></p>
+</div>
+</div>
+</div>
+</section><section class="lists border"><h1>Culture Clash</h1>
+<img src="img/ewd.jpg"/>
+<div>
+<h2>Dijkstra disapproves</h2>
+<p>American <em>"management philosophy aiming at making companies as independent as possible of the competence of their employees"</em></p>
+<p>Anti-intellectualism characterized by "How to program if you cannot."</p>
+<p><strong>Good code as part of engineering dignity!</strong></p>
+</div>
+</section><section class="icons "><h1>Clashes &amp; Collaborations</h1>
+<h2>Proofs and social processes (1977)</h2>
+<ul>
+<li><i class='fa fa-person-chalkboard'></i> Proofs lack social processes of mathematics!</li>
+<li><i class='fa fa-scroll'></i> A political pamphlet from the middle ages!</li>
+<li><i class='fa fa-syringe'></i> Cleanroom methodology to ensure proofs check</li>
+<li><i class='fa fa-gears'></i> Proof assistants check proofs mechanically</li>
+</ul>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>Case Study #2</h1>
+<h2>Interactive Programming</h2>
+</div>
+</section><section class="image smaller"><div class="body1">
+<p><img src="img/punch.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Batch processing</h1>
+<p>Adopted when big 1940s computers became useful</p>
+<p><strong>Pass your stack of cards to the operator, wait hours/days for the result...</strong></p>
+<p>Inefficient, but the<br />
+norm in the 1950s</p>
+</div>
+</div>
+</div>
+</section><section class="image "><div class="body1">
+<p><img src="img/tx0.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>MIT TX-0 "Hackers"</h1>
+<p><strong>Built for testing, loaned to MIT RLE in 1958</strong></p>
+<p>Used interactively through terminal</p>
+<p>Available in time slots 24 hours per day</p>
+</div>
+</div>
+</div>
+</section><section class="icons "><h1>Interactive Programming</h1>
+<h2>Struggles in the 1960s</h2>
+<ul>
+<li><i class='fa fa-wave-square'></i> Low performance LINC computer for $43,000</li>
+<li><i class='fa fa-network-wired'></i> Interactive time-sharing systems via terminals</li>
+<li><i class='fa fa-clapperboard'></i> "The Mother of All Demos" talk in 1968</li>
+<li><i class='fa fa-sack-dollar'></i> Computers slowly become more affordable...</li>
+</ul>
+</section><section class="image smaller"><div class="body1">
+<p><img src="img/smalltalk.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Smalltalk (1970s)</h1>
+<p><strong>Innovative system</strong></p>
+<p>Graphical interface<br />
+Object-oriented</p>
+<p><strong>Humanistic vision</strong></p>
+<p>Programming for kids<br />
+Personal dynamic medium<br />
+Self-modifiable</p>
+</div>
+</div>
+</div>
+</section><section class="lists "><h1>Commercialization</h1>
+<img src="img/star.jpg"/>
+<div>
+<h2>Xerox Star (1981)</h2>
+<ul>
+<li>Adopts the graphical display</li>
+<li>Adopts "icons" and "desktop"</li>
+<li>Closed end-user applications!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Commercial Smalltalk</h2>
+<ul>
+<li>Adopted in the 1990s in banks</li>
+<li>Collaboration and IP protection hard</li>
+<li>Inspired modern development practices</li>
+</ul>
+</div>
+</section><section class="image "><div class="body1">
+<p><img src="img/altair.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Interactive Programming Strikes Back</h1>
+<p>Microprocessors make it possible to build
+computers cheap enough for everyone</p>
+<p><strong>They do not do much!</strong></p>
+</div>
+</div>
+</div>
+</section><section class="lists border"><h1>The 1977 trinity</h1>
+<img src="img/pet.png"/>
+<div>
+<h2>Three minicomputers</h2>
+<ul>
+<li>Widely accessible</li>
+<li>Commodore PET, Apple, TRS-80</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Hacker style of programming</h2>
+<ul>
+<li>Start in interactive BASIC</li>
+<li>Copy programs from magazines</li>
+<li>Write code to load &amp; run programs</li>
+<li>Actually accessible to (many) kids</li>
+</ul>
+</div>
+</section><section class="icons "><h1>Interactive Programming</h1>
+<h2>Struggles in the late 1970s</h2>
+<ul>
+<li><i class='fa fa-table'></i> Killer apps like dBASE and VisiCalc</li>
+<li><i class='fa fa-lock'></i> Hacker and humanistic goals at odds</li>
+<li><i class='fa fa-user'></i> Gradual shift from programming to using</li>
+<li><i class='fa fa-bridge'></i> BASIC vs. "proper" engineering</li>
+</ul>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>Case Study #3</h1>
+<h2>Software Engineering</h2>
+</div>
+</section><section class="lists smaller border"><h1>Getting Programs to Behave</h1>
+<img src="img/fortran.jpg"/>
+<div>
+<p>"Programming in the early 1950s<br />
+was a black art, a private arcane<br />
+matter involving a programmer, a
+problem, a computer, and perhaps a small library of subroutines and a primitive assembly program."</p>
+<p><strong>John Backus (1976)</strong></p>
+</div>
+</section><section class="image "><div class="body1">
+<p><img src="img/tx0.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Debugging TX-0</h1>
+<p><strong>UT3, FLIT, DDT</strong></p>
+<p>Search memory, modify program in numeric, later symbolic, codes</p>
+<p>"<strong>Far from completely described even in internal memoranda</strong>"</p>
+</div>
+</div>
+</div>
+</section><section class="lists border"><h1>Debugging Epoch Opens (1965)</h1>
+<img src="img/compaut.png"/>
+<div>
+<h2>Limiting factors for computing</h2>
+<ul>
+<li>Hardware until mid-1950s</li>
+<li>Programming until mid-1960s</li>
+<li>What now? Now: debugging.</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Terminology in the 1960s</h2>
+<ul>
+<li>Program checkout - check it works!</li>
+<li>Debugging - programs actually run</li>
+<li>Testing - programs solve the problem</li>
+</ul>
+</div>
+</section><section class="lists smaller border"><h1>On-line Debugging (1966)</h1>
+<img src="img/teletype.jpg"/>
+<div>
+<p>"With some care, it has been possible (..)<br />
+to find a bug while at a breakpoint in running a test case, call the editor to make a correction, run the program on a simpler test case to verify the correctness (...) resume execution of the original test case.."</p>
+</div>
+</section><section class="lists border"><h1>Debugging &amp; Testing Controversies</h1>
+<img src="img/wirth.jpg"/>
+<div>
+<h2>Niklaus Wirth (1969)</h2>
+<p>"My worry is that the facility of quick response
+leads to sloppy working habits"</p>
+</div>
+<div class="fragment">
+<h2>Edsger Dijkstra (1971-3)</h2>
+<p>"Program testing can be used very<br />
+effectively to show the presence of<br />
+bugs but never to show their absence."</p>
+</div>
+</section><section class="icons "><h1>Testing over Time</h1>
+<h2>Shifting Meaning of Testing</h2>
+<ul>
+<li><i class='fa fa-square-check'></i> Show that programs work (before 1978)</li>
+<li><i class='fa fa-chart-line'></i> Testing as a process phase (since 1970s)</li>
+<li><i class='fa fa-square-xmark'></i> Find errors in programs (after 1978)</li>
+<li><i class='fa fa-arrows-rotate'></i> Test as an engineering tool (since 1990s)</li>
+</ul>
+</section><section class="image smaller"><div class="body1">
+<p><img src="img/debug.gif" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Debugging today?</h1>
+<p>Similar to 1960s<br />
+Learned through practice<br />
+Hacker culture only</p>
+<p><strong>No inter-cultural artifact?</strong></p>
+</div>
+</div>
+</div>
+</section></section><section><section class="subtitle "><div class="body">
+<h1>Conclusions</h1>
+<h2>Cultures of Programming</h2>
+</div>
+</section><section class="lists smaller border"><h1>Cultures Shape Programming</h1>
+<img src="img/boys.jpg"/>
+<div>
+<h2>Programming languages</h2>
+<ul>
+<li>Mathematization a good political move</li>
+<li>Programming languages vs. systems</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Software engineering</h2>
+<ul>
+<li>Test becomes a multi-cultural entity</li>
+<li>Also types, but not debugging!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Interactive programming</h2>
+<ul>
+<li>Breaks managerial &amp; engineering needs</li>
+<li>Hard to study mathematically</li>
+</ul>
+</div>
+</section><section class="icons "><h1>Cultures of Programming</h1>
+<h2>Revealing Patterns in History</h2>
+<ul>
+<li><i class='fa fa-comments'></i> Cultures meet and collaborate</li>
+<li><i class='fa fa-shield-halved'></i> Cultures clash over principles</li>
+<li><i class='fa fa-shuffle'></i> Concepts shift between cultures</li>
+<li><i class='fa fa-crown'></i> Struggle for control over programming</li>
+</ul>
+</section><section class="title "><h1>Conclusions</h1>
+<p><strong>Cultures of Programming</strong></p>
+<ul>
+<li>Define basic assumptions and ways of working</li>
+<li>Surprisingly stable over the 70 year history</li>
+<li>Still shape teaching, hiring, safety today</li>
+</ul>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University<br />
+<em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa-solid fa-circle-right"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-twitter"></i></em> <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</div>
+</section></section>
+				<img src="img/cuni.png" class="mfflogo" />
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
