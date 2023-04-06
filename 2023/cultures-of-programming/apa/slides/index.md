@@ -145,6 +145,7 @@ way of thinking?
 # Languages of the 1950s
 ## Different cultures think differently
 
+- *fa-vial* **FORTRAN** - Translator for mathematical formulas
 - *fa-user-tie* **COBOL** - Common business-oriented language
 - *fa-not-equal* **ALGOL** - Formal mathematical language
 - *fa-brain* **LISP** - Symbolic manipulation with interactivity

@@ -9,10 +9,10 @@ and other talks, check out [my other repository](http://github.com/tpetricek/Doc
 Talks by category
 -----------------
 
- - [Data Science and Data Journalism](#data-science-and-data-journalism)
- - [F# and Fable talks on TheGamma](#f-and-fable-talks-on-thegamma)
  - [Programming Systems Research](#programming-systems-research)
  - [Philosophy of Science](#philosophy-of-science)
+ - [Data Science and Data Journalism](#data-science-and-data-journalism)
+ - [F# and Fable talks on TheGamma](#f-and-fable-talks-on-thegamma)
  - [FsLab and Data Science](#fslab-and-data-science)
  - [Web and Reactive programming](#web-and-reactive-programming)
  - [F# and Functional Programming](#f-and-functional-programming)
@@ -20,66 +20,13 @@ Talks by category
 Talks and slides
 ----------------
 
-### Data Science and Data Journalism
-
- - [**Foundations of a live data exploration environment**](https://tpetricek.github.io/Talks/2022/live-data-exploration/index.html) (March 2022) - Programming, Porto<br />
-   See also: [thegamma.net playground](http://turing.thegamma.net/playground), [image processing code](https://github.com/tpetricek/Talks/tree/master/2022/live-data-exploration/code) and [pandas notebook](https://github.com/tpetricek/Talks/blob/master/2022/live-data-exploration/notebook/analysis.ipynb)
-
- - [**Rethinking data exploration tools**](http://tpetricek.github.io/Talks/2021/rethinking-data-exploration/#/) (May 2021) - Huawei Global Technology Summit 2022 (July 2022)<br />
-   See also: [wrattler.org](http://wrattler.org), [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk); Also virtual talk (May 2021)<br />
-
- - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2021/composable-libraries/) (January 2021) - NDC London (virtual)<br />
-   See also: [Compost.js](https://compostjs.github.io/compost/) and [F# demos branch](https://github.com/compostjs/compost/tree/ndc-ldn-2021).
-
- - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2019/wrattler/) (November 2019) - ATI, London<br />
-   See also: [wrattler.org](http://wrattler.org) and [wrattler on github](http://github.com/wrattler).
-
- - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2018/wrattler/) (July 2018) - TaPP London
-
- - [**The Gamma: Making data relevant in an age of fake news**](http://tpetricek.github.io/Talks/2020/dot-driven/) (January 2020) - University of Kent<br />
-   See also: [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk).
-
- - [**The Gamma: Towards open and reproducible data-driven storytelling**](http://tpetricek.github.io/Talks/2018/thegamma/cogx/) (June 2018) - CogX London<br />
-  See also: [thegamma.net](https://www.thegamma.net) and [The Alan Turing Institute demos](http://gamma.turing.ac.uk/)
-
- - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/cambridge/) (June 2017) - Cambridge Spark Data Science Summit<br />
-   See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017), also presented at Mozfest (October 2017),
-   [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
-
- - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
-   See also homepage at [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
-
- - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University<br />
-   See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
-
- - [**The Gamma: Towards open and transparent data-driven storytelling**](http://tpetricek.github.io/Talks/2016/open-storytelling/) (November 2016) - Alan Turing Institute<br />
-   See also: [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/) using The Gamma
-
- - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September 2015) - Future Programming Workshop<br />
-   See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
-
-### F# and Fable talks on TheGamma
-
- - [**Rethinking compilers with live coding**](http://tpetricek.github.io/Talks/2018/live-compilers/) (September 2018) - LambdaWorld, Seattle<br />
-   See: [live language demo](http://tpetricek.github.io/Talks/2018/live-compilers/demo/), [source code](https://github.com/tpetricek/Talks/tree/master/2018/live-compilers/code/completed), [thegamma.net](https://www.thegamma.net), <br />
-   Previously presented at LambdaDays, Krakow (February 2018)
-
- - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/milan/) (November 2017) - CodeMotion Milan<br />
-   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/thegamma-data-science/milan/code), [thegamma.net](https://www.thegamma.net) and [UK Government Expenditure](http://gamma.turing.ac.uk/expenditure)
-
- - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
-   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
-
- - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup<br />
-   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
-
- - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow<br />
-   See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
-
 ### Programming Systems Research
 
+ - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2023/programming-systems/lsd) (April 2023) - UC Santa Cruz<br />
+   Long version. See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions](https://tomasp.net/techdims)
+
  - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2022/programming-systems/berkeley) (November 2022) - Berkeley (virtual)<br />
-   See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions (PDF)](https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf)
+   Short version. See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions (PDF)](https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf)
 
  - [**The Gamma: Programmatic data exploration for non-programmers**](http://tpetricek.github.io/Talks/2022/the-gamma/vlhcc/) (September 2022) - VL/HCC (Rome)<br />
    See also: [VL/HCC paper](http://tomasp.net/academic/papers/iterative/) and [The Gamma](http://turing.thegamma.net/)
@@ -138,17 +85,18 @@ Talks and slides
 
 ### Philosophy of Science
 
+ - [**Cultures of programming: A look at the history of programming**](http://tpetricek.github.io/Talks/2023/cultures-of-programming/apa) (April 2023) - ASL @ APA, San Francisco<br/>
+
  - [**Notations: There is no escape**](http://tpetricek.github.io/Talks/2022/programme-talks/notations.html#/) (June 2022) - PROGRAMme, Lille
 
  - [**Cultures of programming: Understanding the history of programming through technical artifacts and controversies**](http://tpetricek.github.io/Talks/2022/cultures-of-programming/) (October 2021) - History of Programming meetup (virtual)<br/>
- See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
+   See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
 
- - [**An incomplete history of
-getting programs to behave**](http://tpetricek.github.io/Talks/2021/cultures-of-programming) (October 2021) - Centre for Reasoning, Kent<br/>
-  See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
+ - [**An incomplete history of getting programs to behave**](http://tpetricek.github.io/Talks/2021/cultures-of-programming) (October 2021) - Centre for Reasoning, Kent<br/>
+   See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
 
  - [**Popup from Hell**](https://tpetricek.github.io/Talks/2021/popup-from-hell) (September 2021) - Bertinoro)<br/>
-  See also: [source code](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/slides/images/code.png) and [recorded demo](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/screen.gif)
+   See also: [source code](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/slides/images/code.png) and [recorded demo](https://github.com/tpetricek/Talks/blob/master/2021/popup-from-hell/screen.gif)
 
  - [**Cultures of Programming**](http://tpetricek.github.io/Talks/2020/cultures-of-programming/codemesh.pdf) (November 2020) - CodeMesh London (virtual)<br/>
    See also: [work in progress paper draft](http://tomasp.net/academic/drafts/cultures/)
@@ -181,6 +129,62 @@ getting programs to behave**](http://tpetricek.github.io/Talks/2021/cultures-of-
    and [older version](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
 
  - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC
+
+### Data Science and Data Journalism
+
+ - [**Foundations of a live data exploration environment**](https://tpetricek.github.io/Talks/2022/live-data-exploration/index.html) (March 2022) - Programming, Porto<br />
+   See also: [thegamma.net playground](http://turing.thegamma.net/playground), [image processing code](https://github.com/tpetricek/Talks/tree/master/2022/live-data-exploration/code) and [pandas notebook](https://github.com/tpetricek/Talks/blob/master/2022/live-data-exploration/notebook/analysis.ipynb)
+
+ - [**Rethinking data exploration tools**](http://tpetricek.github.io/Talks/2021/rethinking-data-exploration/#/) (May 2021) - Huawei Global Technology Summit 2022 (July 2022)<br />
+   See also: [wrattler.org](http://wrattler.org), [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk); Also virtual talk (May 2021)<br />
+
+ - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2021/composable-libraries/) (January 2021) - NDC London (virtual)<br />
+   See also: [Compost.js](https://compostjs.github.io/compost/) and [F# demos branch](https://github.com/compostjs/compost/tree/ndc-ldn-2021).
+
+ - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2019/wrattler/) (November 2019) - ATI, London<br />
+   See also: [wrattler.org](http://wrattler.org) and [wrattler on github](http://github.com/wrattler).
+
+ - [**Wrattler: Interactive, smart and polyglot notebooks**](http://tpetricek.github.io/Talks/2018/wrattler/) (July 2018) - TaPP London
+
+ - [**The Gamma: Making data relevant in an age of fake news**](http://tpetricek.github.io/Talks/2020/dot-driven/) (January 2020) - University of Kent<br />
+   See also: [thegamma.net](http://thegamma.net) and [thegamma.net demos](http://gamma.turing.ac.uk).
+
+ - [**The Gamma: Towards open and reproducible data-driven storytelling**](http://tpetricek.github.io/Talks/2018/thegamma/cogx/) (June 2018) - CogX London<br />
+  See also: [thegamma.net](https://www.thegamma.net) and [The Alan Turing Institute demos](http://gamma.turing.ac.uk/)
+
+ - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/cambridge/) (June 2017) - Cambridge Spark Data Science Summit<br />
+   See also: Version from [European Data and Computational Journalism Conference](http://tpetricek.github.io/Talks/2017/thegamma-data-science/dublin/) (July 2017), also presented at Mozfest (October 2017),
+   [thegamma.net](https://www.thegamma.net) for project homepage and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
+
+ - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/msr/) (June 2017) - MSR Cambridge<br />
+   See also homepage at [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
+
+ - [**Building Better Data Science Tools (while avoiding a real world job!)**](http://tpetricek.github.io/Talks/2017/datascience-tools/) (March 2017) - Middlesex University<br />
+   See also [fslab.org](http://www.fslab.org) and [thegamma.net](http://thegamma.net) web pages
+
+ - [**The Gamma: Towards open and transparent data-driven storytelling**](http://tpetricek.github.io/Talks/2016/open-storytelling/) (November 2016) - Alan Turing Institute<br />
+   See also: [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/) using The Gamma
+
+ - [**The Gamma: Programming tools for data journalism**](http://tpetricek.github.io/Talks/2015/the-gamma/st-louis/) (September 2015) - Future Programming Workshop<br />
+   See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
+
+### F# and Fable talks on TheGamma
+
+ - [**Rethinking compilers with live coding**](http://tpetricek.github.io/Talks/2018/live-compilers/) (September 2018) - LambdaWorld, Seattle<br />
+   See: [live language demo](http://tpetricek.github.io/Talks/2018/live-compilers/demo/), [source code](https://github.com/tpetricek/Talks/tree/master/2018/live-compilers/code/completed), [thegamma.net](https://www.thegamma.net), <br />
+   Previously presented at LambdaDays, Krakow (February 2018)
+
+ - [**The Gamma: Democratizing Data Science**](http://tpetricek.github.io/Talks/2017/thegamma-data-science/milan/) (November 2017) - CodeMotion Milan<br />
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/thegamma-data-science/milan/code), [thegamma.net](https://www.thegamma.net) and [UK Government Expenditure](http://gamma.turing.ac.uk/expenditure)
+
+ - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2017/visualizing-olympics/) (January 2017) - NDC London<br />
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2017/visualizing-olympics/code), [thegamma.net](https://www.thegamma.net) and [Olympic medalists visualizations](http://rio2016.thegamma.net/)
+
+ - [**Visualizing Olympic Medals with F# and Fable**](http://tpetricek.github.io/Talks/2016/fable-gamma/chicago/) (October 2016) - Chicago F# meetup<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2016/fable-gamma/code) and [visualizations at The Gamma](http://rio2016.thegamma.net/)
+
+ - [**Understanding the World with F#**](http://tpetricek.github.io/Talks/2015/the-gamma/krakow/) (September 2015) - DevDay Krakow<br />
+   See also: [CO2 emission article used throughout the talk](http://thegamma.net/carbon)
 
 ### FsLab and Data Science
 
