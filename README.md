@@ -50,7 +50,7 @@ Talks and slides
    See also: [original paper (pdf)](http://akkartik.name/akkartik-convivial-20200315.pdf) and [presentation recording](https://vimeo.com/416363066)
 
  - [**The Gamma & Histogram: Towards dot-driven data exploration**](http://tpetricek.github.io/Talks/2019/dot-driven-data-exploration/) (November 2019) - IFIP 2.16, Nice<br />
- 	 See also: [Histogram interactive essay](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
+   See also: [Histogram interactive essay](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
 
  - [**Histogram: You have to know the past to understand the present**](https://tpetricek.github.io/Talks/2019/histogram/live/) (October 2019) - LIVE, Athens<br />
    See also: [Histogram interactive essay](http://tomasp.net/histogram/) and [motivating F# example](https://github.com/tpetricek/Talks/tree/master/2019/histogram/live/code)
@@ -85,7 +85,9 @@ Talks and slides
 
 ### Philosophy of Science
 
- - [**Cultures of programming: A look at the history of programming**](http://tpetricek.github.io/Talks/2023/cultures-of-programming/apa) (April 2023) - ASL @ APA, San Francisco<br/>
+ - [**Popup from Hell: On the growing opacity of software systems**](http://tpetricek.github.io/Talks/2023/popup-from-hell/ncrafts/) (May 2023) - NewCrafts, Paris<br />
+
+ - [**Cultures of programming: A look at the history of programming**](http://tpetricek.github.io/Talks/2023/cultures-of-programming/apa) (April 2023) - ASL/APA, San Francisco<br/>
 
  - [**Notations: There is no escape**](http://tpetricek.github.io/Talks/2022/programme-talks/notations.html#/) (June 2022) - PROGRAMme, Lille
 
