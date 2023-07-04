@@ -134,6 +134,9 @@ Talks and slides
 
 ### Data Science and Data Journalism
 
+ - [**The Gamma and Compost.js: Towards simple and open data visualization tools**](https://tpetricek.github.io/Talks/2023/open-data-vis/) (June 2023) - ExtremeXP, online<br />
+   See also: [thegamma.net](http://thegamma.net), [thegamma.net playground](http://turing.thegamma.net/playground), [compost.js](https://compostjs.github.io/compost/)
+
  - [**Foundations of a live data exploration environment**](https://tpetricek.github.io/Talks/2022/live-data-exploration/index.html) (March 2022) - Programming, Porto<br />
    See also: [thegamma.net playground](http://turing.thegamma.net/playground), [image processing code](https://github.com/tpetricek/Talks/tree/master/2022/live-data-exploration/code) and [pandas notebook](https://github.com/tpetricek/Talks/blob/master/2022/live-data-exploration/notebook/analysis.ipynb)
 
