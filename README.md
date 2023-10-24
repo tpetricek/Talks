@@ -22,6 +22,9 @@ Talks and slides
 
 ### Programming Systems Research
 
+ - [**Document-oriented programming based on edit history**](http://tpetricek.github.io/Talks/2023/conf-live/) (October 2023) - LIVE workshop (online)<br />
+   See also: [Undocumented source code for the demo](https://github.com/tpetricek/conf) and our [challenge problems paper](https://arxiv.org/pdf/2309.11406.pdf).
+ 
  - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2023/programming-systems/lsd) (April 2023) - UC Santa Cruz<br />
    Long version. See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions](https://tomasp.net/techdims)
 
@@ -85,6 +88,8 @@ Talks and slides
 
 ### Philosophy of Science
 
+ - [**The rise and fall of extensible programming languages**](http://tpetricek.github.io/Talks/2023/extensible-languages/) (October 2023) - HaPoC, Warsaw<br />
+
  - [**Popup from Hell: On the growing opacity of software systems**](http://tpetricek.github.io/Talks/2023/popup-from-hell/ncrafts/) (May 2023) - NewCrafts, Paris<br />
 
  - [**Cultures of programming: A look at the history of programming**](http://tpetricek.github.io/Talks/2023/cultures-of-programming/apa) (April 2023) - ASL/APA, San Francisco<br/>
@@ -133,6 +138,9 @@ Talks and slides
  - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC
 
 ### Data Science and Data Journalism
+
+ - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2023/composable-libraries/) (September 2023) - F# Data Science, Berlin<br />
+   See also: [Compost.js](https://compostjs.github.io/compost/) and [F# source code](https://github.com/tpetricek/Talks/tree/master/2023/composable-libraries/code).
 
  - [**The Gamma and Compost.js: Towards simple and open data visualization tools**](https://tpetricek.github.io/Talks/2023/open-data-vis/) (June 2023) - ExtremeXP, online<br />
    See also: [thegamma.net](http://thegamma.net), [thegamma.net playground](http://turing.thegamma.net/playground), [compost.js](https://compostjs.github.io/compost/)
