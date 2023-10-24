@@ -1,0 +1,443 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Designing composable functional libraries: not just for data visualization</title>
+    <meta name="description" content="Designing composable functional libraries: not just for data visualization">
+    <meta name="author" content="Tomas Petricek">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          TeX: { extensions: ["color.js"] },
+          jax: ["input/TeX","output/HTML-CSS"]
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="tip" id="fs1">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs2">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs3">Multiple items<br />val seq : sequence:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.Operators.seq<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.seq&lt;_&gt;</div>
+<div class="tip" id="fs4">type bool = System.Boolean<br /><br />Full name: Microsoft.FSharp.Core.bool</div>
+<div class="tip" id="fs5">Multiple items<br />type MeasureAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; MeasureAttribute<br /><br />Full name: Microsoft.FSharp.Core.MeasureAttribute<br /><br />--------------------<br />new : unit -&gt; MeasureAttribute</div>
+<div class="tip" id="fs6">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs7">type unit = Unit<br /><br />Full name: Microsoft.FSharp.Core.unit</div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section data-background="images/banner.jpg">
+<div style="margin:50px 0px 270px;">
+<h1><span style="font-weight:500;">Designing composable functional libraries, </span><span style="font-weight:100">not just for data visualization</span></h1>
+</div>
+<p><strong>Tomas Petricek</strong></p>
+<p>Charles University &amp; fsharpWorks<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+<section >
+<section class="part" data-background="images/banner.jpg">
+<h1><em>Motivation</em></h1>
+<h2>Functional thinking about charts</h2>
+</section>
+<section >
+<img src="images/gamma.png" class="nb" style="max-width:600px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>What is this<br />
+talk about?</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p>Making facts great again</p>
+<p><em>Building more open, transparent and engaging data visualization</em></p>
+</div>
+</section>
+<section >
+<img src="images/code.png" class="nb" style="max-width:600px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>What is this<br />
+talk about?</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p>Functional thinking!</p>
+<p><em>New look at an interesting and tricky domain</em></p>
+</div>
+</section>
+<section >
+<img src="images/chart1.png" class="nb fragment" style="max-width:600px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>What is a chart?</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p>A very long list...</p>
+<p><em>Bar chart</em><br />
+<em>Column chart</em><br />
+<em>Line chart</em><br />
+<em>Area chart</em><br />
+<em>Scatter chart</em><br />
+<em>Histogram</em><br />
+<em>Combo chart???</em></p>
+</div>
+</section>
+<section >
+<img src="images/chart2.png" class="nb fragment" style="max-width:600px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>What is a chart?</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p>Uh...</p>
+<p><em>Maybe chart is just an SVG graphics with text, shapes and pixel coordinates?</em></p>
+</div>
+</section>
+<section >
+<h1><em>What is a chart?</em></h1>
+<p>D3 is a too low-level answer</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">x</span> <span class="o">=</span> <span class="i">d3</span><span class="o">.</span><span class="i">scaleLinear</span>([<span class="n">0</span>, <span class="i">m</span> <span class="o">-</span> <span class="n">1</span>], [<span class="n">0</span>, <span class="i">width</span>])
+<span class="i">y</span> <span class="o">=</span> <span class="i">d3</span><span class="o">.</span><span class="i">scaleLinear</span>([<span class="n">0</span>, <span class="n">1</span>], [<span class="i">height</span>, <span class="n">0</span>])
+<span class="i">z</span> <span class="o">=</span> <span class="i">d3</span><span class="o">.</span><span class="i">interpolateCool</span>
+<span class="i">d3</span><span class="o">.</span><span class="i">area</span>()<span class="o">.</span><span class="i">x</span>((<span class="i">d</span>, <span class="i">i</span>) <span class="o">=&gt;</span> <span class="i">x</span>(<span class="i">i</span>))<span class="o">.</span><span class="i">y0</span>(<span class="i">d</span> <span class="o">=&gt;</span> <span class="i">y</span>(<span class="i">d</span>[<span class="n">0</span>]))<span class="o">.</span><span class="i">y1</span>(<span class="i">d</span> <span class="o">=&gt;</span> <span class="i">y</span>(<span class="i">d</span>[<span class="n">1</span>]))
+</code></pre></td>
+</tr>
+</table>
+<p>Google Charts is a too high-level answer</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="javascript"><span class="k">var</span> options <span class="o">=</span> {
+  vAxis: {title: <span class="s">'Cups'</span>}, hAxis: {title: <span class="s">'Month'</span>},
+  seriesType: <span class="s">'bars'</span>, series: {<span class="n">5</span>: {type: <span class="s">'line'</span>}} };
+chart.draw(data, options);
+</code></pre></td></tr></table>
+</section>
+<section >
+<img src="images/chart3.png" class="nb fragment" style="max-width:600px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>What is a chart?</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p>Also interactivity!</p>
+<p><em>A chart where the reader has to make a guess before seeing the answer.</em></p>
+</div>
+</section>
+<section >
+<h1><em>What is a chart</em></h1>
+<h2>Fundamentals of a chart</h2>
+<p><em><i class="fa fa-map"></i></em> Projections <em>from domain values to pixels</em></p>
+<p><em><i class="fa fa-shapes"></i></em> Shapes <em>such as areas and lines</em></p>
+<p><em><i class="fa fa-link"></i></em> Composition <em>of multiple shapes and text</em></p>
+<p><em><i class="fa fa-mouse-pointer"></i></em> Interactivity <em>state depends on user input</em></p>
+</section>
+</section>
+<section >
+<section class="part" data-background="images/banner.jpg">
+<h1><em>Composing shapes</em></h1>
+<h2>Fundamentals of a chart</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Creating a bar chart</h2>
+</section>
+<section >
+<h1><em>Scales</em></h1>
+<h2>Continuous and categorical scales</h2>
+<img src="images/scales.png" class="nb" style="max-width:600px;margin:0px 0px 0px 20px" />
+</section>
+<section >
+<h1><em>Scales</em></h1>
+<h2>Continuous and categorical scales</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Value</span> <span class="o">=</span>
+  | <span class="i">Categorical</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">string</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">float</span>
+  | <span class="i">Continuous</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">float</span>
+
+<span class="k">type</span> <span class="i">Scale</span> <span class="o">=</span>
+  | <span class="i">Continuous</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="i">float</span>
+  | <span class="i">Categorical</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="i">string</span>[]
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h1><em>Modelling charts</em></h1>
+<h2>A chart is an algebraic data type</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Shape</span> <span class="o">=</span>
+  | <span class="i">Style</span> <span class="k">of</span> (<span class="i">Style</span> <span class="k">-&gt;</span> <span class="i">Style</span>) <span class="o">*</span> <span class="i">Shape</span>
+  | <span class="i">Line</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">seq</span><span class="o">&lt;</span><span class="i">Value</span> <span class="o">*</span> <span class="i">Value</span><span class="o">&gt;</span>
+  | <span class="i">Shape</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="i">seq</span><span class="o">&lt;</span><span class="i">Value</span> <span class="o">*</span> <span class="i">Value</span><span class="o">&gt;</span>
+  | <span class="i">Axes</span> <span class="k">of</span> (<span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="i">bool</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="i">bool</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="i">bool</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs4', 12)" onmouseover="showTip(event, 'fs4', 12)" class="i">bool</span>) <span class="o">*</span> <span class="i">Shape</span>
+  | <span class="i">Padding</span> <span class="k">of</span> (<span onmouseout="hideTip(event, 'fs2', 13)" onmouseover="showTip(event, 'fs2', 13)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 14)" onmouseover="showTip(event, 'fs2', 14)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 15)" onmouseover="showTip(event, 'fs2', 15)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 16)" onmouseover="showTip(event, 'fs2', 16)" class="i">float</span>) <span class="o">*</span> <span class="i">Shape</span>
+  | <span class="i">Layered</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="i">seq</span><span class="o">&lt;</span><span class="i">Shape</span><span class="o">&gt;</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h1><em>Modelling charts</em></h1>
+<h2>Avoiding X and Y value mix-up!</h2>
+<div class="fragment">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Shape</span><span class="o">&lt;</span>[&lt;<span onmouseout="hideTip(event, 'fs5', 18)" onmouseover="showTip(event, 'fs5', 18)" class="i">Measure</span>&gt;] <span class="o">&#39;</span><span class="i">vx</span>, [&lt;<span onmouseout="hideTip(event, 'fs5', 19)" onmouseover="showTip(event, 'fs5', 19)" class="i">Measure</span>&gt;] <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span> <span class="o">=</span>
+  | <span class="i">Style</span> <span class="k">of</span> (<span class="i">Style</span> <span class="k">-&gt;</span> <span class="i">Style</span>) <span class="o">*</span> <span class="i">Shape</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span>
+  | <span class="i">Line</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs3', 20)" onmouseover="showTip(event, 'fs3', 20)" class="i">seq</span><span class="o">&lt;</span><span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span><span class="o">&gt;</span>
+  | <span class="i">Shape</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="i">seq</span><span class="o">&lt;</span><span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span><span class="o">&gt;</span>
+  | <span class="i">Axes</span> <span class="k">of</span> (<span onmouseout="hideTip(event, 'fs4', 22)" onmouseover="showTip(event, 'fs4', 22)" class="i">bool</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs4', 23)" onmouseover="showTip(event, 'fs4', 23)" class="i">bool</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs4', 24)" onmouseover="showTip(event, 'fs4', 24)" class="i">bool</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs4', 25)" onmouseover="showTip(event, 'fs4', 25)" class="i">bool</span>) <span class="o">*</span> <span class="i">Shape</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span>
+  | <span class="i">Padding</span> <span class="k">of</span> (<span onmouseout="hideTip(event, 'fs2', 26)" onmouseover="showTip(event, 'fs2', 26)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 27)" onmouseover="showTip(event, 'fs2', 27)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 28)" onmouseover="showTip(event, 'fs2', 28)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 29)" onmouseover="showTip(event, 'fs2', 29)" class="i">float</span>) <span class="o">*</span> <span class="i">Shape</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span>
+  | <span class="i">Layered</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs3', 30)" onmouseover="showTip(event, 'fs3', 30)" class="i">seq</span><span class="o">&lt;</span><span class="i">Shape</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span><span class="o">&gt;</span>
+</code></pre></td>
+</tr>
+</table>
+</div>
+</section>
+<section >
+<h1><em>Projections</em></h1>
+<h2>From domain space to pixel space</h2>
+<div class="bigcode">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Projection</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span>, <span class="o">&#39;</span><span class="i">ux</span>, <span class="o">&#39;</span><span class="i">uy</span><span class="o">&gt;</span> <span class="o">=</span> (<span class="o">..</span><span class="o">.</span>)
+</code></pre></td>
+</tr>
+</table>
+<div class="fragment">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">val</span> <span class="i">project</span> <span class="o">:</span>
+     <span class="i">Scale</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Scale</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span>
+  <span class="k">-&gt;</span> <span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span>
+  <span class="k">-&gt;</span> <span class="i">Projection</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span>, <span class="o">&#39;</span><span class="i">ux</span>, <span class="o">&#39;</span><span class="i">uy</span><span class="o">&gt;</span>
+  <span class="k">-&gt;</span> <span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">ux</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Value</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">uy</span><span class="o">&gt;</span>
+</code></pre></td>
+</tr>
+</table>
+</div>
+</div>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Line chart with background</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Adding a chart title</h2>
+</section>
+<section >
+<h1><em>Composition</em></h1>
+<h2>There are more ways than one!</h2>
+<div class="fragment">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Shape</span><span class="o">&lt;</span>[&lt;<span onmouseout="hideTip(event, 'fs5', 31)" onmouseover="showTip(event, 'fs5', 31)" class="i">Measure</span>&gt;] <span class="o">&#39;</span><span class="i">vx</span>, [&lt;<span onmouseout="hideTip(event, 'fs5', 32)" onmouseover="showTip(event, 'fs5', 32)" class="i">Measure</span>&gt;] <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span> <span class="o">=</span>
+  | <span class="c">(* ... *)</span>
+  | <span class="i">InnerScale</span> <span class="k">of</span> <span class="i">Scale</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Scale</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Shape</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span>
+  | <span class="i">OuterScale</span> <span class="k">of</span> <span class="i">Scale</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Scale</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span> <span class="o">*</span> <span class="i">Shape</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span>
+  | <span class="i">Layered</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs3', 33)" onmouseover="showTip(event, 'fs3', 33)" class="i">seq</span><span class="o">&lt;</span><span class="i">Shape</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">vx</span>, <span class="o">&#39;</span><span class="i">vy</span><span class="o">&gt;</span><span class="o">&gt;</span>
+</code></pre></td>
+</tr>
+</table>
+</div>
+</section>
+<section >
+<h1><em>Domain modelling</em></h1>
+<h2>Functional thinking about charts</h2>
+<p><em><i class="fa fa-chart-line"></i></em> Domain primitives, <em>not graphics primitives</em></p>
+<p><em><i class="fa fa-chart-bar"></i></em> Domain values <em>rather than pixels!</em></p>
+<p><em><i class="fa fa-link"></i></em> Composition <em>in multiple different ways</em></p>
+<p><em><i class="fa fa-ruler"></i></em> Units of measure <em>so that I can implement it :-)</em></p>
+</section>
+</section>
+<section >
+<section class="part" data-background="images/banner.jpg">
+<h1><em>Library design</em></h1>
+<h2>Three functional design patterns</h2>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Refactoring chart title</h2>
+</section>
+<section >
+<h1><em>Layers of abstraction</em></h1>
+<h2>From charts to pixels</h2>
+<img src="images/layers.png" class="nb" style="max-width:500px;margin:0px 0px 0px 20px" />
+</section>
+<section >
+<h1><em>Transformations</em></h1>
+<h2>Shape rendering pipeline</h2>
+<img src="images/transformations.png" class="nb" style="max-width:500px;margin:0px 0px 0px 20px" />
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Creating animated bar chart</h2>
+</section>
+<section >
+<h1><em>State + Update</em></h1>
+<h2>Elm-based application architecture</h2>
+<img src="images/elmish.png" class="nb" style="max-width:800px;margin:0px 0px 0px 20px" />
+</section>
+</section>
+<section >
+<section class="part" data-background="images/banner.jpg">
+<h1><em>Implementation</em></h1>
+<h2>JavaScript libraries in F#</h2>
+</section>
+<section >
+<img src="images/compost.png" class="nb" style="max-width:570px;float:left;margin:30px 30px 100px 0px" />
+<p><strong>Wait, not everyone uses F# &amp; Fable?</strong></p>
+<div class="fragment" style="margin-top:40px">
+<p><em>Add a lightweight wrapper API</em></p>
+<p>Compile to plain JavaScript library!</p>
+</div>
+</section>
+<section >
+<h1><em>Supporting JavaScript</em></h1>
+<h2>Lightweight wrapper API</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">JsCompost</span> <span class="o">=</span>
+  <span class="k">abstract</span> <span class="i">nest</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs6', 34)" onmouseover="showTip(event, 'fs6', 34)" class="i">obj</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs6', 35)" onmouseover="showTip(event, 'fs6', 35)" class="i">obj</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs6', 36)" onmouseover="showTip(event, 'fs6', 36)" class="i">obj</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs6', 37)" onmouseover="showTip(event, 'fs6', 37)" class="i">obj</span> <span class="o">*</span> <span class="i">Shape</span> <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">scale</span> <span class="o">:</span> <span class="i">Scale</span> <span class="o">*</span> <span class="i">Scale</span> <span class="o">*</span> <span class="i">Shape</span> <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">overlay</span> <span class="o">:</span> <span class="i">Shape</span>[] <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">font</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs1', 38)" onmouseover="showTip(event, 'fs1', 38)" class="i">string</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs1', 39)" onmouseover="showTip(event, 'fs1', 39)" class="i">string</span> <span class="o">*</span> <span class="i">Shape</span> <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">column</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs1', 40)" onmouseover="showTip(event, 'fs1', 40)" class="i">string</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs2', 41)" onmouseover="showTip(event, 'fs2', 41)" class="i">float</span> <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">bar</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs2', 42)" onmouseover="showTip(event, 'fs2', 42)" class="i">float</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs1', 43)" onmouseover="showTip(event, 'fs1', 43)" class="i">string</span> <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">shape</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs6', 44)" onmouseover="showTip(event, 'fs6', 44)" class="i">obj</span>[][] <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">line</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs6', 45)" onmouseover="showTip(event, 'fs6', 45)" class="i">obj</span>[][] <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">axes</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs1', 46)" onmouseover="showTip(event, 'fs1', 46)" class="i">string</span> <span class="o">*</span> <span class="i">Shape</span> <span class="k">-&gt;</span> <span class="i">Shape</span>
+  <span class="k">abstract</span> <span class="i">render</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs1', 47)" onmouseover="showTip(event, 'fs1', 47)" class="i">string</span> <span class="o">*</span> <span class="i">Shape</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs7', 48)" onmouseover="showTip(event, 'fs7', 48)" class="i">unit</span>
+  <span class="c">// (and a few more but not too many!)</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section class="part">
+<h1><em>DEMO</em></h1>
+<h2>Using Compost from JavaScript</h2>
+</section>
+</section>
+<section >
+<section class="part" data-background="images/banner.jpg">
+<h1><em>Summary</em></h1>
+<h2>Functional thinking about charts</h2>
+</section>
+<section >
+<h1><em>Composable libraries</em></h1>
+<p>Fundamental question<br />
+<em>What is the thing we're working with?</em></p>
+<p>Domain modelling<br />
+<em>Primitives and composition (with units)</em></p>
+<p>Functional patterns<br />
+<em>Multiple layers, transformations, states and updates</em></p>
+<br />
+<p><strong>Tomas Petricek</strong>, Charles University &amp; fsharpWorks<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> | <a href="http://twitter.com/tomaspetricek">@tomaspetricek</a></p>
+</section>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
