@@ -22,9 +22,12 @@ Talks and slides
 
 ### Programming Systems Research
 
+- [**Exploring the design space of programming systems**](https://tpetricek.github.io/Talks/2023/exploring-design-space/) (November 2023) - HPI Potsdam<br />
+  See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
+
  - [**Document-oriented programming based on edit history**](http://tpetricek.github.io/Talks/2023/conf-live/) (October 2023) - LIVE workshop (online)<br />
    See also: [Undocumented source code for the demo](https://github.com/tpetricek/conf) and our [challenge problems paper](https://arxiv.org/pdf/2309.11406.pdf).
- 
+
  - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2023/programming-systems/lsd) (April 2023) - UC Santa Cruz<br />
    Long version. See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions](https://tomasp.net/techdims)
 
