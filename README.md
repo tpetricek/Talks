@@ -22,6 +22,9 @@ Talks and slides
 
 ### Programming Systems Research
 
+- [**Programming systems deserve a theory too!**](https://tpetricek.github.io/Talks/2024/programming-systems/cmu/) - IFIP WG 2.16 (Pittsburgh)<br />
+  See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
+
 - [**Exploring the design space of programming systems**](https://tpetricek.github.io/Talks/2023/exploring-design-space/) (November 2023) - HPI Potsdam<br />
   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
 
