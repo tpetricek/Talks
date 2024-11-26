@@ -5,13 +5,13 @@
   },
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.20.7",
     "fable-loader": "^2.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "virtual-dom": "^2.1.1",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^3.1.9"
   }
 }
