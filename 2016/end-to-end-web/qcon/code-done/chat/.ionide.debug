@@ -1,6 +1,0 @@
-[11:15:27] SERVICE
-  Sending request: undefined
-[11:15:27] ERROR
-  Parsing response failed: TypeError: Cannot read property 'length' of undefined
-[11:15:27] SERVICE
-  Sending request: [object Object]
