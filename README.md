@@ -94,6 +94,8 @@ Talks and slides
 
 ### Philosophy of Science
 
+ - [**Interactive programming as a shift from language to gesture**](https://tpetricek.github.io/Talks/2024/language-gesture) (November 2024) - UNCE, Prague<br />
+ 
  - [**The rise and fall of extensible programming languages**](http://tpetricek.github.io/Talks/2023/extensible-languages/) (October 2023) - HaPoC, Warsaw<br />
 
  - [**Popup from Hell: On the growing opacity of software systems**](http://tpetricek.github.io/Talks/2023/popup-from-hell/ncrafts/) (May 2023) - NewCrafts, Paris<br />
