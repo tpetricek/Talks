@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Writing Tiny Programming Systems in F#</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1><strong>Writing</strong> Tiny Programming<br> Systems <strong>in F#</strong></h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Not what you'd expect<br> at the Lambda meetup</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>History of programming</h1>
+<h2>What we see depends on how we look</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image twolineh"><div class="body1">
+<p><img src="img/tapl.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1><em>Programming</em> Languages</h1>
+<p>Programming is<br />
+writing code</p>
+<p>Formal semantics, implementation, paradigms, types</p>
+</div>
+<div class="fragment">
+<p><strong>We know how<br />
+to study this!</strong></p>
+<style>.twolineh h1 em { font-style:normal; font-weight:100; color:black; }</style>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder twolineh"><div class="body1">
+<p><img src="img/gops.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1><em>Programming</em> Systems</h1>
+<p>Interacting with a stateful system</p>
+<p>Feedback, liveness, interactive user interfaces</p>
+</div>
+<div class="fragment">
+<p><strong>But how do we<br />
+study this?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Technical dimensions</h1>
+<img src="img/nest.png"/>
+<div>
+<h2>Capture system properties</h2>
+<ul>
+<li>Look at past systems afresh</li>
+<li>Allow comparison of systems</li>
+<li>Stand on the shoulders of giants!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>What is a technical dimension</h2>
+<ul>
+<li>Self-sustainability</li>
+<li>Modes of interaction</li>
+<li>Conceptual structure</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger techdims"><div class="body1">
+<p><img src="img/matrix.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Technical dimensions catalogue</h1>
+<p><strong>Analysis of</strong></p>
+<p>LISP machines,<br />
+UNIX, Hypercard, Spreadsheets,<br />
+Haskell, Web, etc.</p>
+<p><a href="https://tomasp.net/techdims">tomasp.net/techdims</a></p>
+<style>.techdims img { margin-top:-40px }</style>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Another thing you'd expect<br> at the Lambda meetup</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger"><div class="body1">
+<p><img src="img/c64.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Why is BASIC cool</h1>
+<p><strong>Factoring complexity</strong><br />
+Simple with escape hatches for experts</p>
+<p><strong>Modes of interaction</strong>
+Interactive editor that's also an interpreter</p>
+<p><strong>Learnability</strong><br />
+Magazines and games</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Complementary science</h1>
+<h2>Recreating BASIC in F#</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code "><div class="body1">
+<pre><code class="language-fsharp">type Expression =
+  | Variable of string
+  | Const of Value
+  | Binary of Op * Expr * Expr
+  | Func of string * Expr list
+
+type Command =
+  // Program commands
+  | Print of Expr * bool
+  | Goto of int
+  | Poke of Expr * Expr
+  | Assign of string * Expr
+  | If of Expr * Command
+  | Get of string
+
+  // Editor and interactive
+  | List of int option * int option
+  | Delete of int option * int option
+  | Run
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Algebraic data types for the win!</h1>
+<p><strong>Simple model to understand what<br />
+is going on</strong></p>
+</div>
+<div class="fragment">
+<p>Everything else<br />
+built around this</p>
+<p><strong>Parse</strong> input<br />
+<strong>Evaluate</strong> command</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code "><div class="body1">
+<pre><code class="language-fsharp">/// Succeeds if the string 's'
+/// starts with the prefix 'p'
+let (|Prefix|_|) p s =
+  if s.StartsWith p then
+    Some(s.[p.Length..].Trim())
+  else None
+
+/// Succeeds if the string 's'
+/// starts with a number; returns
+/// the number &amp; the remainder
+let (|Number|_|) s =
+  (...)
+
+/// Parse command like '10 GOTO 20'
+match input with
+| Number(line, Prefix "GOTO" (Number(target, _))) -&gt;
+
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Active patterns</h1>
+<p><strong>Adding super-powers to pattern matching!</strong></p>
+<p>Quick and dirty parsing, but great for demos...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Reconstructing BASIC in F#</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Programming systems</h1>
+<h2>Learning from the past</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Programming by demonstration</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons "><h1>Programming experiences</h1>
+<ul>
+<li>
+<i class='fa fa-users'></i> <strong>Collaborative programming</strong><br />
+<i class="placeholder"></i>Resolve (some) merge conflicts
+</li>
+<li>
+<i class='fa fa-pen'></i> <strong>Programming by demonstration</strong><br />
+<i class="placeholder"></i>Turn interactions into programs
+</li>
+<li>
+<i class='fa fa-coins'></i> <strong>Schema change control</strong><br />
+<i class="placeholder"></i>Adapt program when data schema changes
+</li>
+<li>
+<i class='fa fa-cogs'></i> <strong>Incremental recomputation</strong><br />
+<i class="placeholder"></i>Invalidate only what is necessary
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content two-column doced"><h1>Two ideas</h1>
+<div class="body">
+<div>
+<h3>Document</h3>
+<p>Contains code &amp; data</p>
+<p>Easy to navigate</p>
+<p>Keeps evaluation trace</p>
+<p><img src="img/doc.png" alt="" /></p>
+</div>
+<div class="fragment">
+<h3>Edits</h3>
+<p>Replay gives document</p>
+<p>Easier to merge</p>
+<p>Capture edits as action</p>
+<p><img src="img/hist.png" alt="" /></p>
+<style>.two-column.doced h3 { margin-bottom:5px;}
+ .two-column.doced p { margin-bottom:5px;}
+ .doced img { max-height:180px; margin-top:20px; margin-left:40px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content nologo"><h1>Demo: Conference planning</h1>
+<div class="body">
+<div>
+<p><img src="img/map.png" alt="" /></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Add speaker &amp; refactor list</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/edits.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Sample edits</h1>
+<p><strong>Shared baseline</strong> with multiple sequences of edits added</p>
+<p><strong>Typical local-first</strong> workflow, with independent edits</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/merges.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Two ways<br /> of merging</h1>
+<p>Do they result<br />
+in <strong>equivalent</strong><br />
+documents?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons "><h1>Formulas</h1>
+<h2>Code as document elements</h2>
+<ul>
+<li><i class='fa fa-tree'></i> Store formulas as trees (AST) in document</li>
+<li><i class='fa fa-calculator'></i> Render in a (somewhat) nicer way</li>
+<li><i class='fa fa-file-circle-plus'></i> Evaluation adds edits to the log!</li>
+<li><i class='fa fa-heart-circle-xmark'></i> Beware interactions with edit merging</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/calcs.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Code is data</h1>
+<p><strong>Absolute selectors</strong> only for now</p>
+<p><strong>A selector</strong><br />
+is a sequence of:</p>
+<ul>
+<li>Field name</li>
+<li>Index specifier</li>
+<li>All selector</li>
+</ul>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Budget calculation &amp; refactor list</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons "><h1>Evaluation</h1>
+<h2>How it interacts with editing</h2>
+<ul>
+<li><i class='fa fa-file-circle-plus'></i> Evaluation just adds edits!</li>
+<li><i class='fa fa-filter-circle-xmark'></i> Same edit merging as before</li>
+<li><i class='fa fa-trash'></i> Conflicting edits remove evaluated edits</li>
+<li><i class='fa fa-cogs'></i> Incremental recomputation "for free"</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Adding a speaker and evaluation</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Denicek</h1>
+<h2>Writing document-based system in F#</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code "><div class="body1">
+<pre><code class="language-fsharp">// Specify path(s) in a document
+type Selector =
+  | All
+  | Index of string
+  | Field of string
+  | DotDot
+
+// Two kinds of references
+type RefKind =
+  | Absolute
+  | Relative
+
+// Represents document structure
+type Node =
+  | Primitive of Primitive
+  | Record of string * OrdList&lt;string, Node&gt;
+  | List of string * OrdList&lt;string, Node&gt;
+  | Reference of RefKind * Selector list
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Modelling documents</h1>
+<p><strong>Algebraic data<br />
+types again!</strong></p>
+<p>Homogeneous lists<br />
+Heterogeneous objects</p>
+<p>Keeping nodes in the correct order is tricky...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder"><div class="body1">
+<p><img src="img/editkinds.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Modelling edits</h1>
+<p><strong>Actually, just algebraic data types again...</strong></p>
+<p>Great way to communicate with your customer<br />
+(or fellow academic)</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content "><h1>Powerful functional patterns</h1>
+<div class="body">
+<div>
+<p>Folding and transforming document nodes</p>
+<pre><code class="language-fsharp">val fold : (Node -&gt; 'a -&gt; 'a) -&gt; 'a -&gt; Node -&gt; 'a
+val replace : (Node -&gt; Node option) -&gt; Node -&gt; Node
+</code></pre>
+</div>
+<div class="fragment">
+<p>Replaying history to get a document</p>
+<pre><code class="language-fsharp">val apply : Node -&gt; Edit -&gt; Node
+let doc = List.fold apply initial
+</code></pre>
+</div>
+<div class="fragment">
+<p>Elm-based user-interface using Fable</p>
+<pre><code class="language-fsharp">val render : (Event -&gt; unit) -&gt; State -&gt; Dom
+val update : State -&gt; Event -&gt; State
+let app = runApp initial render update
+</code></pre>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Teaching</h1>
+<h2>Write your own tiny system(s)</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/tiny.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Write your own tiny programming system(s)!</h1>
+<p>TinyML<br />
+TinyHM<br />
+TinyBASIC<br />
+TinyProlog<br />
+TinySelf<br />
+TinyExcel</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code "><div class="body1">
+<pre><code class="language-fsharp">type Expr =
+  // Lambda calculus
+  | Application of Expr * Expr
+  | Lambda of string * Expr
+  | Variable of string
+  // Numbers and functions
+  | Constant of int
+  | Binary of string * Expr * Expr
+  | Unary of string * Expr
+  // Data types
+  | Tuple of Expr * Expr
+  | TupleGet of bool * Expr
+  | Case of bool * Expr
+  | Match of Expr * string * Expr * Expr
+  // Programming
+  | Recursive of string * Expr * Expr
+  | Let of string * Expr * Expr
+  | If of Expr * Expr * Expr
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Functional language</h1>
+<p>Evaluation turns<br />
+an <code>Expr</code> into value</p>
+<p>Type inference infers<br />
+a <code>Type</code> for <code>Expr</code></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code "><div class="body1">
+<pre><code class="language-fsharp">// Example terms
+// * 'human(socrates)' is a
+//   predicate applied to atom
+// * 'human(X)' is a predicate
+//   applied to variable
+type Term =
+  | Atom of string
+  | Variable of string
+  | Predicate of string * Term list
+
+// Clause with head and empty
+// body represents a fact
+type Clause =
+  { Head : Term
+    Body : Term list }
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Logic programming</h1>
+<p>Automatic resolution via unification</p>
+<pre><code class="language-prolog">human(socrates).
+mortal(X) :- human(X).
+</code></pre>
+<p>Unification of <code>human(socrates)</code> and <code>human(X)</code> produces
+mapping <code>X -&gt; human</code></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Conclusions</h1>
+<h2>Tiny programming systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/prgprg.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>PRG • PRG</h1>
+<p><strong>More programming languages work happening in Prague!</strong></p>
+<p>MFF + FIT + you :-)</p>
+<p>Research projects with funding for PhD students &amp; post-docs...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/prog25.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>‹Programming› 25</h1>
+<p><strong>Programming research community meeting coming to Prague</strong></p>
+<p>18 paper talks<br />
+6 co-located workshops<br />
+Effekt tutorial</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="title "><h1>Writing tiny systems in F#</h1>
+<ul>
+<li>
+<strong>Programming systems are more than languages!</strong><br />
+Interaction, live state, interfaces, new models
+</li>
+<li>
+<strong>Algebraic data types is all you ever need?</strong><br />
+The most basic, but the most powerful feature!
+</li>
+</ul>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content "><h1>References</h1>
+<div class="body">
+<div>
+<p>Technical dimensions of programming systems
+<a href="https://tomasp.net/techdims/">https://tomasp.net/techdims/</a></p>
+<p>The Lost Ways of Programming: Commodore 64 BASIC
+<a href="https://tomasp.net/commodore64/">https://tomasp.net/commodore64/</a></p>
+<p>Write your own tiny programming system(s)!
+<a href="https://d3s.mff.cuni.cz/teaching/nprg077/">https://d3s.mff.cuni.cz/teaching/nprg077/</a></p>
+<p>‹Programming› 2025
+<a href="https://2025.programming-conference.org/">https://2025.programming-conference.org/</a></p>
+<p>PRG • PRG: Prague Programming Languages and Systems Research Network
+<a href="https://prgprg.org/">https://prgprg.org/</a></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
