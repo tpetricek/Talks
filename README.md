@@ -26,7 +26,7 @@ Talks and slides
   See also: [Denicek source code](https://github.com/d3sprog/denicek), [draft paper](https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf) and [animations](https://github.com/tpetricek/Talks/blob/master/2025/denicek/animations.pptx).
 
 - [**Writing Tiny Programming Systems in F#**](https://tpetricek.github.io/Talks/2025/tiny-systems/lambda/) - Prague Lambda Meetup<br />
-  See also: [Write your own tiny programming system(s)! course](https://d3s.mff.cuni.cz/teaching/nprg077) and [Commodore 64 BASIC](https://tomasp.net/commodore64/).
+  See also: [Write your own tiny programming system(s)! course](https://d3s.mff.cuni.cz/teaching/nprg077), [Commodore 64 BASIC](https://tomasp.net/commodore64/) and [Basic BASIC source code](https://github.com/tpetricek/Talks/tree/master/2025/tiny-systems/code/basic-basic).
 
 - [**Programming systems deserve a theory too!**](https://tpetricek.github.io/Talks/2024/programming-systems/cmu/) - IFIP WG 2.16 (Pittsburgh)<br />
   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
