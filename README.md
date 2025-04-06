@@ -22,6 +22,12 @@ Talks and slides
 
 ### Programming Systems Research
 
+- [**Denicek: Computational substrate for document-oriented end-user programming**](https://tpetricek.github.io/Talks/2025/denicek/ifip-wg/) - IFIP WG 2.16 (Serpiano)<br />
+  See also: [Denicek source code](https://github.com/d3sprog/denicek), [draft paper](https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf) and [animations](https://github.com/tpetricek/Talks/blob/master/2025/denicek/animations.pptx).
+
+- [**Writing Tiny Programming Systems in F#**](https://tpetricek.github.io/Talks/2025/tiny-systems/lambda/) - Prague Lambda Meetup<br />
+  See also: [Write your own tiny programming system(s)! course](https://d3s.mff.cuni.cz/teaching/nprg077) and [Commodore 64 BASIC](https://tomasp.net/commodore64/).
+
 - [**Programming systems deserve a theory too!**](https://tpetricek.github.io/Talks/2024/programming-systems/cmu/) - IFIP WG 2.16 (Pittsburgh)<br />
   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
 
@@ -96,7 +102,7 @@ Talks and slides
 
  - [**Interactive programming as a shift from language to gesture**](https://tpetricek.github.io/Talks/2024/language-gesture) (November 2024) - UNCE, Prague<br />
    See also: [Pygmalion reimplementation](https://a-habusta.github.io/Pygmalion-Like-Reimplementation/), [Smalltalk Zoo](https://smalltalkzoo.thechm.org/HOPL-St78.html)
- 
+
  - [**The rise and fall of extensible programming languages**](http://tpetricek.github.io/Talks/2023/extensible-languages/) (October 2023) - HaPoC, Warsaw<br />
 
  - [**Popup from Hell: On the growing opacity of software systems**](http://tpetricek.github.io/Talks/2023/popup-from-hell/ncrafts/) (May 2023) - NewCrafts, Paris<br />
