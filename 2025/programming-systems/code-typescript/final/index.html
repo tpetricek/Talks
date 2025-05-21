@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiny Boxer - Demos</title>
+    <style type="text/css">
+      /* Styling for the page, boxes, named boxes, canvas etc. */
+      body { font-family:monospace; }
+      canvas { border:1px solid #000; display:inline-block; vertical-align:middle; margin:20px; } 
+      .box { border:1px solid #000; display:inline-block; padding:5px; cursor:pointer; 
+        vertical-align:middle; margin:20px; overflow-y:auto; max-height:500px; outline:none; }
+      .name { border:1px solid #000; display:inline-block; padding:0px; 
+        vertical-align:middle; margin:20px; background:black; color:white; }
+      .name span { padding:5px; display:inline-block; }
+      .name>.box { display:block; margin:0px; border-style:none; background:white; color:black; }
+      .box>span { display:block; padding:0px; }
+
+      /* Nested boxes should have smaller margins */
+      .box .box { margin:4px; }
+      .box .name { margin:4px; }
+
+      /* Selected box has an outline, also around the name box */
+      .selected { outline:4px solid black; }
+      .name:has(>.selected) { outline:4px solid black; }
+
+      /* Abuse <q>, <s>, <b> and <i> for representing parameter kinds */
+      q::before { content:'#'; }
+      s::before { content:'"'; }
+      s::after { content:'"'; }
+      s, i, b { font-style:normal; text-decoration:none; font-weight:normal; }
+
+      /* Extra formatting for debug output and guidelines */
+      #debug { border:1px solid #000; display:inline-block; padding:5px; margin:20px; }
+      p { margin:10px 20px; }
+
+    </style>
+    <script src="/bundle.js"></script>
+  </head>
+  <body>
+    <h2>Tiny Boxer demos</h2>
+
+    <div class="name">
+      <span>star</span>
+      <div class="box">  
+        <span><i>input</i> <q>n</q> <q>angle</q> <q>size</q></span>
+        <span><i>repeat</i> <i>n</i>
+          <div class="box">
+            <span><i>forward</i> <i>size</i></span>
+            <span><i>left</i> <i>angle</i></span>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <div class="box">
+      <span><i>moveTo</i> <b>75</b> <b>150</b></span>
+      <span><i>star</i> <b>36</b> <b>170</b> <b>150</b></span>
+    </div>
+
+    <canvas width="300" height="300" style="width:300px; height:300px" id="out"></canvas>
+
+  </body>
+</html>

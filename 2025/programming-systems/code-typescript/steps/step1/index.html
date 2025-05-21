@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiny Boxer - Step 1</title>
+    <style type="text/css">
+      /* Styling for the page, boxes, named boxes, canvas etc. */
+      body { font-family:monospace; }
+      canvas { border:1px solid #000; display:inline-block; vertical-align:middle; margin:20px; } 
+      .box { border:1px solid #000; display:inline-block; padding:5px; cursor:pointer; 
+        vertical-align:middle; margin:20px; overflow-y:auto; max-height:500px; outline:none; }
+      .name { border:1px solid #000; display:inline-block; padding:0px; 
+        vertical-align:middle; margin:20px; background:black; color:white; }
+      .name span { padding:5px; display:inline-block; }
+      .name>.box { display:block; margin:0px; border-style:none; background:white; color:black; }
+      .box>span { display:block; padding:0px; }
+
+      /* Nested boxes should have smaller margins */
+      .box .box { margin:4px; }
+      .box .name { margin:4px; }
+
+      /* Selected box has an outline, also around the name box */
+      .selected { outline:4px solid black; }
+      .name:has(>.selected) { outline:4px solid black; }
+
+      /* Abuse <q>, <s>, <b> and <i> for representing parameter kinds */
+      q::before { content:'#'; }
+      s::before { content:'"'; }
+      s::after { content:'"'; }
+      s, i, b { font-style:normal; text-decoration:none; font-weight:normal; }
+
+      /* Extra formatting for debug output and guidelines */
+      #debug { border:1px solid #000; display:inline-block; padding:5px; margin:20px; }
+      p { margin:10px 20px; }
+
+    </style>
+    <script src="/bundle.js"></script>
+  </head>
+  <body>
+    <h2>Step 1: Box parsing</h2>
+    <p>Click on a box to select it. Hit Alt+E / Option+E to trigger evaluation.
+      After completing the implementation, this should show the correct parsed data in the debug view.</p>
+
+    <!-- 
+    
+    Example boxes that we want to be able to evaluate 
+
+    * A box is a <div class="box"> containing a sequence of 
+      commands represented as <span>.
+    * A command should start with <i> that specifies the 
+      operation followed by zero or more parameters. 
+    * A parameter can be <i> (identifier), <q> (symbol or quote),
+      <s> (primitive string) or <b> (primitive number).
+    * Note that CSS stylesheet adds quotes around <s> and 
+      prefixes <q> with the # symbol - but this is just for presentation.
+              
+    -->        
+
+    <div class="box">
+      <span><i>alert</i> <s>Hello world!</s></span>
+    </div>
+
+    <div class="name">
+      <span>greet</span>
+      <div class="box">
+        <span><i>alert</i> <s>Hello PLISS!</s></span>
+        <span><i>alert</i> <s>Hello Bertinoro!</s></span>
+      </div>
+    </div>
+
+    <div class="box">
+      <span><i>greet</i></span>
+    </div>
+
+    <div class="box">
+      <span><i>input</i> <q>who</q></span>
+      <span><i>repeat</i> <b>4</b>
+        <div class="box">
+          <span><i>alert</i> <s>Hello </s> <i>who</i> <s>!</s></span>
+        </div>
+      </span>
+    </div>
+
+    <!-- To help debugging, the following lets you see the expected parse results -->
+
+    <h2>Debugging</h2>
+    <p>The box below should show the parsed output. If you implement parsing correctly, you should get the following for:
+      <a href="javascript:;" onclick="document.getElementById('debug').innerHTML=document.getElementById('expected1').innerHTML">Hello world box</a>,
+      <a href="javascript:;" onclick="document.getElementById('debug').innerHTML=document.getElementById('expected2').innerHTML">Hello PLISS box</a>,
+      <a href="javascript:;" onclick="document.getElementById('debug').innerHTML=document.getElementById('expected3').innerHTML">Greet box</a>,
+      <a href="javascript:;" onclick="document.getElementById('debug').innerHTML=document.getElementById('expected4').innerHTML">Let and repeat box</a>.
+    </p>
+    
+    <pre id="debug">
+
+    </pre>
+    <script type="text/json" id="expected1">[
+  {
+    "operation": "alert",
+    "parameters": [
+      {
+        "kind": "primitive",
+        "value": "Hello world!",
+        "element": {}
+      }
+    ],
+    "element": {}
+  }
+]</script>
+    <script type="text/json" id="expected2">[
+  {
+    "operation": "alert",
+    "parameters": [
+      {
+        "kind": "primitive",
+        "value": "Hello PLISS!",
+        "element": {}
+      }
+    ],
+    "element": {}
+  },
+  {
+    "operation": "alert",
+    "parameters": [
+      {
+        "kind": "primitive",
+        "value": "Hello Bertinoro!",
+        "element": {}
+      }
+    ],
+    "element": {}
+  }
+]</script>
+    <script type="text/json" id="expected3">[
+  {
+    "operation": "greet",
+    "parameters": [],
+    "element": {}
+  }
+]</script>
+<script type="text/json" id="expected4">[
+  {
+    "operation": "input",
+    "parameters": [
+      {
+        "kind": "symbol",
+        "name": "who",
+        "element": {}
+      }
+    ],
+    "element": {}
+  },
+  {
+    "operation": "repeat",
+    "parameters": [
+      {
+        "kind": "primitive",
+        "value": "4",
+        "element": {}
+      },
+      {
+        "kind": "box",
+        "element": {}
+      }
+    ],
+    "element": {}
+  }
+]</script>
+  </body>
+</html>
