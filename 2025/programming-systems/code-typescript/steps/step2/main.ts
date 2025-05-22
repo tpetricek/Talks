@@ -34,8 +34,7 @@ function isIdentifier(el:Element) {
 function isSymbol(el:Element) {
   return el.tagName == "Q"
 }
-function isBox(nd:Node) {
-  let el = nd as Element
+function isBox(el:Element) {
   return el.tagName == "DIV" && el.classList.contains("box")
 }
 

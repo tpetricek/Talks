@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiny Boxer - Step 3</title>
+    <style type="text/css">
+      /* Styling for the page, boxes, named boxes, canvas etc. */
+      body { font-family:monospace; }
+      canvas { border:1px solid #000; display:inline-block; vertical-align:middle; margin:20px; } 
+      .box { border:1px solid #000; display:inline-block; padding:5px; cursor:pointer; 
+        vertical-align:middle; margin:20px; overflow-y:auto; max-height:500px; outline:none; }
+      .name { border:1px solid #000; display:inline-block; padding:0px; 
+        vertical-align:middle; margin:20px; background:black; color:white; }
+      .name span { padding:5px; display:inline-block; }
+      .name>.box { display:block; margin:0px; border-style:none; background:white; color:black; }
+      .box>span { display:block; padding:0px; }
+
+      /* Nested boxes should have smaller margins */
+      .box .box { margin:4px; }
+      .box .name { margin:4px; }
+
+      /* Selected box has an outline, also around the name box */
+      .selected { outline:4px solid black; }
+      .name:has(>.selected) { outline:4px solid black; }
+
+      /* Abuse <q>, <s>, <b> and <i> for representing parameter kinds */
+      q::before { content:'#'; }
+      s::before { content:'"'; }
+      s::after { content:'"'; }
+      s, i, b { font-style:normal; text-decoration:none; font-weight:normal; }
+
+      /* Extra formatting for debug output and guidelines */
+      #debug { border:1px solid #000; display:inline-block; padding:5px; margin:20px; }
+      p { margin:10px 20px; }
+
+    </style>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <h2>Step 3: Turtle graphics and repeat</h2>
+
+    <div class="name">
+      <span>lambda</span>
+      <div class="box">
+        <span><i>moveTo</i> <b>100</b> <b>400</b></span>
+        <span><i>left</i> <b>45</b></span>
+        <span><i>forward</i> <b>180</b></span>
+        <span><i>left</i> <b>90</b></span>
+        <span><i>forward</i> <b>180</b></span>
+        <span><i>left</i> <b>180</b></span>
+        <span><i>forward</i> <b>360</b></span>
+      </div>
+    </div>
+
+    <div class="name" data-name="star">
+      <span>star</span>
+      <div class="box">  
+        <span><i>moveTo</i> <b>250</b> <b>250</b></span>    
+        <span><i>repeat</i> <b>36</b>
+          <div class="box">
+            <span><i>forward</i> <b>100</b></span>
+            <span><i>left</i> <b>170</b></span>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <h2>Canvas output</h2>
+    <canvas width="500" height="500" style="width:500px; height:500px" id="out"></canvas>
+
+  </body>
+</html>

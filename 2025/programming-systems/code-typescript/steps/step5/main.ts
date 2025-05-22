@@ -53,16 +53,10 @@ function isIdentifier(el:Element) {
 function isSymbol(el:Element) {
   return el.tagName == "Q"
 }
-function isBox(nd:Node) {
-  let el = nd as Element
-  return el.tagName == "DIV" && el.classList.contains("box")
-}
-function isNamed(nd:Node) {
-  let el = nd as Element
+function isNamed(el:Element) {
   return el.tagName == "DIV" && el.classList.contains("name")
 }
-function isNamedWithName(nd:Node, name:string) {
-  let el = nd as Element
+function isNamedWithName(el:Element, name:string) {
   return el.tagName == "DIV" && el.classList.contains("name") && el.children[0].innerHTML == name;
 }
 
