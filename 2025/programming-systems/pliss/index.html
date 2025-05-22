@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Programming systems deserve a theory too!</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image code { font-size:18pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.smaller2x .body1 { width:420px; }
+			.image.smaller2x .body1 img { max-width:400px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1>Programming systems<br><em>deserve a theory too!</em></h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder larger"><div class="body1">
+<p><img src="img/pliss.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The name of this summer school<br> is so 1990s!</h1>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder larger"><div class="body1">
+<p><img src="img/psiss.gif" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The name of this summer school<br> is so 1990s!</h1>
+<p><strong>The browser makes this easy to fix.</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Silly joke?</h1>
+<img src="img/pliss-small.png"/>
+<div>
+<h2>1990s not arbitrary!</h2>
+<ul>
+<li>Systems to languages paradigm shift</li>
+<li>The Structure of a Programming Language Revolution (Gabriel, 2012)</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Browser not arbitrary!</h2>
+<ul>
+<li>Good programming system to learn from</li>
+<li>Empowering users &amp; malleability (almost)</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Programming systems</h1>
+<h2>Scientific paradigm shift</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image twolineh"><div class="body1">
+<p><img src="img/tapl.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1><em>Programming</em> Languages</h1>
+<p>Programming is<br />
+writing code</p>
+<p>Formal semantics, implementation, paradigms, types</p>
+</div>
+<div class="fragment">
+<p><strong>We know how<br />
+to study this!</strong></p>
+<style>.twolineh h1 em { font-style:normal; font-weight:100; color:black; }</style>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder twolineh"><div class="body1">
+<p><img src="img/gops.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1><em>Programming</em> Systems</h1>
+<p>Interacting with a stateful system</p>
+<p>Feedback, liveness, interactive user interfaces</p>
+</div>
+<div class="fragment">
+<p><strong>But how do we<br />
+study this?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists border"><div class="body">
+<h1>Paradigm shift in the 1990s</h1>
+<img src="img/revolution.png"/>
+<div>
+<h2>Scientific paradigm shifts</h2>
+<ul>
+<li>Described by Thomas Kuhn in 1962</li>
+<li>Paradigms are incommensurable</li>
+<li>Old concepts stop making any sense</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>From systems to languages</h2>
+<ul>
+<li>Described by Richard Gabriel in 2012</li>
+<li>From CLOS and Flavors to mixins</li>
+<li>From running system to code</li>
+<li>From state &amp; interaction to semantics</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Not what you'd expect at PLISS</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/10print.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>History of programming</h1>
+<p><strong>What we see depends<br />
+on how we look!</strong></p>
+<p>Poorly language?
+Interesting system?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Technical dimensions</h1>
+<h2>Qualitative systems analysis</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Technical dimensions</h1>
+<img src="img/nest.png"/>
+<div>
+<h2>What is a dimension</h2>
+<ul>
+<li>Captures a property of a system</li>
+<li>Covers old and new systems</li>
+<li>Defines a range of values</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Using the framework</h2>
+<ul>
+<li>Identify gaps in design space</li>
+<li>Characterise new and old systems</li>
+<li>Qualitative comparison of systems</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger"><div class="body1">
+<p><img src="img/matrix.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Technical dimensions catalogue</h1>
+<p><strong>Analysis of:</strong></p>
+<p>LISP machines, UNIX, Web, Hypercard, Spreadsheets, Haskell, Boxer, Dark, etc.</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Good old programming systems</h1>
+<h2>Technical dimensions analysis</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists noborder"><div class="body">
+<h1>Commodore 64 BASIC</h1>
+<img src="img/c64.png"/>
+<div>
+<h2>Modes of interaction</h2>
+<p>Terminal works as both REPL<br />
+and structure code editor</p>
+</div>
+<div class="fragment">
+<h2>Factoring of complexity</h2>
+<p>Simple but experts can use POKE and SYS</p>
+</div>
+<div class="fragment">
+<h2>Learnability</h2>
+<p>Simple unstructured language<br />
+Demos distributed as source in magazines</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder smaller2x"><div class="body1">
+<p><img src="img/boxer.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Boxer: A reconstructible computational medium</h1>
+<p><strong>Explicit structure</strong><br />
+Code represented as boxes<br />
+User interface is boxes</p>
+<p><strong>Abstraction construction</strong>
+Start concrete &amp; generalize</p>
+<p><strong>Naive realism (extra)</strong><br />
+What you see is what there is</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Boxer Sunrise by Steven Githens</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content "><div class="body">
+<div>
+<p><img src="img/sunrise.png" alt="" /></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder smaller2x"><div class="body1">
+<p><img src="img/pygmalion.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Pygmalion: a creative pro&shy;gramming environment</h1>
+<p><strong>Feedback loops</strong><br />
+See result of interacting<br />
+with icons immediately</p>
+<p><strong>Abstraction construction</strong><br />
+Directly manipulate concrete values to define computation</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Pygmalion-like by Adrian Habusta</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Methodology</h1>
+<h2>Programming systems research</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists border"><div class="body">
+<h1>Learning from past systems</h1>
+<img src="img/temp.jpg"/>
+<div>
+<h2>What's cool about C64 BASIC?</h2>
+<ul>
+<li>Oriented around code interactions</li>
+<li>Simple with options for experts (POKE)</li>
+<li>Poor engineering in a poor language!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Complementary science</h2>
+<ul>
+<li>Advocated by Hasok Chang</li>
+<li>Do (serious) history to recover ideas</li>
+<li>Lost due paradigm shifts in science</li>
+<li>Even more powerful for computing!</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Making scientific claims</h1>
+<img src="img/coeffects.png"/>
+<div>
+<h2>Programming language theory</h2>
+<p>Formal proofs, about tiny models</p>
+</div>
+<div class="fragment">
+<h2>Empirical evaluation</h2>
+<p>Performance, in controlled environment</p>
+</div>
+<div class="fragment">
+<h2>User studies and case studies</h2>
+<p>Usability or flexibility, in specific scenarios</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/tinyboxer.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Tiny systems</h1>
+<p><strong>Experience of using and building a system, on a tiny scale</strong></p>
+<p>Conceptual structure?<br />
+Potential of the design?<br />
+Technical dimensions?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Denicek</h1>
+<h2>Exploring the design space</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons "><h1>User experiences</h1>
+<h2>Difficult to implement in existing systems!</h2>
+<ul>
+<li><i class='fa fa-users'></i> Local-first collaborative editing</li>
+<li><i class='fa fa-hands'></i> Programming by demonstration</li>
+<li><i class='fa fa-refresh'></i> Incremental recomputation</li>
+<li><i class='fa fa-database'></i> Schema change control</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists noborder"><div class="body">
+<h1>Denicek design ideas</h1>
+<img src="img/deniceksm.png"/>
+<div>
+<h2>Document representation</h2>
+<ul>
+<li>Data are just document nodes</li>
+<li>Formulas are just document nodes</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Edit operations</h2>
+<ul>
+<li>Editing data - modify the document</li>
+<li>Adding formulas - modify the document!</li>
+<li>User interaction - edits behind the scene</li>
+<li>Code evaluation - edits behind the scene!</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Implementing counter using Denicek</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder smaller"><div class="body1">
+<p><img src="img/merging.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Merging edits</h1>
+<p><strong>Collaborative editing</strong><br />
+Two users edit document<br />
+Try to reconcile edits!</p>
+<p><strong>Operational transform</strong><br />
+Given concurrent <span class="math">\(e_1\)</span> and <span class="math">\(e_2\)</span>, compute <span class="math">\(e_2'\)</span> respecting <span class="math">\(e_1\)</span>,
+producing sequence <span class="math">\(e_1, e_2'\)</span>.</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Collaborative document editing</h2>
+<style>.abitsmallerh1 h1 { font-size:42pt; } </style>
+<style>.abitsmallerh2 h1 { font-size:42pt; margin-bottom:0px } </style>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons abitsmallerh1"><h1>Unreasonable effectiveness of merging</h1>
+<ul>
+<li>
+<i class='fa fa-users'></i> <strong>Local-first collaborative editing</strong><br />
+<i class="placeholder"></i>Merging edits from concurrent users
+</li>
+<li>
+<i class='fa fa-hands'></i> <strong>Programming by demonstration</strong><br />
+<i class="placeholder"></i>Replay recorded edits using merging
+</li>
+<li>
+<i class='fa fa-refresh'></i> <strong>Incremental recomputation</strong><br />
+<i class="placeholder"></i>Invalidate conflicting evaluated edits
+</li>
+<li>
+<i class='fa fa-database'></i> <strong>Schema change control</strong><br />
+<i class="placeholder"></i>Keeping formulas in sync with schema
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists noborder"><div class="body">
+<h1>Denicek computational substrate</h1>
+<img src="img/deniceksm.png"/>
+<div>
+<h2>Computational substrate</h2>
+<ul>
+<li>Documents + edits</li>
+<li>Good basis for interesting programming systems</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Evaluation</h2>
+<ul>
+<li>A range of technical dimension values</li>
+<li>Case study notebook system</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content noborder abitsmallerh2"><h1>Case study: Data science notebook</h1>
+<div class="body">
+<div>
+<p><img src="img/datnicek.png" alt="" /></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Tiny Boxer</h1>
+<h2>Fun project for PLISS</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Turtle graphics in Tiny Boxer</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists noborder smallcode"><div class="body">
+<h1>Explicit structure + naive realism</h1>
+<img src="img/repbox.png"/>
+<div>
+<pre><code class="language-html">&lt;div class="box"&gt;  
+  &lt;span&gt;
+    &lt;i&gt;repeat&lt;/i&gt; &lt;b&gt;36&lt;/b&gt;
+    &lt;div class="box"&gt;
+      &lt;span&gt;&lt;i&gt;forward&lt;/i&gt; &lt;b&gt;100&lt;/b&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;i&gt;left&lt;/i&gt; &lt;b&gt;170&lt;/b&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Boxes <code>&lt;div&gt;</code> contain series of commands <code>&lt;span&gt;</code><br />
+Commands start with an identifier <code>&lt;i&gt;</code> followed by<br />
+idents <code>&lt;i&gt;</code>, numbers <code>&lt;b&gt;</code>, strings <code>&lt;s&gt;</code> and nested boxes</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder smaller"><div class="body1">
+<p><img src="img/stareval0.gif" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Evaluation</h1>
+<p><strong>Copy and replace</strong></p>
+<p>Mutate the document!<br />
+All state is visible</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder smaller"><div class="body1">
+<p><img src="img/stareval.gif" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Evaluation</h1>
+<p><strong>Copy and replace</strong></p>
+<p>Mutate the document!<br />
+All state is visible</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code smallcode smaller"><div class="body1">
+<pre><code class="language-ocaml">type Commands = Command[]
+
+type Command =
+  { operation: string,
+    element: Element,
+    parameters: Parameter[] }
+
+type Parameter =
+  | { kind: "identifier",
+      name: string,
+      element: Element }
+  | { kind: "symbol",
+      name:string,
+      element: Element }
+  | { kind: "primitive",
+      value: string,
+      element: Element }
+  | { kind: "box",
+      element: Element }
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Implementation structure</h1>
+<p>Parse parameter<br />
+<code>(Element) -&gt; Parameter</code></p>
+<p>Parse box<br />
+<code>(Element) -&gt; Commands</code></p>
+<p>Evaluate command<br />
+<code>(Command) -&gt; void</code></p>
+<p>Evaluate step<br />
+<code>() -&gt; void</code></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists noborder smallcode"><div class="body">
+<h1>Variables as named boxes</h1>
+<img src="img/lookup.png"/>
+<div>
+<h2>Named boxes</h2>
+<pre><code class="language-html">&lt;div class="name"&gt;
+  &lt;span&gt;who1&lt;/span&gt;
+  &lt;div class="box"&gt;
+    &lt;span&gt;&lt;s&gt;PLISS&lt;/s&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+<div class="fragment">
+<h2>Variable lookup</h2>
+<ul>
+<li>Look in the current box (scope)</li>
+<li>Look in the document root</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content "><h1>Tiny Boxer step-by-step</h1>
+<div class="body">
+<div>
+<ul>
+<li><strong>Step 1</strong> - Parsing DOM into commands and parameters</li>
+<li><strong>Step 2</strong> - Evaluation of simple built-in commands</li>
+<li><strong>Step 3</strong> - Turtle graphics and repeat command for looping</li>
+<li><strong>Step 4</strong> - Box lookup and built-ins that introduce boxes</li>
+<li><strong>Step 5</strong> - Calling other boxes and input command</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Conclusions</h1>
+<h2>Programming systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/prog25.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Programming research in Prague</h1>
+<p>Interactive systems, types and languages, tools for data science</p>
+<ul>
+<li><a href="https://prgprg.org">prgprg.org</a></li>
+<li><a href="https://d3s.mff.cuni.cz/plas">d3s.mff.cuni.cz/plas</a></li>
+</ul>
+<p><strong>Looking for post-docs and PhD students!</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="title conclusion"><h1>Programming systems deserve a theory too!</h1>
+<ul>
+<li>
+<p><strong>Scientific paradigm shift</strong> - We know a lot<br />
+about languages, but little about systems!</p>
+</li>
+<li>
+<p><strong>Technical dimensions</strong> - Interaction, notation<br />
+adaptability, conceptual structure &amp; more...</p>
+</li>
+<li>
+<p><strong>Research methods</strong> - Take history seriously<br />
+and have fun writing tiny systems!</p>
+</li>
+</ul>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+<style>.conclusion h1 { font-size:38pt; } .conclusion li p { font-size:26pt; }</style>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content "><h1>References</h1>
+<div class="body">
+<div>
+<ul>
+<li><a href="https://tomasp.net/techdims/">Technical dimensions of programming systems</a></li>
+<li><a href="https://tomasp.net/commodore64/">The Lost Ways of Programming: Commodore 64 BASIC</a></li>
+<li><a href="https://d3s.mff.cuni.cz/teaching/nprg077/">Write your own tiny programming system(s)!</a></li>
+<li><a href="https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf">Denicek: Computational Substrate for Document-Oriented End-User Programming</a></li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
