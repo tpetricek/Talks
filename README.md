@@ -23,13 +23,13 @@ Talks and slides
 
 ### Programming Systems Research
 
- - [**Writing tiny systems](http://tpetricek.github.io/Talks/2025/writing-tiny-systems/) (June 2025) - MoreVMs, Prague<br />
+ - [**Writing tiny systems**](http://tpetricek.github.io/Talks/2025/writing-tiny-systems/) (June 2025) - MoreVMs, Prague<br />
    See also: TinyBoxer ([JavaScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-javascript), [TypeScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-typescript)), [technical dimensions](https://tomasp.net/techdims/), [Commodore 64 BASIC](https://tomasp.net/commodore64/)
 
- - [**Programming systems deserve a theory too!](http://tpetricek.github.io/Talks/2025/programming-systems/pliss/) (May 2025) - PLISS, Bertinoro<br />
+ - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2025/programming-systems/pliss/) (May 2025) - PLISS, Bertinoro<br />
    See also: Hands-on source code ([JavaScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-javascript), [TypeScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-typescript)), [technical dimensions](https://tomasp.net/techdims/), [Commodore 64 BASIC](https://tomasp.net/commodore64/)
 
- - [**Denicek: Computational substrate for document-oriented end-user programming**](https://tpetricek.github.io/Talks/2025/denicek/ifip-wg/) (April 2025) - IFIP WG 2.16, Serpiano<br />
+ - [**Denicek: Computational substrate for document-oriented end-user programming**](https://tpetricek.github.io/Talks/2025/denicek/ifip-wg/) (April 2025) - IFIP WG 2.16, Serpiano.
    See also: [Denicek source code](https://github.com/d3sprog/denicek), [draft paper](https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf) and [animations](https://github.com/tpetricek/Talks/blob/master/2025/denicek/animations.pptx).
 
  - [**Writing Tiny Programming Systems in F#**](https://tpetricek.github.io/Talks/2025/tiny-systems/lambda/) (March 2025) - Prague Lambda Meetup<br />
