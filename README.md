@@ -10,6 +10,7 @@ Talks by category
 -----------------
 
  - [Programming Systems Research](#programming-systems-research)
+ - [Theory and Language Design](#theory-and-language-design)
  - [Philosophy of Science](#philosophy-of-science)
  - [Data Science and Data Journalism](#data-science-and-data-journalism)
  - [F# and Fable talks on TheGamma](#f-and-fable-talks-on-thegamma)
@@ -22,17 +23,23 @@ Talks and slides
 
 ### Programming Systems Research
 
-- [**Denicek: Computational substrate for document-oriented end-user programming**](https://tpetricek.github.io/Talks/2025/denicek/ifip-wg/) - IFIP WG 2.16 (Serpiano)<br />
-  See also: [Denicek source code](https://github.com/d3sprog/denicek), [draft paper](https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf) and [animations](https://github.com/tpetricek/Talks/blob/master/2025/denicek/animations.pptx).
+ - [**Writing tiny systems](http://tpetricek.github.io/Talks/2025/writing-tiny-systems/) (June 2025) - MoreVMs, Prague<br />
+   See also: TinyBoxer ([JavaScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-javascript), [TypeScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-typescript)), [technical dimensions](https://tomasp.net/techdims/), [Commodore 64 BASIC](https://tomasp.net/commodore64/)
 
-- [**Writing Tiny Programming Systems in F#**](https://tpetricek.github.io/Talks/2025/tiny-systems/lambda/) - Prague Lambda Meetup<br />
-  See also: [Tiny systems course at MFF](https://d3s.mff.cuni.cz/teaching/nprg077), [Commodore 64 BASIC](https://tomasp.net/commodore64/) and [Basic BASIC source code](https://github.com/tpetricek/Talks/tree/master/2025/tiny-systems/code/basic-basic).
+ - [**Programming systems deserve a theory too!](http://tpetricek.github.io/Talks/2025/programming-systems/pliss/) (May 2025) - PLISS, Bertinoro<br />
+   See also: Hands-on source code ([JavaScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-javascript), [TypeScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-typescript)), [technical dimensions](https://tomasp.net/techdims/), [Commodore 64 BASIC](https://tomasp.net/commodore64/)
 
-- [**Programming systems deserve a theory too!**](https://tpetricek.github.io/Talks/2024/programming-systems/cmu/) - IFIP WG 2.16 (Pittsburgh)<br />
-  See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
+ - [**Denicek: Computational substrate for document-oriented end-user programming**](https://tpetricek.github.io/Talks/2025/denicek/ifip-wg/) (April 2025) - IFIP WG 2.16, Serpiano<br />
+   See also: [Denicek source code](https://github.com/d3sprog/denicek), [draft paper](https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf) and [animations](https://github.com/tpetricek/Talks/blob/master/2025/denicek/animations.pptx).
 
-- [**Exploring the design space of programming systems**](https://tpetricek.github.io/Talks/2023/exploring-design-space/) (November 2023) - HPI Potsdam<br />
-  See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
+ - [**Writing Tiny Programming Systems in F#**](https://tpetricek.github.io/Talks/2025/tiny-systems/lambda/) (March 2025) - Prague Lambda Meetup<br />
+   See also: [Tiny systems course at MFF](https://d3s.mff.cuni.cz/teaching/nprg077), [Commodore 64 BASIC](https://tomasp.net/commodore64/) and [Basic BASIC source code](https://github.com/tpetricek/Talks/tree/master/2025/tiny-systems/code/basic-basic).
+
+ - [**Programming systems deserve a theory too!**](https://tpetricek.github.io/Talks/2024/programming-systems/cmu/) (April 2024) - IFIP WG 2.16, Pittsburgh<br />
+   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
+
+ - [**Exploring the design space of programming systems**](https://tpetricek.github.io/Talks/2023/exploring-design-space/) (November 2023) - HPI Potsdam<br />
+   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
 
  - [**Document-oriented programming based on edit history**](http://tpetricek.github.io/Talks/2023/conf-live/) (October 2023) - LIVE workshop (online)<br />
    See also: [Undocumented source code for the demo](https://github.com/tpetricek/conf) and our [challenge problems paper](https://arxiv.org/pdf/2309.11406.pdf).
@@ -43,14 +50,16 @@ Talks and slides
  - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2022/programming-systems/berkeley) (November 2022) - Berkeley (virtual)<br />
    Short version. See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions (PDF)](https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf)
 
- - [**The Gamma: Programmatic data exploration for non-programmers**](http://tpetricek.github.io/Talks/2022/the-gamma/vlhcc/) (September 2022) - VL/HCC (Rome)<br />
-   See also: [VL/HCC paper](http://tomasp.net/academic/papers/iterative/) and [The Gamma](http://turing.thegamma.net/)
-
  - [**Programming Systems - Not just for data science**](http://tpetricek.github.io/Talks/2022/programming-systems/aarhus) (May 2022) - Aarhus<br />
    See also: [The Gamma](http://turing.thegamma.net/), [Commodore 64](http://tomasp.net/commodore64/) and [Technical Dimensions (PDF)](https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf)
 
  - [**Methodology of programming systems**](https://tpetricek.github.io/Talks/2022/systems-methodology/index.html) (March 2022) - Programming, Porto<br />
    See also: [PPIG paper](http://tomasp.net/academic/papers/evaluating-systems/), [TechDims paper](https://github.com/jdjakub/papers/blob/master/prog-2022/prog22-master.pdf) and [TechDims slides](https://github.com/jdjakub/papers/blob/master/prog-2022/prog22-tutorial.pdf)
+
+### Theory and Language Design
+
+ - [**The Gamma: Programmatic data exploration for non-programmers**](http://tpetricek.github.io/Talks/2022/the-gamma/vlhcc/) (September 2022) - VL/HCC (Rome)<br />
+   See also: [VL/HCC paper](http://tomasp.net/academic/papers/iterative/) and [The Gamma](http://turing.thegamma.net/)
 
  - [**Programming as architecture, urban planning and design?**](http://tpetricek.github.io/Talks/2021/programming-as-design/mit/) (April 2021) - MIT SDG<br />
    See also: [shorter version for Onward!](http://tpetricek.github.io/Talks/2021/programming-as-design/onward/) and [Onward! Essay pre-print](http://tomasp.net/academic/papers/metaphors/)
