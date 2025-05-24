@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Writing Tiny Programming Systems</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title p { margin-bottom:5px; }
+			.title p i { margin-right:20px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image code { font-size:18pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.smaller2x .body1 { width:420px; }
+			.image.smaller2x .body1 img { max-width:400px; }
+			.image.larger .body1 { width:520px; }
+			.image.larger .body1 img { max-width:500px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1>Writing Tiny Programming Systems</h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content three-column"><h1>What I'm Interested In</h1>
+<div class="body">
+<div>
+<p><strong>Languages and<br />
+Type systems</strong></p>
+<p>Worked on F# and coeffect systems</p>
+<p><img src="img/coeffects.png" alt="" /></p>
+</div>
+<div class="fragment">
+<p><strong>Programming Systems</strong></p>
+<p>Think about state and interaction!</p>
+<p><img src="img/thegamma.png" alt="" /></p>
+</div>
+<div class="fragment">
+<p><strong>History of Programming</strong></p>
+<p>Recovering<br />
+lost ideas</p>
+<p><img src="img/boxer.png" alt="" /></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>TinyBoxer from PLISS</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>Tiny systems</h1>
+<img src="img/pliss.png"/>
+<div>
+<h2>Research device</h2>
+<ul>
+<li>You can actually poke things!</li>
+<li>Interactive system concepts</li>
+<li>Reconstruct past ideas</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Teaching device</h2>
+<ul>
+<li>Explaining core algorithms</li>
+<li>Learning by writing code</li>
+<li>Teach more than just language theory!</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger"><div class="body1">
+<p><img src="img/map.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Charles University</h1>
+<p>We have pretty<br />
+smart students!</p>
+<p>Lots of freedom in<br />
+how &amp; what to teach</p>
+</div>
+<div class="fragment">
+<p><strong>How can I teach all<br />
+the things that I like?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>Write your own tiny system(s)!</h1>
+<img src="img/poster.png"/>
+<div>
+<h2>Course idea</h2>
+<ul>
+<li>Implement key parts of language and system algorithms (in F#)</li>
+<li>Focused on hands-on coding</li>
+<li>Guided step-by-step templates</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Course structure</h2>
+<ul>
+<li>Pre-recorded video with background &amp; F# basics</li>
+<li>3 hour session every other week</li>
+<li>Complete basic tasks later for credits</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons "><h1>Tiny systems covered</h1>
+<ul>
+<li><i class='fa fa-not-equal'></i> <strong>TinyML</strong>: Tiny functional language interpreter</li>
+<li><i class='fa fa-terminal'></i> <strong>TinyBASIC</strong>: Tiny interactive imperative system</li>
+<li><i class='fa fa-square-check'></i> <strong>TinyHM</strong>: Tiny Hindley-Milner type inference</li>
+<li><i class='fa fa-arrow-right'></i> <strong>TinyProlog</strong>: Tiny declarative logic language</li>
+<li><i class='fa fa-shapes'></i> <strong>TinySelf</strong>: Tiny prototype-based OO language</li>
+<li><i class='fa fa-table'></i> <strong>TinyExcel</strong>: Tiny incremental spreadsheet system</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code smallcode"><div class="body1">
+<pre><code class="language-fsharp">// A term  can be either atom (...),
+// variable (...), or predicate (...).
+type Term =
+  | Atom of string
+  | Variable of string
+  | Predicate of string * Term list
+
+// A clause is for example:
+// 'mortal(X) :- human(X)'
+// It consists of 'head :- body'
+type Clause =
+  { Head : Term
+    Body : Term list }
+
+// A program is a list of clauses
+type Program = Clause list
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Typical code sample</h1>
+<p><strong>TinyProlog definitions</strong><br />
+Comments shortened</p>
+<p><strong>Given to the students</strong><br />
+Great starting point!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code smallcode"><div class="body1">
+<pre><code class="language-fsharp">let rec unifyLists l1 l2 =
+  match l1, l2 with
+  | [], [] -&gt;
+      // Succeeds, but returns
+      // an empty substitution
+      failwith "not implemented"
+  | h1::t1, h2::t2 -&gt;
+      // Unify h1 with h2 using unify
+      // and t1 with t2 using unifyLists
+      failwith "not implemented"
+  | _ -&gt;
+    // Lists cannot be unified
+    failwith "not implemented"
+
+and unify t1 t2 =
+  match t1, t2 with
+  | _ -&gt;
+      // Add all the necessary
+      // cases here! (...)
+      failwith "not implemented"
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Typical code sample</h1>
+<p><strong>Function signatures</strong><br />
+Often empty, with detailed comments and some hints or code structure</p>
+<p><strong>Step-by-step structure</strong>
+Copy implementation from previous step</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists smallcode selfslide"><div class="body">
+<h1>Limitations of the stack</h1>
+<img src="img/self.png"/>
+<div>
+<h2>Mutable dynamic systems</h2>
+<p>Type system not much help!</p>
+<pre><code class="language-fsharp">type Objekt =
+  { mutable Slots: Slot list
+    mutable Code: Objekt option }
+and type Slot =
+  { Name: string
+    Contents: Objekt }
+</code></pre>
+</div>
+<div class="fragment">
+<h2>Graphical interfaces</h2>
+<ul>
+<li>More difficult to implement</li>
+<li>Challenging setup in F#</li>
+<li>Missing in TinySelf, TinyExcel</li>
+<li>Using JavaScript/TypeScript for TinyBoxer</li>
+</ul>
+<style>.selfslide pre { margin-top:-20px } .selfslide h1 { margin-bottom:10px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Research</h1>
+<h2>Talking about system design</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/c64.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Demo</h1>
+<h2>C64 BASIC</h2>
+<p><strong>Why study universally disliked programming language?</strong></p>
+<p>Somehow allowed everyone to program!</p>
+<p>Interesting mode of interaction!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists border"><div class="body">
+<h1>Learning from past systems</h1>
+<img src="img/temp.jpg"/>
+<div>
+<h2>What's cool about C64 BASIC?</h2>
+<ul>
+<li>Oriented around code interactions</li>
+<li>Simple with options for experts (POKE)</li>
+<li>Poor engineering in a poor language!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Complementary science</h2>
+<ul>
+<li>Advocated by Hasok Chang</li>
+<li>Do (serious) history to recover ideas</li>
+<li>Lost due paradigm shifts in science</li>
+<li>Even more powerful for computing!</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Making scientific claims</h1>
+<img src="img/prism.jpg"/>
+<div>
+<h2>Programming language theory</h2>
+<p>Formal proofs, about tiny models</p>
+</div>
+<div class="fragment">
+<h2>Empirical evaluation</h2>
+<p>Performance, in controlled environment</p>
+</div>
+<div class="fragment">
+<h2>User studies and case studies</h2>
+<p>Usability or flexibility, in specific scenarios</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/tinyboxer.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Tiny systems</h1>
+<p>Experience of working with a system on a tiny scale</p>
+<p><strong>Conceptual structure?</strong><br />
+<strong>Potential of the design?</strong><br />
+<strong>Technical dimensions?</strong></p>
+<p><a href="https://tomasp.net/academic/papers/evaluating-systems/ppig19.pdf">Methodology of Prog&shy;ramming Systems Research</a> (PPIG'19)</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Context</h1>
+<h2>Other tiny implementations</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/kamin.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Teaching tiny systems</h1>
+<div class="citation">
+<p>(Kamin, 1990)</p>
+</div>
+<p><strong>Used in multiple<br />
+courses worldwide</strong></p>
+<p>Examples in Pascal</p>
+<p>Languages covered are APL, Clu, LISP, Prolog, Smalltalk, Scheme, SASL</p>
+<p><strong>Not always focused<br />
+on the key aspect</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/schank.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Tiny systems and AI</h1>
+<div class="citation">
+<p>(Schank, Riesbeck, 1981)</p>
+</div>
+<p><strong>Miniature implementations of 5 Yale AI lab programs</strong></p>
+<p>Faster, more efficient, easier to understand, modify and extend</p>
+<p>"Miniatures, demos and artworks" by Warren Sack</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/distil.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Tiny systems and ML</h1>
+<div class="citation">
+<p>(Distill, 2016-2021)</p>
+</div>
+</div>
+<div class="fragment">
+<p><strong>Five affordances of interactive articles</strong></p>
+<p>Connecting people &amp; data<br />
+Making systems playful<br />
+Prompting self-reflection<br />
+Personalizing reading<br />
+Reducing cognitive load</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Reflections &amp; Conclusions</h1>
+<h2>What can we teach this way?</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons "><h1>Teaching tiny systems</h1>
+<ul>
+<li>
+<i class='fa fa-earth-europe'></i> <strong>Scaling to real-world systems</strong><br />
+<i class="placeholder"></i>Choice to ignore practical engineering
+</li>
+<li>
+<i class='fa fa-computer'></i> <strong>Is this not the real thing?</strong><br />
+<i class="placeholder"></i>A piece of a larger curriculum...
+</li>
+<li>
+<i class='fa fa-triangle-exclamation'></i> <strong>Pitfalls and over-generalizations</strong><br />
+<i class="placeholder"></i>Shows what could in theory work
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons "><h1>Where it works well</h1>
+<ul>
+<li>
+<i class='fa fa-flask'></i>  <strong>Testbed for emerging ideas</strong><br />
+<i class="placeholder"></i>Interactive programming systems research
+</li>
+<li>
+<i class='fa fa-person-digging'></i> <strong>Recovering lost ideas</strong><br />
+<i class="placeholder"></i>Ideas from the "golden" era of 1970s
+</li>
+<li>
+<i class='fa fa-gears'></i>  <strong>Virtual machine implementations?</strong><br />
+<i class="placeholder"></i>Futamura projections, copy-and-patch
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>Programming research in Prague</h1>
+<img src="img/prgprg.jpg"/>
+<div>
+<h2>What's going on here</h2>
+<ul>
+<li>Interactive systems, types and languages,   tools for data science</li>
+<li><a href="https://prgprg.org"><a href="https://prgprg.org">https://prgprg.org</a></a></li>
+<li><a href="https://d3s.mff.cuni.cz/plas"><a href="https://d3s.mff.cuni.cz/plas">https://d3s.mff.cuni.cz/plas</a></a></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Working with us</h2>
+<ul>
+<li>Ask me about comparisons over a beer...</li>
+<li>Looking for <strong>post-docs and PhD students</strong>!</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="title "><h1>Writing tiny programming systems</h1>
+<p><i class="fa fa-award"></i> Fun course to teach & fun format!</p>
+<p><i class="fa fa-person-chalkboard"></i> Good way to explain basic concepts</p>
+<p><i class="fa fa-trowel-bricks"></i> Concepts over formalism or engineering</p>
+<p><i class="fa fa-landmark"></i> Past, present & future of programming</p>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
