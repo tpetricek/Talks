@@ -23,7 +23,7 @@ Talks and slides
 
 ### Programming Systems Research
 
- - [**Writing tiny systems**](http://tpetricek.github.io/Talks/2025/writing-tiny-systems/) (June 2025) - MoreVMs, Prague<br />
+ - [**Writing tiny programming systems**](http://tpetricek.github.io/Talks/2025/writing-tiny-systems/) (June 2025) - MoreVMs, Prague<br />
    See also: TinyBoxer ([JavaScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-javascript), [TypeScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-typescript)), [technical dimensions](https://tomasp.net/techdims/), [Commodore 64 BASIC](https://tomasp.net/commodore64/)
 
  - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2025/programming-systems/pliss/) (May 2025) - PLISS, Bertinoro<br />
@@ -163,7 +163,7 @@ Talks and slides
 
 ### Data Science and Data Journalism
 
- - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2023/composable-libraries/) (September 2023) - F# Data Science, Berlin<br />
+ - [**Designing composable functional libraries, not just for data visualization**](http://tpetricek.github.io/Talks/2023/composable-libraries/) (September 2023) - F# Data Science, Berlin.
    See also: [Compost.js](https://compostjs.github.io/compost/) and [F# source code](https://github.com/tpetricek/Talks/tree/master/2023/composable-libraries/code).
 
  - [**The Gamma and Compost.js: Towards simple and open data visualization tools**](https://tpetricek.github.io/Talks/2023/open-data-vis/) (June 2023) - ExtremeXP, online<br />
