@@ -10,8 +10,8 @@ Talks by category
 -----------------
 
  - [Programming Systems Research](#programming-systems-research)
+ - [Philosophy, history and architecture](#philosophy-history-and-architecture)
  - [Theory and Language Design](#theory-and-language-design)
- - [Philosophy of Science](#philosophy-of-science)
  - [Data Science and Data Journalism](#data-science-and-data-journalism)
  - [F# and Fable talks on TheGamma](#f-and-fable-talks-on-thegamma)
  - [FsLab and Data Science](#fslab-and-data-science)
@@ -56,58 +56,10 @@ Talks and slides
  - [**Methodology of programming systems**](https://tpetricek.github.io/Talks/2022/systems-methodology/index.html) (March 2022) - Programming, Porto<br />
    See also: [PPIG paper](http://tomasp.net/academic/papers/evaluating-systems/), [TechDims paper](https://github.com/jdjakub/papers/blob/master/prog-2022/prog22-master.pdf) and [TechDims slides](https://github.com/jdjakub/papers/blob/master/prog-2022/prog22-tutorial.pdf)
 
-### Theory and Language Design
+### Philosophy, history and architecture
 
- - [**The Gamma: Programmatic data exploration for non-programmers**](http://tpetricek.github.io/Talks/2022/the-gamma/vlhcc/) (September 2022) - VL/HCC (Rome)<br />
-   See also: [VL/HCC paper](http://tomasp.net/academic/papers/iterative/) and [The Gamma](http://turing.thegamma.net/)
-
- - [**Programming as architecture, urban planning and design?**](http://tpetricek.github.io/Talks/2021/programming-as-design/mit/) (April 2021) - MIT SDG<br />
-   See also: [shorter version for Onward!](http://tpetricek.github.io/Talks/2021/programming-as-design/onward/) and [Onward! Essay pre-print](http://tomasp.net/academic/papers/metaphors/)
-
- - [**AI assistants: A framework for semi-automated and tooling-rich data wrangling**](http://tpetricek.github.io/Talks/2021/ai-assistants/) (January 2021) - Kent<br />
-  See also:  [Wrattler homepage](http://www.wrattler.org/), [Wrattler examples](https://github.com/wrattler/wrattler-examples)
-
- - [**Incremental, Runtime and Extensible: Type Checker for a Funny Language**](http://tpetricek.github.io/Talks/2020/typing-thegamma/) (October 2020) - Facebook<br />
-   See also:  [code samples](https://github.com/tpetricek/Talks/tree/master/2020/typing-thegamma/code), [Histogram](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
-
- - [Critique: Bicycles for the mind have to be see-through (Kartik Agaram)](http://tpetricek.github.io/Talks/2020/sdr-bicycles/) (May 2020) - Online<br />
-   See also: [original paper (pdf)](http://akkartik.name/akkartik-convivial-20200315.pdf) and [presentation recording](https://vimeo.com/416363066)
-
- - [**The Gamma & Histogram: Towards dot-driven data exploration**](http://tpetricek.github.io/Talks/2019/dot-driven-data-exploration/) (November 2019) - IFIP 2.16, Nice<br />
-   See also: [Histogram interactive essay](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
-
- - [**Histogram: You have to know the past to understand the present**](https://tpetricek.github.io/Talks/2019/histogram/live/) (October 2019) - LIVE, Athens<br />
-   See also: [Histogram interactive essay](http://tomasp.net/histogram/) and [motivating F# example](https://github.com/tpetricek/Talks/tree/master/2019/histogram/live/code)
-
- - [**Programming languages as a design problem**](http://tpetricek.github.io/Talks/2019/cities-and-programming/) (October 2019) - Bertinoro
-
- - [**Changing how we think about programming**](http://tpetricek.github.io/Talks/2019/programming-thinking/) (April 2019) - TU Darmstadt<br />
-   See also: [interactive coeffects essay](http://tomasp.net/coeffects), [TheGamma playground](http://gamma.turing.ac.uk/playground)
-
- - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/edinburgh/index.html#/) (August 2018) - University of Edinburgh<br />
-   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2018/human-data-interaction/code), [TheGamma playground](http://gamma.turing.ac.uk) and shorter version below.
-
- - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - University of Kent<br />
-   See also: [Azure notebooks](https://notebooks.azure.com/tomasp/libraries/interview-demo), [TheGamma playground](http://gamma.turing.ac.uk) and [Fun3D project](http://fun3d.net/)
-
- - [**Teaching old type systems new tricks with type providers**](http://tpetricek.github.io/Talks/2018/type-provider-tricks/kent/) (February 2018) - University of Kent<br />
-   See also: [Birmingham version](http://tpetricek.github.io/Talks/2018/type-provider-tricks/bham/), [F# Data paper](http://tomasp.net/academic/papers/fsharp-data/) (PLDI 2016) and [Dot-driven development paper](http://tomasp.net/academic/papers/pivot/) (ECOOP 2017)
-
- - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
-   See also: [Source code for the demos](https://github.com/tpetricek/Talks/tree/master/2017/multi-runtime-challenges/demos) and
-   [In the Age of Web](http://tomasp.net/academic/papers/age-of-web) paper
-
- - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/) (June 2017) - ECOOP, Barcelona<br />
-   See also: [Sample interactive articles on UK open data](http://gamma.turing.ac.uk/) and [the ECOOP paper](http://tomasp.net/academic/papers/pivot/)
-
- - [**Types from data: Making structured data first-class citizens in F#**](http://tpetricek.github.io/Talks/2016/fsharp-data-pldi/) (June 2016) - PLDI, Santa Barbara<br />
-   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2016/fsharp-data-pldi/code) and [F# Data library documentation](http://fsharp.github.io/FSharp.Data)
-
- - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June 2015) - STTI MFF
-
- - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague<br />
-
-### Philosophy of Science
+ - [**Critical Architecture/Software Theory**](http://tpetricek.github.io/Talks/2025/critical-software/slides/index.html) (September 2025) - PPIG, Belgrade<br />
+   See also: [product listing demo](http://tpetricek.github.io/Talks/2025/critical-software/maze/) and [Critical Architecture/Software Theory article](https://tomasp.net/architecture/)
 
  - [**Interactive programming as a shift from language to gesture**](https://tpetricek.github.io/Talks/2024/language-gesture) (November 2024) - UNCE, Prague<br />
    See also: [Pygmalion reimplementation](https://a-habusta.github.io/Pygmalion-Like-Reimplementation/), [Smalltalk Zoo](https://smalltalkzoo.thechm.org/HOPL-St78.html)
@@ -160,6 +112,59 @@ Talks and slides
    and [older version](http://tpetricek.github.io/Talks/2015/philosophy-of-types/) from StrangeLoop 2015
 
  - [**Paul Feyerabend's Against Method**](http://tpetricek.github.io/Talks/2015/pwl-against-method/) (October 2015) - Papers We Love, NYC
+
+
+### Theory and Language Design
+
+ - [**The Gamma: Programmatic data exploration for non-programmers**](http://tpetricek.github.io/Talks/2022/the-gamma/vlhcc/) (September 2022) - VL/HCC (Rome)<br />
+   See also: [VL/HCC paper](http://tomasp.net/academic/papers/iterative/) and [The Gamma](http://turing.thegamma.net/)
+
+ - [**Programming as architecture, urban planning and design?**](http://tpetricek.github.io/Talks/2021/programming-as-design/mit/) (April 2021) - MIT SDG<br />
+   See also: [shorter version for Onward!](http://tpetricek.github.io/Talks/2021/programming-as-design/onward/) and [Onward! Essay pre-print](http://tomasp.net/academic/papers/metaphors/)
+
+ - [**AI assistants: A framework for semi-automated and tooling-rich data wrangling**](http://tpetricek.github.io/Talks/2021/ai-assistants/) (January 2021) - Kent<br />
+  See also:  [Wrattler homepage](http://www.wrattler.org/), [Wrattler examples](https://github.com/wrattler/wrattler-examples)
+
+ - [**Incremental, Runtime and Extensible: Type Checker for a Funny Language**](http://tpetricek.github.io/Talks/2020/typing-thegamma/) (October 2020) - Facebook<br />
+   See also:  [code samples](https://github.com/tpetricek/Talks/tree/master/2020/typing-thegamma/code), [Histogram](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
+
+ - [Critique: Bicycles for the mind have to be see-through (Kartik Agaram)](http://tpetricek.github.io/Talks/2020/sdr-bicycles/) (May 2020) - Online<br />
+   See also: [original paper (pdf)](http://akkartik.name/akkartik-convivial-20200315.pdf) and [presentation recording](https://vimeo.com/416363066)
+
+ - [**The Gamma & Histogram: Towards dot-driven data exploration**](http://tpetricek.github.io/Talks/2019/dot-driven-data-exploration/) (November 2019) - IFIP 2.16, Nice<br />
+   See also: [Histogram interactive essay](http://tomasp.net/histogram/), [thegamma.org](http://thegamma.org) and [thegamma demos](http://turing.thegamma.org)
+
+ - [**Histogram: You have to know the past to understand the present**](https://tpetricek.github.io/Talks/2019/histogram/live/) (October 2019) - LIVE, Athens<br />
+   See also: [Histogram interactive essay](http://tomasp.net/histogram/) and [motivating F# example](https://github.com/tpetricek/Talks/tree/master/2019/histogram/live/code)
+
+ - [**Programming languages as a design problem**](http://tpetricek.github.io/Talks/2019/cities-and-programming/) (October 2019) - Bertinoro
+
+ - [**Changing how we think about programming**](http://tpetricek.github.io/Talks/2019/programming-thinking/) (April 2019) - TU Darmstadt<br />
+   See also: [interactive coeffects essay](http://tomasp.net/coeffects), [TheGamma playground](http://gamma.turing.ac.uk/playground)
+
+ - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/edinburgh/index.html#/) (August 2018) - University of Edinburgh<br />
+   See also: [source code](https://github.com/tpetricek/Talks/tree/master/2018/human-data-interaction/code), [TheGamma playground](http://gamma.turing.ac.uk) and shorter version below.
+
+ - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - University of Kent<br />
+   See also: [Azure notebooks](https://notebooks.azure.com/tomasp/libraries/interview-demo), [TheGamma playground](http://gamma.turing.ac.uk) and [Fun3D project](http://fun3d.net/)
+
+ - [**Teaching old type systems new tricks with type providers**](http://tpetricek.github.io/Talks/2018/type-provider-tricks/kent/) (February 2018) - University of Kent<br />
+   See also: [Birmingham version](http://tpetricek.github.io/Talks/2018/type-provider-tricks/bham/), [F# Data paper](http://tomasp.net/academic/papers/fsharp-data/) (PLDI 2016) and [Dot-driven development paper](http://tomasp.net/academic/papers/pivot/) (ECOOP 2017)
+
+ - [**Language Challenges of Targeting Multiple Runtimes**](http://tpetricek.github.io/Talks/2017/multi-runtime-challenges/) (September 2017) - ManLang, Prague<br />
+   See also: [Source code for the demos](https://github.com/tpetricek/Talks/tree/master/2017/multi-runtime-challenges/demos) and
+   [In the Age of Web](http://tomasp.net/academic/papers/age-of-web) paper
+
+ - [**The Gamma: Data exploration through dot-driven development**](http://tpetricek.github.io/Talks/2017/dot-driven/ecoop/) (June 2017) - ECOOP, Barcelona<br />
+   See also: [Sample interactive articles on UK open data](http://gamma.turing.ac.uk/) and [the ECOOP paper](http://tomasp.net/academic/papers/pivot/)
+
+ - [**Types from data: Making structured data first-class citizens in F#**](http://tpetricek.github.io/Talks/2016/fsharp-data-pldi/) (June 2016) - PLDI, Santa Barbara<br />
+   See also: [code samples](https://github.com/tpetricek/Talks/tree/master/2016/fsharp-data-pldi/code) and [F# Data library documentation](http://fsharp.github.io/FSharp.Data)
+
+ - [**Coeffects: Theory of context-aware programming languages**](http://tpetricek.github.io/Talks/2015/coeffects-intro/) (June 2015) - STTI MFF
+
+ - [**The origins of monadic and comonadic computations**](http://tpetricek.github.io/Talks/2015/pwl-monads-comonads/prague/) (April 2015) - Papers We Love, Prague<br />
+
 
 ### Data Science and Data Journalism
 
