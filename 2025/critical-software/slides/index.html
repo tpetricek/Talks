@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Critical Architecture/Software Theory</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image code { font-size:18pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.larger .body1 { width:560px; }
+			.image.larger .body1 img { max-width:540px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.smaller2x .body1 { width:420px; }
+			.image.smaller2x .body1 img { max-width:400px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			.todo { color:#00ff00; font-weight:500; }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1><em>Critical</em><br>Architecture/Software<br><em>Theory</em></h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content "><h1>Good talk topics?</h1>
+<div class="body">
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content two-column img280"><h1>Good talk topics?</h1>
+<div class="body">
+<div>
+<p><strong>Programming systems research and vision?</strong></p>
+<img src="img/techdims.png">
+</div>
+<div class="fragment">
+<p><strong>Upcoming book on the history of programming?</strong></p>
+<img src="img/cultures.png">
+<style>.img280 img { max-width:280px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/books.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Not so good<br>talk topics?</h1>
+</div>
+<div class="fragment">
+<p><strong>Some books<br />
+I've read recently</strong></p>
+<p><strong>Thoughts on how this relates to software</strong></p>
+</div>
+<div class="fragment">
+<p>Thanks for the invitation to PPIG!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Meaning</h1>
+<h2>Meaning in architecture</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image"><div class="body1 fragment">
+<p><img src="img/pruit.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Brutalist architecture?</h1>
+<p><strong>Bad example for the purpose of my talk...</strong></p>
+</div>
+<div class="fragment">
+<p>No bad feelings!</p>
+<p>Focus on function,<br />
+not conveying meaning</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/dancing.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Dancing House by Gehry &amp; Milunić</h1>
+<p><strong>aka Fred &amp; Ginger</strong></p>
+<p>90s deconstructivism</p>
+<p>End of the era of communist panel housing estates</p>
+<p><strong>Meaning is there,<br />
+if uncomplicated</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Column</h1>
+<h2>From structure to message</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content two-column imgh340"><h1>From function to style</h1>
+<div class="body">
+<div>
+<p><strong>Parthenon</strong> (5th cent. BC)<br />
+Classical Doric order</p>
+<img src="img/columns-greek.jpg">
+</div>
+<div class="fragment">
+<p><strong>Villa Savoye</strong> (1931)<br />
+Le Corbusier's modernism</p>
+<img src="img/columns-savoye.jpg">
+<style>.imgh340 img { max-height:340px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger"><div class="body1">
+<p><img src="img/columns-archives.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>U.S. National Archives</h1>
+<p><strong>Unironical reference to classical past</strong></p>
+<p><strong>Emphasise tradition</strong></p>
+<p>c.f. Executive Order<br />
+on Promoting Beautiful Federal Civic Architecture</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image larger"><div class="body1 fragment">
+<p><img src="img/columns-law.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Gehry's Loyola Law School (LA)</h1>
+<p>"... saw classicising typology suitable for the study of law."</p>
+</div>
+<div class="fragment">
+<p><strong>More literal but also more critical use</strong></p>
+<p><strong>Fits the context!</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Double coding</h1>
+<h2>Mechanism for critical architecture</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/prada.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Haunted House - Fondazione Prada</h1>
+<p><strong>Makeover of an old industrial site into a gallery.</strong></p>
+<p>Ironical remark on how the fashion industry works?</p>
+</div>
+<div class="fragment">
+<p><em>"Koolhaas’s very corporate clients (...)
+regard his chic criticism of a bored
+elite as just another bit of fun."</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Double coding</h1>
+<img src="img/haunted.jpg"/>
+<div>
+<h2>Form and function</h2>
+<ul>
+<li>Form of a modern art gallery</li>
+<li>New spatial typology for art</li>
+<li>Still, many aspects undetermined!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Epistemic freedom</h2>
+<ul>
+<li>Modernist "form follows function"</li>
+<li>Aesthetics and ornament!</li>
+<li>Use it for ironical remark?</li>
+<li>Form without any external references?</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/havel.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Anticodes</h1>
+<p><strong>Václav Havel</strong><br />
+"Let everyone go<br />
+their own way"</p>
+</div>
+<div class="fragment">
+<p><strong>Critical reflection</strong><br />
+Double coding<br />
+as a mechanism</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/rain.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Double coding in code poetry</h1>
+<p><strong>water.c</strong> (<a href="https://code-poetry.com/water">demo</a>)</p>
+<p>Read and executed<br />
+by the computer</p>
+<p>Read and interpreted by the human</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/pi.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Obfuscated C Code Contest (1989)</h1>
+<p><strong>What does this<br />
+snippet print?</strong></p>
+</div>
+<div class="fragment">
+<p>Double coding for<br />
+light-hearted irony</p>
+<p><strong>Can it be used<br />
+more seriously?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons "><h1>Undetermined</h1>
+<h2>What is undetermined in software</h2>
+<ul>
+<li><i class='fa fa-code'></i> Variable names, syntax, comments</li>
+<li><i class='fa fa-database'></i> Representation and data structures</li>
+<li><i class='fa fa-regular fa-square-check'></i> User interface / mode of interaction</li>
+<li><i class='fa fa-project-diagram'></i> Aspects of software architecture</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Criticism</h1>
+<h2>Destabilizing meaning</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content "><div class="body">
+<div>
+<img src="img/jencks.jpg" style="width:750px;max-width:1000px;max-height:1000px;margin-bottom:20px" />
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Parc de La Villette</h1>
+<img src="img/lavillette.jpg"/>
+<div>
+<h2>Deconstructive architecture</h2>
+<ul>
+<li>Give up on the dream of pure form</li>
+<li>Challenge values and methods</li>
+<li>Reveal what is normally hidden</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Disrupting forms and practices</h2>
+<ul>
+<li>Design as layering of structures</li>
+<li>Folies are distortions of a cube</li>
+<li>Form follows formulas!</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/layers.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Parc de La Villette</h1>
+<p><em>The superimposition of the three systems (points, lines, surfaces) creates the park as it generates a series of calculated tensions which reinforce the dynamism of the place. Each of the three systems displays its own logic and independence.</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/follie.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Folies</h1>
+<p><strong>Deconstruction<br />
+of the cube form</strong></p>
+<p><em>[The folies] desta&shy;bilize meaning (...). They put in question, dislocate,
+destabilise or deco&shy;nstruct the edifice of this configuration.</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>House VI</h1>
+<img src="img/housevi-out.jpg"/>
+<div>
+<h2>Peter Eisenman</h2>
+<ul>
+<li>PhD on the formal basis of architecture (grammar!)</li>
+<li>Formalism, without function</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Houses series</h2>
+<ul>
+<li>Autonomous architecture</li>
+<li>Structure does not follow function</li>
+<li>Shapes only refer to other shapes</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller2x"><div class="body1">
+<p><img src="img/housevi.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Disrupting domestic mindlessness</h1>
+<p><em>My work attacks the concept of occupation as given. (...)</em></p>
+<p><em>[And] the holes in the floor in the room attack the
+notion of how you occupy and how you step across the living
+room?</em></p>
+<p><strong>The occupiers adopt a new choreography of living</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content two-column smallf nologo"><h1>Eisenman Alexander debate</h1>
+<div class="body">
+<div>
+<p><strong>Alexander:</strong> <em>The thing that strikes me about your friend’s building (...)
+is that somehow in some intentional way it is not harmonious. [He]
+intentionally wants to produce an effect of disharmony.
+(...)</em></p>
+<p><strong>Eisenman:</strong> <em>That is correct.</em></p>
+<p><strong>Alexander:</strong> <em>I find that incomprehensible.
+I find it very irresponsible.
+I find it nutty.</em></p>
+</div>
+<div class="fragment">
+<p><em>I feel sorry for the man. I also
+feel incredibly angry because he is fucking up the world.</em></p>
+<p>(...)</p>
+<p><strong>Eisenman:</strong> <em>I am not preaching disharmony. I am suggesting
+that disharmony might be part of the cosmology that
+we exist in. (...) An architecture that puts its head
+in the sand [does not deal] with the present anxiety.</em></p>
+<style>.smallf p { font-size:24pt; line-height:1.2em; margin-right:20px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons "><h1>Disharmony</h1>
+<h2>Disrupting software mindlessness</h2>
+<ul>
+<li><i class='fa fa-landmark'></i> Architects use the language of architecture</li>
+<li><i class='fa fa-floppy-disk'></i> Can we use software critically?</li>
+<li><i class='fa fa-user-tie'></i> Apparent <em>harmony</em> or user convenience?</li>
+<li><i class='fa fa-diagram-project'></i> Seemingly <em>rigorous</em> development methods?</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Meaning</h1>
+<h2>Meaning in software</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/amazon.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Form follows function?</h1>
+<p><strong>Product listing with filtering and sorting</strong></p>
+</div>
+<div class="fragment">
+<p>Default order matters!<br />
+What filtering criteria?<br />
+Is legibility required?</p>
+<p><strong>Function is probably data collection anyway.</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller2x"><div class="body1">
+<p><img src="img/jested.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Form follows function?</h1>
+<p><em>Ultimately, the 'functionalist' sign differed little from its classical
+counterpart..</em></p>
+<p><em>Shapes were derived not from function itself, but from
+other disciplinary references (...) in
+order to suggest a functional meaning.</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim smaller2x image"><div class="body1 fragment">
+<p><img src="img/children.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Classified children:</h1>
+<p><em>A critical analysis of the digital interfaces and representations that mediate adoption in the United States</em> (Higgins, 2023)</p>
+</div>
+<div class="fragment">
+<p><strong>Adoption listings mindlessly adopts the software pattern!</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>DEMO</h1>
+<h2>Disrupting product listing</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons "><h1>Disrupting product listing</h1>
+<ul>
+<li>
+<i class='fa fa-map-location-dot'></i> <strong>Let the user get a bit lost</strong><br />
+<i class="placeholder"></i>Don't you get lost in a second hand book store?
+</li>
+<li>
+<i class='fa fa-brain'></i> <strong>Question rationality</strong><br />
+<i class="placeholder"></i>There is no perfect book to buy next!
+</li>
+<li>
+<i class='fa fa-tablet-screen-button'></i> <strong>Unironical critical software</strong><br />
+<i class="placeholder"></i>Going beyond satire - could this be used?
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Software</h1>
+<h2>Towards critical software</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Towards critical software</h1>
+<img src="img/exodus.jpg"/>
+<div>
+<h2>Léon Krier</h2>
+<p><em>Architect cannot build a new<br />
+world, but he can imagine it.</em></p>
+</div>
+<div class="fragment">
+<h2>Critical mechanisms</h2>
+<ul>
+<li>Deautomatize mindless user actions</li>
+<li>Form based on formal considerations</li>
+<li>Plans that reveal contradictions</li>
+<li>Critical reading of existing works</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image"><div class="body1 fragment">
+<p><img src="img/lowtech.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>99.999% availability vs. climate crisis?</h1>
+<p><strong>Constant availability established idea</strong></p>
+</div>
+<div class="fragment">
+<p>Low-tech magazine's solar powered web site!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/cats.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Pure formalism?</h1>
+<p>Cats provide functional programming abstractions that are core, (...)
+modular, approachable and efficient.</p>
+<p>[It] provides a foundation
+for an ecosystem of pure, typeful libraries (...)</p>
+</div>
+<div class="fragment">
+<p><strong>Why not graph theory instead of categories?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/housex.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Eisenman's House X</h1>
+<p>Questions the basic notion of going from simple forms towards more complex.</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Questioning methodology</h1>
+<img src="img/el.jpg"/>
+<div>
+<h2>Eisenman's House X</h2>
+<ul>
+<li>
+Composed of primitive <br />
+transformed L shapes
+</li>
+<li><em>"Process is now considered incomprehensible"</em></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Vibe coding</h2>
+<p>Start from hundreds of generated<br />
+code you do not understand?</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists "><div class="body">
+<h1>Room for critical expression</h1>
+<img src="img/popova.jpg"/>
+<div>
+<h2>Minor art forms</h2>
+<ul>
+<li>Parks, monuments, decorations</li>
+<li>Avantgarde stage sets</li>
+<li>Esolangs, obfuscated C, demoscene</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Unbuildable plans</h2>
+<ul>
+<li>It does not have to compile!</li>
+<li>
+Political significance of a way<br />
+of seeing and leaving things out
+</li>
+<li>Software architecture? Specifications?</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/campo.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Campo Marzio</h1>
+<p><em>(Piranesi, 1970s)</em></p>
+<p><strong>Combines ancient ruins and inventions</strong></p>
+<p>Critique of rationalism<br />
+Autonomous parts<br />
+No infrastructure<br />
+Messy vitality</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists smaller"><div class="body">
+<h1>Esoteric langauges</h1>
+<img src="img/hello.gif"/>
+<div>
+<h2>Piet programming language</h2>
+<ul>
+<li>Visual programming language!</li>
+<li>
+Domain of reprogramming should<br />
+resemble the domain of use?
+</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Unlambda language</h2>
+<ul>
+<li>Purely functional (SKI calculus)</li>
+<li>Reveals how much of Haskell is not obvious!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Can we do more than this?</h2>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Conclusions</h1>
+<h2>Critical Architecture and Software</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="title conclusion"><h1><em>Critical</em> Architecture/Software <em>Theory</em></h1>
+<ul>
+<li>
+<p><strong>Software needs more questioning!</strong><br />
+Critique in software engages the community?</p>
+</li>
+<li>
+<p><strong>Learning from critical architecture</strong><br />
+Deconstructive plans, parks, folies, monuments...</p>
+</li>
+<li>
+<p><strong>Work in progress... what do you think?</strong><br />
+Read more at <a href="https://tomasp.net/architecture">tomasp.net/architecture</a></p>
+</li>
+</ul>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague<br />
+<em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a>  | <em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+<style>.conclusion h1 { font-size:38pt; } .conclusion li p { font-size:26pt; }</style>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
