@@ -23,7 +23,7 @@ Talks and slides
 
 ### Programming Systems Research
 
- - [Denicek: Computational Substrate for Document-Oriented End-User Programming](https://1drv.ms/p/c/6ddff5260c96e30a/EYgdvAyrLHxPvKmeAEhqHuoBimeL_vkZ2DPWZfs4onGe0w?e=RoZbu0) (September 2025) - UIST, Busan. 
+ - [**Denicek: Computational Substrate for Document-Oriented End-User Programming**](https://1drv.ms/p/c/6ddff5260c96e30a/EYgdvAyrLHxPvKmeAEhqHuoBimeL_vkZ2DPWZfs4onGe0w?e=RoZbu0) (September 2025) - UIST, Busan. 
    See also: [Denicek paper (ACM)](https://dl.acm.org/doi/10.1145/3746059.3747646), [Denicek videos (scroll down!)](https://dl.acm.org/doi/10.1145/3746059.3747646#supplementary-materials), and [source code](https://github.com/d3sprog/denicek).
 
  - [**Writing tiny programming systems**](http://tpetricek.github.io/Talks/2025/writing-tiny-systems/) (June 2025) - MoreVMs, Prague<br />
