@@ -23,6 +23,9 @@ Talks and slides
 
 ### Programming Systems Research
 
+ - [**Programování pro neprogramátory: Nedosažitelný sen nebo blízká realita? (CZ)**](https://tpetricek.github.io/Talks/2025/end-user-programming-cz) (October 2025) - MFF UK, Prague<br/>
+   See also: [Pygmalion reconstruction](https://a-habusta.github.io/Pygmalion-Like-Reimplementation/) by Adrián, [Denicek paper](https://dl.acm.org/doi/10.1145/3746059.3747646), [Sculpin paper](https://dl.acm.org/doi/10.1145/3746059.3747651)
+
  - [Denicek: Computational Substrate for Document-Oriented End-User Programming](https://1drv.ms/p/c/6ddff5260c96e30a/EYgdvAyrLHxPvKmeAEhqHuoBimeL_vkZ2DPWZfs4onGe0w?e=RoZbu0) (September 2025) - UIST, Busan<br />
    See also: [Denicek paper (ACM)](https://dl.acm.org/doi/10.1145/3746059.3747646), [Denicek videos (scroll down!)](https://dl.acm.org/doi/10.1145/3746059.3747646#supplementary-materials), and [source code](https://github.com/d3sprog/denicek).
 

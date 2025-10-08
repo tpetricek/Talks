@@ -1,0 +1,71 @@
+freq,unit,victim,c_regis,geo\TIME_PERIOD	2019	2020 	2021 	2022 	2023 
+A,NR,KIL,EU27_2020,AT	0	0 	0 p	1 p	0 p
+A,NR,KIL,EU27_2020,BE	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,BG	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,CH	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,CY	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,CZ	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,DE	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,DK	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,EE	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,EL	3	0 	0 p	1 p	0 p
+A,NR,KIL,EU27_2020,ES	9	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,EU27_2020	21	3 	0 p	17 p	2 p
+A,NR,KIL,EU27_2020,EU28	21	: 	: 	: 	: 
+A,NR,KIL,EU27_2020,FI	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,FR	2	0 	0 p	0 p	2 p
+A,NR,KIL,EU27_2020,HR	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,HU	0	1 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,IE	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,IS	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,IT	7	2 	0 p	14 p	0 p
+A,NR,KIL,EU27_2020,LI	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,LT	0	0 	0 p	1 p	0 p
+A,NR,KIL,EU27_2020,LU	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,LV	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,MT	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,NL	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,NO	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,OTH	0	0 	0 p	0 p	4 p
+A,NR,KIL,EU27_2020,PL	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,PT	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,RO	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,SE	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,SI	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,SK	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU27_2020,UK	0	0 	0 p	0 p	0 p
+A,NR,KIL,EU28,AT	0	: 	: 	: 	: 
+A,NR,KIL,EU28,BE	0	: 	: 	: 	: 
+A,NR,KIL,EU28,BG	0	: 	: 	: 	: 
+A,NR,KIL,EU28,CH	0	: 	: 	: 	: 
+A,NR,KIL,EU28,CY	0	: 	: 	: 	: 
+A,NR,KIL,EU28,CZ	0	: 	: 	: 	: 
+A,NR,KIL,EU28,DE	0	: 	: 	: 	: 
+A,NR,KIL,EU28,DK	0	: 	: 	: 	: 
+A,NR,KIL,EU28,EE	0	: 	: 	: 	: 
+A,NR,KIL,EU28,EL	3	: 	: 	: 	: 
+A,NR,KIL,EU28,ES	9	: 	: 	: 	: 
+A,NR,KIL,EU28,EU27_2020	21	: 	: 	: 	: 
+A,NR,KIL,EU28,EU28	21	: 	: 	: 	: 
+A,NR,KIL,EU28,FI	0	: 	: 	: 	: 
+A,NR,KIL,EU28,FR	2	: 	: 	: 	: 
+A,NR,KIL,EU28,HR	0	: 	: 	: 	: 
+A,NR,KIL,EU28,HU	0	: 	: 	: 	: 
+A,NR,KIL,EU28,IE	0	: 	: 	: 	: 
+A,NR,KIL,EU28,IS	0	: 	: 	: 	: 
+A,NR,KIL,EU28,IT	7	: 	: 	: 	: 
+A,NR,KIL,EU28,LI	0	: 	: 	: 	: 
+A,NR,KIL,EU28,LT	0	: 	: 	: 	: 
+A,NR,KIL,EU28,LU	0	: 	: 	: 	: 
+A,NR,KIL,EU28,LV	0	: 	: 	: 	: 
+A,NR,KIL,EU28,MT	0	: 	: 	: 	: 
+A,NR,KIL,EU28,NL	0	: 	: 	: 	: 
+A,NR,KIL,EU28,NO	0	: 	: 	: 	: 
+A,NR,KIL,EU28,OTH	0	: 	: 	: 	: 
+A,NR,KIL,EU28,PL	0	: 	: 	: 	: 
+A,NR,KIL,EU28,PT	0	: 	: 	: 	: 
+A,NR,KIL,EU28,RO	0	: 	: 	: 	: 
+A,NR,KIL,EU28,SE	0	: 	: 	: 	: 
+A,NR,KIL,EU28,SI	0	: 	: 	: 	: 
+A,NR,KIL,EU28,SK	0	: 	: 	: 	: 
+A,NR,KIL,EU28,UK	0	: 	: 	: 	: 
