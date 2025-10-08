@@ -23,11 +23,11 @@ Talks and slides
 
 ### Programming Systems Research
 
- - [**Programování pro neprogramátory: Nedosažitelný sen nebo blízká realita? (CZ)**](https://tpetricek.github.io/Talks/2025/end-user-programming-cz) (October 2025) - MFF UK, Prague<br/>
+ - [**Programování pro neprogramátory: Nedosažitelný sen nebo blízká realita? (CZ)**](https://tpetricek.github.io/Talks/2025/end-user-programming-cz) (October 2025) - MFF UK, Prague<br />
    See also: [Pygmalion reconstruction](https://a-habusta.github.io/Pygmalion-Like-Reimplementation/) by Adrián, [Denicek paper](https://dl.acm.org/doi/10.1145/3746059.3747646), [Sculpin paper](https://dl.acm.org/doi/10.1145/3746059.3747651)
 
- - [Denicek: Computational Substrate for Document-Oriented End-User Programming](https://1drv.ms/p/c/6ddff5260c96e30a/EYgdvAyrLHxPvKmeAEhqHuoBimeL_vkZ2DPWZfs4onGe0w?e=RoZbu0) (September 2025) - UIST, Busan<br />
-   See also: [Denicek paper (ACM)](https://dl.acm.org/doi/10.1145/3746059.3747646), [Denicek videos (scroll down!)](https://dl.acm.org/doi/10.1145/3746059.3747646#supplementary-materials), and [source code](https://github.com/d3sprog/denicek).
+ - [**Denicek: Computational Substrate for Document-Oriented End-User Programming**](https://1drv.ms/p/c/6ddff5260c96e30a/EYgdvAyrLHxPvKmeAEhqHuoBimeL_vkZ2DPWZfs4onGe0w?e=RoZbu0) (September 2025) - UIST, Busan<br />
+   See also: [Denicek paper (ACM)](https://dl.acm.org/doi/10.1145/3746059.3747646), [Denicek videos (scroll down!)](https://dl.acm.org/doi/10.1145/3746059.3747646#supplementary-materials), and [source code](https://github.com/d3sprog/denicek)
 
  - [**Writing tiny programming systems**](http://tpetricek.github.io/Talks/2025/writing-tiny-systems/) (June 2025) - MoreVMs, Prague<br />
    See also: TinyBoxer ([JavaScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-javascript), [TypeScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-typescript)), [technical dimensions](https://tomasp.net/techdims/), [Commodore 64 BASIC](https://tomasp.net/commodore64/)
@@ -35,17 +35,17 @@ Talks and slides
  - [**Programming systems deserve a theory too!**](http://tpetricek.github.io/Talks/2025/programming-systems/pliss/) (May 2025) - PLISS, Bertinoro<br />
    See also: Hands-on source code ([JavaScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-javascript), [TypeScript](https://github.com/tpetricek/Talks/tree/master/2025/programming-systems/code-typescript)), [technical dimensions](https://tomasp.net/techdims/), [Commodore 64 BASIC](https://tomasp.net/commodore64/)
 
- - [**Denicek: Computational substrate for document-oriented end-user programming**](https://tpetricek.github.io/Talks/2025/denicek/ifip-wg/) (April 2025) - IFIP WG 2.16, Serpiano.
-   See also: [Denicek source code](https://github.com/d3sprog/denicek), [draft paper](https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf) and [animations](https://github.com/tpetricek/Talks/blob/master/2025/denicek/animations.pptx).
+ - [**Denicek: Computational substrate for document-oriented end-user programming**](https://tpetricek.github.io/Talks/2025/denicek/ifip-wg/) (April 2025) - IFIP WG 2.16, Serpiano
+   See also: [Denicek source code](https://github.com/d3sprog/denicek), [draft paper](https://github.com/tpetricek/denicek-paper/blob/master/paper.pdf) and [animations](https://github.com/tpetricek/Talks/blob/master/2025/denicek/animations.pptx)
 
  - [**Writing Tiny Programming Systems in F#**](https://tpetricek.github.io/Talks/2025/tiny-systems/lambda/) (March 2025) - Prague Lambda Meetup<br />
-   See also: [Tiny systems course at MFF](https://d3s.mff.cuni.cz/teaching/nprg077), [Commodore 64 BASIC](https://tomasp.net/commodore64/) and [Basic BASIC source code](https://github.com/tpetricek/Talks/tree/master/2025/tiny-systems/code/basic-basic).
+   See also: [Tiny systems course at MFF](https://d3s.mff.cuni.cz/teaching/nprg077), [Commodore 64 BASIC](https://tomasp.net/commodore64/) and [Basic BASIC source code](https://github.com/tpetricek/Talks/tree/master/2025/tiny-systems/code/basic-basic)
 
  - [**Programming systems deserve a theory too!**](https://tpetricek.github.io/Talks/2024/programming-systems/cmu/) (April 2024) - IFIP WG 2.16, Pittsburgh<br />
-   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
+   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf)
 
  - [**Exploring the design space of programming systems**](https://tpetricek.github.io/Talks/2023/exploring-design-space/) (November 2023) - HPI Potsdam<br />
-   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf).
+   See also: [Commodore 64](http://tomasp.net/commodore64/), [Technical Dimensions](https://tomasp.net/techdims) and [poorly documented conference organizer demo](https://github.com/tpetricek/conf)
 
  - [**Document-oriented programming based on edit history**](http://tpetricek.github.io/Talks/2023/conf-live/) (October 2023) - LIVE workshop (online)<br />
    See also: [Undocumented source code for the demo](https://github.com/tpetricek/conf) and our [challenge problems paper](https://arxiv.org/pdf/2309.11406.pdf).
