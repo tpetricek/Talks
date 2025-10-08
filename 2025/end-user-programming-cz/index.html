@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Programování pro neprogramátory: Nedosažitelný sen nebo blízká realita?</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; font-size:44pt; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title p { margin-bottom:5px; }
+			.title p i { margin-right:20px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image code { font-size:18pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.smaller2x .body1 { width:420px; }
+			.image.smaller2x .body1 img { max-width:400px; }
+			.image.larger .body1 { width:600px; }
+			.image.larger .body1 img { max-width:580px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1>Programování pro neprogramátory: <em>Nedosažitelný sen nebo blízká realita?</em></h1>
+<div class="body">
+<p><strong>Tomáš Petříček</strong>, MFF UK, Praha</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/hat.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Kdo jsem &amp; co dělám</h1>
+<p><strong>Programovací jazyky<br />
+a nástroje ze všech možných pohledů!</strong></p>
+<p>Absolvent MFF UK,
+doktorát z Cambridge,<br />
+Microsoft Research &amp;
+University of Kent</p>
+<p><strong>Přednáška bude česky, more or less...</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image"><div class="body1 fragment">
+<p><img src="img/chat.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Programování pro neprogramátory</h1>
+<p>Bude v brzké době možné aby programování dělali i neprogramátoři?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger"><div class="body1">
+<p><img src="img/flowmatic.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>FLOW-MATIC</h1>
+</div>
+<div class="fragment">
+<p><strong>Uhodnete z jakého roku<br />
+je obrázek?</strong></p>
+<p>1) 2005 - 2025<br />
+2) 1985 - 2005<br />
+3) 1965 - 1985<br />
+4) 1945 - 1965</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Historie</h1>
+<h2>Programování v letech 1950-1980</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger"><div class="body1">
+<p><img src="img/eniac.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>ENIAC (1945)</h1>
+<p><strong>Frances Bilas, Betty Jennings</strong></p>
+</div>
+<div class="fragment">
+<p>"The ENIAC was<br />
+a son of a bitch<br />
+to program."</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller2x"><div class="body1">
+<p><img src="img/ballistic.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Simulace balistické křivky</h1>
+<p><strong>Programování</strong><br />
+Matematický popis problému<br />
+"Tradiční těžká práce"</p>
+<p><strong>Kódování</strong><br />
+Převedení na řešení v počítači<br />
+"Lehký úkol pro sekretářku"</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/translation.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Programovací jazyky</h1>
+<p>Překlad z jazyka<br />
+snadného pro lidi do jazyka<br />
+snadného pro počítače</p>
+<p><strong>FLOW-MATIC eliminuje problém kódování!</strong></p>
+<p>A2, FLOW-MATIC, MATH-MATIC, FORTRAN, COBOL, LISP, Algol, ...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/nato.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>NATO Software Engineering '68</h1>
+<p><strong>Černá magie programování musí ustoupit vědeckému softwarovému inženýrství!</strong></p>
+</div>
+<div class="fragment">
+<p>Softwarové inženýrství už je mužská práce...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/alto.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Xerox PARC (1970s)</h1>
+<p>Osobní počítače<br />
+Grafické rozhraní<br />
+Okna a ikony<br />
+Objektové programování</p>
+<p><strong>Šlo by programovat interatktivně a vizuálně?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/pygmalion1.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Pygmalion (1975)</h1>
+<p><strong>Programming by demonstration</strong></p>
+<p>Ukážeme systému jak<br />
+má postupovat na konkrétním příkladu...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/pygmalion2.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Pygmalion (1975)</h1>
+<p><strong>Programming by demonstration</strong></p>
+<p>Ukážeme systému jak<br />
+má postupovat na konkrétním příkladu...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Reimplementace Pygmalionu</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Současnost</h1>
+<h2>Programování pro neprogramátory</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image"><div class="body1 fragment">
+<p><img src="img/excel.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Uhodnete...</h1>
+<p>Co je nejpoužívanější programovací nástroj na světě?</p>
+</div>
+<div class="fragment">
+<p><strong>Microsoft Excel!</strong></p>
+<p>Pro většinu lidí jen tabulka, ale umí více než byste čekali...</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content two-column doced"><h1>Programování pro neprogramátory</h1>
+<div class="body">
+<div>
+<h3>"Excel"</h3>
+<p>Grafické rozhraní</p>
+<p>Interaktivní přístup</p>
+<p>Konkrétní hodnoty</p>
+<p><img src="img/elogo.png" alt="" /></p>
+</div>
+<div class="fragment">
+<h3>"ChatGPT"</h3>
+<p>Generování kódu</p>
+<p>Standardní jazyk</p>
+<p>Další AI nástroje...</p>
+<p><img src="img/clogo.png" alt="" /></p>
+<style>.two-column.doced h3 { margin-bottom:5px; color:black;}
+ .two-column.doced p { margin-bottom:0px;}
+ .doced img { border-style:none; max-height:180px; margin-top:20px; margin-left:40px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller"><div class="body1">
+<p><img src="img/avia.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Demo: Práce s daty</h1>
+<h2>Letecké nehody v EU</h2>
+</div>
+<div class="fragment">
+<p>První sloupec<br />
+obsahuje metadata</p>
+</div>
+<div class="fragment">
+<p><code>:</code> znamená chybějící<br />
+<code>p</code> znamená předběžné</p>
+</div>
+<div class="fragment">
+<p>Řádky 13 a 14 jsou součty<br />
+EU27 vs EU28 - Brexit!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Práce s daty v nástroji Denicek</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>Práce s daty v nástroji Denicek</h1>
+<img src="img/denicek.png"/>
+<div>
+<h2>Způsob práce</h2>
+<ul>
+<li>Načteme konkrétní data</li>
+<li>Ruční editace dat</li>
+<li>Program je zobecněná verze</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Co to znamená</h2>
+<ul>
+<li>Data máme stále před sebou</li>
+<li>Musíme přemýšlet co děláme</li>
+<li>Neumí to dělat složitější věci..</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Práce s daty pomocí Copilot</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>Práce s daty pomocí Copilot</h1>
+<img src="img/copilot.png"/>
+<div>
+<h2>Způsob práce</h2>
+<ul>
+<li>AI vygeneruje kód pro nás</li>
+<li>Lze zkoušet, dovysvětlit, měnit</li>
+<li>Konvenční programovací jazyky</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Co to znamená</h2>
+<ul>
+<li>Funguje i na celé aplikace!</li>
+<li>Nemusím umět programovat?</li>
+<li>Je to dost kódu. Je správně?</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Programování</h1>
+<h2>Co je vlastně programování (1/2)</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>Překlad mezi jazyky</h1>
+<img src="img/translation.png"/>
+<div>
+<h2>Neformální představa</h2>
+<ul>
+<li>Více či méně přesné zadání</li>
+<li>Chybí spousta detailů!</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Formální high-level popis</h2>
+<ul>
+<li>Přesný program pro počítač</li>
+<li>Některé detaily nemusíme řešit</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Low-level instrukce</h2>
+<ul>
+<li>Jednotlivé kroky počítačě</li>
+<li>Kóduje vše do naprostého detailu</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder"><div class="body1">
+<p><img src="img/diagram0.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Překlad mezi jazyky</h1>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder"><div class="body1">
+<p><img src="img/diagram1.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Překlad mezi jazyky</h1>
+<p>Dva jazyky s formální syntaxí a sémantikou</p>
+</div>
+<div class="fragment">
+<br>
+<br>
+<p><strong>Kompilátor</strong><br />
+Musí zachovat význam
+Více či méně efektivní</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder"><div class="body1">
+<p><img src="img/diagram2.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Dva přístupy k softwarovému inženýrství</h1>
+</div>
+<div class="fragment">
+<p><strong>Napsat specifikaci</strong><br />
+Doplnit a domyslet<br />
+vše co není formální</p>
+</div>
+<div class="fragment">
+<p><strong>Postupný proces</strong><br />
+Postupně zjišťujeme více, iterativní vývoj</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder"><div class="body1">
+<p><img src="img/diagram3.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Vyřeší to AI za nás?</h1>
+</div>
+<div class="fragment">
+<p><strong>Těžko říct ale...</strong></p>
+<p>1) Krok zahrnuje dost lidského přemýšlení</p>
+<p>2) Formální detaily se musí nějak doplnit</p>
+<p>3) Svět je složitý!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image "><div class="body1">
+<p><img src="img/sdi.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Strategic Defence Initiative (1980s)</h1>
+<p>Je možné napsat software na obranu proti balistickým raketám?</p>
+</div>
+<div class="fragment">
+<p><strong>Ne, protože prostředí se mění rychleji...</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Programování</h1>
+<h2>Co je vlastně programování (2/2)</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Projekt Sculpin</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger"><div class="body">
+<h1>Interakce s prostředím</h1>
+<img src="img/pygmalion3.png"/>
+<div>
+<h2>Iterativní vývoj</h2>
+<ul>
+<li>
+Postupná adaptace běžícího<br />
+a fungujícího systému
+</li>
+<li>Kombinace kódu a interakcí</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Pro neprogramátory?</h2>
+<ul>
+<li>Interakce jednodušší než kód</li>
+<li>AI se stejně hodí, ale jinak...</li>
+<li>Zbývá dost práce 😊</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="title "><h1>Programování pro neprogramátory: <em>Nedosažitelný sen nebo blízká realita?</em></h1>
+<p style="margin-top:60px">
+   <i class="fa fa-calendar-days"></i> Snažíme se o to už nějakých 70 let...</p>
+<p><i class="fa fa-brain"></i> Programování je o pochopení ne o kódu</p>
+<p><i class="fa fa-user-tie"></i> Pochopení bude potřeba vždycky...</p>
+<p><i class="fa fa-hand-sparkles"></i> Problém je dobrý způsob interakce!</p>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, MFF UK, Praha<br />
+<a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a> |
+<a href="https://tomasp.net">tomasp.net</a> |
+<a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
