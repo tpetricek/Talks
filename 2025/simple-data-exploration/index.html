@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Simple programming tools for data exploration</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists.h2red h2 { color:#d22d40; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; font-size:40pt }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+			.icons i { margin-right:8px; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 30px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image h3 { font-size:30pt; margin-top:20px; margin-bottom:-20px; color:#d22d40; font-weight:500; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image code { font-size:18pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.larger .body1 { width:560px; }
+			.image.larger .body1 img { max-width:540px; }
+			.image.larger2x .body1 { width:600px; }
+			.image.larger2x .body1 img { max-width:580px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.smaller2x .body1 { width:420px; }
+			.image.smaller2x .body1 img { max-width:400px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title "><h1>Simple programming tools<br><em>for data exploration</em></h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong><br />
+Department of Distributed and Dependable Systems</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:petricek@d3s.mff.cuni.cz">petricek@d3s.mff.cuni.cz</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://d3s.mff.cuni.cz/~petricek"><a href="https://d3s.mff.cuni.cz/~petricek">https://d3s.mff.cuni.cz/~petricek</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="icons "><h1>Part 1</h1>
+<h2>Making programming with data easier</h2>
+<ul>
+<li><i class='fa fa-school'></i> PhD, University of Cambridge</li>
+<li><i class='fa fa-industry'></i> Microsoft Research Cambridge</li>
+<li><i class='fa fa-city'></i> The Alan Turing Institute, London</li>
+<li><i class='fa fa-church'></i> University of Kent, Canterbury</li>
+<li><i class='fa fa-institution'></i> Charles University, Prague</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="icons red234"><h1>Part 1</h1>
+<h2>Making programming with data easier</h2>
+<ul>
+<li><i class='fa fa-school'></i> PhD, University of Cambridge</li>
+<li><i class='fa fa-industry'></i> <strong>Microsoft Research Cambridge</strong></li>
+<li><i class='fa fa-city'></i> <strong>The Alan Turing Institute, London</strong></li>
+<li><i class='fa fa-church'></i> <strong>University of Kent, Canterbury</strong></li>
+<li><i class='fa fa-institution'></i> Charles University, Prague</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="imageanim image larger"><div class="body1 fragment">
+<p><img src="img/owd.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Data journalism</h1>
+<p><strong>Restoring trust in data in society?</strong></p>
+</div>
+<div class="fragment">
+<p>Understandability<br />
+Correctness<br />
+Reproducibility</p>
+</div>
+<div class="fragment">
+<p><strong>Source code should give us all of these!</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Use an AI to write the code for us?</h1>
+<h2>Analysing Olympic medalists</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image vibecode"><div class="body1">
+<p><img src="img/vibe-code1.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Understandability and correctness</h1>
+<style>.vibecode .body1 img { max-width:1000px; max-height:1000px; width:580px; position:relative;left:-80px }
+.vibecode h1 { color:black; font-weight:400; }
+.vibecode p strong { color:#d22d40; font-weight:600; }</style>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image vibecode"><div class="body1">
+<p><img src="img/vibe-code2.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Understandability and correctness</h1>
+<p><strong>Invalid columns?</strong><br />
+Language does not understand the data</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image vibecode"><div class="body1">
+<p><img src="img/vibe-code3.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Understandability and correctness</h1>
+<p><strong>Invalid columns?</strong><br />
+Language does not understand the data</p>
+<p><strong>Complex abstractions</strong><br />
+Designed for experts</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image vibecode"><div class="body1">
+<p><img src="img/vibe-code4.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Understandability and correctness</h1>
+<p><strong>Invalid columns?</strong><br />
+Language does not understand the data</p>
+<p><strong>Complex abstractions</strong><br />
+Designed for experts</p>
+<p><strong>Inconsistencies</strong><br />
+Are we sure it is right?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Olympic medals in The Gamma</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content ccslide"><h1>Completion based on a formal model</h1>
+<div class="body">
+<div>
+<img src="img/autocomplete.png" />
+</div>
+<div class="fragment">
+<p style="position:absolute;left:410px;top:190px" class="label"><strong>Correctness</strong> meaning all<br> recommendations valid</p>
+</div>
+<div class="fragment">
+<p style="position:absolute;left:450px;top:300px" class="label"><strong>Completeness</strong> meaning<br> all valid options listed</p>
+<style>.content p.label { display:inline-block; font-weight:500; color:white; font-size:17pt; background:#003657; border-radius:7px; padding:8px 15px; margin-left:10px; }
+.ccslide h1 { font-size:32pt; margin-bottom:20px }
+.label strong {font-weight:600; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists condensedlists"><div class="body">
+<h1>Research behind The Gamma</h1>
+<img src="img/pldi.png"/>
+<div>
+<h2>Language theory</h2>
+<p>Dot-driven development <span class="paper">ECOOP '17 (A)</span><br />
+Relative type safety <span class="paper">PLDI '16 (A*)</span></p>
+</div>
+<div class="fragment">
+<h2>User-centric design</h2>
+<p>Iterative prompting <span class="paper">VL/HCC '22</span></p>
+</div>
+<div class="fragment">
+<h2>Data visualization</h2>
+<p>Composable library design <span class="paper">J. Funct. Program '21</span></p>
+<style>
+.condensedlists p { margin-top:2px; }
+.reveal .lists.condensedlists .body img { max-width:240px; margin-top:-10px; }
+.paper { display:inline-block; color:white; font-weight:600; font-size:15pt; background:#003657; border-radius:7px; padding:2px 10px; margin-left:10px; } </style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content blueh3 three-column"><h1>Type checking and type safety</h1>
+<div class="body">
+<div>
+<h3>Expressions</h3>
+<p>Minimal formal language model</p>
+<p><span class="math">\(e\,:=\,x\,|\,v\,|\,e.N\)</span></p>
+</div>
+<div class="fragment">
+<h3>Type system</h3>
+<p>Types in program are used correctly</p>
+<p><span class="math">\(~~~~~~~\Gamma \vdash e : \tau\)</span></p>
+</div>
+<div class="fragment">
+<h3>Evaluation</h3>
+<p>Formal model of how programs run</p>
+<p><span class="math">\(~~~~~~~e\mapsto v\)</span></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content nologo rulezz"><div class="body">
+<div>
+<p><img src="img/foo-types.png" alt="" /></p>
+<p><img src="img/foo-eval.png" alt="" /></p>
+<style>.rulezz img { max-width:750px; margin-left:50px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content blueh3"><h1>Type safety</h1>
+<div class="body">
+<div>
+<h3>Well-typed programs do not go wrong</h3>
+<p>For any <span class="math">\(e\)</span> such that <span class="math">\(\emptyset \vdash e : \tau\)</span>, the program evaluates to a value <span class="math">\(e \mapsto v\)</span>
+and the result has the right type <span class="math">\(v \in \tau\)</span></p>
+</div>
+<div class="fragment">
+<h3>But the initial environment is not empty!</h3>
+<p>It contains things from the real world! i.e. <span class="math">\(\Gamma_0 \neq \emptyset\)</span><br />
+For some data <span class="math">\(d\)</span> and type provider <span class="math">\(\pi\)</span>, let <span class="math">\(\Gamma_0 = \pi(d)\)</span></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content blueh3"><h1>Relative type safety</h1>
+<div class="body">
+<div>
+<h3>Well-typed programs do not go wrong</h3>
+<p>For any <span class="math">\(e\)</span> such that <span class="math">\(\emptyset \vdash e : \tau\)</span>, the program evaluates to a value <span class="math">\(e \mapsto v\)</span>
+and the result has the right type <span class="math">\(v \in \tau\)</span></p>
+</div>
+<div class="fragment">
+<h3>As long as the world is well-behaved</h3>
+<p>Given a data sample <span class="math">\(d\)</span>, type provider <span class="math">\(\pi\)</span> and an actual input<br> <span class="math">\(d'\)</span> such that
+<span class="math">\(\pi(d') \sqsubseteq \pi(d)\)</span> then for any program <span class="math">\(e\)</span> such that <span class="math">\(x:\pi(d) \vdash e : \tau\)</span>,
+it evaluates <span class="math">\(e[d'/x]\mapsto v\)</span> and <span class="math">\(v \in \tau\)</span>.</p>
+<style>.blueh3 h3 { color:#003657; margin-bottom:5px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content "><h1>But does it make programming easier?</h1>
+<div class="body">
+<div>
+<div class="fragment">
+<h2 style="margin:-35px 0px 30px 0px;font-size:32pt;">Gap between spreadsheets and Python...</h2>
+<img src="img/substrates.png" style="border-style:none;max-width:700px"/>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content "><h1>Spreadsheets get many things right</h1>
+<div class="body">
+<div>
+<div>
+<h2 style="margin:-35px 0px 30px 0px;font-size:32pt;">Uniformity of grid, transparency of formulas</h2>
+<img src="img/substrates-thegamma.png" style="border-style:none;max-width:700px"/>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists h2red"><div class="body">
+<h1>Keeping spreadsheet qualities?</h1>
+<img src="img/cubetp.png"/>
+<div>
+<h2>User-centric evaluation</h2>
+<ul>
+<li>Research lab business team</li>
+<li>Three different data sources</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Research questions</h2>
+<ul>
+<li>RQ #1: Can non-programmers use The Gamma?</li>
+<li>RQ #2: Can they learn from just code samples?</li>
+<li>RQ #3: Can knowledge transfer between sources?</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content noborder bigloop"><h1>Simple programming tools for data exploration</h1>
+<div class="body">
+<div>
+<p><img src="img/process1.png" alt="" /></p>
+<style>.bigloop h1 { font-size:39pt; letter-spacing:-2px } .bigloop .body img { max-width:850px; margin-bottom:30px; max-height:1000px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content noborder bigloop"><h1>Simple programming tools for data exploration</h1>
+<div class="body">
+<div>
+<p><img src="img/process2.png" alt="" /></p>
+<p>Two <strong>Core A*</strong> conferences (POPL, PLDI) and<br />
+one <strong>D1</strong> (98 percentile) journal (IEEE TKDE)</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image "><div class="body1">
+<p><img src="img/iccs.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1><span style="color:black;font-weight:500">Follow-up work<br></span> Institute of Computing for Climate Science</h1>
+<p><strong>Make the IPCC<br />
+reports more understandable, transparent and reproducible?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="icons red5"><h1>Part 2</h1>
+<h2>From programming languages to systems</h2>
+<ul>
+<li><i class='fa fa-school'></i> PhD, University of Cambridge</li>
+<li><i class='fa fa-industry'></i> Microsoft Research Cambridge</li>
+<li><i class='fa fa-city'></i> The Alan Turing Institute, London</li>
+<li><i class='fa fa-church'></i> University of Kent, Canterbury</li>
+<li><i class='fa fa-institution'></i> <strong>Charles University, Prague</strong></li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists h2red bigger smallerfnt"><div class="body">
+<h1>Research group @ D3S MFF</h1>
+<img src="img/prgprg.jpg"/>
+<div>
+<h2>Programming system thinking</h2>
+<ul>
+<li>Visual programming languages</li>
+<li>Interactive proof assistants</li>
+</ul>
+<p style="position:absolute; font-weight:500; font-size:16pt; text-align:right; left:730px;top:310px">PRIMUS (2024-2027)</p>
+</div>
+<div class="fragment">
+<h2>Team funded through PRIMUS</h2>
+<ul>
+<li>Jan Verter (Ing from FIT CTU)</li>
+<li>Joel Jakubovic (PhD from Kent)</li>
+<li>Pablo Donato (PhD from École Polytechnique)</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Supervised thesis students</h2>
+<ul>
+<li>2 Masters (2 finished)</li>
+<li>4 Bachelor (13 finished)</li>
+</ul>
+<style>.smallerfnt h1 { font-size:40pt; margin-bottom:10px;} .smallerfnt ul li { font-size:24pt; } .smallerfnt h2 { font-size:28pt; } </style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists idp"><div class="body">
+<h1>Interdisciplinary programming research</h1>
+<img src="img/cultures.jpg"/>
+<div>
+<h2>Programming language theory</h2>
+<ul>
+<li>Powerful and general methodology</li>
+<li>Types for data science <span class="paper">PRIMUS 2024</span></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Human-computer interaction</h2>
+<ul>
+<li>Programming substrates <span class="paper">UIST '25 (A*)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>History and philosophy</h2>
+<ul>
+<li>Cultures of Programming <span class="paper">CUP 2025</span></li>
+<li>Donatio Chair application</li>
+</ul>
+<style>.idp h1 { font-size:40pt; letter-spacing:-1px }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="title conclusion"><h1>Thank you</h1>
+<h2>Programming is still very far<br> from being a solved problem!</h2>
+<div class="body">
+<p><strong>Tomas Petricek</strong><br />
+Department of Distributed and Dependable Systems</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:petricek@d3s.mff.cuni.cz">petricek@d3s.mff.cuni.cz</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://d3s.mff.cuni.cz/~petricek"><a href="https://d3s.mff.cuni.cz/~petricek">https://d3s.mff.cuni.cz/~petricek</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content "><div class="body">
+<div>
+<p>v1</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="largeicons "><h1>Before returning to Matfyz</h1>
+<ul>
+<li>
+<i class='fa fa-school'></i> <strong>PhD, University of Cambridge</strong><br />
+<i class="placeholder"></i>Formal models of programming languages
+</li>
+<li>
+<i class='fa fa-industry'></i> <strong>Microsoft Research Cambridge</strong><br />
+<i class="placeholder"></i>Applied functional programming and tools
+</li>
+<li>
+<i class='fa fa-city'></i> <strong>The Alan Turing Institute, London</strong><br />
+<i class="placeholder"></i>Expert and non-expert tools for data science
+</li>
+<li>
+<i class='fa fa-church'></i> <strong>University of Kent, Canterbury</strong><br />
+<i class="placeholder"></i>Principles of rich programming systems
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="largeicons red234"><h1>Before returning to Matfyz</h1>
+<ul>
+<li>
+<i class='fa fa-school'></i> <strong>PhD, University of Cambridge</strong><br />
+<i class="placeholder"></i>Formal models of programming languages
+</li>
+<li>
+<i class='fa fa-industry'></i> <strong>Microsoft Research Cambridge</strong><br />
+<i class="placeholder"></i>Applied functional programming and tools
+</li>
+<li>
+<i class='fa fa-city'></i> <strong>The Alan Turing Institute, London</strong><br />
+<i class="placeholder"></i>Expert and non-expert tools for data science
+</li>
+<li>
+<i class='fa fa-church'></i> <strong>University of Kent, Canterbury</strong><br />
+<i class="placeholder"></i>Principles of rich programming systems
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image noborder movedown"><div class="body1">
+<p><img src="img/v1/loop-crop.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Data exploration is a half of the work!</h1>
+<p>Spreadsheets, data science notebooks, business intelligence</p>
+</div>
+<div class="fragment">
+<p><strong>I propose to view systems &amp; tools for data exploration as programming tools</strong></p>
+<style>.movedown img { margin-top:50px; }</style>
+<style>.red234 ul li:nth-child(2), .red5 ul li:nth-child(5),
+  .red234 ul li:nth-child(3) { color:#d22d40; } .red234 ul li:nth-child(4) { color:#d22d40; }</style>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="imageanim image noborder movedown"><div class="body1 fragment">
+<p><img src="img/v1/substrates.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>What is simple?</h1>
+<p><strong>Major gap in tooling<br> for data science!</strong></p>
+</div>
+<div class="fragment">
+<h3>Programming theory</h3>
+<p>A small number of composable primitives</p>
+</div>
+<div class="fragment">
+<h3>User-centric view</h3>
+<p>Non-programmers can complete more tasks</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Weather info with F# Data</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image noborder"><div class="body1">
+<p><img src="img/v1/substrates-fsdata.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>F# Data</h1>
+<p><strong>Makes accessing and exploring data easier for programmers</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists smallerh1 smaller"><div class="body">
+<h1>Data as a programming language problem</h1>
+<img src="img/v1/weather.png"/>
+<div>
+<h2>Application of PL ideas</h2>
+<ul>
+<li>Type systems for tooling and safety</li>
+<li>Composable libraries of primitives</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Rethink PL assumptions</h2>
+<ul>
+<li>What types do we need for rich data?</li>
+<li>What does type safety guarantee?</li>
+</ul>
+<style>.smallerh1 h1 { font-size:43pt; letter-spacing:-2px }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content "><div class="body">
+<div>
+<div class="bigeq">
+<p><span class="math">\(\emptyset \vdash e : \tau\)</span></p>
+</div>
+<style>
+.reveal .bigeq p { text-align:center; margin-top:100px; }
+.reveal .bigeq .math { font-size:3em !important; color:#d22d40; }
+</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content "><div class="body">
+<div>
+<div class="bigeq bigeq2">
+<p><span class="math">\(\pi(~~~~~~) \vdash e : \tau\)</span></p>
+<img src="img/v1/globe.png" style="position:absolute;border-style:none;left:217px;top:110px;width:220px" />
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content blueh3"><h1>Relative type safety property</h1>
+<div class="body">
+<div>
+<h3>Well-typed programs do not go wrong</h3>
+<p>For any <span class="math">\(e\)</span> such that <span class="math">\(\emptyset \vdash e : \tau\)</span>, the program evaluates to a value <span class="math">\(e \mapsto v\)</span>
+and the result has the right type <span class="math">\(v \in \tau\)</span></p>
+</div>
+<div class="fragment">
+<h3>As long as the environment is well-behaved</h3>
+<p>Given sample inputs <span class="math">\(d_1, \ldots, d_n\)</span> and an actual input <span class="math">\(d\)</span> such that
+<span class="math">\(S(d) \sqsubseteq S(d1, \ldots, d_n)\)</span> then for any program <span class="math">\(e\)</span> such that <span class="math">\(x:S(d_1, \ldots, d_n) \vdash e : \tau\)</span>,
+it evaluates <span class="math">\(e[d/x]\mapsto v\)</span> and <span class="math">\(v \in \tau\)</span>.</p>
+<style>.blueh3 h3 { color:#003657; margin-bottom:5px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle "><div class="body">
+<h1>Demo</h1>
+<h2>Olympic medals in The Gamma</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image noborder movedown"><div class="body1">
+<p><img src="img/v1/substrates-thegamma.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The Gamma</h1>
+<p><strong>Lets non-programmers complete simple data programming tasks</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists smallerh1 noborder"><div class="body">
+<h1>Programming tools for non-programmers</h1>
+<img src="img/v1/study.png"/>
+<div>
+<h2>Design principles</h2>
+<ul>
+<li>Work with code for transparency</li>
+<li>Same interface for many sources</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Usability evaluation</h2>
+<ul>
+<li>
+13 participants from a business<br />
+team in non-technical roles
+</li>
+<li>"This is actually pretty simple to use"</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content noborder bigloop"><h1>Simple programming tools for data exploration</h1>
+<div class="body">
+<div>
+<p><img src="img/v1/loop.png" alt="" /></p>
+<style>.bigloop h1 { font-size:39pt; letter-spacing:-2px } .bigloop img { max-width:700px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content noborder bigloop"><h1>Simple programming tools for data exploration</h1>
+<div class="body">
+<div>
+<p><img src="img/v1/loop-papers.png" alt="" /></p>
+</div>
+<div class="fragment">
+<p><strong>Core A*</strong> (POPL, PLDI) and <strong>Core A</strong> (ECOOP)<br />
+conferences and <strong>journals</strong> (JFP, IEEE TKDE)</p>
+<style>.bigloop h1 { font-size:39pt; letter-spacing:-2px } .bigloop img { max-width:700px; }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="largeicons red5"><h1>After returning to Matfyz</h1>
+<ul>
+<li>
+<i class='fa fa-school'></i> <strong>PhD, University of Cambridge</strong><br />
+<i class="placeholder"></i>Formal models of programming languages
+</li>
+<li>
+<i class='fa fa-industry'></i> <strong>Microsoft Research Cambridge</strong><br />
+<i class="placeholder"></i>Applied functional programming and tools
+</li>
+<li>
+<i class='fa fa-city'></i> <strong>The Alan Turing Institute, London</strong><br />
+<i class="placeholder"></i>Expert and non-expert tools for data science
+</li>
+<li>
+<i class='fa fa-church'></i> <strong>University of Kent, Canterbury</strong><br />
+<i class="placeholder"></i>Principles of rich programming systems
+</li>
+<li>
+<i class='fa fa-institution'></i> <strong>Charles University, Prague</strong><br />
+<i class="placeholder"></i>Principles of rich programming systems
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image smaller2x"><div class="body1">
+<p><img src="img/v1/prgprg.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Research group @ D3S</h1>
+<h3 style="line-height:1em;margin-bottom:10px">From programming languages to systems</h3>
+<p>Programming systems<br />
+with <strong>Joel Jakubovic</strong></p>
+<p>User experience of proof assistants
+with <strong>Jan Verter</strong></p>
+<p>Logics for visual program&shy;ming with <strong>Pablo Donato</strong></p>
+<p style="position:relative; font-weight:500; font-size:16pt; left:-440px;top:-210px">PRIMUS (2024-2027) and collaboration<br> with prof. Jan Vitek and FIT CTU</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists idp"><div class="body">
+<h1>Interdisciplinary programming research</h1>
+<img src="img/v1/cultures.jpg"/>
+<div>
+<h2>Programming language theory</h2>
+<ul>
+<li>Applied to programming systems</li>
+<li>Rethink via programming systems</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Human-computer interaction</h2>
+<ul>
+<li>Programming substrates <img src="img/v1/uist.png" style="border-style:none;float:none;width:100px;margin:0px;position:relative;top:3px;left:4px"></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>History and philosophy</h2>
+<ul>
+<li>Cultures of Programming <img src="img/v1/cup.png" style="border-style:none;float:none;width:100px;margin:0px;position:relative;top:3px;left:4px"></li>
+<li>Donatio Chair application</li>
+</ul>
+<style>.idp h1 { font-size:40pt; letter-spacing:-1px }</style>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="title conclusion"><h1>Thank you</h1>
+<h2>Simple programming<br> tools for data exploration</h2>
+<div class="body">
+<p><strong>Tomas Petricek</strong><br />
+Department of Distributed and Dependable Systems</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:petricek@d3s.mff.cuni.cz">petricek@d3s.mff.cuni.cz</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://d3s.mff.cuni.cz/~petricek"><a href="https://d3s.mff.cuni.cz/~petricek">https://d3s.mff.cuni.cz/~petricek</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
