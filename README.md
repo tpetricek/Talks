@@ -17,13 +17,14 @@ Talks by category
  - [FsLab and Data Science](#fslab-and-data-science)
  - [Web and Reactive programming](#web-and-reactive-programming)
  - [F# and Functional Programming](#f-and-functional-programming)
+ - [Job and other internal talks](#job-and-other-internal-talks)
 
 Talks and slides
 ----------------
 
 ### Programming Systems Research
 
- - [**Programování pro neprogramátory: Nedosažitelný sen nebo blízká realita? (CZ)**](https://tpetricek.github.io/Talks/2025/end-user-programming-cz) (October 2025) - MFF UK, Prague. 
+ - [**Programování pro neprogramátory: Nedosažitelný sen nebo blízká realita? (CZ)**](https://tpetricek.github.io/Talks/2025/end-user-programming-cz) (October 2025) - MFF UK, Prague.
    See also: [Pygmalion reconstruction](https://a-habusta.github.io/Pygmalion-Like-Reimplementation/) by Adrián, [Denicek paper](https://dl.acm.org/doi/10.1145/3746059.3747646), [Sculpin paper](https://dl.acm.org/doi/10.1145/3746059.3747651)
 
  - [**Denicek: Computational Substrate for Document-Oriented End-User Programming**](https://1drv.ms/p/c/6ddff5260c96e30a/EYgdvAyrLHxPvKmeAEhqHuoBimeL_vkZ2DPWZfs4onGe0w?e=RoZbu0) (September 2025) - UIST, Busan.
@@ -150,9 +151,6 @@ Talks and slides
 
  - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/edinburgh/index.html#/) (August 2018) - University of Edinburgh<br />
    See also: [source code](https://github.com/tpetricek/Talks/tree/master/2018/human-data-interaction/code), [TheGamma playground](http://gamma.turing.ac.uk) and shorter version below.
-
- - [**Programming as human data interaction**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - University of Kent<br />
-   See also: [Azure notebooks](https://notebooks.azure.com/tomasp/libraries/interview-demo), [TheGamma playground](http://gamma.turing.ac.uk) and [Fun3D project](http://fun3d.net/)
 
  - [**Teaching old type systems new tricks with type providers**](http://tpetricek.github.io/Talks/2018/type-provider-tricks/kent/) (February 2018) - University of Kent<br />
    See also: [Birmingham version](http://tpetricek.github.io/Talks/2018/type-provider-tricks/bham/), [F# Data paper](http://tomasp.net/academic/papers/fsharp-data/) (PLDI 2016) and [Dot-driven development paper](http://tomasp.net/academic/papers/pivot/) (ECOOP 2017)
@@ -315,6 +313,19 @@ Talks and slides
 
  - [**Literate programming with F#**](http://tpetricek.github.io/Talks/2015/literate-programming/krakow/) (February 2015) - LambdaDays, Krakow<br />
    See also: [source code for the talk materials](https://github.com/tpetricek/Talks/tree/master/2015/literate-programming)
+
+### Job and other internal talks
+
+ - [**Simple programming tools for data exploration**](https://tpetricek.github.io/Talks/2025/simple-data-exploration/) (November 2025) - Habilitation (MFF UK)<br />
+   See also: [Vibe-coded medal analaysis](https://github.com/tpetricek/Talks/blob/master/2025/simple-data-exploration/code/medals.ipynb) and [The Gamma](http://turing.thegamma.net/)
+
+ - [**Data exploration as a programming problem**](https://tpetricek.github.io/Talks/2022/data-exploration/mff/) (April 2022) - Job talk (MFF UK)<br />
+  See also: [F# demo](https://github.com/tpetricek/Talks/blob/master/2022/data-exploration/code/providers-done.ipynb), [The Gamma](http://turing.thegamma.net/), [Wrattler](http://www.wrattler.org/), [Compost.js](https://compostjs.github.io/compost/)
+
+ - [**Changing how we think: Programming languages and systems**](https://tpetricek.github.io/Talks/2022/matfyz) (April 2022) - Interview talk (MFF UK)
+
+ - [**Programming as human data interaction (research) & Domain-specific languages (teaching)**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - University of Kent<br />
+   See also: [Azure notebooks](https://notebooks.azure.com/tomasp/libraries/interview-demo), [TheGamma playground](http://gamma.turing.ac.uk) and [Fun3D project](http://fun3d.net/)
 
 
 Slides license
