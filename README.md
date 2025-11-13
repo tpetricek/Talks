@@ -324,7 +324,7 @@ Talks and slides
 
  - [**Changing how we think: Programming languages and systems**](https://tpetricek.github.io/Talks/2022/matfyz) (April 2022) - Interview talk (MFF UK)
 
- - [**Programming as human data interaction (research) & Domain-specific languages (teaching)**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - University of Kent.
+ - [**Programming as human data interaction (research) & Domain-specific languages (teaching)**](http://tpetricek.github.io/Talks/2018/human-data-interaction/kent/) (February 2018) - Job talk (University of Kent).
    See also: [Azure notebooks](https://notebooks.azure.com/tomasp/libraries/interview-demo), [TheGamma playground](http://gamma.turing.ac.uk) and [Fun3D project](http://fun3d.net/)
 
 
