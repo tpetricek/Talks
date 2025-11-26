@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Computational Substrates for Document-Oriented Programming</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:500px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content.two-column p { margin-bottom:5px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.two-column img { max-width:70%; margin-top:20px; margin-left:0px; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:5px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:28pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title  slide1"><h1><strong>Computational Substrates for</strong> Document-Oriented Programming</h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide2"><div class="body">
+<h1>Essence</h1>
+<h2>What do all of these have in common?</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide3"><div class="body1">
+<p><img src="img/boxer.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Boxer (1986)</h1>
+<p><strong>Environment for creating interactive textbooks</strong></p>
+<p>Spatial metaphor<br />
+Naive realism</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide4"><div class="body1">
+<p><img src="img/subtext.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Subtext (2005)</h1>
+<p><strong>Non-textual programming system based on copying</strong></p>
+<p>First-class copy&amp;paste<br />
+Concrete programming</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide5"><div class="body1">
+<p><img src="img/jupyter.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Jupyter/IPython (2001)</h1>
+<p><strong>Literate programming environment for data science</strong></p>
+<p>Notebook with cells<br />
+Code, outputs, text</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide6"><div class="body1">
+<p><img src="img/hyper.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Hypercard (1987)</h1>
+<p><strong>Hypermedia authoring system for end-users</strong></p>
+<p>Stacks of cards<br />
+User levels<br />
+HyperTalk language</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide7"><div class="body">
+<h1>Definition</h1>
+<h2>Document-oriented programming system</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons  slide8"><h1>Definition</h1>
+<h2>Document-oriented programming system</h2>
+<ul>
+<li>
+<i class='fa fa-file-code'></i> <strong>Primary notation is document</strong><br />
+<i class="placeholder"></i>Contains other data and code notations
+</li>
+<li>
+<i class='fa fa-hand-pointer'></i> <strong>Interaction through document</strong><br />
+<i class="placeholder"></i>Authoring and using through the same interface
+</li>
+<li>
+<i class='fa fa-rotate'></i> <strong>Editing running at the same time</strong><br />
+<i class="placeholder"></i>No separation between edit-time and run-time
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger slide9"><div class="body">
+<h1>Why document-oriented systems?</h1>
+<img src="img/hyper1.png"/>
+<div>
+<h2>Programming research</h2>
+<p>What is the formal model?<br />
+Can we type check them?<br />
+What are their design choices?</p>
+</div>
+<div class="fragment">
+<h2>Human-centric research</h2>
+<p>Better support non-programmers<br />
+Support progression to expert<br />
+More open and transparent!</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide10"><div class="body">
+<h1>Denicek</h1>
+<h2>Substrate for end-user doc programming</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide11"><h1>Programming experiences</h1>
+<div class="body">
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content three-column nologo slide12"><h1>Programming experiences</h1>
+<div class="body">
+<div>
+<h3>Collaboration</h3>
+<p><img src="img/anim-collab.gif" alt="" /></p>
+<p>Merge edits made independently by different users</p>
+</div>
+<div class="fragment">
+<h3>Demonstration</h3>
+<p><img src="img/anim-pbd.gif" alt="" /></p>
+<p>Specify program by showing concrete document action</p>
+</div>
+<div class="fragment">
+<h3>Schema change</h3>
+<p><img src="img/anim-struct.gif" alt="" /></p>
+<p>Adapt references when document structure changes</p>
+</div>
+</div>
+<style>.slide12 img { width:200px; border-style:none; } .slide12 
+h3 { color:black; font-size:26pt } .slide12   p { font-size:24pt; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide13"><div class="body1">
+<p><img src="img/denicek1.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Denicek</h1>
+<p><strong>Computational substrate for end-user document-oriented programming</strong></p>
+<br>
+<p>Makes implementing<br />
+such systems easy!</p>
+</div>
+</div>
+</div>
+<style>.slide13 p { margin:5px 0px 0px 0px; } .slide13  .body1 { margin-right:-30px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide14"><div class="body1">
+<p><img src="img/denicek2.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Webnicek</h1>
+<p><strong>Web-based end-user programming tool</strong></p>
+<br>
+<p>Co-developed with the Denicek substrate</p>
+<p>Six formative examples</p>
+</div>
+</div>
+</div>
+<style>.slide14 p { margin:5px 0px 0px 0px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide15"><div class="body1">
+<p><img src="img/denicek3.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Datnicek</h1>
+<p><strong>Simple data science notebook system</strong></p>
+<br>
+<p>Collaborative editing</p>
+<p>Programming by demonstration</p>
+<p>Incremental evaluation</p>
+</div>
+</div>
+</div>
+<style>.slide15 p { margin:5px 0px 0px 0px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content noborder slide16"><h1>Denicek: <strong>Document and Edit history</strong></h1>
+<div class="body">
+</div>
+<style>.slide16 h1 { font-size:38pt; } .slide16  .body img { max-width:550px; margin-left:80px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content noborder slide17"><h1>Denicek: <strong>Document and Edit history</strong></h1>
+<div class="body">
+<div>
+<p><img src="img/doc/denicek1.png" alt="" /></p>
+</div>
+</div>
+<style>.slide17 h1 { font-size:38pt; } .slide17  .body img { max-width:550px; margin-left:80px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content noborder slide18"><h1>Denicek: <strong>Document and Edit history</strong></h1>
+<div class="body">
+<div>
+<p><img src="img/doc/denicek2.png" alt="" /></p>
+</div>
+</div>
+<style>.slide18 h1 { font-size:38pt; } .slide18  .body img { max-width:550px; margin-left:80px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content noborder slide19"><h1>Denicek: <strong>Document and Edit history</strong></h1>
+<div class="body">
+<div>
+<p><img src="img/doc/denicek3.png" alt="" /></p>
+</div>
+</div>
+<style>.slide19 h1 { font-size:38pt; } .slide19  .body img { max-width:550px; margin-left:80px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content noborder slide20"><h1>Denicek: <strong>Document and Edit history</strong></h1>
+<div class="body">
+<div>
+<p><img src="img/doc/denicek4.png" alt="" /></p>
+</div>
+</div>
+<style>.slide20 h1 { font-size:38pt; } .slide20  .body img { max-width:550px; margin-left:80px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide21"><div class="body">
+<h1>Demo</h1>
+<h2>Conference planning in Webnicek</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide22"><div class="body1">
+<p><img src="img/doc/branch1.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Collaborative editing</h1>
+</div>
+</div>
+</div>
+<style>.slide22 .body1 img { width:300px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide23"><div class="body1">
+<p><img src="img/doc/branch2.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Collaborative editing</h1>
+<p>One user changes the document structure</p>
+</div>
+</div>
+</div>
+<style>.slide23 .body1 img { width:300px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide24"><div class="body1">
+<p><img src="img/doc/branch3.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Collaborative editing</h1>
+<p>One user changes the document structure</p>
+<p>Another user changes<br />
+data in the document</p>
+</div>
+<div class="fragment">
+<p><strong>Can we merge the edits?</strong></p>
+</div>
+</div>
+</div>
+<style>.slide24 .body1 img { width:300px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide25"><div class="body1">
+<p><img src="img/doc/merged1.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Merging edits</h1>
+<p><strong>Linearize like rebase</strong></p>
+</div>
+</div>
+</div>
+<style>.slide25 .body1 img { width:500px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide26"><div class="body1">
+<p><img src="img/doc/merged2.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Merging edits</h1>
+<p><strong>Linearize like rebase</strong></p>
+</div>
+</div>
+</div>
+<style>.slide26 .body1 img { width:500px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide27"><div class="body1">
+<p><img src="img/doc/merged3.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Merging edits</h1>
+<p><strong>Linearize like rebase</strong></p>
+<p>Add data first, then change document structure is easy!</p>
+</div>
+</div>
+</div>
+<style>.slide27 .body1 img { width:500px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide28"><div class="body1">
+<p><img src="img/doc/merged4.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Merging edits</h1>
+<p><strong>Linearize like rebase</strong></p>
+<p>Add data first, then change document structure is easy!</p>
+</div>
+</div>
+</div>
+<style>.slide28 .body1 img { width:500px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide29"><div class="body1">
+<p><img src="img/doc/merged5.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Merging edits</h1>
+<p><strong>Linearize like rebase</strong></p>
+<p>Add data first, then change document structure is easy!</p>
+<p>Change structure, then add new data is tricky!</p>
+</div>
+</div>
+</div>
+<style>.slide29 .body1 img { width:500px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="lists noborder nologo slide30"><div class="body">
+<h1>Three primitive operations</h1>
+<img src="img/edits.png"/>
+<div>
+<h2>Apply edit history</h2>
+<p>Compute the current<br />
+document state</p>
+</div>
+<div class="fragment">
+<h2>Merging of histories</h2>
+<p>Turn branching into<br />
+a linear history</p>
+</div>
+<div class="fragment">
+<h2>Conflict detection</h2>
+<p>Report merge conflicts</p>
+</div>
+</div>
+<style>.slide30 .body img { max-width:400px !important; max-height:600px !important; margin-top:0px !important; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide31"><h1>Merging of edit histories</h1>
+<div class="body">
+<div>
+<h3>Merging</h3>
+<p>Given <span class="math">\(E, E_1\)</span> and <span class="math">\(E, E_2\)</span> with a shared prefix <span class="math">\(E\)</span>:</p>
+<blockquote>
+<p><span class="math">\(\mathcal{M}_E(E_1, E_2) = E, E_1, E_2'\)</span><br />
+<span class="math">\(\mathcal{M}_E(E_2, E_1) = E, E_2, E_1'\)</span></p>
+</blockquote>
+</div>
+<div class="fragment">
+<h3>Edit reconciliation</h3>
+<p>Given <span class="math">\(e_1\)</span> and <span class="math">\(e_2\)</span>, produce <span class="math">\(e_2', e_2'', \ldots\)</span> that can be applied after <span class="math">\(e_1\)</span></p>
+<ul>
+<li>Apply <span class="math">\(e_1\)</span> to nodes newly added by <span class="math">\(e_2\)</span></li>
+<li>Transform references in <span class="math">\(e_2\)</span> according to <span class="math">\(e_1\)</span></li>
+</ul>
+</div>
+</div>
+<style>.slide31 h1 { font-size:38pt; } .slide31  h3 { margin-bottom:0px; margin-top:10px;}</style><img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide32"><div class="body">
+<h1>Demo</h1>
+<h2>Programming by demonstration</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide33"><div class="body1">
+<p><img src="img/doc/pbd1.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The unreasonable effectiveness of merge</h1>
+<p>Simply replay edits on top of the current history!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide34"><div class="body1">
+<p><img src="img/doc/pbd2.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The unreasonable effectiveness of merge</h1>
+<p>Simply replay edits on top of the current history!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide35"><div class="body1">
+<p><img src="img/doc/pbd3.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The unreasonable effectiveness of merge</h1>
+<p>Simply replay edits on top of the current history!</p>
+<p><strong>Does not work if the<br />
+document evolves...</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide36"><div class="body1">
+<p><img src="img/doc/pbd4.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The unreasonable effectiveness of merge</h1>
+<p>Branch off from the original document version &amp; merge</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide37"><div class="body1">
+<p><img src="img/doc/pbd5.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The unreasonable effectiveness of merge</h1>
+<p>Branch off from the original document version &amp; merge</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller noborder slide38"><div class="body1">
+<p><img src="img/doc/pbd6.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The unreasonable effectiveness of merge</h1>
+<p>Branch off from the original document version &amp; merge</p>
+<p><strong>Merging logic adapts edits to the new schema</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons  slide39"><h1>The unreasonable effectiveness of merge</h1>
+<ul>
+<li>
+<i class='fa fa-users'></i> <strong>Collaborative-document editing</strong><br />
+<i class="placeholder"></i>Merge edits done independently
+</li>
+<li>
+<i class='fa fa-arrow-pointer'></i> <strong>Programming by demonstration</strong><br />
+<i class="placeholder"></i>Replay edits correctly using merge
+</li>
+<li>
+<i class='fa fa-arrows-rotate'></i> <strong>Incremental recomputation</strong><br />
+<i class="placeholder"></i>Remove conflicting evaluated edits
+</li>
+<li>
+<i class='fa fa-clone'></i> <strong>Concrete programming</strong><br />
+<i class="placeholder"></i>Edit formula before it was copied
+</li>
+</ul>
+<style>.slide39 h1 { font-size:40pt; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide40"><div class="body">
+<h1>Demo</h1>
+<h2>Denicek-based data exploration</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide41"><div class="body">
+<h1>Design choices</h1>
+<h2>Document-oriented programming systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons  slide42"><h1>Design</h1>
+<h2>Four clusters of design choices</h2>
+<ul>
+<li><i class='fa fa-file-lines'></i> Document shape, representation, modularity</li>
+<li><i class='fa fa-code'></i> Programming model, embedding, capabilities</li>
+<li><i class='fa fa-address-card'></i> Display and editing mechanism</li>
+<li><i class='fa fa-circle-play'></i> Evaluation mode and state representation</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide43"><div class="body1">
+<p><img src="img/blab.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Display mechanism</h1>
+</div>
+<div class="fragment">
+<p><strong>Naive realism</strong><br />
+Boxer, Webstrates</p>
+</div>
+<div class="fragment">
+<p><strong>Renderer with widgets</strong><br />
+Jupyter, Forms/3</p>
+</div>
+<div class="fragment">
+<p><strong>API calls</strong><br />
+Ampleforth, Hypercard</p>
+</div>
+<div class="fragment">
+<p><strong>Memory-mapped</strong><br />
+<em>BootstrapLab</em>, (BASIC :-)</p>
+</div>
+</div>
+</div>
+<style>.slide43 em { color:#d22d40; font-style:normal; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide44"><div class="body1">
+<p><img src="img/stepper.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Evaluation state</h1>
+</div>
+<div class="fragment">
+<p><strong>Ephemeral results</strong><br />
+Spreadsheets, Jupyter</p>
+</div>
+<div class="fragment">
+<p><strong>Materialized results</strong><br />
+Hypercard, Webstrates</p>
+</div>
+<div class="fragment">
+<p><strong>Internalized execution</strong><br />
+<em>Boxer</em>, BootstrapLab</p>
+</div>
+<div class="fragment">
+<p><strong>Materialized execution</strong><br />
+Denicek, Subtext</p>
+</div>
+</div>
+</div>
+<style>.slide44 em { color:#d22d40; font-style:normal; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="title  slide45"><h1><strong>Computational Substrates for</strong><br /> Document-Oriented Programming</h1>
+<div class="items">
+<p><em><i class="fa fa-laptop-code"></i></em> Interesting kind of <strong>programming systems</strong>...</p>
+<p><em><i class="fa fa-microscope"></i></em> For <strong>user-centric</strong> and <strong>theory</strong> research</p>
+<p><em><i class="fa fa-pen-nib"></i></em> Ask me about <strong>Denicek</strong> and <strong>design choices</strong></p>
+</div>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<style>.slide45 h1 { font-size:40pt; color:#003657; } .slide45  .items p { margin-top:0px; margin-bottom:5px; color:#d22d40; } .slide45  i { margin-right:10px; }</style><img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
