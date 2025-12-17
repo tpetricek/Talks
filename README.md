@@ -65,6 +65,9 @@ Talks and slides
 
 ### Philosophy, history and architecture
 
+- [**Cultures of Programming**](https://tpetricek.github.io/Talks/2025/cultures-of-programming) (December 2025) - HaPoC, Aachen<br />
+  See also: [Cultures of Programming book](https://www.cambridge.org/core/books/cultures-of-programming/075A2D1DE611EE47807A683147B21691) published with Cambridge University Press
+
  - [**Critical Architecture/Software Theory**](http://tpetricek.github.io/Talks/2025/critical-software/slides/index.html) (September 2025) - PPIG, Belgrade<br />
    See also: [product listing demo](http://tpetricek.github.io/Talks/2025/critical-software/maze/) and [Critical Architecture/Software Theory article](https://tomasp.net/architecture/)
 
