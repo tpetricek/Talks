@@ -68,6 +68,9 @@ Talks and slides
 
 ### Philosophy, history and architecture
 
+- [**Cultures of Programming**](https://tpetricek.github.io/Talks/2026/cultures-of-programming/basel) (March 2026) - Basel<br />
+  Extended version of the talk below. See also: [Cultures of Programming book and exhibition](https://tomasp.net/cultures)
+
 - [**Cultures of Programming**](https://tpetricek.github.io/Talks/2025/cultures-of-programming) (December 2025) - HaPoC, Aachen<br />
   See also: [Cultures of Programming book](https://www.cambridge.org/core/books/cultures-of-programming/075A2D1DE611EE47807A683147B21691) published with Cambridge University Press
 
