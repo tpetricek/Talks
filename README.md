@@ -24,7 +24,8 @@ Talks and slides
 
 ### Programming Systems Research
 
- - [**Computational Substrates for Document-Oriented Programming**](https://tpetricek.github.io/Talks/2025/doc-oriented-systems/) (November 2025) - Aarhus.<br>
+ - [**Computational Substrates for Document-Oriented Programming**](https://tpetricek.github.io/Talks/2026/doc-oriented-systems/) (March 2026) - ex)situ, Paris.<br>
+   Earlier version: [Computational Substrates for Document-Oriented Programming](https://tpetricek.github.io/Talks/2025/doc-oriented-systems/) (November 2025) - Aarhus.<br>
    See also: [Denicek paper (ACM)](https://dl.acm.org/doi/10.1145/3746059.3747646), [Denicek videos (scroll down!)](https://dl.acm.org/doi/10.1145/3746059.3747646#supplementary-materials), and [source code](https://github.com/d3sprog/denicek)
 
  - [**Programování pro neprogramátory: Nedosažitelný sen nebo blízká realita? (CZ)**](https://tpetricek.github.io/Talks/2025/end-user-programming-cz) (October 2025) - MFF UK, Prague.
@@ -68,7 +69,10 @@ Talks and slides
 
 ### Philosophy, history and architecture
 
-- [**Cultures of Programming**](https://tpetricek.github.io/Talks/2026/cultures-of-programming/basel) (March 2026) - Basel<br />
+- [**Undone Ideas on Programming: When Cultures Fail to Meet**](https://tpetricek.github.io/Talks/2026/cultures-of-programming/undone) (March 2026) - Undone CS, Luxembourg<br />
+  See also: [Cultures of Programming book and exhibition](https://tomasp.net/cultures)
+
+- [**Cultures of Programming**](https://tpetricek.github.io/Talks/2026/cultures-of-programming/paris) (March 2026) - Paris (ex)situ and Paris-1)<br />
   Extended version of the talk below. See also: [Cultures of Programming book and exhibition](https://tomasp.net/cultures)
 
 - [**Cultures of Programming**](https://tpetricek.github.io/Talks/2025/cultures-of-programming) (December 2025) - HaPoC, Aachen<br />
