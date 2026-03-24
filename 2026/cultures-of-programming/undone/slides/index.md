@@ -607,8 +607,8 @@ Large software requires proper languages!
 - *fa-shapes* Object-orientation becomes engineering tool
 - *fa-globe* Engineers decide on web technologies
 - *fa-folder-open* Malleability and openness gets lost!
-- *fa-circle-question* Degree of incommensurability
 - *fa-heart* Humanistic programming systems?
+- *fa-crown* Democratic "openness" of public services?
 
 ****************************************************************************************************
 - template: subtitle
