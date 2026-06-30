@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Programming Systems, or What Programming Language Research Cannot See</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content.two-column p { margin-bottom:5px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.two-column img { max-width:70%; margin-top:20px; margin-left:0px; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:5px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:28pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:0px; font-size:44pt; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:0px; font-weight:200; font-size:40pt; line-height:1em }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+      .image.larger .body1 { width:580px; }
+      .image.larger .body1 img { max-width:560px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+      .image em { color:#d22d40; font-weight:500; font-style:normal; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title  slide1"><h1>Programming systems, <em>or</em></h1>
+<h2>what programming language<br> research cannot see</h2>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide2"><div class="body">
+<div>
+<p>1 INTRO
+- HyperCard demo
+-
+2 TECH DIMS
+- Timeline
+4 COMPLEMENTARY
+- C64
+3 FORMAL
+- TheGamma
+5 HCI
+- Denicek
+6 CONCLUSIONS</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide3"><div class="body">
+<h1>Intro</h1>
+<h2>Programming systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide4"><div class="body1">
+<p><img src="img/hyper.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Apple HyperCard</h1>
+<p><strong>Hypermedia system</strong></p>
+<p>Help humankind<br />
+share knowledge</p>
+<p>Allowed lots of people to create small apps</p>
+</div>
+<div class="fragment">
+<p><em>What does a PL researcher see?</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide5"><h1>This is a 90-minute talk!</h1>
+<div class="body">
+<div>
+<p><img src="img/qr.png" alt="" /></p>
+<p>Let's make it a bit interactive!</p>
+<ul>
+<li><a href="https://tinyurl.com/ecoop26">https://tinyurl.com/ecoop26</a></li>
+</ul>
+<br><br>
+</div>
+<div class="fragment">
+<p><strong>What can a programming languages researcher say about HyperCard?</strong></p>
+</div>
+</div>
+<style>.slide5 img { border-width:20px; max-width:200px; float:right; } .slide5  a { font-weight:500; } .slide5 
+ul { margin-top:-15px; } .slide5  p { font-size:30pt; } .slide5  li { font-size:30pt; } .slide5 
+strong { color:#d22d40; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide6"><div class="body">
+<h1>Demo</h1>
+<h2>HyperCard in action!</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists smaller noborder slide7"><div class="body">
+<h1>Interesting HyperCard facts</h1>
+<img src="img/macintosh.png"/>
+<div>
+<h2>Unprecedented usability</h2>
+<ul>
+<li>Same environment for authoring &amp; use</li>
+<li>Controlled via user levels</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Stateful interactive system</h2>
+<ul>
+<li>Scripts live inside the stateful app</li>
+<li>Stacks are open to modification by default</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>No modern equivalent</h2>
+<ul>
+<li>Hypermedia evolved into the Web</li>
+<li>What got lost in the process?</li>
+</ul>
+</div>
+</div>
+<style>.slide7 ul { margin-bottom:15px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide8"><h1>Programming systems</h1>
+<h2>Different ways of looking</h2>
+<div class="body">
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons  slide9"><h1>Programming systems</h1>
+<h2>Different ways of looking</h2>
+<ul>
+<li><i class='fa fa-up-down-left-right'></i> <strong>Technical dimensions</strong> - heuristic analysis</li>
+<li><i class='fa fa-microscope'></i> <strong>Complementary science</strong> - past systems</li>
+<li><i class='fa fa-not-equal'></i> <strong>Formal models</strong> - theory of systems</li>
+<li><i class='fa fa-comment-dots'></i> <strong>User centric</strong> - talking to users</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide10"><div class="body">
+<h1>Technical dimensions</h1>
+<h2>Qualitative systems analysis</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger slide11"><div class="body1">
+<p><img src="img/flappy.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Timeline</h1>
+<p><strong>Adding time to spreadsheets</strong></p>
+<p>Most widely used programming sys!</p>
+<p>Keep simplicity &amp; add expressivity</p>
+</div>
+<div class="fragment">
+<p><em>Comparison with using Python?</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide12"><div class="body">
+<div>
+<h3>Experiment with Timeline!</h3>
+<p><img src="img/qr.png" alt="" /></p>
+<p>Go to: <a href="https://timelinesheets.com">https://timelinesheets.com</a><br />
+Or try: <a href="https://tinyurl.com/ecoop26-bird">https://tinyurl.com/ecoop26-bird</a></p>
+<p>Create simple time-aware calculations</p>
+<p><code>A1 = 0 =&gt; A1[-1] + 1</code><br />
+<code>B1 = 0 =&gt; B1[-1] + RAND(1) - 0.5</code></p>
+</div>
+<div class="fragment">
+<br>
+<h3>Audience participation :-)</h3>
+<p><strong>How does spreadsheet system<br> (with time) compare to Python?</strong></p>
+<ul>
+<li><a href="https://tinyurl.com/ecoop26">https://tinyurl.com/ecoop26</a></li>
+</ul>
+</div>
+</div>
+<style>.slide12 img { border-width:20px; max-width:200px; float:right; } .slide12  a { font-weight:500; } .slide12 
+ul { margin-top:-15px; } .slide12  p { font-size:26pt; } .slide12  li { font-size:26pt; } .slide12  h3 { margin-top:0px; } .slide12 
+strong { color:#d22d40; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="lists  slide13"><div class="body">
+<h1>Technical dimensions</h1>
+<img src="img/nest.png"/>
+<div>
+<h2>What is a dimension</h2>
+<ul>
+<li>Captures a property of a system</li>
+<li>Covers old and new systems</li>
+<li>Defines a range of values</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Using the framework</h2>
+<ul>
+<li>Identify gaps in design space</li>
+<li>Characterise new and old systems</li>
+<li>Qualitative comparison of systems</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger slide14"><div class="body1">
+<p><img src="img/matrix.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Catalogue</h1>
+<p><strong>Analysed systems</strong></p>
+<p>LISP machines, UNIX, Web, Hypercard, Spreadsheets, Haskell, Boxer, DarkLang, etc.</p>
+<p><a href="https://tomasp.net/techdims">tomasp.net/techdims</a></p>
+</div>
+</div>
+</div>
+<style>.slide14 a { font-weight:500; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger slide15"><div class="body">
+<h1>Analysis of HyperCard</h1>
+<img src="img/hyper.png"/>
+<div>
+<h2>Modes of interaction</h2>
+<p>Programming happens in the<br />
+same interface mode as using</p>
+</div>
+<div class="fragment">
+<h2>Primary &amp; secondary notation</h2>
+<p>Graphics and basic interactions constructed graphically; script is secondary</p>
+</div>
+<div class="fragment">
+<h2>Self-sustainability</h2>
+<p>Clear separation between app itself and<br />
+user code; cannot be modified from within</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide16"><h1>Analysis of Timeline</h1>
+<div class="body">
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger slide17"><div class="body">
+<h1>Analysis of Timeline</h1>
+<img src="img/flappy.png"/>
+<div>
+<h2>Modes of interaction</h2>
+<p>Programming happens in the<br />
+same interface mode as using</p>
+</div>
+<div class="fragment">
+<h2>Abstraction construction</h2>
+<p>Code reuse by creating formula and using "drag down"</p>
+</div>
+<div class="fragment">
+<h2>Composability vs. convenience</h2>
+<p>Timeline has composable charting primitives<br />
+but no built-in high-level charts</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide18"><div class="body">
+<h1>Complementary science</h1>
+<h2>Learning from the past</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide19"><div class="body1">
+<p><img src="img/temp.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Complementary science</h1>
+<p><strong>Scientific ideas get lost due to paradigm shifts</strong></p>
+<p>There is often something valuable lost too.</p>
+<p>Do serious historical research to recover them!</p>
+</div>
+<div class="fragment">
+<p><em>Even more the case<br />
+in programming!</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger slide20"><div class="body1">
+<p><img src="img/c64.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Commodore 64</h1>
+<p>"It is impossible to teach good prog&shy;ramming to stu&shy;dents that have had a prior expo&shy;sure to BASIC" (Dijkstra)</p>
+</div>
+<div class="fragment">
+<p><em>What can we learn from BASIC?</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide21"><div class="body">
+<div>
+<h3>Experiment with C64 BASIC!</h3>
+<p><img src="img/qr.png" alt="" /></p>
+<p><a href="https://tomasp.net/commodore64">https://tomasp.net/commodore64</a></p>
+<p>Try printing Hello world!<br />
+<code>PRINT "HELLO WORLD"</code></p>
+<p>Try writing an infinite loop!<br />
+<code>10 PRINT "HELLO WORLD"</code><br />
+<code>20 GOTO 10</code></p>
+</div>
+<div class="fragment">
+<br>
+<h3>Audience participation :-)</h3>
+<p><strong>Is there anything good about prefixing each<br />
+line with a number? What is the point?</strong></p>
+<ul>
+<li><a href="https://tinyurl.com/ecoop26">https://tinyurl.com/ecoop26</a></li>
+</ul>
+</div>
+</div>
+<style>.slide21 img { border-width:20px; max-width:200px; float:right; } .slide21  a { font-weight:500; } .slide21 
+ul { margin-top:-15px; } .slide21  p { font-size:26pt; } .slide21  li { font-size:26pt; } .slide21  h3 { margin-top:0px; } .slide21 
+strong { color:#d22d40; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide22"><div class="body1">
+<p><img src="img/pygmalion.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Pygmalion</h1>
+<p><strong>Visual programming system based on demonstration</strong></p>
+<p>Largest Smalltalk 74 program ever written</p>
+</div>
+<div class="fragment">
+<p><em>What does using Pygmalion feel like?</em></p>
+<p><a href="https://tinyurl.com/ecoop26-pygm">https://tinyurl.com/ecoop26-pygm</a></p>
+</div>
+</div>
+</div>
+<style>.slide22 a { font-weight:500; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="lists  slide23"><div class="body">
+<h1>Learning from Pygmalion</h1>
+<img src="img/factorial.png"/>
+<div>
+<h2>Abstraction construction</h2>
+<ul>
+<li>From concrete manipulation</li>
+<li>Programming by demonstration</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Visual programming</h2>
+<ul>
+<li>Good iconic representations?</li>
+<li>Difficult in an abstract domain!</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide24"><h1>Learning from Commodore 64 BASIC</h1>
+<div class="body">
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists noborder slide25"><div class="body">
+<h1>Learning from Commodore 64 BASIC</h1>
+<img src="img/maze.png"/>
+<div>
+<h2>Modes of interaction</h2>
+<p>Terminal works as both REPL<br />
+and structure code editor</p>
+</div>
+<div class="fragment">
+<h2>Factoring of complexity</h2>
+<p>Simple but experts can use POKE and SYS</p>
+</div>
+<div class="fragment">
+<h2>Learnability</h2>
+<p>Simple unstructured language<br />
+Demos distributed as source in magazines</p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide26"><div class="body">
+<h1>Formal models</h1>
+<h2>Modelling interactive systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger slide27"><div class="body1">
+<p><img src="img/thegamma.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The Gamma</h1>
+<p><strong>Programming for non-programmers</strong></p>
+<p>Explore data by repeatedly choo&shy;sing from a list of offered options</p>
+</div>
+<div class="fragment">
+<p><em>What is the underlying language?</em></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide28"><div class="body">
+<div>
+<h3>Explore Olympic medals in The Gamma!</h3>
+<p><img src="img/qr.png" alt="" /></p>
+<p><a href="https://thegamma.net">https://thegamma.net</a> or directly<br />
+<a href="https://tinyurl.com/ecoop26-olympics">https://tinyurl.com/ecoop26-olympics</a></p>
+<p>Known issues in Firefox (sorry)<br />
+Old and buggy data (also sorry)</p>
+<p>Type <code>olympics.</code> and choose an operation. Get top medalists or top teams?</p>
+</div>
+<div class="fragment">
+<br>
+<h3>Audience participation :-)</h3>
+<p><strong>What is the model of The Gamma language<br />
+or system? Is there a formal grammar?</strong></p>
+<ul>
+<li><a href="https://tinyurl.com/ecoop26">https://tinyurl.com/ecoop26</a></li>
+</ul>
+</div>
+</div>
+<style>.slide28 img { border-width:20px; max-width:200px; float:right; } .slide28  a { font-weight:500; } .slide28 
+ul { margin-top:-15px; } .slide28  p { font-size:26pt; } .slide28  li { font-size:26pt; } .slide28  h3 { margin-top:0px; } .slide28 
+strong { color:#d22d40; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image larger slide29"><div class="body1">
+<p><img src="img/histogram.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Histogram</h1>
+<p><strong>Programs as lists of interactions</strong></p>
+<p>Keep track of the process!</p>
+<p>Running code, refactoring</p>
+<p><a href="https://tomasp.net/histogram">tomasp.net/histogram</a></p>
+</div>
+</div>
+</div>
+<style>.slide29 a { font-weight:500; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide30"><h1>Formal models of programming systems</h1>
+<div class="body">
+</div>
+<style>.slide30 h1 { font-size:40pt; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide31"><h1>Formal models of programming systems</h1>
+<div class="body">
+<div>
+<h3>Grammar of The Gamma language</h3>
+<p>Program is a sequence of let bindings or invocations<br />
+Lambda only used as method parameter!</p>
+<p><span class="math">\[\newcommand{\lsep}{\;\;|\;\;}
+\newcommand{\kvd}[1]{\textbf{#1}}
+\newcommand{\narrow}[1]{\hspace{-0.6em}#1\hspace{-0.6em}}
+\begin{array}{lcl}
+p &amp;\narrow{::=}&amp; c_1; \ldots; c_n\\
+c &amp;\narrow{::=}&amp; \kvd{let}~x = t \lsep t\\
+\end{array}
+\quad
+\begin{array}{lccl}
+t &amp;\narrow{::=}&amp; o &amp;\hspace{-1em}\lsep x \lsep t.m(e, \ldots, e) \\
+e &amp;\narrow{::=}&amp; t &amp;\hspace{-1em}\lsep \lambda x\rightarrow e\\
+\end{array}\]</span></p>
+</div>
+<div class="fragment">
+<p><strong>Reflects how data science scripting works!</strong><br />
+We can get a preview for any sub-expression</p>
+</div>
+</div>
+<style>.slide31 h1 { font-size:40pt; color:#003657; margin-bottom:20px; } .slide31  h3 { margin:0px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide32"><h1>Formal models of programming systems</h1>
+<div class="body">
+<div>
+<h3>Programming as list of interactions</h3>
+<p>Record operations as performed by the user!</p>
+<div class="smmath">
+<p><span class="math">\[\newcommand{\narrow}[1]{\hspace{-0.6em}#1\hspace{-0.6em}}
+\begin{array}{rcl}
+p &amp;\narrow{::=}&amp; i_1, ~\ldots,~ i_k\\
+r &amp;\narrow{::=}&amp; \textbf{named}~n~~|~~\textbf{indexed}~i\\
+i &amp;\narrow{::=}&amp; \textbf{def}~\textit{value}\\
+  &amp;\narrow{|}&amp; \mathbf{name}~\textit{ref}~\textbf{a}~\textit{name}\\
+  &amp;\narrow{|}&amp; \textbf{dot}~\textit{name}~\textbf{on}~\textit{ref}\\
+  &amp;\narrow{|}&amp; \textbf{apply}~\textbf{args}~\textit{ref}_1, \ldots, \textit{ref}_n~\textbf{to}~\textit{ref}\\
+  &amp;\narrow{|}&amp; \mathbf{evaluate}~\textit{ref}\\
+  &amp;\narrow{|}&amp; \mathbf{abstract}~\textbf{from}~\textit{ref}_1, \ldots, \textit{ref}_k~\textbf{to}~\textit{ref}
+\end{array}\]</span></p>
+</div>
+</div>
+<div class="fragment">
+<p><strong>We can talk about interesting things!</strong><br />
+Render program as code or spreadsheet<br />
+Refine type information after <span class="math">\(\textbf{evaluate}\)</span> interaction</p>
+</div>
+</div>
+<style>.slide32 h1 { font-size:40pt; color:#003657; margin-bottom:20px; } .slide32  h3 { margin:0px; } .slide32 
+.smmath {  transform:scale(0.8); margin:-40px 0px -20px -20px; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide33"><div class="body">
+<h1>Methods &amp; formats</h1>
+<h2>Explaining interactive systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content three-column nologo slide34"><h1>Programming experiences</h1>
+<div class="body">
+<div>
+<h3>Collaboration</h3>
+<p><img src="img/anim-collab.gif" alt="" /></p>
+<p>Merge edits made independently by different users</p>
+</div>
+<div class="fragment">
+<h3>Demonstration</h3>
+<p><img src="img/anim-pbd.gif" alt="" /></p>
+<p>Specify program by showing concrete document action</p>
+</div>
+<div class="fragment">
+<h3>Schema change</h3>
+<p><img src="img/anim-struct.gif" alt="" /></p>
+<p>Adapt references when document structure changes</p>
+</div>
+</div>
+<style>.slide34 img { width:200px; border-style:none; } .slide34 
+h3 { color:black; font-size:26pt } .slide34   p { font-size:24pt; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder smaller slide35"><div class="body1">
+<p><img src="img/denicek.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Denicek</h1>
+<p><strong>Computational substrate for end-user document-oriented programming</strong></p>
+<br>
+<p>Makes implementing<br />
+such systems easy!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide36"><div class="body">
+<div>
+<h3>Experiment with Denicek!</h3>
+<p><img src="img/qr.png" alt="" /></p>
+<p><a href="https://tinyurl.com/ecoop26-denicek">https://tinyurl.com/ecoop26-denicek</a></p>
+<p>Replay the steps of <em>Chapter 1</em> demo<br />
+Invoke <code>@normalize!</code> in step 4 yourself</p>
+</div>
+<div class="fragment">
+<br><br><br>
+<h3>Audience participation :-)</h3>
+<p><strong>Compare an interactive essay with a classic paper!<br />
+Did you break it? Did you learn something extra?</strong></p>
+<ul>
+<li><a href="https://tinyurl.com/ecoop26">https://tinyurl.com/ecoop26</a></li>
+</ul>
+</div>
+</div>
+<style>.slide36 img { border-width:20px; max-width:200px; float:right; } .slide36  a { font-weight:500; } .slide36 
+ul { margin-top:-15px; } .slide36  p { font-size:26pt; } .slide36  li { font-size:26pt; } .slide36  h3 { margin-top:0px; } .slide36 
+strong { color:#d22d40; } .slide36  em { font-style:normal; font-weight:400; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons  slide37"><h1>Medium is the message</h1>
+<h2>What do we choose to ignore?</h2>
+<ul>
+<li>
+<i class='fa fa-file-lines fa-regular'></i> <strong>Conventional academic papers</strong><br />
+<i class="placeholder"></i>Ignore complexity, capture essence as formulas
+</li>
+<li>
+<i class='fa fa-film'></i> <strong>Video demos and webcasts</strong><br />
+<i class="placeholder"></i>Show interaction, but what are the limits?
+</li>
+<li>
+<i class='fa fa-arrow-pointer'></i> <strong>Interactive essays</strong><br />
+<i class="placeholder"></i>Guided walkthrough based on system prototype
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide38"><div class="body">
+<h1>Conclusions</h1>
+<h2>Programming systems research</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons  slide39"><h1>Research methods</h1>
+<ul>
+<li>
+<i class='fa fa-magnifying-glass'></i> <strong>Qualitative analysis</strong><br />
+<i class="placeholder"></i>Mapping the design space of systems
+</li>
+<li>
+<i class='fa fa-not-equal'></i> <strong>Formal models</strong><br />
+<i class="placeholder"></i>Systems view breaks conventional wisdoms
+</li>
+<li>
+<i class='fa fa-gamepad'></i> <strong>Human-computer interaction</strong><br />
+<i class="placeholder"></i>How are systems used, how could they be used
+</li>
+<li>
+<i class='fa fa-scroll'></i> <strong>Complementary science</strong><br />
+<i class="placeholder"></i>Learning from interesting past systems
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="title  slide40"><h1>Programming systems, <em>or what</em></h1>
+<h2>programming language research cannot see</h2>
+<div class="items">
+<p><em><i class="fa fa-circle-question"></i></em> Systems view <strong>opens new research questions</strong></p>
+<p><em><i class="fa fa-flask"></i></em> We can use many different <strong>research methods</strong></p>
+<p><em><i class="fa fa-robot"></i></em> AI agents <strong>interact</strong> with programming systems too</p>
+</div>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<style>.slide40 .items p { margin-top:0px; margin-bottom:8px; font-size:28pt; color:#d22d40; } .slide40 
+i { margin-right:15px; } .slide40  h2 { font-size:38pt; margin-bottom:60px; }</style><img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
