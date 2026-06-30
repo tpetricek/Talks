@@ -24,6 +24,9 @@ Talks and slides
 
 ### Programming Systems Research
 
+ - [**Programming systems, or what programming language research cannot see**](https://tpetricek.github.io/Talks/2026/programming-systems/) (July 2026) - ECOOP Academy, Brussels.<br>
+   See also: [Timeline](https://timelinesheets.com/spreadsheet), [Commodore 64 BASIC](https://tomasp.net/commodore64/), [Technical dimensions](https://tomasp.net/techdims/), [Histogram](https://tomasp.net/histogram/), and [The Gamma](https://thegamma.net/)
+
  - [**Computational Substrates for Document-Oriented Programming**](https://tpetricek.github.io/Talks/2026/doc-oriented-systems/) (March 2026) - ex)situ, Paris.<br>
    Earlier version: [Computational Substrates for Document-Oriented Programming](https://tpetricek.github.io/Talks/2025/doc-oriented-systems/) (November 2025) - Aarhus.<br>
    See also: [Denicek paper (ACM)](https://dl.acm.org/doi/10.1145/3746059.3747646), [Denicek videos (scroll down!)](https://dl.acm.org/doi/10.1145/3746059.3747646#supplementary-materials), and [source code](https://github.com/d3sprog/denicek)
