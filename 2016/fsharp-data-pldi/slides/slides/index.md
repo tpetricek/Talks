@@ -14,6 +14,12 @@
 Tomas Petricek, University of Cambridge<br />
 [tomas@tomasp.net](mailto:tomas@tomasp.net) | [@tomaspetricek](http://twitter.com/tomaspetricek)
 
+Don Syme, Microsoft Research<br />
+[donsyme@fastmail.fm](mailto:donsyme@fastmail.fm) | [@dsyme](http://twitter.com/dsyme)
+
+Gustavo Guerra, Microsoft<br />
+[@ovatsus](http://twitter.com/ovatsus)
+
 ****************************************************************************************************
 
 ## Unsafe dynamic access
@@ -247,6 +253,12 @@ Relative safety necessary for modern programs
 
 Tomas Petricek, University of Cambridge<br />
 [tomas@tomasp.net](mailto:tomas@tomasp.net) | [@tomaspetricek](http://twitter.com/tomaspetricek)
+
+Don Syme, Microsoft Research<br />
+[donsyme@fastmail.fm](mailto:donsyme@fastmail.fm) | [@dsyme](http://twitter.com/dsyme)
+
+Gustavo Guerra, Microsoft<br />
+[@ovatsus](http://twitter.com/ovatsus)
 
 ****************************************************************************************************
 
