@@ -11,15 +11,15 @@ open canopy
 
 [<Test>]
 let ``'Something' is valid and 'aa' is not valid`` () =
-  configuration.chromeDir <- __SOURCE_DIRECTORY__ 
-  start chrome  
+  configuration.chromeDir <- __SOURCE_DIRECTORY__
+  start chrome
   url "http://localhost:6581/"
   "#pwd" << "Something"
-  element "form button" |> click
-  element ".alert" |> read |> contains "Success"
+  click "form button"
+  ".alert" =~ "Success"
 
   url "http://localhost:6581/"
   "#pwd" << "aa"
-  element "form button" |> click
-  element ".alert" |> read |> contains "Error"
+  click "form button"
+  ".alert" =~ "Error"
   quit()
