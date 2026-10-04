@@ -1,0 +1,16 @@
+#r "nuget: FSharp.Data"
+open System.IO
+open System.Diagnostics
+open FSharp.Data
+
+Http.RequestString("https://openaccess-api.clevelandart.org/api/artworks/?q=cats&has_image=1&limit=10")
+type Art = JsonProvider<"https://openaccess-api.clevelandart.org/api/artworks/?q=san+francisco&has_image=1&limit=10">
+
+let art = Art.GetSample()
+let html = 
+  [ for a in art.Data do
+      $"<h1>{a.Title}</h1>" + 
+      $"<img src='{a.Images.Web.Url}'>" ]
+
+File.WriteAllText("demo.html", String.concat "" html)
+Process.Start(ProcessStartInfo("demo.html", UseShellExecute = true))
