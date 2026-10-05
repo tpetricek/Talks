@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Choose-</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+      .reveal .lists.bigger2x .body img { max-width:400px; max-height:400px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content.two-column p { margin-bottom:5px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.two-column img { max-width:70%; margin-top:20px; margin-left:0px; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:5px; margin-top:0px; }
+      .content em { color:#d22d40; font-weight:500; font-style:normal; }
+
+			.largeicons p, .largeicons li { font-size:28pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:0px; font-size:44pt; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:0px; font-weight:200; font-size:40pt; line-height:1em }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+      .image.larger .body1 { width:580px; }
+      .image.larger .body1 img { max-width:560px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+      .image em { color:#d22d40; font-weight:500; font-style:normal; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title  slide1"><h1>The <strong>Choose-Your-Own-Adventure</strong> Calculus</h1>
+<div class="body">
+<p><strong>Tomas Petricek, Jan Liam Verter &amp; Mikolas Fromm</strong><br />
+Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<style>.slide1 h1 { letter-spacing:-1px; font-weight:100; } .slide1  h1 { margin:20px -50px; } .slide1  .body { margin:0px -50px; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide2"><div class="body">
+<h1>Demo</h1>
+<h2>F# type providers</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide3"><div class="body1">
+<p><img src="img/tps.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Type providers</h1>
+<p><em>Not just a programming
+language feature</em></p>
+</div>
+<div class="fragment">
+<p><strong>Dot-driven development</strong><br />
+(Phil Trelford)</p>
+<p>Type dot and choose from auto-complete!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide4"><div class="body">
+<h1>Paradigm shift</h1>
+<h2>From languages to systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide5"><div class="body1">
+<p><img src="img/tapl.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1><em>Programming</em> Languages</h1>
+<p>Programming is<br />
+writing code</p>
+<p>Formal semantics, implementation, paradigms, types</p>
+</div>
+<div class="fragment">
+<p><strong>We know how<br />
+to study this!</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide6"><div class="body1">
+<p><img src="img/gops.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1><em>Programming</em> Systems</h1>
+<p>Interacting with a stateful system</p>
+<p>Feedback, liveness, interactive user interfaces</p>
+</div>
+<div class="fragment">
+<p><strong>But how do we<br />
+study this?</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide7"><div class="body">
+<h1>Problem</h1>
+<h2>Theory of programming systems</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content two-column slide8"><h1>Theory of programming systems</h1>
+<div class="body">
+<div>
+<h3>Design space</h3>
+<p>Technical dimensions</p>
+<p><img src="img/nest.png" alt="" /></p>
+</div>
+<div class="fragment">
+<h3>Formal models</h3>
+<p>Like this work</p>
+<p><img src="img/calc.png" alt="" /></p>
+</div>
+</div>
+<style>.slide8 h3 { color:#003657;}</style><img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide9"><div class="body">
+<h1>Demo</h1>
+<h2>Data exploration</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide10"><div class="body1">
+<p><img src="img/thegamma1.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Data exploration<br> in The Gamma</h1>
+<p><strong>Correct and complete</strong></p>
+<p>Can construct all<br />
+possible programs</p>
+<p>All constructed<br />
+programs are correct</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide11"><h1>The choose-your-own-adventure calculus</h1>
+<div class="body">
+<div>
+<p><strong>Given expressions <span class="math">\(e\in \mathbb{E}\)</span> and states <span class="math">\(\sigma \in \Sigma\)</span></strong></p>
+<p><em>Choose</em> returns a program for a given state</p>
+<ul>
+<li><span class="math">\(\text{choose}(\sigma) = e\)</span></li>
+</ul>
+<p><em>Choices</em> returns choices for a given state</p>
+<ul>
+<li><span class="math">\(\text{choices}(\sigma) = \{\iota_1\mapsto\sigma_1, \ldots, \iota_n\mapsto\sigma_n\}\)</span></li>
+</ul>
+</div>
+</div>
+<style>.slide11 h1 { font-size:38pt;  } .slide11  strong { font-weight:600; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide12"><div class="body">
+<h1>Examples</h1>
+<h2>What fits the formalism</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists  slide13"><div class="body">
+<h1>Structure editors</h1>
+<img src="img/sandblocks.png"/>
+<div>
+<h2>State is the expression</h2>
+<ul>
+<li>Sequence of symbols <span class="math">\(s\)</span></li>
+<li>Either terminals <span class="math">\(t\)</span></li>
+<li>Or non-terminals <span class="math">\(n\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Grammar for completions</h2>
+<ul>
+<li><span class="math">\(\text{choose}(\boldsymbol{s}) = \boldsymbol{s}\)</span></li>
+<li>
+<span class="math">\(\text{choices}(\boldsymbol{t}\, n\, \boldsymbol{s}) =
+\{\; \iota_i \mapsto \boldsymbol{t}\,\boldsymbol{s_i}\,\boldsymbol{s}
+~|~ \forall (n\mapsto\boldsymbol{s_i})\in \mathcal{P} ~\}\)</span>
+</li>
+</ul>
+</div>
+</div>
+<style>.slide13 .body img { max-width:400px !important; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image noborder slide14"><div class="body1">
+<p><img src="img/alf.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Tactic-based theorem provers</h1>
+<p><strong>State is a proof<br />
+term with holes</strong></p>
+<p>Completions offer tactics applicable<br />
+to the first hole</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="subtitle  slide15"><div class="body">
+<h1>Demo</h1>
+<h2>AI assistants</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists bigger slide16"><div class="body">
+<h1>AI assistants</h1>
+<img src="img/aia.png"/>
+<div>
+<h2>What defines an AI assistant</h2>
+<ul>
+<li>Set of constraints <span class="math">\(\boldsymbol{C}\)</span></li>
+<li>Scoring function <span class="math">\(Q_{\boldsymbol{C}}\)</span></li>
+<li>Set of matching expressions <span class="math">\(E_{\boldsymbol{C}}\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Choose-your-own-adventure system</h2>
+<ul>
+<li><span class="math">\(\text{choose}_X(\boldsymbol{C}) = \argmax_{e \in E_{\boldsymbol{C}}} Q_{\boldsymbol{C}}(X, e)\)</span></li>
+<li><span class="math">\(\text{choices}_X(\boldsymbol{C}) = \{\iota_1 \mapsto \boldsymbol{C}\cup\{ c_1 \}, \iota_2\mapsto\boldsymbol{C}\cup\{ c_2 \}, \ldots\}\)</span></li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide17"><div class="body">
+<h1>Understanding</h1>
+<h2>Formal properties</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide18"><h1>Correctness</h1>
+<div class="body">
+<div>
+<p><strong>Subset of correct expressions <span class="math">\(\mathcal{E}\subseteq E\)</span></strong></p>
+<p>System is <em>correct</em> with respect to <span class="math">\(\mathcal{E}\)</span> if and only if:</p>
+<ul>
+<li>
+<span class="math">\(\forall \sigma_1,..,\sigma_n\)</span> and <span class="math">\(\iota_1,..,\iota_n\)</span> such that
+<span class="math">\(\iota_i\mapsto\sigma_i \in \text{choices}(\sigma_{i-1})\)</span> it is the case
+that <span class="math">\(\text{choose}(\sigma_i) \in \mathcal{E}\)</span>.
+</li>
+</ul>
+</div>
+</div>
+<style>.slide18 strong { font-weight:600}</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide19"><h1>Completeness</h1>
+<div class="body">
+<div>
+<p><strong>Subset of correct expressions <span class="math">\(\mathcal{E}\subseteq E\)</span></strong></p>
+<p>System is <em>complete</em> with respect to <span class="math">\(\mathcal{E}\)</span> if and only if:</p>
+<ul>
+<li><span class="math">\(\forall e \in \mathcal{E}\,.\,\exists \sigma_1, \ldots ,\sigma_n\)</span> and <span class="math">\(\iota_1, \ldots,\iota_n\)</span> such that  <span class="math">\(\iota_i\mapsto\sigma_i \in \text{choices}(\sigma_{i-1})\)</span> and <span class="math">\(e=\text{choose}(\sigma_n)\)</span>.</li>
+</ul>
+</div>
+</div>
+<style>.slide19 strong { font-weight:600}</style><img src="img/cuni.png" class="mfflogo" /></section><section class="icons  slide20"><h1>Properties</h1>
+<h2>Interesting lessons learned</h2>
+<ul>
+<li><i class='fa fa-shoe-prints'></i> Correctness fails for multi-step construction</li>
+<li><i class='fa fa-clock'></i> Weaker eventual correctness property</li>
+<li><i class='fa fa-wand-sparkles'></i> Useful heuristic systems may lack both</li>
+<li><i class='fa fa-dice-one'></i> More properties like uniqueness</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide21"><div class="body">
+<h1>Applications</h1>
+<h2>AI integration</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons  slide22"><h1>AI integration</h1>
+<h2>Guide, not automate</h2>
+<ul>
+<li><i class='fa fa-quote-left'></i> User writes what they need</li>
+<li><i class='fa fa-arrow-up-wide-short'></i> AI makes or recommends choices</li>
+<li><i class='fa fa-magnifying-glass'></i> User reviews what's happening</li>
+<li><i class='fa fa-vest'></i> Can this work in practice?</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image larger slide23"><div class="body1">
+<p><img src="img/gallery.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>The Gamma</h1>
+<p><strong>Data cube navigation,
+database aggregation, querying</strong></p>
+<p>~75 snippets with English summary</p>
+<p>From before AI era!</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="code  slide24"><div class="body1">
+<pre><code class="language-javascript">// Most frequently fought
+// enemeies of Dr Who
+let topEnemies =
+
+  // Graph database query
+  drWho.Character.Doctor
+    .'ENEMY_OF'.'[any]'
+    .'APPEARED_IN'.'[any]'
+  .'explore_properties'.explore
+
+  // SQL-like aggregation
+  .'group data'.'by 1-name'
+      .'count distinct 2-name'.then
+  .'sort data'
+      .'by 2-name descending'.then
+  .paging.take(7).'get series'.
+      'with key 1-name'.'and value 2-name'
+</code></pre>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Dr Who analysis</h1>
+<p><strong>Specific patterns for each data source</strong></p>
+<p><code>[any]</code> for graph query<br />
+<code>then</code> for aggregation</p>
+<p><strong>Names can get ugly and complex</strong></p>
+</div>
+</div>
+</div>
+<style>.slide24 .hljs-string { color:inherit; } .slide24  .body2 code { color:#d22d40; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="lists  slide25"><div class="body">
+<h1>Choose-your-own-adventure with AI</h1>
+<img src="img/banner.png"/>
+<div>
+<h2>Prompting chat-based LLM</h2>
+<blockquote>
+<p>The user wants to ... they selected ... next options are ...
+What should they choose next?</p>
+</blockquote>
+</div>
+<div class="fragment">
+<h2>TypeSafe "System One" Jev</h2>
+<ul>
+<li>Stealth start-up builds AI for my theory!</li>
+<li>Ranks given answers to an English prompt</li>
+<li>Cheaper and faster than general LLMs</li>
+</ul>
+</div>
+</div>
+<style>.slide25 .body img { max-width:400px !important; position:relative; top:-20px; } .slide25  blockquote { margin-left:10px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide26"><h1>AI as a transparent guide</h1>
+<div class="body">
+<div>
+<p><img src="img/accuracy.png" alt="" /></p>
+<p><strong>Useful but expensive and unreliable!</strong><br />
+Not enough to "take back control"</p>
+</div>
+</div>
+<style>.slide26 img { max-width:850px; margin-top:-20px }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image slide27"><div class="body1 fragment">
+<p><img src="img/topk.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Jev's ranking</h1>
+<p><strong>Assigns probability<br />
+to given options</strong></p>
+</div>
+<div class="fragment">
+<p>How often is the answer in top 3?</p>
+<p>Auto-select if the system is certain?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists larger bigger noborder slide28"><div class="body">
+<h1>More interaction patterns</h1>
+<img src="img/histogram.png"/>
+<div>
+<h2>Direct manipulation</h2>
+<ul>
+<li>Render preview of the state</li>
+<li>Map choices to UI elements</li>
+<li>Can they all be present?</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Mixed-initiative interaction</h2>
+<ul>
+<li>Search through choices</li>
+<li>Using heuristic or correctness</li>
+<li>Until <span class="math">\(\text{choose}(\sigma) \in \mathcal{E}\)</span></li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="title  slide29"><h1>The <strong>Choose-Your-Own-Adventure</strong> Calculus</h1>
+<div class="items">
+<p><em><i class="fa fa-computer-mouse"></i></em> We need more theories of programming systems</p>
+<p><em><i class="fa fa-dna"></i></em> Program synthesis, data wrangling and more!</p>
+<p><em><i class="fa fa-person-chalkboard"></i></em> AI as more than just magical black box?</p>
+</div>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Jan Liam Verter &amp; Mikolas Fromm</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<style>.slide29 .items p { margin-top:0px; margin-bottom:8px; font-size:28pt; color:#d22d40; } .slide29 
+i { margin-right:15px; } .slide29  h1 { margin-bottom:60px; font-weight:200; font-size:40pt; letter-spacing:-2px;  }</style><img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
