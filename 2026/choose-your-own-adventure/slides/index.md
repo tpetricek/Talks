@@ -2,7 +2,7 @@
 
 ****************************************************************************************************
 - template: title
-- style: h1 { letter-spacing:-1px; font-weight:100; }
+- style: h1 { letter-spacing:-1px; font-weight:100; } h1 { margin:20px -50px; } .body { margin:0px -50px; }
 
 # The **Choose-Your-Own-Adventure** Calculus
 
@@ -29,15 +29,21 @@ _<i class="fa-brands fa-bluesky"></i>_ [@tomasp.net](https://bsky.app/profile/to
 
 # Type providers
 
-**Not just a  
-language feature**
+_Not just a programming
+language feature_
 
 ---
 
-Dot-driven development  
+**Dot-driven development**  
 (Phil Trelford)
 
 Type dot and choose from auto-complete!
+
+----------------------------------------------------------------------------------------------------
+- template: subtitle
+
+# Paradigm shift
+## From languages to systems
 
 ----------------------------------------------------------------------------------------------------
 - template: image
@@ -130,13 +136,14 @@ programs are correct
 
 **Given expressions $e\in \mathbb{E}$ and states $\sigma \in \Sigma$**
 
+*Choose* returns a program for a given state  
+
+- $\text{choose}(\sigma) = e$   
+
 *Choices* returns choices for a given state  
 
 - $\text{choices}(\sigma) = \{\iota_1\mapsto\sigma_1, \ldots, \iota_n\mapsto\sigma_n\}$
 
-*Choose* returns a program for a given state  
-
-- $\text{choose}(\sigma) = e$   
 
 ****************************************************************************************************
 - template: subtitle
@@ -145,28 +152,24 @@ programs are correct
 ## What fits the formalism
 
 ----------------------------------------------------------------------------------------------------
-- template: image
-- class: smaller
-
-![](img/sandblocks.png)
+- template: lists
+- style: .body img { max-width:400px !important; }
 
 # Structure editors
 
-String of terminals $t$  
-and non-terminals $n$
+![](img/sandblocks.png)
 
----
+## State is the expression
+ - Sequence of symbols $s$
+ - Either terminals $t$  
+ - Or non-terminals $n$
 
-**Grammar defines  
-possible completions**
+## Grammar for completions
 
-$$$
-\begin{array}{l}
-\text{choices}(\boldsymbol{t}\, n\, \boldsymbol{s}) =\\
-\quad \{\; \iota_i \mapsto \boldsymbol{t}\,\boldsymbol{s_i}\,\boldsymbol{s}
-    ~|~ \forall (n\mapsto\boldsymbol{s_i})\in \mathcal{P} ~\}\\[0.5em]
-\text{choose}(\boldsymbol{s}) = \boldsymbol{s}
-\end{array}
+- $\text{choose}(\boldsymbol{s}) = \boldsymbol{s}$
+- $\text{choices}(\boldsymbol{t}\, n\, \boldsymbol{s}) =
+  \{\; \iota_i \mapsto \boldsymbol{t}\,\boldsymbol{s_i}\,\boldsymbol{s}
+    ~|~ \forall (n\mapsto\boldsymbol{s_i})\in \mathcal{P} ~\}$
 
 ----------------------------------------------------------------------------------------------------
 - template: image
@@ -174,11 +177,13 @@ $$$
 
 ![](img/alf.png)
 
-# Interactive theorem provers
+# Tactic-based theorem provers
 
-**State is a proof term with holes**
+**State is a proof  
+term with holes**
 
-Completions offer tactics applicable to the first hole
+Completions offer tactics applicable  
+to the first hole
 
 ----------------------------------------------------------------------------------------------------
 - template: subtitle
