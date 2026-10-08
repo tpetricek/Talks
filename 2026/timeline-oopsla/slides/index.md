@@ -43,6 +43,37 @@ code .fn { color:RebeccaPurple; }
 
 ****************************************************************************************************
 - template: content
+- class: nologo
+- style: .body img { max-width:48%; } h1 { margin-bottom:20px; letter-spacing:-2px;font-size:44pt; } h1 em { font-style:normal; font-weight:200; }
+
+# Dimensions: _Entities × Properties × Time_
+
+![](img/demo-boids.png)
+![](img/demo-planets.png)
+![](img/demo-crossover.png)
+![](img/demo-canon.png)
+
+****************************************************************************************************
+- template: image
+- class: smaller
+- style: h1 { font-size:28pt; }
+
+![](img/dims.png)
+
+# Third dimension in Excel
+
+_Rows_ for time steps
+
+_Columns_ left for entities and their properties
+
+---
+
+**Two ways of encoding attributes in a sheet**
+
+Study participants recognize this as painful
+
+****************************************************************************************************
+- template: content
 - class: two-column
 - style: h3 { color: #003657; line-height:1.1em; }
 
@@ -166,24 +197,6 @@ $\dfrac{(x:\tau)\in\Gamma}{\Gamma \;@\; 0 \vdash x : \tau} \qquad \dfrac{\Gamma 
 ## Research questions
 
 ****************************************************************************************************
-- template: image
-- class: smaller
-- style: h1 { font-size:28pt; }
-
-![](img/dims.png)
-
-# Encoding third dimension
-
-**Entities with multiple attri&shy;butes changing over time**
-
-_Columns_ for entities  
-_Rows_ for time steps
-
-**Two ways of encoding attributes in a sheet**
-
-Tested with a user study!
-
-****************************************************************************************************
 - template: icons
 - style: i { margin-right:10px; }
 
@@ -236,7 +249,7 @@ $\dfrac
 
 ****************************************************************************************************
 - template: title
-- style: .items p { margin-top:0px; margin-bottom:8px; font-size:28pt; color:#d22d40; }
+- style: .items p { font-weight:400; margin-top:0px; margin-bottom:8px; font-size:28pt; color:#d22d40; }
    i { margin-right:15px; } h1 { margin-bottom:60px; }
 
 # Timeline: _Adding time to spreadsheets_
@@ -245,7 +258,7 @@ $\dfrac
 
 _<i class="fa fa-table"></i>_ We still don't know why spreadsheets work...
 
-_<i class="fa fa-divide"></i>_ Language research works for spreadsheets
+_<i class="fa fa-divide"></i>_ Language research applied to spreadsheets!
 
 _<i class="fa fa-terminal"></i>_ Think about systems, not languages!
 
