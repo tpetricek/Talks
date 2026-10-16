@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Programming Systems, or What Programming Language Research Cannot See</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+      .reveal .lists.bigger2x .body img { max-width:400px; max-height:400px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content.two-column p { margin-bottom:5px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.two-column img { max-width:70%; margin-top:20px; margin-left:0px; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:5px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:28pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:0px; font-size:44pt; }
+			.title h1 em { font-weight:300; font-style:normal; color:#003657; }
+			.title h2 { margin-top:0px; font-weight:200; font-size:40pt; line-height:1em }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+      .image.larger .body1 { width:580px; }
+      .image.larger .body1 img { max-width:560px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+      .image em { color:#d22d40; font-weight:500; font-style:normal; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title  slide1"><h1>Timeline: <em>Adding the time<br> dimension to spreadsheets</em></h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong> &amp; Tomáš Boďa<br />
+Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+<script type="text/javascript">
+  window.onload = function() {
+    document.querySelectorAll("pre code.language-timeline").forEach(el => {
+      const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const re = new RegExp([
+        /("[^"]*")/,                                   // strings
+        /(?<![\w$.])(\$?[A-Z]{1,3}\$?\d+)(?!\w)/,      // cell refs
+        /\b(IF|KEYPRESS)\b/,                           // functions
+        /(?<![\w$.])(\d+(?:\.\d+)?)(?!\w)/             // numbers
+      ].map(r => r.source).join("|"), "g");
+      el.innerHTML = esc(el.textContent).replace(re, (m, str, ref, fn, num) =>
+        str ? `<span class="str">${str}</span>` :
+        ref ? `<span class="ref">${ref}</span>` :
+        fn  ? `<span class="fn">${fn}</span>`   :
+              `<span class="num">${num}</span>`);
+    });
+  }
+</script>
+<style type="text/css">
+pre code { font-size:20pt !important; }
+code .ref { color:FireBrick; }
+code .num { color:DarkGreen; }
+code .str { color:Goldenrod; }
+code .fn { color:RebeccaPurple; }
+</style>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content nologo slide2"><h1>Dimensions: <em>Entities × Properties × Time</em></h1>
+<div class="body">
+<div>
+<p><img src="img/demo-boids.png" alt="" />
+<img src="img/demo-planets.png" alt="" />
+<img src="img/demo-crossover.png" alt="" />
+<img src="img/demo-canon.png" alt="" /></p>
+</div>
+</div>
+<style>.slide2 .body img { max-width:48%; } .slide2  h1 { margin-bottom:20px; letter-spacing:-2px;font-size:44pt; } .slide2  h1 em { font-style:normal; font-weight:200; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="image smaller slide3"><div class="body1">
+<p><img src="img/dims.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Third dimension in Excel</h1>
+<p><em>Rows</em> for time steps</p>
+<p><em>Columns</em> left for entities and their properties</p>
+</div>
+<div class="fragment">
+<p><strong>Two ways of encoding attributes in a sheet</strong></p>
+<p>Study participants recognize this as painful</p>
+</div>
+</div>
+</div>
+<style>.slide3 h1 { font-size:28pt; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content two-column slide4"><h1>Adding time to spreadsheets</h1>
+<div class="body">
+<div>
+<h3>Using programming research in a new way</h3>
+<p><img src="img/counter.png" alt="" /></p>
+</div>
+<div class="fragment">
+<h3>Spreadsheets as a research problem</h3>
+<p><img src="img/crossover.png" alt="" /></p>
+</div>
+</div>
+<style>.slide4 h3 { color: #003657; line-height:1.1em; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide5"><div class="body">
+<h1>Demo</h1>
+<h2>Flappy Bird in Timeline <a href="https://timelinesheets.com/spreadsheet/1187c0bd-fe59-4efd-9541-622f35587031"><i class="fa fa-up-right-from-square"></i></a></h2>
+</div>
+<style>.slide5 i { font-size:20pt; position:relative; left:10px; top:-10px; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists bigger slide6"><div class="body">
+<h1>Adding time to spreadsheets</h1>
+<img src="img/counter.gif"/>
+<div>
+<h2>Implementing counter</h2>
+<pre><code class="language-timeline">A1 = 0 =&gt; A1[-1] + 1
+</code></pre>
+</div>
+<div class="fragment">
+<h2>Two language additions</h2>
+<p><code>A1[-1]</code> to access past values<br />
+<code>=&gt;</code> to specify initial value</p>
+</div>
+<div class="fragment">
+<h2>Synchronous dataflow</h2>
+<p>Compare formula with Lustre!<br />
+<code>nat = 0 -&gt; pre(nat) + 1;</code></p>
+</div>
+</div>
+<style>.slide6 ul { list-style-type:none; margin-top:20px; } .slide6  pre { margin-top:20px; margin-bottom:20px; } .slide6  p { margin-left:40px; margin-top:20px; margin-bottom:20px; } .slide6  h2 { font-weight:600; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists bigger slide7"><div class="body">
+<h1>Functional reactive programming</h1>
+<img src="img/frp.gif"/>
+<div>
+<h2>Counting key presses</h2>
+<pre><code class="language-timeline">A1 = 0 =&gt; A1[-1] +
+  IF(KEYPRESS("A"), 1, 0)
+</code></pre>
+</div>
+<div class="fragment">
+<h2>Two reactive concepts</h2>
+<ul>
+<li><strong>Events</strong> for discrete events</li>
+<li><strong>Bahaviors</strong> for time-varying values</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>There is more to do</h2>
+<ul>
+<li>
+No switching to dynamically<br />
+reconfigure dataflow graph
+</li>
+</ul>
+</div>
+</div>
+<style>.slide7 ul { list-style-type:none; margin-top:20px; } .slide7  pre { margin-top:20px; margin-bottom:20px; } .slide7  p { margin-left:40px; margin-top:20px; margin-bottom:20px; } .slide7  h2 { font-weight:600; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="lists bigger2x slide8"><div class="body">
+<h1>Composable visualizations</h1>
+<img src="img/compost.gif"/>
+<div>
+<h2>Two problems</h2>
+<ul>
+<li>Excel-like UI does not scale</li>
+<li>Need to see values over time</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Functional approach</h2>
+<ul>
+<li>Domain-specific language</li>
+<li><strong>Primitives</strong> like <code>COLUMN</code></li>
+<li><strong>Combinators</strong> like <code>OVERLAY</code>, <code>FILLCOLOR</code></li>
+<li>Perfect fit for ranges &amp; drag-down interaction</li>
+</ul>
+</div>
+</div>
+<style>.slide8 ul { margin-top:20px; } .slide8  pre { margin-top:20px; margin-bottom:20px; } .slide8  p { margin-left:40px; margin-top:20px; margin-bottom:20px; } .slide8  h2 { font-weight:600; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content  slide9"><h1>Coeffect-based optimization</h1>
+<h2>How many past values do we need to cache?</h2>
+<div class="body">
+<div>
+<ul>
+<li>Track the required number of past values</li>
+<li><code>A1[-1]</code> creates <span class="math">\(@\; 1\)</span> requirement at <code>A1</code></li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Inspired by dataflow coeffects</h2>
+<div style="padding:20px 50px; margin-top:20px">
+<p><span class="math">\(\dfrac{(x:\tau)\in\Gamma}{\Gamma \;@\; 0 \vdash x : \tau} \qquad \dfrac{\Gamma \;@\; n \vdash e : \tau}{\Gamma \;@\; (n+1) \vdash \textbf{prev}~e : \tau}\)</span></p>
+</div>
+</div>
+</div>
+<style>.slide9 h2 { margin:50px 0px 20px 0px; padding:0px; font:600 30pt 'Roboto', sans-serif; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide10"><div class="body">
+<h1>Timeline</h1>
+<h2>Research questions</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="icons  slide11"><h1>Open question</h1>
+<h2>What makes spreadsheets work?</h2>
+<ul>
+<li><i class='fa fa-table'></i> <strong>Closeness of mapping</strong></li>
+<li><i class='fa fa-square-root-variable'></i> <strong>Low abstraction support</strong></li>
+<li><i class='fa fa-arrow-rotate-right'></i> <strong>High degree of liveness</strong></li>
+<li><i class='fa fa-list-ol'></i> <strong>Concrete programming</strong></li>
+</ul>
+<style>.slide11 i { margin-right:10px; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="icons  slide12"><h1>Adding time</h1>
+<h2>Do we lose something?</h2>
+<ul>
+<li><i class='fa fa-table'></i> <strong>Closeness of mapping</strong></li>
+<li><i class='fa fa-square-root-variable'></i> <strong>Low abstraction support</strong></li>
+<li><i class='fa fa-arrow-rotate-right'></i> <strong>High degree of liveness</strong></li>
+<li><i class='fa fa-list-ol'></i> <strong>Concrete programming</strong></li>
+</ul>
+<style>.slide12 i { margin-right:10px; } .slide12  li:nth-child(1) { color:#d22d40; } .slide12 
+li:nth-child(2) { color:#d22d40; } .slide12  li:nth-child(3) { color:#d22d40; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="content  slide13"><h1>Formal models of spreadsheets</h1>
+<div class="body">
+<div>
+<h3>Following style of Gridlets</h3>
+<div style="margin:20px 0px 50px 50px">
+<p><span class="math">\(\boxed{\textnormal{Formula evaluation:}~~\sigma \vdash F \Downarrow V }\)</span></p>
+<p><span class="math">\(\boxed{\textnormal{Sheet evaluation:}~~\sigma \Downarrow \gamma}\)</span></p>
+</div>
+<h3>Evaluation order not fixed</h3>
+<div style="margin:30px 0px 20px 50px">
+<p><span class="math">\(\dfrac
+{\forall a \in \textnormal{dom}(\sigma)~.~\gamma(a) = V \wedge \sigma \vdash \sigma(a) \Downarrow V}
+{\sigma \Downarrow \gamma}\)</span></p>
+<div>
+</div>
+</div>
+<style>.slide13 h1 { color:#003657; }</style><img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="title  slide14"><h1>Timeline: <em>Adding time to spreadsheets</em></h1>
+<div class="items">
+<p><em><i class="fa fa-table"></i></em> We still don't know why spreadsheets work...</p>
+<p><em><i class="fa fa-divide"></i></em> Language research applied to spreadsheets!</p>
+<p><em><i class="fa fa-terminal"></i></em> Think about systems, not languages!</p>
+</div>
+<div class="body">
+<p><strong>Tomas Petricek</strong> &amp; Tomáš Boďa</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<style>.slide14 .items p { font-weight:400; margin-top:0px; margin-bottom:8px; font-size:28pt; color:#d22d40; } .slide14 
+i { margin-right:15px; } .slide14  h1 { margin-bottom:60px; }</style><img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
