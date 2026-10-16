@@ -24,10 +24,19 @@ Talks and slides
 
 ### Programming Systems Research
 
+ - [**Document-Oriented Programming Systems**](https://tpetricek.github.io/Talks/2026/doc-oriented-systems/san-diego) (October 2026) - UC San Diego<br>
+   See also: [Interactive Denicek demo](https://tomasp.net/denicek/), [Denicek paper](https://tomasp.net/academic/papers/denicek/), [Timeline paper and demos](https://tomasp.net/academic/papers/timeline/)
+
+ - [**The Choose-Your-Own-Adventure Calculus**](https://tpetricek.github.io/Talks/2026/choose-your-own-adventure/) (October 2026) Onward! Oakland<br>
+   See also: [Completing Programming Adventures with Jev](https://tomasp.net/blog/2026/completions-with-jev/), [TheGamma](https://thegamma.net) and [my other papers](https://tomasp.net/academic/)
+
+ - [**Timeline Adding the Time Dimension to Spreadsheets**](https://tpetricek.github.io/Talks/2026/timeline-oopsla/) (October 2026) - OOPSLA, Oakland<br>
+   See also: [Timeline paper and demos](https://tomasp.net/academic/papers/timeline/), play [Flappy Bird in a spreadsheet!](https://timelinesheets.com/spreadsheet/1187c0bd-fe59-4efd-9541-622f35587031) 
+
  - [**Programming systems, or what programming language research cannot see**](https://tpetricek.github.io/Talks/2026/programming-systems/) (July 2026) - ECOOP Academy, Brussels.
    See also: [Timeline](https://timelinesheets.com/spreadsheet), [Commodore 64 BASIC](https://tomasp.net/commodore64/), [Technical dimensions](https://tomasp.net/techdims/), [Histogram](https://tomasp.net/histogram/), and [The Gamma](https://thegamma.net/)
 
- - [**Computational Substrates for Document-Oriented Programming**](https://tpetricek.github.io/Talks/2026/doc-oriented-systems/) (March 2026) - ex)situ, Paris.<br>
+ - [**Computational Substrates for Document-Oriented Programming**](https://tpetricek.github.io/Talks/2026/doc-oriented-systems/paris) (March 2026) - ex)situ, Paris.<br>
    Earlier version: [Computational Substrates for Document-Oriented Programming](https://tpetricek.github.io/Talks/2025/doc-oriented-systems/) (November 2025) - Aarhus.<br>
    See also: [Denicek paper (ACM)](https://dl.acm.org/doi/10.1145/3746059.3747646), [Denicek videos (scroll down!)](https://dl.acm.org/doi/10.1145/3746059.3747646#supplementary-materials), and [source code](https://github.com/d3sprog/denicek)
 
