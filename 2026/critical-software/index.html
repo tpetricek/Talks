@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Deconstructing programming through critical software</title>
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style type="text/css">
+
+ 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:ital,wght@0,100;0,300;0,700;1,100&family=Rasa:wght@300;400;600&display=swap');
+			.reveal .slides {
+				text-align:left;
+				xbackground:yellow;
+				color:#003657;
+			}
+			section {
+				height:620px; /* 700-60 */
+				width:900px !important; /* 960-60 */
+				padding:40px 30px 40px 30px;
+			}
+			.overview section {
+				width:960px !important;
+			}
+			h1 {
+				font:600 46pt 'Rasa', serif;
+				padding:0px;
+				margin:0px;
+				color:#d22d40;
+				line-height:1.1em;
+			}
+      h1 em { font-weight:300; font-style:normal; color:#003657; }
+
+			h2 {
+				font:300 40pt 'Rasa', serif;
+				line-height:1.2em;
+				padding:0px;
+				margin:0px 0px 50px 0px;
+			}
+			p, li {
+				font:100 32pt 'Roboto', sans-serif;
+				margin:0px;
+				padding:0px;
+			}
+			h3 {
+				font:600 30pt 'Rasa', sans-serif;
+				color:#d22d40;
+				margin:0px;
+				padding:0px;
+			}
+			strong {
+				font-weight:500;
+			}
+			a {
+				text-decoration:none;
+				color:#0065A0;
+			}
+			a:hover, a:active {
+				color:#0081CC;
+			}
+
+			blockquote p {
+				font-style:italic;
+			}
+
+			p code, li code {
+				font:400 22pt 'Roboto Mono', monospace;
+			}
+			pre code {
+				font:400 17pt 'Roboto Mono', monospace;
+			}
+			.smallcode pre code {
+				font-size:15pt;
+			}
+
+			pre {
+				margin:25px 0px 25px 50px;
+			}
+
+			.hljs-comment { color:#008000 !important; }
+
+			i { width:56px; text-align:left; }
+
+			.math { font-size:20pt; }
+
+			.lists p, .lists li { font-size:26pt; }
+			.lists ul { margin:10px 0px 40px 40px; padding:0px; }
+			.lists p { margin:10px 0px 40px 0px; }
+			.lists h1 { margin-bottom:40px; }
+			.lists h2 { margin:0px; padding:0px; font:300 30pt 'Roboto', sans-serif; }
+			.lists .decor { margin-top:20px; float:right; max-width:350px; max-height:400px; border:3px solid black; }
+			.lists .decor pre { margin:15px; padding:0px; }
+			.reveal .lists .body img { border:3px solid black; margin-top:20px; float:right; max-width:280px; max-height:350px; }
+			.reveal .lists.bigger .body img { max-width:340px; max-height:350px; }
+			.reveal .lists.smaller .body img { max-width:200px; max-height:200px; }
+			.reveal .lists.noborder .body img { border-style:none; }
+			.lists.condensed p, .lists.condensed li { font-size:24pt }
+			.lists.condensed p { margin:5px 0px 20px 0px; }
+			.lists.condensed h2 { font-size:28pt; }
+			.lists.condensed h1 { margin-bottom: 20px; }
+
+			.content h1 { margin-bottom:40px; }
+			.content h2 { margin-top:-40px; }
+			.content h3 { font-size:32pt; margin-bottom:20px; margin-top:40px; }
+			.content p { margin-bottom:20px; }
+			.content p, .content li { font-size:26pt; }
+			.content.condensed h1 { margin-bottom:10px; }
+			.content.condensed p, .content.condensed li { font-size:22pt; }
+			.content.two-column .body div { width:450px; float:left; }
+			.content.three-column .body div { width:280px; margin-left:10px; margin-right:10px; float:left; }
+			.content.three-column img { max-width:240px; text-align:center; }
+			.content.three-column.smaller img { max-width:140px; text-align:center; margin-left:40px; }
+			.content img { max-width:100%; max-height:450px; border:3px solid black; }
+			.content.noborder img { border-style:none; }
+			.content.three-column h3, .content.two-column h3 { margin-bottom:30px; margin-top:0px; }
+
+			.largeicons p, .largeicons li { font-size:26pt; }
+			.largeicons h2, .icons h2 { margin-bottom:0px; }
+			.largeicons li, .icons li { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+			.largeicons ul, .icons ul { margin:50px 0px 0px 0px;padding:0px; }
+			.largeicons i.placeholder, .icons i.placeholder { width:65px; display:inline-block; }
+
+			.title h1 { margin-bottom:40px; }
+			.title h2 { margin-top:-40px; font-weight:200; }
+			.title h2 strong { font-weight:400; }
+			.title li { font-size:30pt; margin-bottom:20px; }
+			.title .body { position:absolute; bottom:0px; width:900px; }
+			.title .body p { margin:0px 0px 20px 0px; padding:0px; font-size:26pt; }
+			.title i { font-size:80%; width:32px; margin:0px 0px 0px 4px; }
+
+			.image .body1 { width:520px;margin-right:30px;height:620px;float:left;text-align:center; }
+			.image .body1 p { margin:50px 0px 0px 0px; }
+			.image .body1 img { max-width:500px;max-height:500px; border:3px solid black; }
+			.image h1 { font-size:32pt; margin-bottom:30px; }
+			.image h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.image p { margin-top:20px; font-size:26pt; }
+      .image p em { font-style:normal; color:#d22d40; }
+			.image code { font-size:18pt; }
+			.image .citation p { margin-top:-25px; margin-bottom:30px; }
+			.image.larger .body1 { width:560px; }
+			.image.larger .body1 img { max-width:540px; }
+			.image.smaller .body1 { width:460px; }
+			.image.smaller .body1 img { max-width:440px; }
+			.image.smaller2x .body1 { width:420px; }
+			.image.smaller2x .body1 img { max-width:400px; }
+			.image.noborder img { border-style:none; }
+			.image li { margin:0px; font-size:26pt; }
+			.image ul { position:relative; left:35px; }
+
+			.code .body1 { width:520px;margin-right:30px;height:620px;float:left;}
+			.code h1 { font-size:32pt; margin-bottom:30px; }
+			.code h2 { font-size:32pt; margin-top:-30px; color:#d22d40; font-weight:400; }
+			.code p { margin-top:20px; font-size:26pt; }
+			.code .citation p { margin-top:-25px; margin-bottom:30px; }
+			.code.smaller .body1 { width:460px; }
+
+			section.subtitle { height:auto; }
+			section.subtitle .body { padding:215px 0px 215px 0px; }
+
+			.mfflogo { position:absolute; right:30px; bottom:0px; width:140px; border-style:none !important; }
+			.nologo .mfflogo { display:none; }
+			@media print { .mfflogo { right:0px; bottom:0px; width:100px; } }
+
+			.todo { color:#00ff00; font-weight:500; }
+
+			/* DECK-SPECIFIC */
+			#qr { position:absolute; right:-50px; bottom:-30px; width:150px; border:60px solid white; }
+		</style>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section><section class="title  slide1"><h1>Deconstructing programming <em>through critical software</em></h1>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague</p>
+<p><em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a><br />
+<em><i class="fa fa-globe"></i></em> <a href="https://tomasp.net"><a href="https://tomasp.net">https://tomasp.net</a></a><br />
+<em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide2"><div class="body">
+<h1>Criticality</h1>
+<h2>Architecture and software</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content nologo slide3"><h1>House VI (1975) - <em>Peter Eisenman</em></h1>
+<div class="body">
+<div>
+<p><img src="img/housevi.jpg" alt="" /></p>
+</div>
+</div>
+<style>.slide3 img { max-width:100% !important; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide4"><div class="body1">
+<p><img src="img/shapes.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Structure</h1>
+<p><strong>Formal manipulation of primitive structures</strong></p>
+<p>What is the essence of architecture?</p>
+<p>Does not reveal programmatic and technical requirements</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide5"><div class="body1">
+<p><img src="img/stairs.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Function</h1>
+<p><strong>Attacks the concept of occupation as given</strong></p>
+<p>Disrupting domestic mindlessness</p>
+<p>Most of us adapt to<br />
+other people's houses</p>
+<p>Experience does not<br />
+lead to mental image</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons  slide6"><h1>Critical architecture and software</h1>
+<ul>
+<li>
+<i class='fa fa-file'></i> <strong>Disrupting domestic mindlessness</strong><br />
+<i class="placeholder"></i>Everyday use of software we no longer see
+</li>
+<li>
+<i class='fa fa-toggle-on'></i> <strong>Experience does not lead to mental image</strong><br />
+<i class="placeholder"></i>Thinking using established software patterns
+</li>
+<li>
+<i class='fa fa-hotel'></i> <strong>Manipulation latent in architecture</strong><br />
+<i class="placeholder"></i>In what ways software controls what we do
+</li>
+<li>
+<i class='fa fa-people-group'></i> <strong>Adapting to other people's houses</strong><br />
+<i class="placeholder"></i>Academics trying to use Sharepoint or Teams
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide7"><h1>Low-Tech Magazine</h1>
+<div class="body">
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="content nologo slide8"><div class="body">
+<div>
+<p><img src="img/lowtech.png" alt="" /></p>
+</div>
+</div>
+<style>.slide8 img { max-height:1000px !important; max-width:95% !important; } .slide8  h1 { margin-bottom:10px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller slide9"><div class="body1">
+<p><img src="img/solar.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Low-Tech Magazine</h1>
+<p><strong>Disrupting mindlessness</strong></p>
+<p>Black and white images<br />
+Offline in bad weather</p>
+</div>
+<div class="fragment">
+<p><strong>Questioning assumptions</strong></p>
+<p>Climate impact of tech<br />
+Reliance on corporations<br />
+99.999 availability</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists  slide10"><div class="body">
+<h1>Two uses of architecture</h1>
+<img src="img/decon.jpg"/>
+<div>
+<h2>Critical methodology</h2>
+<ul>
+<li>Self-critical reflective language</li>
+<li>Buildings, plans, projects</li>
+<li>Integrated in practice of architecture</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Analogy with software</h2>
+<ul>
+<li>Beyond software architecture</li>
+<li>Space, abstraction, structure</li>
+<li>Form and function</li>
+</ul>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide11"><div class="body">
+<h1>Space</h1>
+<h2>Navigating in software</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="lists nologo slide12"><div class="body">
+<h1>How we navigate program space?</h1>
+<img src="img/image.jpg"/>
+<div>
+<h2>Space in a city</h2>
+<ul>
+<li><strong>Landmarks</strong> provide a reference point</li>
+<li><strong>Districts</strong> make spaces identifiable</li>
+<li><strong>Edges</strong> and <strong>paths</strong> control movement</li>
+</ul>
+</div>
+<div class="fragment">
+<h2>Navigating in software</h2>
+<ul>
+<li>Central entities in code</li>
+<li>Program execution and code references</li>
+<li>Are there identifiable districts?</li>
+</ul>
+</div>
+</div>
+<style>.slide12 h2 { font-weight:600; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image slide13"><div class="body1 fragment">
+<p><img src="img/district.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Code districts</h1>
+<p><strong>Consistent coding style hurts navigation!</strong></p>
+<p>Old code decays</p>
+<p>Code from the same<br />
+era looks similar</p>
+<p>Important concepts become visible landmarks</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="largeicons  slide14"><h1>Space</h1>
+<h2>In architecture and software</h2>
+<ul>
+<li>
+<i class='fa fa-shapes'></i> <strong>Geometric patterns in cities and software?</strong><br />
+<i class="placeholder"></i>Abstract spreadsheet space, line numbers in BASIC
+</li>
+<li>
+<i class='fa fa-table-cells'></i> <strong>Vague spaces with undetermined meaning</strong><br />
+<i class="placeholder"></i>Padding bytes in memory, module boundaries
+</li>
+<li>
+<i class='fa fa-cart-shopping'></i> <strong>Space as an infrastructure</strong><br />
+<i class="placeholder"></i>Isolated apps vs. systems living in a substrate
+</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide15"><div class="body">
+<h1>Function</h1>
+<h2>Form follows function</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image smaller2x slide16"><div class="body1">
+<p><img src="img/jested.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Form follows function?</h1>
+<p>Ultimately, the 'functionalist' sign differed little from its classical
+counterpart..</p>
+<p>Shapes were derived not from function itself, but from
+other disciplinary references (...) in
+order to suggest a functional meaning.</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide17"><div class="body1">
+<p><img src="img/amazon.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Form follows function?</h1>
+<p><strong>Product listing with filtering and sorting</strong></p>
+</div>
+<div class="fragment">
+<p>Mindless pattern<br />
+Controls uses<br />
+Design monopoly</p>
+<p><strong>Function is data collection anyway</strong></p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image slide18"><div class="body1 fragment">
+<p><img src="img/children.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Classified children:</h1>
+<p>A critical analysis of the digital interfaces and representations that mediate adoption in the United States <em>(Higgins, 2023)</em></p>
+</div>
+<div class="fragment">
+<p><strong>Adoption listings mindlessly adopts the software pattern!</strong></p>
+</div>
+</div>
+</div>
+<style>.slide18 .body1 { max-width:350px; }</style><img src="img/cuni.png" class="mfflogo" /></section><section class="content  slide19"><h1>Disrupting the product listing</h1>
+<div class="body">
+<div>
+<p><img src="img/maniny.jpg" alt="" /></p>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="imageanim image slide20"><div class="body1 fragment">
+<p><img src="img/books.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Listing as a maze</h1>
+</div>
+<div class="fragment">
+<p><strong>Inconvenience</strong><br />
+Let the user get lost</p>
+<p><strong>Criticality</strong><br />
+Question rationality</p>
+<p><strong>Function</strong><br />
+Unironical software</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide21"><div class="body">
+<h1>What and how</h1>
+<h2>Critical software</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide22"><div class="body1">
+<p><img src="img/lavillette.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Parc La Villette</h1>
+<p><strong>Deconstructing the design process</strong></p>
+<p>Planes, lines and points</p>
+</div>
+<div class="fragment">
+<p><strong>Attacking the<br />
+opacity of software</strong></p>
+<p>Reveal what is it<br />
+made of and how?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide23"><div class="body1">
+<p><img src="img/follie.jpg" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Follies</h1>
+<p><strong>Deconstructed cube structures in a grid</strong></p>
+<p>No a priori function<br />
+Use later and flexible</p>
+</div>
+<div class="fragment">
+<p><strong>Questioning the function of software</strong></p>
+<p>Avoid narrow specifications?</p>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="icons  slide24"><h1>Rhetorical devices</h1>
+<h2>Creating critical software</h2>
+<ul>
+<li><i class='fa fa-face-meh'></i> <strong>Inconvenience</strong> - Harder to use</li>
+<li><i class='fa fa-face-grin'></i> <strong>Humour</strong> - Projects for fun</li>
+<li><i class='fa fa-face-smile-wink'></i> <strong>Irony</strong> - Revealing flaws</li>
+<li><i class='fa fa-face-surprise'></i> <strong>Exaggeration</strong> - Show absurdity</li>
+</ul>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="image  slide25"><div class="body1">
+<p><img src="img/memo.png" alt="" /></p>
+</div><div class="body2">
+<div class="body">
+<div>
+<h1>Esoteric languages</h1>
+<p>Employ humour, inconvenience and exaggeration</p>
+<p><strong>memo[] language</strong></p>
+<ul>
+<li>space and scale</li>
+<li>12 lines of code</li>
+<li>scroll to forget</li>
+</ul>
+</div>
+</div>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section><section><section class="subtitle  slide26"><div class="body">
+<h1>Conclusion</h1>
+<h2>Deconstructing programming</h2>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section><section class="title conclusion slide27"><h1>Deconstructing programming</h1>
+<ul>
+<li>
+<p><strong>Software needs more questioning!</strong><br />
+Critique from within engages the community?</p>
+</li>
+<li>
+<p><strong>Learning from critical architecture</strong><br />
+Deconstructive plans, parks, folies, monuments...</p>
+</li>
+<li>
+<p><strong>Work in progress... what to do next?</strong><br />
+Read more at <a href="https://tomasp.net/architecture">tomasp.net/architecture</a></p>
+</li>
+</ul>
+<div class="body">
+<p><strong>Tomas Petricek</strong>, Charles University, Prague<br />
+<em><i class="fa fa-envelope"></i></em> <a href="mailto:tomas@tomasp.net">tomas@tomasp.net</a>  | <em><i class="fa-brands fa-bluesky"></i></em> <a href="https://bsky.app/profile/tomasp.net">@tomasp.net</a></p>
+<style>.conclusion h1 { font-size:38pt; } .conclusion li p { font-size:26pt; }</style>
+</div>
+<img src="img/cuni.png" class="mfflogo" /></section></section>
+			</div>
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<link rel="stylesheet" href="reveal/plugin/highlight/style.css">
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
+		<script language="javascript" type="text/javascript">
+			Reveal.initialize({
+				plugins: [ RevealHighlight, RevealMath.KaTeX ],
+				hash:true,
+				pdfSeparateFragments: false,
+				transition:"none",
+				controls:false
+			});
+			websocket = new WebSocket("ws://" + window.location.host + "/websocket");
+			websocket.onmessage = function (evt) {
+				window.setTimeout(function(){ window.location.reload(); }, 1000);
+			};
+		</script>
+
+	</body>
+</html>
